@@ -18,9 +18,7 @@ return new class extends Migration
             $table->foreign('category_id')->references('id')->on('categories');
             $table->integer('price');
             $table->integer('stock_quantity');
-            $table->integer('dimention_x');
-            $table->integer('dimention_y');
-            $table->integer('dimention_z');
+            $table->json('specifications');
             $table->foreign('color_id')->references('id')->on('colors');
             $table->timestamps();
         });

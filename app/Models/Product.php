@@ -15,9 +15,7 @@ class Product extends Model
         'category_id',
         'price',
         'stock_quantity',
-        'dimention_x',
-        'dimention_y',
-        'dimention_z',
+        'specifications',
         'color_id',
     ];
 }
