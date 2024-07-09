@@ -15,19 +15,19 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('description');
-            $table->foreign('category_id')->references('id')->on('categories');
-            $table->integer('price');
+            $table->integer('category_id');
+            $table->integer('old_price');
+            $table->integer('new_price');
             $table->integer('stock_quantity');
             $table->json('specifications');
-            $table->foreign('color_id')->references('id')->on('colors');
+            $table->integer('color_id');
+            $table->integer('delivery_cost');
             $table->timestamps();
+
+            $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('color_id')->references('id')->on('colors');
         });
     }
-
-
-    // '',
-    // '',
-    // 'color_id',
 
     /**
      * Reverse the migrations.
