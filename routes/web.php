@@ -32,6 +32,8 @@ Route::get('/colors/delete/{id}', [ColorController::class, 'deleteColor']);
 // Product routes 
 
 Route::get('/products', [ProductController::class, 'readProducts']);
+
+
 Route::get('/products/{id}', [ProductController::class, 'readProduct']);
 Route::post('/products/create', [ProductController::class, 'createProduct']);
 Route::post('/products/edit/{id}', [ProductController::class, 'updateProduct']);
