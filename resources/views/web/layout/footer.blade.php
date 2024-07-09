@@ -19,9 +19,12 @@
 </div>
 <div class="footerwrapper-bottom">
     <div class="icon-row">
-        <a href="https://facebook.com/" target="_blank"><img src="css/footer/facebook.svg" alt=""></a>
-        <a href="https://instagram.com/" target="_blank"><img src="css/footer/instagram.svg" alt=""></a>
-        <a href="https://x.com/" target="_blank"><img src="css/footer/twitter.svg" alt=""></a>
+        <a href="https://facebook.com/" target="_blank">
+            <img src="{{ URL::asset('assets/svg/facebook.svg') }}" alt="facebook">
+        </a>
+        <a href="https://instagram.com/" target="_blank">
+            <img src="{{ URL::asset('assets/svg/instagram.svg') }}" alt="instagram">
+        </a>
+        <a href="https://x.com/" target="_blank"><img src="{{ URL::asset('assets/svg/twitter.svg') }}" alt="x"></a>
     </div>
 </div>
-

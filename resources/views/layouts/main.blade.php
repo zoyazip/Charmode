@@ -3,6 +3,7 @@
 
 <head>
     @include('web.layout.head')
+    @stack('styles')
 </head>
 
 <body>
