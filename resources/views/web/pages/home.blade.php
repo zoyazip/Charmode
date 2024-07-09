@@ -2,9 +2,14 @@
 
 @section('title', 'Home page')
 
-
 @push('styles')
+    {{-- main slider stylesheets --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="{{ URL::asset('css/pages/home/slider.css') }}" />
+
+    {{-- page stylesheets --}}
+    <link rel="stylesheet" href="{{ URL::asset('css/pages/home/home.css') }}" />
 @endpush
 
 @section('content')
@@ -17,23 +22,18 @@
                 <div class="swiper-slide">Slide 1</div>
                 <div class="swiper-slide">Slide 2</div>
                 <div class="swiper-slide">Slide 3</div>
-                ...
             </div>
-            <!-- If we need pagination -->
+            <!-- pagination -->
             <div class="swiper-pagination"></div>
 
-            <!-- If we need navigation buttons -->
+            <!-- navigation buttons -->
             <div class="swiper-button-prev"></div>
             <div class="swiper-button-next"></div>
-
-            <!-- If we need scrollbar -->
-            <div class="swiper-scrollbar"></div>
         </div>
-
 
         @push('scripts')
             @once
-                <script type="text/javascript" src="{{ URL::asset('js/swiper.js') }}" defer></script>
+                <script type="module" src="{{ URL::asset('js/swiper.js') }}" defer></script>
             @endonce
         @endpush
 
