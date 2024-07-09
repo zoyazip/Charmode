@@ -1,4 +1,4 @@
-footer, input{
+footer, footer input{
     font-family: var(--font-family);
     color: white;
     background-color: var(--green);
