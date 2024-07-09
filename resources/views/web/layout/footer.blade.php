@@ -1,8 +1,3 @@
-@push('styles')
-    <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
-@endpush
-
-
 <div class="footerwrapper">
 
     <div class="footerwrapper__left-Footer">
@@ -24,9 +19,9 @@
 </div>
 <div class="footerwrapper-bottom">
     <div class="icon-row">
-        <a href="https://facebook.com/" target="_blank"><img src="facebook.svg" alt=""></a>
-        <a href="https://instagram.com/" target="_blank"><img src="instagram.svg" alt=""></a>
-        <a href="https://x.com/" target="_blank"><img src="twitter.svg" alt=""></a>
+        <a href="https://facebook.com/" target="_blank"><img src="css/footer/facebook.svg" alt=""></a>
+        <a href="https://instagram.com/" target="_blank"><img src="css/footer/instagram.svg" alt=""></a>
+        <a href="https://x.com/" target="_blank"><img src="css/footer/twitter.svg" alt=""></a>
     </div>
 </div>
 
