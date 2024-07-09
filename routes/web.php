@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\ColorController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CategoryController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,6 +16,36 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+// Color routes [example]
+
+Route::get('/colors', [ColorController::class, 'readColors']);
+Route::get('/colors/{id}', [ColorController::class, 'readColor']);
+Route::post('/colors/create', [ColorController::class, 'createColor']);
+Route::post('/colors/edit/{id}', [ColorController::class, 'updateColor']);
+Route::get('/colors/delete/{id}', [ColorController::class, 'deleteColor']);
+
+// Product routes 
+
+Route::get('/products', [ProductController::class, 'readProducts']);
+Route::get('/products/{id}', [ProductController::class, 'readProduct']);
+Route::post('/products/create', [ProductController::class, 'createProduct']);
+Route::post('/products/edit/{id}', [ProductController::class, 'updateProduct']);
+Route::get('/products/delete/{id}', [ProductController::class, 'deleteProduct']);
+
+// Category routes
+
+Route::get('/categories', [CategoryController::class, 'readProducts']);
+Route::get('/categories/{id}', [CategoryController::class, 'readProduct']);
+Route::post('/categories/create', [CategoryController::class, 'createProduct']);
+Route::post('/categories/edit/{id}', [CategoryController::class, 'updateProduct']);
+Route::get('/categories/delete/{id}', [CategoryController::class, 'deleteProduct']);
+
+
 
 Route::get('/', function () {
     return view('web.pages.home');
