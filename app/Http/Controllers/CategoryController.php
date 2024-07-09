@@ -10,7 +10,7 @@ class CategoryController extends Controller
 
     public function readCategories() {
         $categories = Category::all();
-        return $categories;
+        return view('web.layout.header')->with(["categories" => $categories]);
     }
 
     public function readCategory(Request $request) {

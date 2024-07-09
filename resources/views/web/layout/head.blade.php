@@ -8,3 +8,4 @@
 <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 <link rel="stylesheet" href="{{ asset('css/footer/footer.css') }}">
 <link rel="stylesheet" href="{{ asset('css/header/header.css') }}">
+
