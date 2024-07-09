@@ -71,10 +71,6 @@ footer{
     padding-left: 20px;
 }
 
-h1{
-    font-size: var(--title-2xl);
-}
-
 .icon-row{
     margin-bottom: 30px;
     background-color: var(--green);
@@ -89,4 +85,9 @@ h1{
 .footerwrapper-bottom{
     max-width: 1488px;
     margin: auto;
+}
+
+
+@media only screen and (min-width: 768px) {
+    
 }
