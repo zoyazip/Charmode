@@ -4,7 +4,6 @@
     box-sizing: border-box;
     padding: 0;
     margin: 0;
-    all: unset;
     font-size: 20px;
 }
 
@@ -48,4 +47,3 @@
     margin: 0 auto;
     width: 90vw;
 }
-
