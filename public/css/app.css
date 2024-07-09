@@ -52,3 +52,7 @@ a {
     margin: 0 auto;
     width: 90vw;
 }
+
+h1{
+    font-size: var(--title-2xl);
+}
