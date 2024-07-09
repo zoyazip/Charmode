@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('wishlist_items', function (Blueprint $table) {
             $table->id();
-            $table->foreign('wishlist_id')->references('id')->on('wishlist');
-            $table->foreign('product_id')->references('id')->on('product');
+            $table->integer('wishlist_id');
+            $table->foreign('wishlist_id')->references('id')->on('wishlists');
+            $table->integer('product_id');
+            $table->foreign('product_id')->references('id')->on('products');
             $table->integer('quantity');
             $table->timestamps();
         });
