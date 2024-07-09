@@ -14,10 +14,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('web.pages.home');
 });
 
+Route::get('/pdp', function () {
+    return view('web.pages.pdp');
+});
 
-Route::get('/products', function () {
-    return view('products');
+Route::get('/cart', function () {
+    return view('web.pages.cart');
+});
+
+Route::get('/plp', function () {
+    return view('web.pages.plp');
 });

@@ -1,0 +1,92 @@
+footer, input{
+    font-family: var(--font-family);
+    color: white;
+    background-color: var(--green);
+}
+
+.footerwrapper__right-Footer, .footerwrapper__left-Footer{
+    padding: 3vw 3vw 0 3vw ;
+}
+
+footer{
+    border-radius: 27px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    min-width: 800px;
+    padding-bottom: 1px;
+}   
+.footerwrapper{
+    display: flex;
+    max-width: 1488px;
+    justify-content: space-between;
+    margin: auto;
+}
+
+.footerwrapper__right-Footer input{
+    display: block;
+    margin: 30px 20px 0 0;
+    
+}
+.footerwrapper__left-Footer{
+    margin-bottom: 30px;
+    max-width: 50vw;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+.footerwrapper__right-Footer{
+    max-width: 600px;
+}
+
+.footerwrapper__left-Footer > h1{
+    margin-bottom: 30px;
+}
+
+.footerwrapper__subscribe-btn{
+    border-radius: 10px;
+    width: 240px;
+    height: 2.6rem;
+    font-size: var(--text-regular);
+    outline-style: none;
+    border: solid 1px white;
+    transition: color .2s ease-out;
+    cursor: pointer;
+}
+
+
+.footerwrapper__subscribe-btn:hover{
+    color: var(--green);
+    background-color: white;
+    /* border-color: var(--green);  */
+    /* Jāpadomā */
+}
+
+.footerwrapper__text-input{
+    outline: none;
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid white;
+    padding-bottom: 13px;
+    padding-left: 20px;
+}
+
+h1{
+    font-size: var(--title-2xl);
+}
+
+.icon-row{
+    margin-bottom: 30px;
+    background-color: var(--green);
+    padding-left: 3vw;
+    
+}
+
+.icon-row > a{
+    margin-right: 30px;
+}
+
+.footerwrapper-bottom{
+    max-width: 1488px;
+    margin: auto;
+}
