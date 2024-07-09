@@ -29,19 +29,19 @@ Route::post('/colors/create', [ColorController::class, 'createColor']);
 Route::post('/colors/edit/{id}', [ColorController::class, 'updateColor']);
 Route::get('/colors/delete/{id}', [ColorController::class, 'deleteColor']);
 
-// Product routes 
+// Product routes
 
 Route::get('/products', [ProductController::class, 'readProducts']);
 
 
-Route::get('/products/{id}', [ProductController::class, 'readProduct']);
+Route::get('/products/{id}', [ProductController::class, 'readProducts']);
 Route::post('/products/create', [ProductController::class, 'createProduct']);
 Route::post('/products/edit/{id}', [ProductController::class, 'updateProduct']);
 Route::get('/products/delete/{id}', [ProductController::class, 'deleteProduct']);
 
 // Category routes
 
-Route::get('/categories', [CategoryController::class, 'readProducts']);
+Route::get('/categories', [CategoryController::class, 'readCategories']);
 Route::get('/categories/{id}', [CategoryController::class, 'readProduct']);
 Route::post('/categories/create', [CategoryController::class, 'createProduct']);
 Route::post('/categories/edit/{id}', [CategoryController::class, 'updateProduct']);
