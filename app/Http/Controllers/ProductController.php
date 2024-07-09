@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Color;
 
 class ProductController extends Controller
 {
 
     public function readProducts() {
-        $products = Product::all();
-        return $products;
+        $products = Product::all(); //Color::all();//
+        return view('productlistingpage')->with("products", $products);
     }
 
     public function readProduct(Request $request) {
