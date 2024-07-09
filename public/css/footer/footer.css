@@ -1,4 +1,4 @@
-footer, input{
+footer, footer input{
     font-family: var(--font-family);
     color: white;
     background-color: var(--green);
@@ -99,7 +99,22 @@ footer{
         max-width: none;
     }
 
-    .footerwrapper__subscribe-btn{
+    .footerwrapper__right-Footer input{
         margin-bottom: 30px;
     }
+
+    .footerwrapper__right-Footer{
+        max-width: none;
+    }
+
+
+    .footerwrapper-bottom {
+        display: flex;
+        justify-content: center;
+      }
+      .icon-row {
+        margin-bottom: 30px;
+        background-color: var(--green);
+      }
+
 }
