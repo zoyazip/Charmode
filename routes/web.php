@@ -45,8 +45,6 @@ Route::post('/categories/create', [CategoryController::class, 'createProduct']);
 Route::post('/categories/edit/{id}', [CategoryController::class, 'updateProduct']);
 Route::get('/categories/delete/{id}', [CategoryController::class, 'deleteProduct']);
 
-
-
 Route::get('/', function () {
     return view('web.pages.home');
 });
@@ -62,3 +60,4 @@ Route::get('/cart', function () {
 Route::get('/plp', function () {
     return view('web.pages.plp');
 });
+
