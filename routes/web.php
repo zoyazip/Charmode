@@ -24,8 +24,8 @@ Route::get('/', function () {
 // Color routes [example]
 
 Route::get('/colors', [ColorController::class, 'readColors']);
-Route::get('/colors/{id}', [ColorController::class, 'sreadColor']);
-Route::post('/colors/create', [ColorController::class, 'createColors']);
+Route::get('/colors/{id}', [ColorController::class, 'readColor']);
+Route::post('/colors/create', [ColorController::class, 'createColor']);
 Route::post('/colors/edit/{id}', [ColorController::class, 'updateColor']);
 Route::get('/colors/delete/{id}', [ColorController::class, 'deleteColor']);
 

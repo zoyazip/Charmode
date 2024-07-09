@@ -20,7 +20,7 @@ class ColorController extends Controller
 
     public function createColor(Request $request) {
         $color = new Color;
-        $color->name = $request->name;
+        $color->color_name = $request->color_name;
         $color->hex = $request->hex;
         $color->save();
         return "Success";
@@ -29,7 +29,7 @@ class ColorController extends Controller
     public function updateColor(Request $request) {
         $color = Color::find($request->id);
         $color->update([
-            'name' => $request->name,
+            'color_name' => $request->color_name,
             'hex' => $request->hex,
         ]);
         return "Success";
