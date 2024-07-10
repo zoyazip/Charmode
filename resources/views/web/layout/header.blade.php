@@ -1,4 +1,4 @@
-<div class="container">
+<div class="main-container">
     <div class="inner-container">
         <div class="navbar">
             <div class="navbar__top">
@@ -14,7 +14,7 @@
             </div>
             <div class="navbar__links">
                 <div class="navbar__link-container navbar--active"><a href="#home">Homezzz</a></div>
-                <div class="navbar__link-container"><a href="#about">About</a></div>
+                <div class="navbar__link-container text-black"><a href="#about" >About</a></div>
                 <div class="navbar__link-container"><a href="#services">Services</a></div>
                 <div class="navbar__link-container"><a href="#products">Products</a></div>
                 <div class="navbar__link-container"><a href="#contact">Contact</a></div>

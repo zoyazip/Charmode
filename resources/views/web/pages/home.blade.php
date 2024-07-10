@@ -31,6 +31,8 @@
             <div class="swiper-button-next"></div>
         </div>
 
+        @include('components/grid-layout')
+
         @push('scripts')
             @once
                 <script type="module" src="{{ URL::asset('js/swiper.js') }}" defer></script>
