@@ -18,7 +18,7 @@ use App\Http\Controllers\CategoryController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('/layouts/main');
 });
 
 // Color routes [example]
@@ -41,7 +41,7 @@ Route::get('/products/delete/{id}', [ProductController::class, 'deleteProduct'])
 
 // Category routes
 
-Route::get('/categories', [CategoryController::class, 'readProducts']);
+Route::get('/categories', [CategoryController::class, 'readCategories']);
 Route::get('/categories/{id}', [CategoryController::class, 'readProduct']);
 Route::post('/categories/create', [CategoryController::class, 'createProduct']);
 Route::post('/categories/edit/{id}', [CategoryController::class, 'updateProduct']);
@@ -61,5 +61,9 @@ Route::get('/cart', function () {
 
 Route::get('/plp', function () {
     return view('web.pages.plp');
+});
+
+Route::get('/checkout', function () {
+    return view('web.pages.checkout');
 });
 
