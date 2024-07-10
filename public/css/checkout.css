@@ -136,7 +136,7 @@
     gap: 20px;
 }
 
-.delivery__buttons button {
+.delivery__buttons .btn {
     border-radius: 8px;
     padding: 10px 20px;
     background-color: white;
@@ -227,6 +227,10 @@
 
 .underline {
     text-decoration: underline;
+}
+
+.checkout__container input:focus, .checkout__container textarea:focus, .checkout__container select:focus {
+    outline: none;
 }
 
 /* .selected-option {
