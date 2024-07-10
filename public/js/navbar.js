@@ -1,39 +1,58 @@
 // public/js/navbar.js
 
-document.addEventListener("DOMContentLoaded", (event) => {
-    console.log("Navbar JS file loaded successfully!");
+// document.addEventListener("DOMContentLoaded", (event) => {
+//     // Toggle the burger menu
+//     const burgerCheckbox = document.querySelector(".navbar__burger-checkbox");
+//     const navbarLinksMobile = document.querySelector(".navbar__links-mobile");
 
-    // Toggle the burger menu
+//     if (burgerCheckbox && navbarLinksMobile) {
+//         burgerCheckbox.addEventListener("change", function () {
+//             if (this.checked) {
+//                 navbarLinksMobile.style.display = "flex";
+//             } else {
+//                 navbarLinksMobile.style.display = "none";
+//             }
+//         });
+//     }
+
+// Print input value of search boxes on Enter key press
+// const searchInputs = document.querySelectorAll(".navbar__search-text");
+// searchInputs.forEach((searchInput) => {
+//     searchInput.addEventListener("keypress", function (event) {
+//         if (event.key === "Enter") {
+//             console.log(`Search query: ${this.value}`);
+//         }
+//     });
+// });
+
+function onResize() {
+    const width = window.innerWidth;
+    const navbarLinksMobile = document.querySelector(".navbar__links-mobile");
+    const burgerCheckbox = document.querySelector(".navbar__burger-checkbox");
+    console.log("close???");
+
+    if (width > 768) {
+        console.log("close");
+        burgerCheckbox.checked = false;
+        navbarLinksMobile.style.display = "none";
+    }
+}
+
+window.addEventListener("resize", onResize);
+
+function toggleDropdown() {
+    console.log("hello");
+
     const burgerCheckbox = document.querySelector(".navbar__burger-checkbox");
     const navbarLinksMobile = document.querySelector(".navbar__links-mobile");
 
-    if (burgerCheckbox && navbarLinksMobile) {
-        burgerCheckbox.addEventListener("change", function () {
-            if (this.checked) {
-                navbarLinksMobile.style.display = "flex";
-            } else {
-                navbarLinksMobile.style.display = "none";
-            }
-        });
-    }
-
-    setInterval(() => {
-        if (window.innerWidth > 768) {
-            navbarLinksMobile.style.display = "none";
-            burgerCheckbox.checked = false;
+    // if (burgerCheckbox && navbarLinksMobile) {
+    burgerCheckbox.addEventListener("change", function () {
+        if (this.checked) {
+            navbarLinksMobile.style.display = "flex";
         } else {
-            if (burgerCheckbox.checked) {
-                navbarLinksMobile.style.display = "flex";
-            }
+            navbarLinksMobile.style.display = "none";
         }
-    }, 2000);
-
-    // Print input value of search boxes on Enter key press
-    // const searchInputs = document.querySelectorAll(".navbar__search-text");
-    // searchInputs.forEach((searchInput) => {
-    //     searchInput.addEventListener("keypress", function (event) {
-    //         if (event.key === "Enter") {
-    //             console.log(`Search query: ${this.value}`);
-    //         }
-    //     });
-});
+    });
+    // }
+}
