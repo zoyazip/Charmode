@@ -88,9 +88,8 @@ footer{
         align-items: center;
     }
     .footerwrapper__left-Footer{
-        width: 95%;
+        width: 100%;
         max-width: none;
-        margin-bottom: 40px;
     }
 
     .footerwrapper__right-Footer input{
@@ -99,6 +98,7 @@ footer{
 
     .footerwrapper__right-Footer{
         max-width: none;
+        width: 100%;
     }
 
 
@@ -111,6 +111,14 @@ footer{
     background-color: var(--green);
     }
 
+ 
+
+}
+
+@media only screen and (max-width: 480px) {
+    .footerwrapper__subscribe-btn{
+        width: 100%;
+    }
  
 
 }
