@@ -209,6 +209,26 @@
     font-weight: 400;
 }
 
+.close__arrow {
+    transform: rotate(180deg)
+}
+
+.open__arrow {
+    transform: rotate(0deg)
+}
+
+.hidden__div {
+    display: none;
+}
+
+.visible__div {
+    display: visible;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
 /* .selected-option {
     background-color: var(--green);
     color: white;

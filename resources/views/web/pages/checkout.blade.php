@@ -8,15 +8,15 @@
             <div class="checkout__container__div">
                 <div class="checkout__title__data">
                     <div class="left">
-                        <div><h3 class="green-text">Client Data</h3></div>
-                        <span>V</span>
+                        <h3 class="green-text">Client Data</h3>
+                        <img onclick="changeDataArrow('checkout__form', 'clientDataArrow')" id="clientDataArrow" class="close__arrow" src="assets/svg/arrow.svg"/>
                     </div>
                     <div class="right">
                         <h6 class="thin-text">Have account?</h6>
-                        <a href="#" class="green-text">Login</a>
+                        <a href="#" class="underline green-text">Login</a>
                     </div>
                 </div>
-                <form class="checkout__form">
+                <form id="checkout__form" class="checkout__form hidden__div">
                     <div class="checkout__input__row">
                         <input placeholder="Name" type="text" id="name" name="name" value="">
                         <input placeholder="Surname" type="text" id="surname" name="surname" value="">
@@ -35,34 +35,34 @@
                 </form>
                 <div class="checkout__title">
                     <h3 class="green-text">Delivery Data</h3>
-                    <span>V</span>
+                    <img onclick="changeDataArrow('delivery__container', 'deliveryDataArrow')" id="deliveryDataArrow" class="close__arrow" src="assets/svg/arrow.svg"/>
                 </div>
-                <div class="delivery__container">
+                <div id="delivery__container" class="delivery__container hidden__div">
                     <div class="delivery__buttons">
-                        <button class="btn dpd">DPD</button>
-                        <button class="btn omniva">Omniva</button>
-                        <button class="btn pasts">Pasts</button>
+                        <button onclick="showDelivery('dpd')" class="btn dpd">DPD</button>
+                        <button onclick="showDelivery('omniva')" class="btn omniva">Omniva</button>
+                        <button onclick="showDelivery('pasts')" class="btn pasts">Pasts</button>
                     </div>
-                    <div>
+                    <div id="dpdSelect" class="visible__div">
                         <select class="green-text delivery__select">
                             <option class="option selected-option">1</option>
                             <option class="option">2</option>
                             <option class="option">3</option>
                         </select>
                     </div>
-                    {{-- <div>
+                    <div id="omnivaSelect" class="hidden__div">
                         <select class="green-text delivery__select">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
+                            <option class="option selected-option">1</option>
+                            <option class="option">2</option>
+                            <option class="option">3</option>
                         </select>
-                    </div> --}}
+                    </div>
                 </div>
                 <div class="checkout__title">
                     <h3 class="green-text">Payment method</h3>
-                    <span>V</span>
+                    <img onclick="changeDataArrow('paymentDiv', 'paymentDataArrow')" id="paymentDataArrow" class="close__arrow" src="assets/svg/arrow.svg"/>
                 </div>
-                <div class="btn-grid">
+                <div id="paymentDiv" class="btn-grid hidden__div">
                     <button class="grid-btn">Cash</button>
                     <button class="grid-btn">Bank Transaction</button>
                     <button class="grid-btn">Swedbank</button>
@@ -78,12 +78,13 @@
                 <button class="checkout-btn">Checkout </button>
             </div>
             <div class="checkout__container__div">
-                <div class="checkout__overview">
+                {{-- <div class="checkout__overview">
                     <h3 class="green-text">Cart overview</h3>
                     <a href="#" class="green-text">Edit</a>
-                </div>
+                </div> --}}
             </div>
             {{-- @include('') --}}
         </div>
     </div>
+    <script src="js/checkout/checkout.js"></script>
 @endsection
