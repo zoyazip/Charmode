@@ -60,3 +60,7 @@ Route::get('/plp', function () {
     return view('web.pages.plp');
 });
 
+Route::get('/checkout', function () {
+    return view('web.pages.checkout');
+});
+
