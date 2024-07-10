@@ -18,7 +18,7 @@
             <div class="item-wrapper__right-right">
                 <p class="item-wrapper__end-price">366$</p>
                 <p class="item-wrapper__more-or-less"><span class="item-wrapper__more-or-less-item">-</span><span class="item-wrapper__more-or-less-item">2</span><span class="item-wrapper__more-or-less-item">+</span></p>
-                <a class="item-wrapper__trash"><img src="{{ URL::asset('assets/svg/trash.svg') }}" alt="trash"></a>
+                <a class="item-wrapper__trash"><img src="{{ URL::asset('assets/svg/trash.svg') }}" alt="trash" class="item-wrapper__trash-icon"></a>
             </div>
         </div>
 
