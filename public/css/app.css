@@ -11,10 +11,6 @@
     font-size: 16px;
 }
 
-html {
-    font-family: var(--font-family);;
-}
-
 :root {
     /* colors */
     --text-primary: #204012;
