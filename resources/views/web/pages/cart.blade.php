@@ -6,12 +6,14 @@
 
     {{-- item card styler --}}
     <link rel="stylesheet" href="{{ URL::asset('css/pages/cart/cart-item-card.css') }}" />
+    <link rel="stylesheet" href="{{ URL::asset('css/pages/cart/sum-up.css') }}" />
 @endpush
 
 @section('content')
     <div class="main-container">
-        <h1>Welcome to the Cart Page</h1>
-        <p>This is the content of the cart page.</p>
-        @include('components/cart-item-card')
+        <div class="inner-container">
+            @include('components/cart-item-card')
+            @include('components/sum-up')
+        </div>
     </div>
 @endsection

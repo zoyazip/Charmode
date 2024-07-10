@@ -1,0 +1,14 @@
+.sum-up-top{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 15px 25px 15px 0;
+}
+.sum-up-top__text{
+    display: flex;
+    justify-content: space-between;
+}
+.line{
+    width: 2px;
+    color: var(--text-inactive);
+}
