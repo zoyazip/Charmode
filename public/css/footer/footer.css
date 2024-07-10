@@ -6,13 +6,10 @@ footer, footer input{
 
 
 footer{
-    border-radius: 27px;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-    padding-bottom: 1px;
+    border-radius: 27px 27px 0 0;
     padding: 48px 0 40px 0 ;
 
-}   
+}
 .footerwrapper{
     display: flex;
     justify-content: space-between;
@@ -25,7 +22,7 @@ footer{
 .footerwrapper__right-Footer input{
     display: block;
     margin: 30px 20px 40px 0;
-    
+
 }
 .footerwrapper__left-Footer{
     width: 70%;
@@ -111,7 +108,7 @@ footer{
     background-color: var(--green);
     }
 
- 
+
 
 }
 
@@ -119,6 +116,6 @@ footer{
     .footerwrapper__subscribe-btn{
         width: 100%;
     }
- 
+
 
 }
