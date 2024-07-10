@@ -4,7 +4,7 @@
         <div class="navbar__top">
 
             <div class="navbar__burger-container">
-                <input class="navbar__burger-checkbox" type="checkbox" name="" id="" />
+                <input class="navbar__burger-checkbox" onclick="toggleDropdown()" type="checkbox" name="" id="" />
                 <div class="navbar__burger-lines">
                     <span class="navbar__burger-line1 navbar__burger-line"></span>
                     <span class="navbar__burger-line2 navbar__burger-line"></span>
