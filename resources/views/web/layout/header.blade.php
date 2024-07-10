@@ -50,7 +50,7 @@
 			@endforeach --> --}}
     </div>
     <div class="navbar__bottom-search">
-        <input class="navbar__search-text" type="text" placeholder="Find your most cheapest luxury brand..." />
+        <input class="navbar__search-text" type="text" placeholder="Find your luxury brand..." />
         <img class="navbar__search-icon" src="assets/svg/search-icon.svg" alt="Search" />
     </div>
 </div>
