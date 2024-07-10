@@ -18,7 +18,6 @@ function showDelivery(deliveryMethod) {
     const dpdDiv = document.getElementById('dpdSelect');
     const omnivaDiv = document.getElementById('omnivaSelect');
     if (deliveryMethod === 'dpd') {
-        console.log('dpd');
         if (dpdDiv.classList.contains('hidden__div')) {
             dpdDiv.classList.remove('hidden__div');
             dpdDiv.classList.add('visible__div');
@@ -47,3 +46,8 @@ function showDelivery(deliveryMethod) {
         }
     }
 }
+
+// const dpdBtnLoad = document.getElementById('dpdBtn');
+// window.onload = function() {
+//     dpdBtnLoad.focus();
+// }

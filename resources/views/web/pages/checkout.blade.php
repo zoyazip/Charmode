@@ -39,7 +39,7 @@
                 </div>
                 <div id="delivery__container" class="delivery__container hidden__div">
                     <div class="delivery__buttons">
-                        <button onclick="showDelivery('dpd')" class="btn dpd">DPD</button>
+                        <button id="dpdBtn" onclick="showDelivery('dpd')" class="dpd btn">DPD</button>
                         <button onclick="showDelivery('omniva')" class="btn omniva">Omniva</button>
                         <button onclick="showDelivery('pasts')" class="btn pasts">Pasts</button>
                     </div>
@@ -63,7 +63,7 @@
                     <img onclick="changeDataArrow('paymentDiv', 'paymentDataArrow')" id="paymentDataArrow" class="close__arrow" src="assets/svg/arrow.svg"/>
                 </div>
                 <div id="paymentDiv" class="btn-grid hidden__div">
-                    <button class="grid-btn">Cash</button>
+                    <button id="cashBtn" class="grid-btn">Cash</button>
                     <button class="grid-btn">Bank Transaction</button>
                     <button class="grid-btn">Swedbank</button>
                     <button class="grid-btn">Citadele</button>
