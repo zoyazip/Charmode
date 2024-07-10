@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <header>
+    <header style="position: sticky; top: 0; background-color: white; z-index: 10000; padding-bottom: 10px;">
         @include('web.layout.header')
     </header>
 
