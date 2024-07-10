@@ -10,6 +10,10 @@
     align-items: center;
     width: 100%;
     padding: 20px 20px;
+    position: relative;
+}
+.navbar__menu {
+    display: none;
 }
 .navbar__logo {
     cursor: pointer;
@@ -25,11 +29,12 @@
     border: 1px solid var(--text-primary);
     border-radius: 8px;
 }
-.navbar__search-container input[type="text"] {
+.navbar__search-text {
     width: 95%;
     padding: 10px;
     font-size: 17px;
     border: none;
+    outline: none;
     border-radius: 4px;
 }
 .navbar__search-icon {
@@ -43,7 +48,7 @@
 .navbar__icons img {
     width: 30px;
     height: 30px;
-    margin-left: 15px;
+    margin-left: 1vw;
     cursor: pointer;
 }
 .navbar__links {
@@ -65,4 +70,41 @@
 .navbar__link-container:hover {
     border-radius: 10px;
     background-color: var(--green-light);
+}
+
+.navbar__bottom-search {
+    display: none;
+}
+
+@media screen and (max-width: 740px) {
+    .navbar__search-container {
+        display: none;
+    }
+    .navbar__menu {
+        display: block;
+    }
+    .navbar__logo {
+        width: 50vw;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        transition: background-color 0.2s;
+        padding: 10px 15px;
+    }
+    .navbar__links {
+        display: none;
+    }
+    .navbar__bottom-search {
+        display: flex;
+        justify-content: space-between;
+        flex-grow: 2;
+        margin: 0 5vw 0 5vw;
+        width: 100%;
+        height: min(100%, 40px);
+        padding: 10px;
+        font-size: 17px;
+        border: 1px solid var(--text-primary);
+        border-radius: 8px;
+    }
 }
