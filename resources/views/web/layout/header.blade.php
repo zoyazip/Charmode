@@ -1,3 +1,4 @@
+<script src="{{ asset('js/navbar.js') }}"></script>
 <div class="inner-container">
     <div class="navbar">
         <div class="navbar__top">
@@ -27,6 +28,21 @@
             <a href="3" class="navbar__link-container">Kitchen</a>
             <a href="4" class="navbar__link-container">Bedroom</a>
             <a href="5" class="navbar__link-container">Foyer</a>
+        </div>
+        <div class="navbar__links-mobile">
+            <div class="navbar__links-mobile__categories">
+                <a href="1" class="navbar__link-container">Living room</a>
+                <a href="2" class="navbar__link-container">Bathroom</a>
+                <a href="3" class="navbar__link-container">Kitchen</a>
+                <a href="4" class="navbar__link-container">Bedroom</a>
+                <a href="5" class="navbar__link-container">Foyer</a>
+            </div>
+            <div class="navbar__links-mobile__subcategories">
+                <a href="1" class="navbar__link-container">Tables</a>
+                <a href="2" class="navbar__link-container">Chairs</a>
+                <a href="3" class="navbar__link-container">Beds</a>
+                <a href="4" class="navbar__link-container">Waredrobes</a>
+            </div>
         </div>
         {{-- <!-- Commented out dynamic category links -->
 			<!-- @foreach ($categories as $category)
