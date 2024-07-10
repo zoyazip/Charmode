@@ -20,7 +20,7 @@
 
     </div>
     <div class="footerwrapper-bottom">
-        <div class="icon-row">
+        <div class="icon-row flex">
             <a href="https://facebook.com/" target="_blank">
                 <img src="{{ URL::asset('assets/svg/facebook.svg') }}" alt="facebook">
             </a>
