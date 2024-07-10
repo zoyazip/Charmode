@@ -1,42 +1,39 @@
-footer, input{
+footer, footer input{
     font-family: var(--font-family);
     color: white;
     background-color: var(--green);
 }
 
-.footerwrapper__right-Footer, .footerwrapper__left-Footer{
-    padding: 3vw 3vw 0 3vw ;
-}
 
 footer{
     border-radius: 27px;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
-    min-width: 800px;
     padding-bottom: 1px;
+    padding: 48px 0 40px 0 ;
+
 }   
 .footerwrapper{
     display: flex;
-    max-width: 1488px;
     justify-content: space-between;
     margin: auto;
+    gap: 60px;
+    width: 100%;
+
 }
 
 .footerwrapper__right-Footer input{
     display: block;
-    margin: 30px 20px 0 0;
+    margin: 30px 20px 40px 0;
     
 }
 .footerwrapper__left-Footer{
-    margin-bottom: 30px;
-    max-width: 50vw;
     width: 70%;
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
 }
 .footerwrapper__right-Footer{
-    max-width: 600px;
+    width: 50%;
 }
 
 .footerwrapper__left-Footer > h1{
@@ -58,8 +55,6 @@ footer{
 .footerwrapper__subscribe-btn:hover{
     color: var(--green);
     background-color: white;
-    /* border-color: var(--green);  */
-    /* Jāpadomā */
 }
 
 .footerwrapper__text-input{
@@ -71,16 +66,6 @@ footer{
     padding-left: 20px;
 }
 
-h1{
-    font-size: var(--title-2xl);
-}
-
-.icon-row{
-    margin-bottom: 30px;
-    background-color: var(--green);
-    padding-left: 3vw;
-    
-}
 
 .icon-row > a{
     margin-right: 30px;
@@ -89,4 +74,51 @@ h1{
 .footerwrapper-bottom{
     max-width: 1488px;
     margin: auto;
+}
+
+.footerwrapper__text-input::placeholder{
+    color: white;
+    opacity: 1;
+}
+
+@media only screen and (max-width: 768px) {
+    .footerwrapper{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .footerwrapper__left-Footer{
+        width: 100%;
+        max-width: none;
+    }
+
+    .footerwrapper__right-Footer input{
+        margin-bottom: 30px;
+    }
+
+    .footerwrapper__right-Footer{
+        max-width: none;
+        width: 100%;
+    }
+
+
+    .footerwrapper-bottom {
+        display: flex;
+        justify-content: center;
+      }
+    .icon-row {
+    margin-bottom: 30px;
+    background-color: var(--green);
+    }
+
+ 
+
+}
+
+@media only screen and (max-width: 480px) {
+    .footerwrapper__subscribe-btn{
+        width: 100%;
+    }
+ 
+
 }

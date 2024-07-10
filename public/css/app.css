@@ -1,10 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 *, *::before, *::after {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
-    font-size: 20px;
+    font-size: 16px;
 }
 
 html {
@@ -31,19 +35,24 @@ html {
     --p-md: 16px;
     --p-lg: 24;
     --p-xl: 32px;
-    --p-2x: 64xp;
+    --p-2x: 64px;
 
     /* fonts */
     --font-family: "Inter", sans-serif;
 }
 
+a {
+    text-decoration: none;
+    color: black;
+}
+
 /* base classes */
 
-.container {
+.main-container {
     width: 100vw;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    justify-content: center;
 }
 
 .inner-container {
@@ -52,3 +61,6 @@ html {
     width: 90vw;
 }
 
+h1{
+    font-size: var(--title-2xl);
+}
