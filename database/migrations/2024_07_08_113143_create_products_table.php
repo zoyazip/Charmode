@@ -25,6 +25,7 @@ return new class extends Migration
             $table->timestamps();
 
             $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('sub_category_id')->references('id')->on('sub_categories');
             $table->foreign('color_id')->references('id')->on('colors');
         });
     }
