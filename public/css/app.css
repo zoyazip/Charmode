@@ -27,7 +27,7 @@
     --p-md: 16px;
     --p-lg: 24;
     --p-xl: 32px;
-    --p-2x: 64xp;
+    --p-2x: 64px;
 
     /* fonts */
     --font-family: "Inter", sans-serif;
@@ -40,7 +40,7 @@ a {
 
 /* base classes */
 
-.container {
+.main-container {
     width: 100vw;
     display: flex;
     flex-direction: column;

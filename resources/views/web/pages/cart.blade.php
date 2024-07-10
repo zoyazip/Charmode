@@ -3,7 +3,7 @@
 @section('title', 'Cart page')
 
 @section('content')
-    <div class="container">
+    <div class="main-container">
         <h1>Welcome to the Cart Page</h1>
         <p>This is the content of the cart page.</p>
     </div>
