@@ -19,16 +19,26 @@
             <!-- Additional required wrapper -->
             <div class="swiper-wrapper">
                 <!-- Slides -->
-                <div class="swiper-slide">Slide 1</div>
-                <div class="swiper-slide">Slide 2</div>
-                <div class="swiper-slide">Slide 3</div>
+                <div class="swiper-slide">
+                    <img src="/assets/chair-placeholder.png" alt="">
+                </div>
+                <div class="swiper-slide">
+                    <img src="/assets/chair-placeholder.png" alt="">
+                </div>
+                <div class="swiper-slide">
+                    <img src="/assets/chair-placeholder.png" alt="">
+                </div>
             </div>
             <!-- pagination -->
             <div class="swiper-pagination"></div>
 
             <!-- navigation buttons -->
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev">
+                <img src="assets/svg/arrow.svg" alt="">
+            </div>
+            <div class="swiper-button-next">
+                <img src="assets/svg/arrow.svg" alt="">
+            </div>
         </div>
 
         @include('components/grid-layout')
