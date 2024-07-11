@@ -86,3 +86,11 @@
 .login__a:hover {
     text-decoration: underline;
 }
+
+.register__error {
+    font-size: 12px;
+    color: red;
+    margin-top: 5px;
+    float: left;
+    padding-left: 10px;
+}
