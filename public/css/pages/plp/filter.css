@@ -6,7 +6,7 @@
     display: none;
 }
 
-.color-input[type="radio"]:checked + .color {
+.color-input[type="radio"]:checked+.color {
     box-shadow: 0px 0px 0px 2px #204012;
 }
 
@@ -14,26 +14,41 @@
 .filter {
     width: 30%;
 }
+
 .filter__header {
     display: flex;
     flex-direction: row;
     align-items: center;
     margin: 10px 0 30px 0;
 }
+
 .filter__title {
     font-weight: 900;
 }
+
 .filter__icon {
     margin-left: 2%;
 }
+
 .filter__icon img {
     width: 24px;
     height: 24px;
 }
+
 .filter__main {
     margin-top: 2%;
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
     margin-left: 7%;
 }
+
+.filter__container-option {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
 .filter__option__title {
     font-weight: 700;
     font-size: var(--title-regular);
@@ -46,12 +61,11 @@
     display: flex;
     align-items: center;
     font-size: 14px;
-    margin: 30px 0;
 }
+
 .option-label {
     font-size: 14px;
     color: #333;
-    margin-right: 10px;
 }
 
 .option-input-container {
@@ -105,49 +119,60 @@
 /* Customizing the noUiSlider */
 /* Minimal noUiSlider styles */
 .noUi-target {
-    background: var(--green-light); /* Light grey background for the track */
+    background: var(--green-light);
+    /* Light grey background for the track */
     border-radius: 10px;
     border: none;
-    height: 4px; /* Thinner track for minimal style */
+    height: 4px;
+    /* Thinner track for minimal style */
 }
 
 .noUi-connect {
-    background: var(--green); /* Green color for the selected range */
+    background: var(--green);
+    /* Green color for the selected range */
     border-radius: 10px;
 }
 
 .noUi-horizontal .noUi-handle,
 .noUi-vertical .noUi-handle {
     background: var(--green);
-    border: 2px solid var(--green); /* Green border for the handles */
+    border: 2px solid var(--green);
+    /* Green border for the handles */
     border-radius: 50%;
     height: 16px;
     width: 16px;
     cursor: pointer;
-    box-shadow: 0 0 2px rgba(0, 0, 0, 0.2); /* Slight shadow for handles */
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+    /* Slight shadow for handles */
 }
 
 .noUi-handle:before {
-    display: none; /* Hide default handle pseudo-element */
+    display: none;
+    /* Hide default handle pseudo-element */
 }
 
 .noUi-horizontal .noUi-handle {
-    top: -6px; /* Adjust handle position */
+    top: -6px;
+    /* Adjust handle position */
 }
 
 .noUi-horizontal .noUi-handle:focus {
-    box-shadow: 0 0 5px #4caf50; /* Green shadow on focus for accessibility */
+    box-shadow: 0 0 5px #4caf50;
+    /* Green shadow on focus for accessibility */
 }
 
 /* colors */
 
 .color-container {
     display: flex;
-    flex-wrap: wrap; /* Allow elements to wrap to the next line if necessary */
-    gap: 1.25rem; /* 1.25rem gap between elements */
-    padding-top: 0.5rem; /* 0.5rem padding at the top */
-    margin: 0 0 20px 0;
+    flex-wrap: wrap;
+    /* Allow elements to wrap to the next line if necessary */
+    gap: 10px;
+    /* 1.25rem gap between elements */
+    padding-top: 0.5rem;
+    /* 0.5rem padding at the top */
 }
+
 /*
 .checkbox-wrapper {
     display: flex;
@@ -156,16 +181,19 @@
 } */
 
 .filter__swatch {
-    width: 2.5rem; /* 40px */
-    height: 2.5rem; /* 40px */
-    border-radius: 9999px; /* Full radius for a rounded circle */
-    cursor: pointer; /* Pointer cursor */
+    width: 2.5rem;
+    /* 40px */
+    height: 2.5rem;
+    /* 40px */
+    border-radius: 9999px;
+    /* Full radius for a rounded circle */
+    cursor: pointer;
+    /* Pointer cursor */
 }
 
 /* Is available */
 
 .checkbox-container {
-    margin: 30px 0;
     display: flex;
     flex-wrap: wrap;
     gap: 5px;
@@ -173,8 +201,8 @@
 
 .checkbox-wrapper {
     position: relative;
-    width: 40px;
-    height: 40px;
+    width: 25px;
+    height: 25px;
 }
 
 .styled-checkbox {
@@ -182,7 +210,9 @@
     -webkit-appearance: none;
     width: 100%;
     height: 100%;
-    border-radius: 50%; /* Make the checkbox round */
+    border-radius: 3px;
+
+    /* Make the checkbox round */
     border: 1px solid #333;
     /* Border color and width */
     background-color: white;
@@ -194,29 +224,36 @@
 }
 
 .styled-checkbox:checked {
-    border-color: var(--green); /* Change border color when checked */
+    border-color: var(--green);
+    /* Change border color when checked */
 }
+
 .styled-checkbox:checked::after {
     content: "";
     position: absolute;
     width: 42px;
     height: 42px;
     border-radius: 50%;
-    border: 1px solid black; /* Outer border color */
-    box-sizing: border-box; /* Include border in the element's total width and height */
+    border: 1px solid black;
+    /* Outer border color */
+    box-sizing: border-box;
+    /* Include border in the element's total width and height */
 }
+
 .styled-checkbox:checked::before {
     content: "";
     position: absolute;
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    border: 4px solid var(--green); /* Outer border color */
-    box-sizing: border-box; /* Include border in the element's total width and height */
+    border: 4px solid var(--green);
+    /* Outer border color */
+    box-sizing: border-box;
+    /* Include border in the element's total width and height */
 }
+
 /* Reset button */
-.div-button-container {
-}
+.div-button-container {}
 
 .div-button {
     width: 100px;
@@ -228,8 +265,10 @@
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
-    text-align: center; /* Center the text inside the div */
-    user-select: none; /* Prevent text selection on double click */
+    text-align: center;
+    /* Center the text inside the div */
+    user-select: none;
+    /* Prevent text selection on double click */
 }
 
 .div-button:hover {
@@ -242,5 +281,55 @@
 
 .div-button:focus {
     outline: none;
-    box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.2); /* Optional: add focus outline for accessibility */
+    box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.2);
+    /* Optional: add focus outline for accessibility */
+}
+
+
+/* Minimal noUiSlider styles */
+.noUi-target {
+    background: var(--green-light);
+    /* Light grey background for the track */
+    border-radius: 10px;
+    border: none;
+    height: 4px;
+    /* Thinner track for minimal style */
+}
+
+.noUi-handle::after {
+    display: none;
+}
+
+.noUi-connect {
+    background: var(--green);
+    /* Green color for the selected range */
+    border-radius: 10px;
+}
+
+.noUi-horizontal .noUi-handle,
+.noUi-vertical .noUi-handle {
+    background: var(--green);
+    border: 2px solid var(--green);
+    /* Green border for the handles */
+    border-radius: 50%;
+    height: 16px;
+    width: 16px;
+    cursor: pointer;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+    /* Slight shadow for handles */
+}
+
+.noUi-handle:before {
+    display: none;
+    /* Hide default handle pseudo-element */
+}
+
+.noUi-horizontal .noUi-handle {
+    top: -6px;
+    /* Adjust handle position */
+}
+
+.noUi-horizontal .noUi-handle:focus {
+    box-shadow: 0 0 5px #4caf50;
+    /* Green shadow on focus for accessibility */
 }
