@@ -46,6 +46,7 @@
         @push('scripts')
             @once
                 <script type="module" src="{{ URL::asset('js/swiper.js') }}" defer></script>
+                <script type="module" src="{{ URL::asset('js/draggable_strip.js') }}"></script>    
             @endonce
         @endpush
 

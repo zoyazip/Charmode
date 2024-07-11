@@ -20,7 +20,6 @@
         @include('web.layout.footer')
     </footer>
 
-    <script src="{{ asset('js/app.js') }}"></script>
     @stack('scripts')
 </body>
 

@@ -27,6 +27,16 @@
             <a href="3" class="navbar__link-container">Kitchen</a>
             <a href="4" class="navbar__link-container">Bedroom</a>
             <a href="5" class="navbar__link-container">Foyer</a>
+            <a href="1" class="navbar__link-container">Living room</a>
+            <a href="2" class="navbar__link-container">Bathroom</a>
+            <a href="3" class="navbar__link-container">Kitchen</a>
+            <a href="4" class="navbar__link-container">Bedroom</a>
+            <a href="5" class="navbar__link-container">Foyer</a>
+            <a href="1" class="navbar__link-container">Living room</a>
+            <a href="2" class="navbar__link-container">Bathroom</a>
+            <a href="3" class="navbar__link-container">Kitchen</a>
+            <a href="4" class="navbar__link-container">Bedroom</a>
+            <a href="5" class="navbar__link-container">Foyer</a>
         </div>
         {{-- <!-- Commented out dynamic category links -->
 			<!-- @foreach ($categories as $category)
