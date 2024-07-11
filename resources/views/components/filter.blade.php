@@ -55,6 +55,7 @@
         <div class="filter__icon">
             <img src="assets/svg/filter.svg" alt="" />
         </div>
+        <div class="filter__reset">Reset</div>
     </div>
     <div class="filter__main">
         <div class="filter__option__title">Price</div>
@@ -137,10 +138,8 @@
             </div>
         </div>
 
-        <div class="div-button-container">
-            <div class="div-button">
-                Search
-            </div>
+        <div class="div-button">
+            Search
         </div>
     </div>
 </div>
