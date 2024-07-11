@@ -7,17 +7,17 @@
     <div class="item-wrapper__right">
         <div class="item-wrapper__right-left">
             <p class="item-wrapper__product-name">Lorem ipsum dolor sit.</p>
-            <p class="item-wrapper__amount-price">1 x 366$</p>
+            <p class="item-wrapper__amount-price">1 x 366€</p>
             <div class="item-wrapper__color-row">
                 <span class="item-wrapper__red-color"></span>
             </div>
             <p class="item-wrapper__free-delivery">Free delivery</p>
         </div>
         <div class="item-wrapper__right-right">
-            <p class="item-wrapper__end-price">366$</p>
+            <p class="item-wrapper__end-price">366€</p>
             <p class="item-wrapper__more-or-less">
                 <a class="item-wrapper__inc-btn" ><span class="item-wrapper__more-or-less-item minus" >-</span></a>
-                <input type="number" min="1" max="10" value="1" class="item-wrapper__more-or-less-item price" id="amount-1">
+                <input type="number" min="1" max="10" value="1" class="item-wrapper__more-or-less-item price">
 {{--                inputam max jāsaņem no datubazes, tā pat arī ar value--}}
                 <a class="item-wrapper__inc-btn" ><span class="item-wrapper__more-or-less-item plus" >+</span></a>
             </p>

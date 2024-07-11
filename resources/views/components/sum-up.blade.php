@@ -1,7 +1,7 @@
 <div class="sum-up-wrapper middle-wrapper">
     <div class="sum-up-top">
-        <p class="sum-up-top__text"><span class="sum-up-top__left middle-wrapper-text">Pre sum (2 products)</span><span class="sum-up-top__right">732$</span></p>
-        <p class="sum-up-top__text"><span class="sum-up-top__left">Delivery</span><span class="sum-up-top__right">4.85 $</span></p>
+        <p class="sum-up-top__text"><span class="sum-up-top__left middle-wrapper-text">Pre sum (2 products)</span><span class="sum-up-top__right">732€</span></p>
+        <p class="sum-up-top__text"><span class="sum-up-top__left">Delivery</span><span class="sum-up-top__right sum-up-top__delivery">4.85 €</span></p>
     </div>
     <div class="promo">
     <p>Promocode</p>
@@ -16,9 +16,9 @@
     <div class="sum-up-bot">
         <p class="sum-up-bot__price-row">
             <span class="sum-up-bot__bold">Sum</span>
-            <span class="sum-up-bot__bold">736.85 $</span>
+            <span class="sum-up-bot__bold">736.85 €</span>
         </p>
-        <p class="sum-up-bot__tax"><span>(21% PVN: 117.15 $)</span></p>
+        <p class="sum-up-bot__tax"><span>(21% PVN: 117.15 €)</span></p>
     </div>
 
 </div>
@@ -44,6 +44,7 @@
         if (counter.value <= 1){
             counter_decrement.style.color = "#ADADAD"
         }
+        updateCardPrices(productCost, counter, big_Price, side_cost)
         updateSumUpPrice()
 
         counter_increment.addEventListener('click', () => {
@@ -96,8 +97,8 @@
     })
 
     function updateCardPrices(price, counter, bigPrice, sidePrice) {
-        bigPrice.textContent = (price*counter.value) + "$"
-        sidePrice.textContent = counter.value + " x " + price + "$"
+        bigPrice.textContent = (price*counter.value) + "€"
+        sidePrice.textContent = counter.value + " x " + price + "€"
     }
 
 
@@ -106,14 +107,25 @@
     function updateSumUpPrice(){
         const listBigPrices = document.querySelectorAll(".item-wrapper__end-price")
         const sumUpPrice = document.querySelector(".sum-up-bot__bold + .sum-up-bot__bold")
+        const taxPrice = document.querySelector(".sum-up-bot__tax > span")
+        const preSumPrice = document.querySelector(".sum-up-top__right")
+        const deliveryPrice = document.querySelector(".sum-up-top__delivery")
+        const totalAmounts = document.querySelectorAll(".item-wrapper__more-or-less .price")
+        const updatableProductCount = document.querySelector(".sum-up-top__left")
         let sum = 0;
-
+        let productCount = 0;
         for (const i of listBigPrices){
-            sum += parseInt(i.textContent.replace("$", ""));
+            sum += parseInt(i.textContent.replace("€", ""));
+        }
+        for (const i of totalAmounts) {
+            productCount += parseInt(i.value);
         }
 
-        sumUpPrice.textContent = sum + " $";
+        updatableProductCount.textContent = "Pre sum (" + productCount + "  products)";
 
+        preSumPrice.textContent = sum + "€";
+        sumUpPrice.textContent = (sum + parseFloat(deliveryPrice.textContent.replace("€", ""))) + "€";
+        taxPrice.textContent = "(21 % PVN: " + (sum*0.21).toFixed(2) + " €)";
     }
 
 
