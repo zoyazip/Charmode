@@ -76,6 +76,7 @@
     justify-content: start;
     width: 100%;
     padding: 10px 0;
+    overflow: hidden;
     gap: 10px;
 }
 /* .navbar__links-mobile {
@@ -96,8 +97,13 @@
 }
 .navbar__link-container {
     border-radius: 14px;
-    padding: 10px 15px;
+    padding: 10px 20px;
     transition: background-color 0.3s;
+    display: inline-block;
+    width: max-content;
+    white-space: nowrap;
+
+
 }
 
 a.navbar__link-container {

@@ -42,6 +42,17 @@
     --font-family: "Inter", sans-serif;
 }
 
+body {
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+main {
+    flex-grow: 1;
+}
+
 html {
     font-family: var(--font-family);
 }
