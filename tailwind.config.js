@@ -9,6 +9,7 @@ export default {
     extend: {
       colors: {
         'main-green': '#204012',
+        'secondary-green': '#B9D99A',
         'secondary-grey': '#ADADAD',
         'gold':'#FFBC39',
         'product-red': '#F64141',
