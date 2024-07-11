@@ -120,7 +120,7 @@
                     <div class="price"><h2 class="font-bold text-5xl text-main-green">{{ $product1->price }} €</h2></div>
                     <div class="delivery-container">
                         <img src="assets/svg/delivery.svg">
-                        <h4>{{ $ }}</h4>
+                        <h4></h4>
                     </div>
                 </div>
             </form>
