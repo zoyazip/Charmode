@@ -1,10 +1,10 @@
-<script src="{{ asset('js/navbar.js') }}"></script>
 <div class="inner-container">
     <div class="navbar">
         <div class="navbar__top">
 
             <div class="navbar__burger-container">
-                <input class="navbar__burger-checkbox" onclick="toggleDropdown()" type="checkbox" name="" id="" />
+                <input class="navbar__burger-checkbox" onclick="toggleDropdown()" type="checkbox" name=""
+                    id="" />
                 <div class="navbar__burger-lines">
                     <span class="navbar__burger-line1 navbar__burger-line"></span>
                     <span class="navbar__burger-line2 navbar__burger-line"></span>
@@ -12,7 +12,7 @@
                 </div>
             </div>
             <a href="/">
-            <img class="navbar__logo" src="assets/svg/logo.svg" alt="Logo" />
+                <img class="navbar__logo" src="assets/svg/logo.svg" alt="Logo" />
             </a>
             <div class="navbar__search-container">
                 <input class="navbar__search-text" type="text" placeholder="Find your cheapest luxury brand..." />
@@ -65,9 +65,12 @@
         <img class="navbar__search-icon" src="assets/svg/search-icon.svg" alt="Search" />
     </div>
 </div>
-@include('/components/login')
-</div>
 
+@include('/components/login')
+
+
+<script src="{{ asset('js/navbar.js') }}"></script>
+<script type="module" src="{{ URL::asset('js/draggable_strip.js') }}"></script>
 
 {{-- login popup script --}}
 <script>
@@ -76,16 +79,12 @@
     const closeLogin = document.querySelector('.close-login')
 
     loginBtn.addEventListener('click', () => {
-
         loginMenu.style.transform = 'translateX(0px)'
         loginMenu.style.boxShadow = '-40px 0px 50px #00000010'
-
     })
 
     closeLogin.addEventListener('click', () => {
-
         loginMenu.style.transform = 'translateX(100%)'
         loginMenu.style.boxShadow = 'none'
-
     })
 </script>

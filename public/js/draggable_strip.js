@@ -1,5 +1,5 @@
 class DraggableStrip {
-    constructor(selector, hasChildren = false, childrenSelectorArray = []) {
+    constructor(selector, hasChildren = false, childrenSelectorArray = [], autoscroll = false) {
         this.selector = selector
         this.HTMLElement = this.getParentContainer()
 
@@ -7,7 +7,7 @@ class DraggableStrip {
         if (this.hasChildren) {
             this.childrenSelectorArray = childrenSelectorArray
             this.children = this.getChildren()
-            
+
             this.preventChildrenBehavior()
         }
 
@@ -22,6 +22,7 @@ class DraggableStrip {
         this.onMouseDown = this.onMouseDown.bind(this)
         this.onMouseMove = this.onMouseMove.bind(this)
         this.onMouseLeave = this.onMouseLeave.bind(this)
+        this.onMouseOver = this.onMouseOver.bind(this)
 
 
         this.HTMLElement.addEventListener("mouseup", this.dragPrevent)
@@ -31,7 +32,12 @@ class DraggableStrip {
         this.HTMLElement.addEventListener("mouseleave", this.onMouseLeave)
         this.HTMLElement.addEventListener("mouseover", this.onMouseOver)
 
-        setInterval(() => {
+        this.autoscroll = autoscroll
+        if (this.autoscroll) this.setScrollInterval()
+    }
+
+    setScrollInterval() {
+        this.interval = setInterval(() => {
             this.HTMLElement.scrollLeft += 1
         }, 40)
     }
@@ -99,11 +105,20 @@ class DraggableStrip {
     onMouseLeave() {
         this.stripState.dragging = false
         this.stripState.moving = false
+
+        if (this.autoscroll) {
+            this.setScrollInterval()
+        }
     }
 
     onMouseOver() {
-
+        clearInterval(this.interval) 
     }
 }
 
-const headerStrip = new DraggableStrip(".navbar__links", true, [".navbar__link-container"])
+const headerStrip = new DraggableStrip(
+    ".navbar__links",
+    true,
+    [".navbar__link-container"],
+    true 
+)

@@ -29,20 +29,16 @@ function onResize() {
     const width = window.innerWidth;
     const navbarLinksMobile = document.querySelector(".navbar__links-mobile");
     const burgerCheckbox = document.querySelector(".navbar__burger-checkbox");
-    console.log("close???");
 
     if (width > 768) {
-        console.log("close");
         burgerCheckbox.checked = false;
         navbarLinksMobile.style.display = "none";
     }
 }
-
 window.addEventListener("resize", onResize);
 
-function toggleDropdown() {
-    console.log("hello");
 
+function toggleDropdown() {
     const burgerCheckbox = document.querySelector(".navbar__burger-checkbox");
     const navbarLinksMobile = document.querySelector(".navbar__links-mobile");
 

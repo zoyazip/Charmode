@@ -2,7 +2,7 @@
     position: sticky;
     top: 0;
     background-color: white;
-    z-index: 10000;
+    z-index: 20;
 }
 
 .navbar {
@@ -79,22 +79,11 @@
     overflow: hidden;
     gap: 10px;
 }
-/* .navbar__links-mobile {
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-    padding: 10px 0;
-    gap: 10px;
-    position: absolute;
-    top: 90px;
-    background-color: white;
-    border: 1px solid black;
-    border-radius: 10px;
-} */
 
 .navbar__links-mobile {
     display: none;
 }
+
 .navbar__link-container {
     border-radius: 14px;
     padding: 10px 20px;
@@ -102,8 +91,6 @@
     display: inline-block;
     width: max-content;
     white-space: nowrap;
-
-
 }
 
 a.navbar__link-container {
@@ -193,41 +180,30 @@ a.navbar__link-container {
     font-weight: 500;
 }
 
-.navbar__burger-container input[type="checkbox"]:checked ~ .menu-items {
+.navbar__burger-container input[type="checkbox"]:checked~.menu-items {
     transform: translateX(0);
 }
 
-.navbar__burger-container
-    input[type="checkbox"]:checked
-    ~ .navbar__burger-lines
-    .navbar__burger-line1 {
+.navbar__burger-container input[type="checkbox"]:checked~.navbar__burger-lines .navbar__burger-line1 {
     transform: rotate(45deg);
 }
 
-.navbar__burger-container
-    input[type="checkbox"]:checked
-    ~ .navbar__burger-lines
-    .navbar__burger-line2 {
+.navbar__burger-container input[type="checkbox"]:checked~.navbar__burger-lines .navbar__burger-line2 {
     transform: scaleY(0);
 }
 
-.navbar__burger-container
-    input[type="checkbox"]:checked
-    ~ .navbar__burger-lines
-    .navbar__burger-line3 {
+.navbar__burger-container input[type="checkbox"]:checked~.navbar__burger-lines .navbar__burger-line3 {
     transform: rotate(-45deg);
 }
-
-
-@media screen and (max-width: 740px) {
-    .header {
-        padding-bottom: 10px;
-    }
 
 @media screen and (max-width: 768px) {
     .navbar {
         padding: 0;
         margin-bottom: 10px;
+    }
+
+    .header {
+        padding-bottom: 10px;
     }
 
     .navbar__search-container {
@@ -272,6 +248,7 @@ a.navbar__link-container {
     .navbar__search-icon {
         width: 20px;
     }
+
     .navbar__links-mobile {
         display: flex;
         justify-content: space-around;
@@ -279,19 +256,23 @@ a.navbar__link-container {
         padding: 10px 0;
         gap: 10px;
         position: absolute;
-        top: 90px; /* this is the height of the navbar */
+        top: 100%;
+        /* this is the height of the navbar */
         background-color: white;
         border: 1px solid black;
         border-radius: 10px;
     }
+
     .navbar__links-mobile {
         display: none;
     }
+
     .navbar__links-mobile__categories {
         display: flex;
         flex-direction: column;
         justify-content: start;
     }
+
     .navbar__links-mobile__subcategories {
         display: flex;
         flex-direction: column;
@@ -304,9 +285,11 @@ a.navbar__link-container {
         padding: 0;
         margin-bottom: 10px;
     }
+
     .navbar__top {
         padding-top: 10px;
     }
+
     .navbar__links {
         padding-top: 0;
         padding-bottom: 0;
