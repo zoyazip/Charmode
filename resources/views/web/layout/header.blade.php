@@ -19,7 +19,7 @@
             </div>
             <div class="navbar__icons">
                 <img src="assets/svg/shopping-basket.svg" alt="Cart" />
-                <img src="assets/svg/user.svg" alt="User" />
+                <img class="login-btn" src="assets/svg/user.svg" alt="User" />
             </div>
         </div>
         <div class="navbar__links">
@@ -54,4 +54,27 @@
         <img class="navbar__search-icon" src="assets/svg/search-icon.svg" alt="Search" />
     </div>
 </div>
+@include('/components/login')
 </div>
+
+
+{{-- login popup script --}}
+<script>
+    const loginMenu = document.querySelector('.login-container')
+    const loginBtn = document.querySelector('.login-btn')
+    const closeLogin = document.querySelector('.close-login')
+
+    loginBtn.addEventListener('click', () => {
+
+        loginMenu.style.transform = 'translateX(0px)'
+        loginMenu.style.boxShadow = '-40px 0px 50px #00000010'
+
+    })
+
+    closeLogin.addEventListener('click', () => {
+
+        loginMenu.style.transform = 'translateX(100%)'
+        loginMenu.style.boxShadow = 'none'
+
+    })
+</script>
