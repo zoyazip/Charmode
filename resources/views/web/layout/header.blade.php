@@ -11,8 +11,9 @@
                     <span class="navbar__burger-line3 navbar__burger-line"></span>
                 </div>
             </div>
-
+            <a href="/">
             <img class="navbar__logo" src="assets/svg/logo.svg" alt="Logo" />
+            </a>
             <div class="navbar__search-container">
                 <input class="navbar__search-text" type="text" placeholder="Find your cheapest luxury brand..." />
                 <img class="navbar__search-icon" src="assets/svg/search-icon.svg" alt="Search" />
