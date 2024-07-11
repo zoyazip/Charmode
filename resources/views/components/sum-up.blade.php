@@ -1,6 +1,6 @@
 <div class="sum-up-wrapper middle-wrapper">
     <div class="sum-up-top">
-        <p class="sum-up-top__text"><span class="sum-up-top__left middle-wrapper-text">Pre sum (2 products)</span><span class="sum-up-top__right">732€</span></p>
+        <p class="sum-up-top__text"><span class="sum-up-top__left middle-wrapper-text">Pre sum (2 products)</span><span class="sum-up-top__right">366€</span></p>
         <p class="sum-up-top__text"><span class="sum-up-top__left">Delivery</span><span class="sum-up-top__right sum-up-top__delivery">4.85 €</span></p>
     </div>
     <div class="promo">
@@ -28,20 +28,22 @@
 
     document.addEventListener('DOMContentLoaded', () => {
         // const currentImage_Id = 0
-        const MAX_COUNT = parseInt(document.querySelector('.id-1 .item-wrapper__more-or-less .price').max);
+        const MAX_COUNT = parseInt(document.querySelector('.id-1 .item-wrapper__more-or-less .item-wrapper__price').max);
         let productCount = 1;
         const productCost = 366;
 
         const counter_increment = document.querySelector('.id-1 .item-wrapper__more-or-less .plus');
         const counter_decrement = document.querySelector('.id-1 .item-wrapper__more-or-less .minus');
-        const counter = document.querySelector('.id-1 .item-wrapper__more-or-less .price');
+        const counter = document.querySelector('.id-1 .item-wrapper__more-or-less .item-wrapper__price');
         const big_Price = document.querySelector('.id-1 .item-wrapper__end-price')
         const side_cost = document.querySelector('.id-1 .item-wrapper__amount-price')
 
         if (counter.value >= MAX_COUNT){
             counter_increment.style.color = "#ADADAD"
+            counter_decrement.style.color = "#204012"
         }
         if (counter.value <= 1){
+            counter_increment.style.color = "#204012"
             counter_decrement.style.color = "#ADADAD"
         }
         updateCardPrices(productCost, counter, big_Price, side_cost)
@@ -80,8 +82,10 @@
             if (counter.value > MAX_COUNT) {
                 counter.value = MAX_COUNT
                 counter_increment.style.color = "#ADADAD"
+                counter_decrement.style.color = "#204012"
             } else if (counter.value < 1){
                 counter.value = 1
+                counter_increment.style.color = "#204012"
                 counter_decrement.style.color = "#ADADAD"
             }
             else {
@@ -110,7 +114,7 @@
         const taxPrice = document.querySelector(".sum-up-bot__tax > span")
         const preSumPrice = document.querySelector(".sum-up-top__right")
         const deliveryPrice = document.querySelector(".sum-up-top__delivery")
-        const totalAmounts = document.querySelectorAll(".item-wrapper__more-or-less .price")
+        const totalAmounts = document.querySelectorAll(".item-wrapper__more-or-less .item-wrapper__price")
         const updatableProductCount = document.querySelector(".sum-up-top__left")
         let sum = 0;
         let productCount = 0;
