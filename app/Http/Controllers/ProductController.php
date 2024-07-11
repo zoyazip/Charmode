@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Color;
-// use App\Models\Categories;
+use App\Models\Category;
 
 class ProductController extends Controller
 {
@@ -18,7 +18,8 @@ class ProductController extends Controller
     public function readProducts() {
         $products = Product::all();
         $colors = Color::all();
-        return view('web/pages/plp')->with(["products" => $products, "colors" => $colors]);
+        $categories = Category::all();
+        return view('web/pages/plp')->with(["products" => $products, "colors" => $colors, "categories" => $categories]);
     }
 
     public function readProduct(Request $request) {

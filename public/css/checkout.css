@@ -1,0 +1,251 @@
+.checkout__container {
+    display: flex;
+    flex-direction: row;
+    margin-left: 10%;
+    margin-right: 10%;
+    gap: 3%;
+    justify-content: space-between;
+}
+
+.checkout__container__div{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.checkout__title__data {
+    margin-bottom: 10px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    gap: 3%;
+    font-size: 10px;
+    justify-content: space-between;
+}
+
+.checkout__title__data .right  {
+    display: flex;
+    flex-direction: row;
+    gap: 3%;
+    max-width: 198px;
+    min-width: 158px;
+    width: auto;
+    justify-content: end;
+    align-items: end;
+    margin-right: 0;
+}
+
+.checkout__form {
+    display: flex;
+    flex-direction: column;
+}
+
+.checkout__form input {
+    border-top: 0;
+    border-right: 0;
+    border-left: 0;
+    border-bottom: 1px solid var(--green);
+    color: var(--green);
+    background-color: white;
+    margin-top: 20px;
+}
+
+.checkout__input__row {
+    display: flex;
+    flex-direction: row;
+    gap: 5%;
+}
+
+.checkout__input__row input {
+    width: 30%;
+}
+
+
+
+.checkout__title__data .right h6, .checkout__title__data .right a {
+    font-size: 14px;
+}
+
+.checkout__title__data .left {
+    display: flex;
+    flex-direction: row;
+    gap: 3%;
+    max-width: 214px;
+    min-width: 169px;
+    width: auto;
+}
+
+.checkout__title {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    gap: 3%;
+}
+
+.checkout__overview {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    gap: 3%;
+    font-size: 10px;
+    justify-content: space-between;
+}
+
+.checkout__overview a {
+    font-size: 14px;
+    align-self: end;
+}
+
+.checkout__form input {
+    font-size: 14px;
+    padding-bottom: 5px;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.checkout__form__checkbox {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+}
+
+.checkout__form__checkbox input {
+    margin: 0;
+    padding: 0;
+}
+
+.checkout__form__checkbox label {
+    font-size: 16px;
+}
+
+.checkout__form textarea {
+    padding: 5px;
+    height: 200px;
+    border-radius: 5px;
+    border: 1px var(--green) solid;
+    font-size: 14px;
+}
+
+.delivery__buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.delivery__buttons .btn {
+    border-radius: 8px;
+    padding: 10px 20px;
+    background-color: white;
+    border: var(--green-light) solid 1px;
+    color: var(--green);
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.dpd:focus, .omniva:focus, .pasts:focus, .dpd:hover, .omniva:hover, .pasts:hover {
+    background-color: var(--green);
+    color: white;
+    border: var(--green) solid 1px;
+}
+
+.delivery__select {
+    width: 100%;
+    border: 1px solid var(--green);
+    background-color: white;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px 10px;
+    border-radius: 8px;
+}
+
+.delivery__select:after {
+    border: 1px solid var(--green);
+
+}
+
+.btn-grid {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    gap: 10px;
+}
+
+.green-text {
+    color: var(--green);
+}
+
+.grid-btn {
+    padding: 10px 20px;
+    background-color: white;
+    color: var(--green);
+    border: var(--green-light) solid 1px;
+    border-radius: 8px;
+}
+
+.grid-btn:focus, .grid-btn:hover {
+    border: var(--green) solid 1px;
+    font-weight: 600;
+}
+
+.checkout-btn {
+    background-color: var(--green-light);
+    color: var(--green);
+    margin-bottom: 40px;
+    padding: 10px 20px;
+    width: 356px;
+    height: 71px;
+    border: 0;
+    border-radius: 8px;
+}
+
+.checkout-btn:hover {
+    font-weight: 600;
+}
+
+.thin-text {
+    font-weight: 400;
+}
+
+.close__arrow {
+    transform: rotate(180deg)
+}
+
+.open__arrow {
+    transform: rotate(0deg)
+}
+
+.hidden__div {
+    display: none;
+}
+
+.visible__div {
+    display: visible;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+.checkout__container input:focus, .checkout__container textarea:focus, .checkout__container select:focus {
+    outline: none;
+}
+
+/* .selected-option {
+    background-color: var(--green);
+    color: white;
+}
+
+.option:hover {
+    background-color: var(--green);
+    color: white;
+
+} */
+
+
+/* input[type='checkbox']:hover {
+    background: val(--green);
+    color: val(--green);
+} */
