@@ -1,14 +1,70 @@
-.sum-up-top{
+.sum-up-top, .sum-up-bot{
     display: flex;
     flex-direction: column;
     width: 100%;
-    padding: 15px 25px 15px 0;
+    padding: 15px 25px 5px 0;
+    gap: 5px;
 }
-.sum-up-top__text{
+.sum-up-top__text, .sum-up-bot__price-row{
     display: flex;
     justify-content: space-between;
 }
-.line{
-    width: 2px;
+.inner-container hr{
+    margin: 20px 0;
+    width: 100%;
     color: var(--text-inactive);
+    border-top-width: 2px;
+}
+
+.sum-up-top__text > span, .sum-up-bot > p > span, .promo > p{
+    font-size: var(--title-heading-smaller);
+}
+
+.sum-up-top__right, .sum-up-bot__bold{
+    color: var(--text-primary);
+    font-weight: bold;
+}
+
+.sum-up-bot__tax{
+    color: var(--text-inactive);
+}
+
+.sum-up-top__left{
+    color: var(--text-primary);
+}
+
+.sum-up-wrapper{
+    flex-direction: column;
+}
+
+.promo__box{
+    border: solid var(--green) 1px;
+    border-radius: 8px;
+    display: flex;
+}
+
+.promo__box_submit{
+    background: var(--green);
+    color: white;
+    border: solid var(--green) 1px;
+    border-radius: 8px;
+    padding: 7px 25px;
+}
+
+.promo__box-text{
+    border-radius: 8px;
+    outline: none;
+    padding: 0 0 0 10px;
+}
+
+.promo > form{
+    display: flex;
+}
+.promo{
+    width: 100%;
+    margin: 0 0 20px 0 ;
+}
+
+.promo > p{
+    margin-bottom: 5px;
 }
