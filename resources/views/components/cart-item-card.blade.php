@@ -71,7 +71,7 @@
 
 
 
-        counter.addEventListener('change', (e) => {
+        counter.addEventListener('change', () => {
             if (counter.value > MAX_COUNT) {
                 counter.value = MAX_COUNT
                 counter_increment.style.color = "#ADADAD"
