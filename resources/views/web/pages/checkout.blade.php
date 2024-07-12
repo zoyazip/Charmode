@@ -38,14 +38,14 @@
                                     @enderror
                                 </div>
                                 <div  class="checkout__phone__input">
-                                    <input class="@error('phone') is-invalid @enderror" placeholder="Tel." type="text" id="tel" name="tel" value="">
+                                    <input class="@error('phone') is-invalid @enderror" placeholder="Tel." type="tel" id="tel" name="tel" value="">
                                     @error('phone')
                                         <p class="checkout__error">{{ $message }}</p>
                                     @enderror
                                 </div>
 
                         </div>
-                        <input placeholder="Email" type="text" id="email" name="email" value="">
+                        <input placeholder="Email" type="email" id="email" name="email" value="">
                         <input placeholder="City" type="text" id="city" name="city" value="">
                         <input placeholder="Address" type="text" id="address" name="address" value="">
                         <div class="checkout__form__checkbox">
