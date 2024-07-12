@@ -3,11 +3,13 @@
 @section('title', 'Checkout page')
 
 @section('content')
-    {{-- <div class="container"> --}}
     <div class="registration__container">
         <h3>Registration</h3>
         <form  class="registration__form" method="POST" action="/register">
             @csrf
+            @if($errors->any())
+                <p class="register__error">{{$errors->first()}}</p>
+            @endif
             <div class="register__name__input">
                 <input class="register__input @error('name') is-invalid @enderror" placeholder="Name*" type="text" id="name" name="name" value="{{ old('name') }}">
                 @error('name')
@@ -27,19 +29,19 @@
                 @enderror
             </div>
             <div class="register__password__input">
-                <input class="register__input @error('password') is-invalid @enderror" placeholder="Password*" type="password" id="password" name="password" value="{{ old('password') }}">
+                <input class="register__input @error('password') is-invalid @enderror" placeholder="Password*" type="password" id="password" name="firstPassword" value="{{ old('firstPassword') }}">
                 @error('password')
                     <p class="register__error">{{ $message }}</p>
                 @enderror
             </div>
             <div class="register__re-password__input">
-                <input class="register__input @error('re-password') is-invalid @enderror" placeholder="Re-type password*" type="re-password" id="re-password" name="re-password" value="{{ old('re-password') }}">
+                <input class="register__input @error('re-password') is-invalid @enderror" placeholder="Re-type password*" type="password" id="re-password" name="re-password" value="{{ old('re-password') }}">
                 @error('re-password')
                     <p class="register__error">{{ $message }}</p>
                 @enderror
             </div>
             <div class="register__phone__input">
-                <input class="register__input @error('phone') is-invalid @enderror" placeholder="Phone*" type="number" id="phone" name="phone" value="{{ old('citphoney') }}">
+                <input class="register__input @error('phone') is-invalid @enderror" placeholder="Phone*" type="tel" id="phone" name="phone" value="{{ old('phone') }}">
                 @error('phone')
                     <p class="register__error">{{ $message }}</p>
                 @enderror
@@ -66,6 +68,5 @@
             </div>
         </form>
     </div>
-    {{-- </div> --}}
     <script src="js/register/register.js"></script>
 @endsection
