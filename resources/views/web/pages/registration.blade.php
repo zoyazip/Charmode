@@ -1,7 +1,6 @@
 @extends('layouts.main')
 
 @section('title', 'Registration page')
-
 @section('content')
     <div class="registration__container">
         <h3>Registration</h3>

@@ -6,7 +6,7 @@
     <div class="admin__container">
         <div class="hi__div">
             <h1>Hi, Admin!</h1>
-            <button class="admin__btn green">Add product</button>
+            <button onclick="window.location='/createproduct'" class="admin__btn green">Add product</button>
         </div>
         <h4 class="admin__h4">All Products</h4>
         <div class="admin__filter__div">

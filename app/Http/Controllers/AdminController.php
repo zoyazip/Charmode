@@ -15,7 +15,9 @@ class AdminController extends Controller
 
     // add new product
         // if neccessary add new color and new category and subcategory
-
+    public function openAddProductPage() {
+        return view('web/pages/addproduct');
+    }
      // edit product
         // probably delete color or category or subcategory
 
