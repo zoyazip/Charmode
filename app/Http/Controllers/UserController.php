@@ -18,14 +18,14 @@ class UserController extends Controller
 
     public function register(Request $request): RedirectResponse {
         $request->validate([
-            'name' => 'max:255',
-            'surname' => 'max:255',
+            'name' => 'nullable|max:255',
+            'surname' => 'nullable|max:255',
             'email' => 'required|unique:users,email|max:255|email:rfc',
             'firstPassword' => 'required|max:255|min:5',
             're-password' => 'required|max:255|min:5|same:firstPassword',
-            'phone' => 'numeric|digits:8',
-            'city' => 'max:255',
-            'address' => 'max:255',
+            'phone' => 'nullable|numeric|digits:8',
+            'city' => 'nullable|max:255',
+            'address' => 'nullable|max:255',
         ]);
 
         $user = new User;
