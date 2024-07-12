@@ -10,4 +10,5 @@
 <link rel="stylesheet" href="{{ asset('css/checkout.css') }}">
 <link rel="stylesheet" href="{{ asset('css/header/header.css') }}">
 <link rel="stylesheet" href="{{ asset('css/register/register.css') }}">
+<link rel="stylesheet" href="{{ asset('css/admin/admin.css') }}">
 

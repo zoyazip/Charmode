@@ -18,8 +18,7 @@ class UserController extends Controller
 
     public function register(Request $request): RedirectResponse {
         $request->validate([
-            'name' => 'nullable|max:255',
-            'surname' => 'nullable|max:255',
+            'full_name' => 'nullable|max:255',
             'email' => 'required|unique:users,email|max:255|email:rfc',
             'firstPassword' => 'required|max:255|min:5',
             're-password' => 'required|max:255|min:5|same:firstPassword',
@@ -29,8 +28,7 @@ class UserController extends Controller
         ]);
 
         $user = new User;
-        $user->name = $request->name;
-        $user->surname = $request->surname;
+        $user->full_name = $request->full_name;
         $user->email = $request->email;
         $user->password = Hash::make($request->firstPassword);
         $user->phone = $request->phone;
@@ -43,7 +41,7 @@ class UserController extends Controller
             'password' => $request->firstPassword,
         ])) {
             $request->session()->regenerate();
-            return redirect('/checkout');
+            return redirect('/checkout'); // '/checkout' must be replaced
         }
 
         return back()->withErrors([
