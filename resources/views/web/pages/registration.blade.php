@@ -9,7 +9,6 @@
 
 @section('title', 'Registration page')
 
-
 @section('content')
     <div class="registration__container">
         <div class="registration__upper-container">

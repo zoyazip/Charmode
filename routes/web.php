@@ -78,6 +78,7 @@ Route::post('/register', [UserController::class, 'register']);
 
 
 Route::get('/admin', [AdminController::class, 'openAllProductPage']);
+Route::get('/createproduct', [AdminController::class, 'openAddProductPage']);
 
 
 
