@@ -1,7 +1,7 @@
 <div class="item-wrapper middle-wrapper id-1">
 
     <div class="item-wrapper__left">
-        <img class="cart-image" src="assets/chair-placeholder.png" alt="chair">
+        <img class="cart-image" src="{{ URL::asset('assets/chair-placeholder.png')}}" alt="chair">
     </div>
 {{--  vieninieka vietā pie id tagiem pēc - jāraksta unikālais id  --}}
     <div class="item-wrapper__right">

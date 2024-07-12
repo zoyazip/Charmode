@@ -1,10 +1,14 @@
 @extends('layouts.main')
 
+
 @section('title', 'Registration')
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/register/register.css') }}">
 @endpush
+
+@section('title', 'Registration page')
+
 
 @section('content')
     <div class="registration__container">
@@ -14,7 +18,6 @@
             @if ($errors->any())
                 <p class="register__error">Registration failed</p>
             @endif
-
             <div class="register__fullname-container">
                 <div class="register__name__input">
                     <input class="register__input @error('name') is-invalid @enderror" placeholder="Name*" type="text"
@@ -56,6 +59,8 @@
             <div class="register__phone__input">
                 <input class="register__input @error('phone') is-invalid @enderror" placeholder="Phone*" type="tel"
                     id="phone" name="phone" value="{{ old('phone') }}">
+
+          
                 @error('phone')
                     <p class="register__error">{{ $message }}</p>
                 @enderror
@@ -70,6 +75,7 @@
             <div class="register__address__input">
                 <input class="register__input @error('address') is-invalid @enderror" placeholder="Address*" type="text"
                     id="address" name="address" value="{{ old('address') }}">
+
                 @error('address')
                     <p class="register__error">{{ $message }}</p>
                 @enderror
