@@ -136,7 +136,7 @@
                     <div class="filter__option__title">Dimentions</div>
                     <span> (w x h x d)</span>
                 </div>
-                {{-- <div class="filter__option">
+                <div class="filter__option">
                     <label for="product-width" class="option-label"></label>
                     <div class="option-input-container">
                         <input
@@ -179,7 +179,7 @@
                             <div class="register__error-tooltip">{{ $message }}</div>
                         @enderror
                     </div>
-                </div> --}}
+                </div>
             </div>
 
             {{-- colors --}}
