@@ -12,7 +12,7 @@
         @include('web.layout.header')
     </header>
 
-    <main>
+    <main class="inner-container">
         @yield('content')
     </main>
 
