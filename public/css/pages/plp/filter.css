@@ -1,7 +1,3 @@
-.plp-page-container {
-    display: flex;
-}
-
 .color-input {
     display: none;
 }
@@ -12,7 +8,7 @@
 
 /* filter classes */
 .filter {
-    width: 30%;
+    width: 15%;
 }
 
 .filter__header {
@@ -62,6 +58,32 @@
     display: inline-block;
 }
 
+.filter__option-input.error {
+    border-color: red;
+}
+/* errors */
+
+.register__error-tooltip {
+    visibility: hidden;
+    background-color: red;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    width: 200px;
+    top: -5px;
+    left: 105%;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.option-input-container:hover .register__error-tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
 /* price filter */
 
 .filter__option {
@@ -105,7 +127,7 @@
 .currency-symbol {
     position: absolute;
     right: 5px;
-    top: 5px;
+    top: 2px;
     font-size: 16px;
     color: #333;
 }
@@ -339,10 +361,35 @@
 
 .noUi-horizontal .noUi-handle {
     top: -6px;
+    left: 100%;
     /* Adjust handle position */
 }
 
 .noUi-horizontal .noUi-handle:focus {
     box-shadow: 0 0 5px #4caf50;
     /* Green shadow on focus for accessibility */
+}
+@media screen and (max-width: 1000px) {
+    .filter {
+        width: 100%;
+    }
+    .filter__main {
+        width: 50%;
+        height: 200px;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+}
+@media screen and (max-width: 550px) {
+    .filter {
+        width: 100%;
+    }
+    .filter__main {
+        display: flex;
+        height: auto;
+        width: 90%;
+        /* flex-direction: row; */
+        flex-wrap: nowrap;
+    }
 }

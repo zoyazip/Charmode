@@ -1,6 +1,14 @@
+const minPriceInput = document.getElementById("min-price");
+const maxPriceInput = document.getElementById("max-price");
+const color = document.getElementById("color");
+
 const priceSlider = document.getElementById("price-slider");
+console.log("min: ", minPriceInput.value);
+if (maxPriceInput.value == 0) {
+    maxPriceInput.value = 1000;
+}
 noUiSlider.create(priceSlider, {
-    start: [100, 500], // Initial values
+    start: [minPriceInput.value, maxPriceInput.value], // Initial values
     connect: true,
     range: {
         min: 0,
@@ -16,9 +24,6 @@ noUiSlider.create(priceSlider, {
         },
     },
 });
-
-const minPriceInput = document.getElementById("min-price");
-const maxPriceInput = document.getElementById("max-price");
 
 priceSlider.noUiSlider.on("update", function (values, handle) {
     if (handle === 0) {
