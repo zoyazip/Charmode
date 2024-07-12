@@ -17,14 +17,25 @@
                 <div class="select__row">
                     <div>
                         <label>Category: </label>
-                        <select name="category"></select>
+                        <select class="select__option" name="category">
+                            @if(isset($categories))
+                                @foreach($categories as $category)
+                                    <option>{{$category->name}}</option>
+                                @endforeach
+                            @endif
+                        </select>
                     </div>
                     <button class="add__btn" onClick="addCategoryBtn()">Add new category</button>
                 </div>
                 <div class="select__row">
                     <div>
                         <label>Subcategory: </label>
-                        <select name="subcategoryID"></select>
+                        <select class="select__option" name="subcategoryID"></select>
+                        @if(isset($subCategories))
+                            @foreach($subCategories as $subCategory)
+                                <option>{{$subCategory->name}}</option>
+                            @endforeach
+                        @endif
                     </div>
                     <button class="add__btn" onClick="addSubCategoryBtn()">Add new subcategory</button>
                 </div>
@@ -60,6 +71,12 @@
 {{-- images --}}
             </div>
         </form>
+        <div class="category__pop-up">
+            <span class="close-pop-up__btn" id="closePopUpBtn">&times;</span>
+            <form>
+
+            </form>
+        </div>
         @push('scripts')
             @once
                 <script type="module" src="{{ URL::asset('js/admin.js') }}" defer></script>
