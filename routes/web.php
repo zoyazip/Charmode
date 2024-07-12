@@ -9,6 +9,9 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 
+use App\Http\Controllers\Auth\LoginController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -73,6 +76,14 @@ Route::post('/to_checkout', [CheckoutController::class, 'checkInput']);
 Route::get('/registration', [UserController::class, 'openRegistrationPage']);
 Route::post('/register', [UserController::class, 'register']);
 
+
 Route::get('/admin', [AdminController::class, 'openAllProductPage']);
 
+
+
+
+
+// Route::post('/login', [LoginController::class, 'login'])->middleware('guest')->name('login');
+
+Route::post('/login', [LoginController::class, 'store'])->middleware('guest')->name('login');
 
