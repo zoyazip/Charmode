@@ -11,18 +11,27 @@
 @endpush
 
 
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('css/checkout.css') }}">
+@endpush
+
 @section('content')
     <div class="main-container">
         <div class="checkout__container">
+
             <div class="checkout__whole-form">
                 <form method="POST" action="/to_checkout">
                     @csrf
                     <div class="container-tmp">
+
                     <div class="checkout__container__div">
                         <div class="checkout__title__data">
                             <div class="left">
                                 <h3 class="green-text">Client Data</h3>
-                                <img onclick="changeDataArrow('checkout__form', 'clientDataArrow')" id="clientDataArrow" class="close__arrow" src="{{ URL::asset('assets/svg/arrow.svg') }}"/>
+
+                                <img onclick="changeDataArrow('checkout__form', 'clientDataArrow')" id="clientDataArrow"
+                                    class="close__arrow" src="assets/svg/arrow.svg" />
+
                             </div>
                             <div class="right">
                                 <h6 class="thin-text">Have account?</h6>
@@ -32,6 +41,9 @@
                         <div id="checkout__form" class="checkout__form hidden__div">
                             <div class="checkout__input__row">
                                 {{-- <input class="checkout__name__input @error('name') is-invalid @enderror" placeholder="Name" type="text" id="name" name="name" value="{{ old('name') }}">
+
+
+
                                 <input class="checkout__surname__input" placeholder="Surname" type="text" id="surname" name="surname" value="">
                                 <input class="checkout__phone__input" placeholder="Tel." type="text" id="tel" name="tel" value=""> --}}
                                 
@@ -111,6 +123,7 @@
                         <input type="submit" class="checkout__btn__last" value="Checkout">
                         {{-- <button class="checkout__btn__last">Checkout </button> --}}
                     </div>
+
                     {{-- <div class="checkout__container__div"> --}}
                         {{-- <div class="checkout__overview">
                             <h3 class="green-text">Cart overview</h3>
@@ -128,56 +141,10 @@
         </div>
 
     </div>
-    <script>
-    
-    function changeDataArrow(divId, arrowId) {
-    const div = document.getElementById(divId);
-    const arrow = document.getElementById(arrowId);
-    if (arrow.classList.contains("close__arrow")) {
-        arrow.classList.remove('close__arrow');
-        arrow.classList.add('open__arrow');
-        div.classList.remove('hidden__div');
-        div.classList.add('visible__div');
-    } else {
-        arrow.classList.remove('open__arrow');
-        arrow.classList.add('close__arrow');
-        div.classList.add('hidden__div');
-        div.classList.remove('visible__div');
-    }
-}
 
-function showDelivery(deliveryMethod) {
-    const dpdDiv = document.getElementById('dpdSelect');
-    const omnivaDiv = document.getElementById('omnivaSelect');
-    if (deliveryMethod === 'dpd') {
-        if (dpdDiv.classList.contains('hidden__div')) {
-            dpdDiv.classList.remove('hidden__div');
-            dpdDiv.classList.add('visible__div');
-            if (omnivaDiv.classList.contains('visible__div')) {
-                omnivaDiv.classList.remove('visible__div');
-                omnivaDiv.classList.add('hidden__div');
-            }
-        }
-    } else if (deliveryMethod === 'omniva') {
-        if (omnivaDiv.classList.contains('hidden__div')) {
-            omnivaDiv.classList.remove('hidden__div');
-            omnivaDiv.classList.add('visible__div');
-            if (dpdDiv.classList.contains('visible__div')) {
-                dpdDiv.classList.remove('visible__div');
-                dpdDiv.classList.add('hidden__div');
-            }
-        }
-    } else {
-        if (omnivaDiv.classList.contains('visible__div')) {
-            omnivaDiv.classList.remove('visible__div');
-            omnivaDiv.classList.add('hidden__div');
-        }
-        if (dpdDiv.classList.contains('visible__div')) {
-            dpdDiv.classList.remove('visible__div');
-            dpdDiv.classList.add('hidden__div');
-        }
-    }
-}
-
-    </script>
 @endsection
+
+@push('scripts')
+    <script src="{{ URL::asset('js/checkout/checkout.js') }}"></script>
+@endpush
+

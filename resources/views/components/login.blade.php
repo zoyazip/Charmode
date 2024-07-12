@@ -60,7 +60,7 @@
             <div class="email-field">
                 <input
                     class="w-full p-3 bg-inherit text-green-900 outline-none border-b border-b-green-900 placeholder:text-green-800"
-                    type="email" placeholder="Your email" name="email" required />
+                    type="email" placeholder="Your email" name="email" value="{{ old('email') }}" required />
 
                 @error('email')
                     <script defer>
@@ -96,7 +96,7 @@
         <div class="registration-form w-full gap-6 flex flex-col items-center">
             <p class="or-text">Or</p>
             <div class="registration-btn w-full">
-                <a
+                <a href="{{ route('registration') }}"
                     class="bg-main-green flex items-center justify-center rounded-lg w-full py-4 text-white hover:bg-green-400 transition-all cursor-pointer">Registration</a>
             </div>
         </div>
