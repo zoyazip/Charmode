@@ -91,6 +91,7 @@
         <div class="filter__icon">
             <img src="assets/svg/filter.svg" alt="" />
         </div>
+        <div class="filter__reset">Reset</div>
     </div>
     <div class="filter__main">
         <!-- price -->
