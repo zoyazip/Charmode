@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', 'Checkout page')
+@section('title', 'Registration page')
 
 @section('content')
     <div class="registration__container">
@@ -10,15 +10,9 @@
             @if($errors->any())
                 <p class="register__error">Registration failed</p>
             @endif
-            <div class="register__name__input">
-                <input class="register__input @error('name') is-invalid @enderror" placeholder="Name*" type="text" id="name" name="name" value="{{ old('name') }}">
-                @error('name')
-                    <p class="register__error">{{ $message }}</p>
-                @enderror
-            </div>
-            <div class="register__surname__input">
-                <input class="register__input @error('surname') is-invalid @enderror" placeholder="Surname*" type="text" id="surname" name="surname" value="{{ old('surname') }}">
-                @error('surname')
+            <div class="register__full_name__input">
+                <input class="register__input @error('full_name') is-invalid @enderror" placeholder="Full name" type="text" id="full_name" name="nafull_nameme" value="{{ old('full_name') }}">
+                @error('full_name')
                     <p class="register__error">{{ $message }}</p>
                 @enderror
             </div>
@@ -41,19 +35,19 @@
                 @enderror
             </div>
             <div class="register__phone__input">
-                <input class="register__input @error('phone') is-invalid @enderror" placeholder="Phone*" type="tel" id="phone" name="phone" value="{{ old('phone') }}">
+                <input class="register__input @error('phone') is-invalid @enderror" placeholder="Phone" type="tel" id="phone" name="phone" value="{{ old('phone') }}">
                 @error('phone')
                     <p class="register__error">{{ $message }}</p>
                 @enderror
             </div>
             <div class="register__city__input">
-                <input class="register__input @error('city') is-invalid @enderror" placeholder="City*" type="text" id="city" name="city" value="{{ old('city') }}">
+                <input class="register__input @error('city') is-invalid @enderror" placeholder="City" type="text" id="city" name="city" value="{{ old('city') }}">
                 @error('city')
                     <p class="register__error">{{ $message }}</p>
                 @enderror
             </div>
             <div class="register__address__input">
-                <input class="register__input @error('address') is-invalid @enderror" placeholder="Address*" type="text" id="address" name="address" value="{{ old('address') }}">
+                <input class="register__input @error('address') is-invalid @enderror" placeholder="Address" type="text" id="address" name="address" value="{{ old('address') }}">
                 @error('address')
                     <p class="register__error">{{ $message }}</p>
                 @enderror
