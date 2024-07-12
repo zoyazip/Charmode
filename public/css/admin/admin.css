@@ -186,5 +186,22 @@
     width: 100%;
 }
 
+.select__option {
+    min-width: 150px;
+}
 
+.select__option:focus {
+    outline: none;
+}
+
+.category__pop-up {
+    z-index: 100;
+    position: fixed;
+    width: 40%;
+    height:40%;
+    top:30%;
+    left: 30%;
+    background-color: white;
+    border: 1px solid black;
+}
 

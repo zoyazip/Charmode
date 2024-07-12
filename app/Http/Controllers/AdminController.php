@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Color;
+use App\Models\Category;
+use App\Models\SubCategory;
 
 class AdminController extends Controller
 {
@@ -16,7 +19,14 @@ class AdminController extends Controller
     // add new product
         // if neccessary add new color and new category and subcategory
     public function openAddProductPage() {
-        return view('web/pages/addproduct');
+        $colors = Color::all();
+        $categories = Category::all();
+        $subCategories = SubCategory::all();
+        return view('web/pages/addproduct')->with([
+            "categories" => $categories,
+            "subcategories" => $subCategories,
+            "colors" => $colors,
+        ]);
     }
      // edit product
         // probably delete color or category or subcategory
