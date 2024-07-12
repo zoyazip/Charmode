@@ -68,23 +68,8 @@
 
 @include('/components/login')
 
-
-<script src="{{ asset('js/navbar.js') }}"></script>
-<script type="module" src="{{ URL::asset('js/draggable_strip.js') }}"></script>
-
-{{-- login popup script --}}
-<script>
-    const loginMenu = document.querySelector('.login-container')
-    const loginBtn = document.querySelector('.login-btn')
-    const closeLogin = document.querySelector('.close-login')
-
-    loginBtn.addEventListener('click', () => {
-        loginMenu.style.transform = 'translateX(0px)'
-        loginMenu.style.boxShadow = '-40px 0px 50px #00000010'
-    })
-
-    closeLogin.addEventListener('click', () => {
-        loginMenu.style.transform = 'translateX(100%)'
-        loginMenu.style.boxShadow = 'none'
-    })
-</script>
+@push('scripts')
+    <script src="{{ URL::asset('js/navbar.js') }}"></script>
+    <script type="module" src="{{ URL::asset('js/draggable_strip.js') }}"></script>
+    <script src="{{ URL::asset('js/header/login.js') }}"></script>
+@endpush

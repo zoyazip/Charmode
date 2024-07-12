@@ -72,7 +72,7 @@ Route::get('/plp', function () {
 Route::get('/checkout', [CheckoutController::class, 'openCheckoutPage']);
 Route::post('/to_checkout', [CheckoutController::class, 'checkInput']);
 
-Route::get('/registration', [UserController::class, 'openRegistrationPage']);
+Route::get('/registration', [UserController::class, 'openRegistrationPage'])->name('registration');
 Route::post('/register', [UserController::class, 'register']);
 
 
