@@ -119,7 +119,8 @@
         let sum = 0;
         let productCount = 0;
         for (const i of listBigPrices){
-            sum += parseInt(i.textContent.replace("€", ""));
+            sum += parseFloat(i.textContent.replace("€", ""));
+            sum.toFixed(2)
         }
         for (const i of totalAmounts) {
             productCount += parseInt(i.value);
