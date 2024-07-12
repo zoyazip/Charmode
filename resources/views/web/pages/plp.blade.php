@@ -1,8 +1,10 @@
+
 @push('styles')
     <link href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.5.1/nouislider.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="{{ URL::asset('css/pages/plp/filter.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/pages/plp/plp.css') }}">
 @endpush
+
 @extends('layouts.main')
 
 @section('content')

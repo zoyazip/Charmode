@@ -1,0 +1,90 @@
+.admin__container {
+    width: 80%;
+    margin-right: 10%;
+    margin-left: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hi__div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.admin__h4 {
+    float: left;
+    margin-top: 20px;
+}
+
+.admin__filter__div {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.admin__btn {
+    padding: 8px 20px;
+    border-radius: 6px;
+    margin: 5px;
+}
+
+.grey{
+    border: 1px solid #EAEAEA;
+    color: #9F9F9F;
+}
+
+.green{
+    background-color: var(--green);
+    color: white;
+}
+
+.green:hover{
+    background-color: var(--green);
+    color: white;
+}
+
+.admin__after__table__div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.admin__text__after__table {
+    color: #9F9F9F;
+    margin-top: 5px;
+}
+
+.admin__table__div {
+    width: 100%;
+    border: 1px solid #EAEAEA;
+    border-radius: 8px;
+}
+
+.table__head {
+    padding: 8px 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 1px solid #EAEAEA;
+}
+
+.table__head__left, .table__head__right {
+    display: flex;
+    flex-direction: row;
+}
+
+.table__row {
+    padding: 8px 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 1px solid #EAEAEA;
+}
+
+
+

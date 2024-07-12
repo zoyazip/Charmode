@@ -8,6 +8,10 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\FilterController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
+
+use App\Http\Controllers\Auth\LoginController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -69,6 +73,17 @@ Route::post('/plp', [FilterController::class, 'testInput']);
 Route::get('/checkout', [CheckoutController::class, 'openCheckoutPage']);
 Route::post('/to_checkout', [CheckoutController::class, 'checkInput']);
 
-Route::get('/registration', [UserController::class, 'openRegistrationPage']);
+Route::get('/registration', [UserController::class, 'openRegistrationPage'])->name('registration');
 Route::post('/register', [UserController::class, 'register']);
+
+
+Route::get('/admin', [AdminController::class, 'openAllProductPage']);
+
+
+
+
+
+// Route::post('/login', [LoginController::class, 'login'])->middleware('guest')->name('login');
+
+Route::post('/login', [LoginController::class, 'store'])->middleware('guest')->name('login');
 

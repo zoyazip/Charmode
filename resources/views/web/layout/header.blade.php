@@ -12,15 +12,16 @@
                 </div>
             </div>
             <a href="/">
-                <img class="navbar__logo" src="assets/svg/logo.svg" alt="Logo" />
+                <img class="navbar__logo" src="{{ URL::asset('assets/svg/logo.svg') }}" alt="Logo" />
+                
             </a>
             <div class="navbar__search-container">
                 <input class="navbar__search-text" type="text" placeholder="Find your cheapest luxury brand..." />
-                <img class="navbar__search-icon" src="assets/svg/search-icon.svg" alt="Search" />
+                <img class="navbar__search-icon" src="{{ URL::asset('assets/svg/search-icon.svg') }}" alt="Search" />
             </div>
             <div class="navbar__icons">
-                <img src="assets/svg/shopping-basket.svg" alt="Cart" />
-                <img class="login-btn" src="assets/svg/user.svg" alt="User" />
+                <img src="{{ URL::asset('assets/svg/shopping-basket.svg') }}" alt="Cart" />
+                <img class="login-btn" src="{{ URL::asset('assets/svg/user.svg') }}" alt="User" />
             </div>
         </div>
         <div class="navbar__links">
@@ -62,29 +63,14 @@
     </div>
     <div class="navbar__bottom-search">
         <input class="navbar__search-text" type="text" placeholder="Find your luxury brand..." />
-        <img class="navbar__search-icon" src="assets/svg/search-icon.svg" alt="Search" />
+        <img class="navbar__search-icon" src="{{ URL::asset('assets/svg/search-icon.svg') }}" alt="Search" />
     </div>
 </div>
 
 @include('/components/login')
 
-
-<script src="{{ asset('js/navbar.js') }}"></script>
-<script type="module" src="{{ URL::asset('js/draggable_strip.js') }}"></script>
-
-{{-- login popup script --}}
-<script>
-    const loginMenu = document.querySelector('.login-container')
-    const loginBtn = document.querySelector('.login-btn')
-    const closeLogin = document.querySelector('.close-login')
-
-    loginBtn.addEventListener('click', () => {
-        loginMenu.style.transform = 'translateX(0px)'
-        loginMenu.style.boxShadow = '-40px 0px 50px #00000010'
-    })
-
-    closeLogin.addEventListener('click', () => {
-        loginMenu.style.transform = 'translateX(100%)'
-        loginMenu.style.boxShadow = 'none'
-    })
-</script>
+@push('scripts')
+    <script src="{{ URL::asset('js/navbar.js') }}"></script>
+    <script type="module" src="{{ URL::asset('js/draggable_strip.js') }}"></script>
+    <script src="{{ URL::asset('js/header/login.js') }}"></script>
+@endpush
