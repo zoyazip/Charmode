@@ -51,7 +51,7 @@
             <div class="greet">
                 <h2 class="font-bold text-3xl inline-block">Hi <span class="wave">👋🏻</span></h2>
             </div>
-            <div class="close-login cursor-pointer"><img src="assets/svg/cross.svg" /></div>
+            <div class="close-login cursor-pointer"><img src="{{ URL::asset('assets/svg/cross.svg') }}" /></div>
         </div>
 
         <form class="flex flex-col gap-4" action="{{ route('login') }}" method="POST">

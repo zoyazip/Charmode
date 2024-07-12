@@ -6,9 +6,6 @@
     align-items: center;
 }
 
-.checkout__container form{
-    width: 100%;
-}
 
 .item-wrapper__amount-price{
     white-space: nowrap;
