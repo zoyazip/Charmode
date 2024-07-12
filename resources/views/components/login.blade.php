@@ -52,7 +52,7 @@
         <div class="login-inner-container w-3/4 flex flex-col gap-4">
             <div class="login-greetings flex items-center justify-between">
                 <div class="greet"><h2 class="font-bold text-3xl inline-block">Hi <span class="wave">👋🏻</span></h2></div>
-                <div class="close-login cursor-pointer"><img src="assets/svg/cross.svg" /></div>
+                <div class="close-login cursor-pointer"><img src="{{ URL::asset('assets/svg/cross.svg') }}" /></div>
             </div>
             <form class="flex flex-col gap-4">
                 <div class="email-field">
