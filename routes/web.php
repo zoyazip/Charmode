@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,7 +62,13 @@ Route::get('/plp', function () {
     return view('web.pages.plp');
 });
 
-Route::get('/checkout', function () {
-    return view('web.pages.checkout');
-});
+// Route::get('/checkout', function () {
+//     return view('web.pages.checkout');
+// });
+
+Route::get('/checkout', [CheckoutController::class, 'openCheckoutPage']);
+Route::post('/to_checkout', [CheckoutController::class, 'checkInput']);
+
+Route::get('/registration', [UserController::class, 'openRegistrationPage']);
+Route::post('/register', [UserController::class, 'register']);
 

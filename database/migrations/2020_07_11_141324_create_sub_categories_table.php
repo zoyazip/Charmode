@@ -11,11 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('colors', function (Blueprint $table) {
+        Schema::create('sub_categories', function (Blueprint $table) {
             $table->id();
-            $table->string('color_name');
-            $table->string('hex');
+            $table->string('name');
+            $table->integer('categoryID');
             $table->timestamps();
+
+            $table->foreign('categoryID')->references('id')->on('categories');
+
         });
     }
 
@@ -24,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('colors');
+        Schema::dropIfExists('sub_categories');
     }
 };

@@ -11,19 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cart_list_items', function (Blueprint $table) {
+        Schema::create('items', function (Blueprint $table) {
             $table->id();
-            $table->integer('cart_id');
-            $table->foreign('cart_id')->references('id')->on('carts');
-            $table->integer('product_id');
-            $table->foreign('product_id')->references('id')->on('products');
+            $table->integer('productID');
+            $table->integer('colorID');
             $table->integer('quantity');
             $table->timestamps();
-        });
 
-        // 'cart_id',
-        // 'product_id',
-        // 'quantity',
+            $table->foreign('colorID')->references('id')->on('colors');
+            $table->foreign('productID')->references('id')->on('products');
+        
+        });
     }
 
     /**
@@ -31,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cart_list_items');
+        Schema::dropIfExists('items');
     }
 };

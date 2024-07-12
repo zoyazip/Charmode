@@ -11,14 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('wishlist_items', function (Blueprint $table) {
+        Schema::create('reviews', function (Blueprint $table) {
             $table->id();
-            $table->integer('wishlist_id');
-            $table->foreign('wishlist_id')->references('id')->on('wishlists');
-            $table->integer('product_id');
-            $table->foreign('product_id')->references('id')->on('products');
-            $table->integer('quantity');
+            $table->integer('productID');
+            $table->integer('userID');
+            $table->integer('rating');
+            $table->string('comment');
             $table->timestamps();
+
+            $table->foreign('userID')->references('id')->on('users');
+            $table->foreign('productID')->references('id')->on('products');
+        
         });
     }
 
@@ -27,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('wishlist_items');
+        Schema::dropIfExists('reviews');
     }
 };

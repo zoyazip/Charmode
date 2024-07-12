@@ -15,18 +15,18 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('description');
-            $table->integer('category_id');
-            $table->integer('old_price');
-            $table->integer('new_price');
-            $table->integer('stock_quantity');
+            $table->integer('subcategoryID');
+            $table->integer('price');
+            $table->integer('discount');
+            $table->integer('stockQuantity');
             $table->json('specifications');
-            $table->integer('color_id');
-            $table->integer('delivery_cost');
+            $table->integer('colorID');
+            $table->json('images');
             $table->timestamps();
 
-            $table->foreign('category_id')->references('id')->on('categories');
-            $table->foreign('sub_category_id')->references('id')->on('sub_categories');
-            $table->foreign('color_id')->references('id')->on('colors');
+            $table->foreign('subcategoryID')->references('id')->on('sub_categories');
+            $table->foreign('colorID')->references('id')->on('colors');
+        
         });
     }
 
