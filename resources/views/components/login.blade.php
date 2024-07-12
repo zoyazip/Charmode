@@ -60,14 +60,30 @@
                 <input
                     class="w-full p-3 bg-inherit text-green-900 outline-none border-b border-b-green-900 placeholder:text-green-800"
                     type="email" placeholder="Your email" name="email" required />
+
+                @error('email')
+                    <script defer>
+                        const loginMenu = document.querySelector('.login-container')
+                        loginMenu.style.transform = 'translateX(0px)'
+                    </script>
+                    <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
+                @enderror
             </div>
             <div class="password-field">
                 <input
                     class="w-full p-3 bg-inherit text-green-900 outline-none border-b border-b-green-900 placeholder:text-green-800"
-                    type="password" placeholder="Your password" required name="password" />
+                    type="password" placeholder="Your password" name="password" required />
+
+                @error('password')
+                    <script defer>
+                        const loginMenu = document.querySelector('.login-container')
+                        loginMenu.style.transform = 'translateX(0px)'
+                    </script>
+                    <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
+                @enderror
             </div>
             <div class="remember-checkbox flex items-center gap-2">
-                <input type="checkbox" class="checked:accent-green-500 " name="remember_me" />
+                <input type="checkbox" class="checked:accent-green-500 " name="remember_me" value="true" />
                 <label class="text-main-green">Remember me</label>
             </div>
             <div class="login-form-btn">
@@ -80,7 +96,7 @@
             <p class="or-text">Or</p>
             <div class="registration-btn w-full">
                 <a
-                    class="bg-green-300 flex items-center justify-center rounded-lg w-full py-4 text-green-900 hover:bg-green-400 transition-all cursor-pointer">Registration</a>
+                    class="bg-main-green flex items-center justify-center rounded-lg w-full py-4 text-white hover:bg-green-400 transition-all cursor-pointer">Registration</a>
             </div>
         </div>
 

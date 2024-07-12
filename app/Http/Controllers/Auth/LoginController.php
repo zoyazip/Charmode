@@ -10,10 +10,12 @@ class LoginController extends Controller
 {
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'email' => ['string', 'required', 'email'],
-        //     'password' => ['required', 'string', 'confirmed', 'min:8'],
-        // ]);
+        $request->validate([
+            'email' => ['string', 'required', 'email'],
+            'password' => ['required', 'string', 'min:8'],
+        ]);
+
+
 
         dd($request);
     }
