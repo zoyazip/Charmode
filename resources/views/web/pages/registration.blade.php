@@ -8,7 +8,7 @@
         <form  class="registration__form" method="POST" action="/register">
             @csrf
             @if($errors->any())
-                <p class="register__error">{{$errors->first()}}</p>
+                <p class="register__error">Registration failed</p>
             @endif
             <div class="register__name__input">
                 <input class="register__input @error('name') is-invalid @enderror" placeholder="Name*" type="text" id="name" name="name" value="{{ old('name') }}">
