@@ -30,7 +30,7 @@
     display: flex;
     flex-direction: row;
     gap: 3%;
-    max-width: 198px;
+    /* max-width: 198px; */
     min-width: 158px;
     width: auto;
     justify-content: end;
@@ -77,7 +77,7 @@
     display: flex;
     flex-direction: row;
     gap: 3%;
-    max-width: 214px;
+    /* max-width: 214px; */
     min-width: 169px;
     width: auto;
 }
@@ -295,7 +295,7 @@
         flex-direction: row;
         gap: 3%;
         min-width: 130px;
-        max-width: 158px;
+        /* max-width: 158px; */
         width: auto;
     }
 
@@ -304,7 +304,7 @@
         flex-direction: row;
         gap: 3%;
         min-width: 130px;
-        max-width: 158px;
+        /* max-width: 158px; */
         width: auto;
         justify-content: end;
         align-items: end;
