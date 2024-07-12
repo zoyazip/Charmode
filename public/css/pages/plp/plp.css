@@ -1,0 +1,9 @@
+.plp-page-container {
+    display: flex;
+    gap: 5%;
+}
+@media screen and (max-width: 1000px) {
+    .plp-page-container {
+        flex-direction: column;
+    }
+}

@@ -6,6 +6,7 @@ use App\Http\Controllers\ColorController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\FilterController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -58,13 +59,12 @@ Route::get('/cart', function () {
     return view('web.pages.cart');
 });
 
-Route::get('/plp', function () {
-    return view('web.pages.plp');
-});
-
+Route::get('/plp', [FilterController::class, 'noInput']);
 // Route::get('/checkout', function () {
 //     return view('web.pages.checkout');
 // });
+
+Route::post('/plp', [FilterController::class, 'testInput']);
 
 Route::get('/checkout', [CheckoutController::class, 'openCheckoutPage']);
 Route::post('/to_checkout', [CheckoutController::class, 'checkInput']);
