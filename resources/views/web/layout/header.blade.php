@@ -3,8 +3,7 @@
         <div class="navbar__top">
 
             <div class="navbar__burger-container">
-                <input class="navbar__burger-checkbox" onclick="toggleDropdown()" type="checkbox" name=""
-                    id="" />
+                <input class="navbar__burger-checkbox" onclick="toggleDropdown()" type="checkbox" />
                 <div class="navbar__burger-lines">
                     <span class="navbar__burger-line1 navbar__burger-line"></span>
                     <span class="navbar__burger-line2 navbar__burger-line"></span>
@@ -19,7 +18,7 @@
                 <img class="navbar__search-icon" src="{{ URL::asset('assets/svg/search-icon.svg') }}" alt="Search" />
             </div>
             <div class="navbar__icons">
-                <a href="cart">
+                <a href="cart" class="navbar__cart-icon">
                     <img src="{{ URL::asset('assets/svg/shopping-basket.svg') }}" alt="Cart" />
                 </a>
                 @auth
@@ -28,6 +27,17 @@
                     </button>
 
                     <div class="navbar__auth-drop-container">
+                        <div class="navbar__auth-option">
+                            <b>Signed in as: </b>
+                            <br>
+                            {{Auth::user()->email}}
+                        </div>
+                        <hr class="navbar__auth-separator">
+
+                        <a class="navbar__auth-option cart" href="cart">
+                            <img src="{{ URL::asset('assets/svg/shopping-basket.svg') }}" alt="Cart" />
+                            Cart
+                        </a>
                         <a class="navbar__auth-option" href="wishlist">
                             <img src="{{URL::asset('assets/svg/heart.svg')}}" alt="heart">
                             Liked
@@ -37,15 +47,13 @@
                             Settings
                         </a>
 
-                        <hr class="navbar__auth-separator">
+                        {{-- <hr class="navbar__auth-separator"> --}}
                         <form action="{{ route('logout') }}" method="POST">
                             @csrf
-                    
-                                <button type="submit" class="navbar__auth-option">
-                                    <img src="{{URL::asset('assets/svg/log-out.svg')}}" alt="logout">
-                                    Logout
-                                </button>
-                          
+                            <button type="submit" class="navbar__auth-option">
+                                <img src="{{URL::asset('assets/svg/log-out.svg')}}" alt="logout">
+                                Logout
+                            </button>
                         </form>
                     </div>
                 @else
@@ -107,12 +115,13 @@
 
 @auth
     @push('scripts')
+
         <script defer>
             const dropdown = document.querySelector('.navbar__auth-drop-container')
-            
             const toggleActive = () => {
                 dropdown.classList.toggle("active")
             }
-            </script>
+        </script>
+
     @endpush    
 @endauth

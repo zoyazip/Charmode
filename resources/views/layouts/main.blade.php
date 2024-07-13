@@ -5,7 +5,6 @@
     @include('web.layout.head')
     @stack('styles')
     @vite('public/css/app.css')
-    <link rel="shortcut icon" href="{{ asset('public/favicon.ico') }}">
 </head>
 
 <body>

@@ -64,9 +64,6 @@ Route::get('/cart', function () {
 });
 
 Route::get('/plp', [FilterController::class, 'noInput']);
-// Route::get('/checkout', function () {
-//     return view('web.pages.checkout');
-// });
 
 Route::post('/plp', [FilterController::class, 'testInput']);
 

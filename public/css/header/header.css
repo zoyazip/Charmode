@@ -22,6 +22,10 @@
     position: relative;
 }
 
+.navbar__auth-option.cart {
+    display: none;
+}
+
 .navbar__burger-container {
     display: none;
 }
@@ -61,7 +65,7 @@
 .navbar__icons {
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 10px;
 }
 
 .navbar__icons img {
@@ -212,14 +216,24 @@ a.navbar__link-container {
 
 .navbar__auth-drop-container {
     position: absolute;
-    width: min-content;
+    min-width: 200px;
     height: min-content;
     top: 100%;
     right: 0;
     border-radius: 10px;
-    border: 1px solid var(--text-primary);
     background-color: white;
     display: none;
+    z-index: 1000;
+    overflow: hidden;
+
+    padding: 5px;
+
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .navbar__auth-drop-container.active {
@@ -228,6 +242,7 @@ a.navbar__link-container {
 
 .navbar__auth-separator {
     height:1px;
+    margin: 5px 0;
     border-width:0;
     color: var(--text-primary);;
     background-color: var(--text-primary);
@@ -235,9 +250,20 @@ a.navbar__link-container {
 
 
 .navbar__auth-option {
-    padding: 10px 40px;
+    border-radius: 7px;
+    padding: 10px 40px 10px 10px;
     gap: 10px;
     display: flex;
+    width: 100%;
+}
+
+.navbar__auth-option:first-child {
+    display: block;
+    gap: 0;
+}
+
+.navbar__auth-option:hover {
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 .navbar__auth-option img {
@@ -246,11 +272,6 @@ a.navbar__link-container {
 
 
 @media screen and (max-width: 768px) {
-    .navbar {
-        padding: 0;
-        margin-bottom: 10px;
-    }
-
     .header {
         padding-bottom: 10px;
     }
@@ -264,9 +285,9 @@ a.navbar__link-container {
     }
 
     .navbar__top {
-        align-items: baseline;
+        align-items: flex-end;
         justify-content: space-between;
-        padding: 20px 0;
+        padding: 10px 0;
     }
 
     .navbar__logo {
@@ -275,6 +296,10 @@ a.navbar__link-container {
     }
 
     .navbar__links {
+        display: none;
+    }
+
+    .navbar__cart-icon {
         display: none;
     }
 
@@ -288,6 +313,10 @@ a.navbar__link-container {
         border: 1px solid var(--text-primary);
         border-radius: 8px;
         padding: 10px 10px;
+    }
+
+    .navbar__auth-option.cart {
+        display: flex;
     }
 
     .navbar__search-text::placeholder {
