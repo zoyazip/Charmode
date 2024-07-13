@@ -73,18 +73,16 @@ Route::post('/plp', [FilterController::class, 'testInput']);
 Route::get('/checkout', [CheckoutController::class, 'openCheckoutPage']);
 Route::post('/to_checkout', [CheckoutController::class, 'checkInput']);
 
-Route::get('/registration', [UserController::class, 'openRegistrationPage'])->name('registration');
-Route::post('/register', [UserController::class, 'register']);
-
 
 Route::get('/admin', [AdminController::class, 'openAllProductPage']);
 Route::get('/createproduct', [AdminController::class, 'openAddProductPage']);
 
 
 
+// AUTH
+Route::get('/registration', [UserController::class, 'openRegistrationPage'])->middleware('guest')->name('registration');
 
-
-// Route::post('/login', [LoginController::class, 'login'])->middleware('guest')->name('login');
+Route::post('/register', [UserController::class, 'register'])->middleware('guest');
 
 Route::post('/login', [LoginController::class, 'store'])->middleware('guest')->name('login');
-
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');

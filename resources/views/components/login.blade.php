@@ -84,8 +84,8 @@
                 @enderror
             </div>
             <div class="remember-checkbox flex items-center gap-2">
-                <input type="checkbox" class="checked:accent-green-500 " name="remember_me" value="true" />
-                <label class="text-main-green">Remember me</label>
+                <input type="checkbox" class="checked:accent-green-500 " name="remember_me" value="true" id="remember_me"/>
+                <label class="text-main-green select-none" for="remember_me">Remember me</label>
             </div>
             <div class="login-form-btn">
                 <input type="submit" value="Login"
