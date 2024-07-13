@@ -1,14 +1,69 @@
-<div class="gallery-container flex flex-col gap-4 bg-green-700 w-full h-[600px] md:h-[600px]">
-    <div class="full-image-container h-4/5 w-full bg-red-700">
-        <img src={{ $product1->img_path[0] }} class="w-full h-full bg-no-repeat bg-cover object-cover rounded-2xl"/>
-    </div>
-    <div class="image-list-container bg-pink-600 overflow-x-scroll flex gap-4 w-full h-1/6 md:h-1/5">
-        @foreach ($product1->img_path as $index => $image)
-            <img src={{ $image }} class="h-full rounded-xl"/>
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+<style>
+    .swiper-button-next.swiper-button-disabled,
+    .swiper-button-prev.swiper-button-disabled {
+        opacity: 0;
+    }
+
+    .swiper-button-next:after,
+    .swiper-rtl .swiper-button-prev:after {
+        content: '';
+    }
+
+    .swiper-button-prev:after,
+    .swiper-rtl .swiper-button-next:after {
+        content: '';
+    }
+
+    .swiper-button-next,
+    .swiper-rtl .swiper-button-prev {
+        right: var(--swiper-navigation-sides-offset, 10px);
+        left: auto;
+    }
+
+    .swiper-button-next,
+    .swiper-button-prev {
+        position: absolute;
+        top: var(--swiper-navigation-top-offset, 50%);
+        width: 35px;
+        height: 35px;
+        margin-top: calc(0px -(var(--swiper-navigation-size) / 2));
+        z-index: 10;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-primary);
+        background-color: white;
+        border-radius: 100%
+    }
+</style>
+
+<div class="swiper mySwiper h-[50vh] md:h-full rounded-2xl flex gap-4 w-full md:w-1/2 lg:w-2/3 lg:h-full">
+    <div class="swiper-wrapper full-image-container w-full box-border ">
+        @foreach ($product1->img_path as $img)
+            <div style="background-image: url({{ $img }})"
+                class="swiper-slide w-full h-full bg-no-repeat bg-cover bg-center select-none ">
+            </div>
         @endforeach
     </div>
-</div>
+    <div class="swiper-button-next select-none">-></div>
+    <div class="swiper-button-prev select-none"><- </div>
+    </div>
 
-<script>
-    let currentImage_Id = 0
-</script>
+
+
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            mousewheel: true,
+            slidesPerView: 'auto',
+            loop: true
+        });
+    </script>

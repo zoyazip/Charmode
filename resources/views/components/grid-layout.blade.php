@@ -58,8 +58,7 @@
             <div
                 class="grid-layout w-full grid gap-3 grid-flow-dense grid-rows-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                 @foreach ($products as $index => $product)
-                @include('components/product-card', [$product])
-                    
+                    @include('components/product-card', ['main' => true])
                 @endforeach
             </div>
         </div>
@@ -72,14 +71,10 @@
                 '.card__title-container').querySelector('.add-to-cart')
 
             item.addEventListener('mouseenter', function() {
-                item.style.backgroundSize = '100%'
-                selectedProductBtn.style.opacity = 1
-                selectedProductBtn.style.transform = 'translateX(0px)'
+                item.style.transform = 'rotate(1deg)'
             })
             item.addEventListener('mouseleave', function() {
-                item.style.backgroundSize = '110%'
-                selectedProductBtn.style.opacity = 0
-                selectedProductBtn.style.transform = 'translateX(-20px)'
+                item.style.transform = 'rotate(0deg)'
             })
         })
     </script>

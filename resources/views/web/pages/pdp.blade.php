@@ -3,8 +3,19 @@
         display: none;
     }
 
-    .color-input[type="radio"]:checked+.color {
+    /* .color-input[type="radio"]:checked+.color {
         box-shadow: 0px 0px 0px 2px #2F591B;
+    } */
+
+    .color-input[type="radio"]:checked+.color::after {
+        content: '';
+        width: 100%;
+        height: 100%;
+        border-radius: 100%;
+        outline: 1px solid black;
+        outline-offset: 2px;
+        position: absolute;
+
     }
 
     .like-checkbox {
@@ -125,23 +136,6 @@
             'Color' => 'Red',
             'Weight' => '15kg',
             'Manufacturer' => 'Furniture Co.',
-            'ModelNumber' => 'C1234',
-            'Warranty' => '2 years',
-            'Price' => "$150",
-            'Stock' => 'In Stock',
-            'Discount' => '10%',
-            'Rating' => '4.5',
-            'Reviews' => '35',
-            'AssemblyRequired' => 'Yes',
-            'ShippingWeight' => '18kg',
-            'Upholstery' => 'Leather',
-            'LegsMaterial' => 'Metal',
-            'SeatHeight' => '45cm',
-            'BackrestHeight' => '60cm',
-            'ArmrestHeight' => '20cm',
-            'PackageDimensions' => '230x230x230',
-            'CountryOfOrigin' => 'Italy',
-            'Designer' => 'Jane Doe',
         ],
     );
 
@@ -183,20 +177,22 @@
 
 @section('content')
     <div class="inner-container">
-        <div class="product-main-info-container w-full flex gap-2 md:gap-4 lg:gap-8 flex-col md:flex-row">
+        <div class="product-main-info-container h-auto w-full md:h-[70vh] flex flex-col md:flex-row gap-8">
             @include('../../components/PDP-components/pdp-gallery')
             @include('../../components/PDP-components/pdp-main-info-form')
         </div>
-        <div class="pdp-description-container mt-10 md:w-1/2">
+        <div class="pdp-description-container mt-10 md:w-full flex flex-col md:flex-row gap-4">
             @include('../../components/PDP-components/pdp-description')
-        </div>
-        <div class="pdp-characteristics-container mt-20">
             @include('../../components/PDP-components/pdp-characteristics')
         </div>
-        <div class="pdp-comments-container mt-10 w-full md:w-2/3">
+        <div class="pdp-suggestion-container h-auto mt-14">
+            @include('../../components/PDP-components/pdp-suggestion')
+        </div>
+
+        <div class="pdp-comments-container mt-10 w-full">
             @include('../../components/PDP-components/pdp-comments')
         </div>
-        <div class="pdp-comment-form-container mt-10 mb-10 w-full md:w-1/2">
+        <div class="pdp-comment-form-container flex justify-center mt-10 mb-20 w-full">
             @include('../../components/PDP-components/pdp-comment-form')
         </div>
     </div>

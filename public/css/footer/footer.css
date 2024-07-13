@@ -1,14 +1,14 @@
 footer, footer input{
     font-family: var(--font-family);
     color: white;
-    background-color: var(--green);
+    background-color: var(--text-primary);
 }
 
 
 footer{
     border-radius: 27px 27px 0 0;
     padding: 48px 0 40px 0 ;
-
+    
 }
 .footerwrapper{
     display: flex;
@@ -16,7 +16,6 @@ footer{
     margin: auto;
     gap: 60px;
     width: 100%;
-
 }
 
 .footerwrapper__right-Footer input{
