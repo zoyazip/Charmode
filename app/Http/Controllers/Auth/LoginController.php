@@ -8,6 +8,13 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
+    public function logout(Request $request) {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/');
+    }
+
     public function store(Request $request)
     {
         $request->validate([
@@ -15,7 +22,9 @@ class LoginController extends Controller
             'password' => ['required', 'string'],
         ]);
 
-        if (Auth::attempt($request->only('email', 'password'))) {
+        $remember = $request->has('remember_me'); // Check if "Remember Me" checkbox is checked
+
+        if (Auth::attempt($request->only('email', 'password'), $remember)) {
             return redirect()->back();
         }
 

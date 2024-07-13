@@ -63,8 +63,14 @@ a {
     color: black;
 }
 
-/* base classes */
+h1 {
+    font-weight: 700;
+    font-size: var(--title-2xl);
+}
 
+
+
+/* base classes */
 .main-container {
     width: 100vw;
     display: flex;
@@ -76,9 +82,4 @@ a {
     max-width: 1488px;
     margin: 0 auto;
     width: 90vw;
-}
-
-h1 {
-    font-weight: 700;
-    font-size: var(--title-2xl);
 }

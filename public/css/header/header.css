@@ -196,6 +196,55 @@ a.navbar__link-container {
     transform: rotate(-45deg);
 }
 
+.navbar__auth-container {
+    width: 35px;
+    height: 35px;
+    background-color: var(--green-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    user-select: none;
+    cursor: pointer;
+}
+
+
+.navbar__auth-drop-container {
+    position: absolute;
+    width: min-content;
+    height: min-content;
+    top: 100%;
+    right: 0;
+    border-radius: 10px;
+    border: 1px solid var(--text-primary);
+    background-color: white;
+    display: none;
+}
+
+.navbar__auth-drop-container.active {
+    display: block;
+} 
+
+.navbar__auth-separator {
+    height:1px;
+    border-width:0;
+    color: var(--text-primary);;
+    background-color: var(--text-primary);
+}
+
+
+.navbar__auth-option {
+    padding: 10px 40px;
+    gap: 10px;
+    display: flex;
+}
+
+.navbar__auth-option img {
+    width: 20px !important;
+}
+
+
 @media screen and (max-width: 768px) {
     .navbar {
         padding: 0;

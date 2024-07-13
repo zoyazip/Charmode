@@ -13,15 +13,44 @@
             </div>
             <a href="/">
                 <img class="navbar__logo" src="{{ URL::asset('assets/svg/logo.svg') }}" alt="Logo" />
-                
             </a>
             <div class="navbar__search-container">
                 <input class="navbar__search-text" type="text" placeholder="Find your cheapest luxury brand..." />
                 <img class="navbar__search-icon" src="{{ URL::asset('assets/svg/search-icon.svg') }}" alt="Search" />
             </div>
             <div class="navbar__icons">
-                <img src="{{ URL::asset('assets/svg/shopping-basket.svg') }}" alt="Cart" />
-                <img class="login-btn" src="{{ URL::asset('assets/svg/user.svg') }}" alt="User" />
+                <a href="cart">
+                    <img src="{{ URL::asset('assets/svg/shopping-basket.svg') }}" alt="Cart" />
+                </a>
+                @auth
+                    <button class="navbar__auth-container" onclick="toggleActive()">
+                        <span>{{substr(Auth::user()->email, 0, 1)}}</span>
+                    </button>
+
+                    <div class="navbar__auth-drop-container">
+                        <a class="navbar__auth-option" href="wishlist">
+                            <img src="{{URL::asset('assets/svg/heart.svg')}}" alt="heart">
+                            Liked
+                        </a>
+                        <a class="navbar__auth-option" href="settings">
+                            <img src="{{URL::asset('assets/svg/settings.svg')}}" alt="settings">
+                            Settings
+                        </a>
+
+                        <hr class="navbar__auth-separator">
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                    
+                                <button type="submit" class="navbar__auth-option">
+                                    <img src="{{URL::asset('assets/svg/log-out.svg')}}" alt="logout">
+                                    Logout
+                                </button>
+                          
+                        </form>
+                    </div>
+                @else
+                    <img class="login-btn" src="{{ URL::asset('assets/svg/user.svg') }}" alt="User" />
+                @endauth
             </div>
         </div>
         <div class="navbar__links">
@@ -74,3 +103,16 @@
     <script type="module" src="{{ URL::asset('js/draggable_strip.js') }}"></script>
     <script src="{{ URL::asset('js/header/login.js') }}"></script>
 @endpush
+
+
+@auth
+    @push('scripts')
+        <script defer>
+            const dropdown = document.querySelector('.navbar__auth-drop-container')
+            
+            const toggleActive = () => {
+                dropdown.classList.toggle("active")
+            }
+            </script>
+    @endpush    
+@endauth
