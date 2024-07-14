@@ -21,6 +21,28 @@ function addNewCategory(popUp, name, select) {
     document.getElementById(popUp).classList.add('hide__pop__up__window');
 }
 
+function addNewColor() {
+    const colorNameValue = document.getElementById('colorName').value;
+    const colorHexValue = document.getElementById('colorHex').value;
+    const newColorDiv = document.createElement('div');
+    newColorDiv.classList.add('color__div');
+    newColorDiv.style.backgroundColor = colorHexValue;
+    newColorDiv.id = colorNameValue;
+    newColorDiv.innerHTML = "";
+    document.getElementById('new__colors').appendChild(newColorDiv);
+    document.getElementById('colorName').value = "";
+    document.getElementById('colorHex').value = "";
+    document.getElementById('colorPopUp').classList.remove('show__pop__up__window');
+    document.getElementById('colorPopUp').classList.add('hide__pop__up__window');
+
+    newColorDiv.addEventListener('click', function () {
+        // const i = checkedColors.indexOf(color['id']);
+        // checkedColors.splice(i, 1);
+        // console.log(checkedColors.length);
+        newColorDiv.remove();
+    });
+}
+
 let specificationCount = 0;
 
 function addSpecification() {
@@ -67,9 +89,44 @@ function addSpecification() {
     specificationCount = specificationCount + 1;
 }
 
-// function removeSpecificationRow(rowId) {
-//     const div = document.getElementById(rowId);
-//     console.log('remove');
-//     console.log(rowId);
-//     // div.remove();
-// }
+function colorDiv() {
+    const colorDivs = document.getElementsByName('color__div');
+    console.log(colorDivs.length);
+    colorDivs.forEach(element => {
+        const color = element.getAttribute('value');
+        const colorJSON = JSON.parse(color);
+        element.id = colorJSON.id;
+        // console.log(colorJSON.hex);
+        element.style.backgroundColor = colorJSON.hex;
+    });
+}
+
+const checkedColors = [];
+
+
+function checkColor(color) {
+    console.log(color);
+
+    if (checkedColors.includes(color['id']) === false) {
+
+        checkedColors.push(color['id']);
+        // console.log(checkedColors);
+        const newColorDiv = document.createElement('div');
+        newColorDiv.classList.add('color__div');
+        newColorDiv.style.backgroundColor = color['hex'];
+        newColorDiv.id = color['hex'];
+        newColorDiv.innerHTML = "";
+        document.getElementById('new__colors').appendChild(newColorDiv);
+    
+        newColorDiv.addEventListener('click', function () {
+            const i = checkedColors.indexOf(color['id']);
+            checkedColors.splice(i, 1);
+            console.log(checkedColors.length);
+            newColorDiv.remove();
+        });
+    }
+}
+
+
+colorDiv();
+

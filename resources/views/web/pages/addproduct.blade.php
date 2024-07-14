@@ -56,16 +56,26 @@
                         </div> -->
                     </div>
                     <div class="spec__div__row" id="newField">
-                        <input class="add__input" type="text" id="key" >
-                        <input class="add__input" type="text" id="value" >
+                        <input class="add__input spec__input__row" type="text" id="key" >
+                        <input class="add__input spec__input__row" type="text" id="value" >
                         <span onclick="addSpecification()" class="add__btn">Save</span>
                     </div>
                 </div>
                 <p class="add-product__p">Add colors:</p>
-                <div class="color__div">
-                    <div class="existing__colors"></div>
-                    <button class="add__btn" onclick="addNewColor">New</button>
+                <div class="all__color__div">
+                    <div id="existing__colors" class="existing__colors">
+                        @if(session()->has('allColors'))
+                            @foreach(session()->get('allColors') as $color)
+                                <div onclick="checkColor({{$color}})" name="color__div" value='{{$color}}' class="color__div" ></div>
+                            @endforeach
+                        @endif
+                    </div>
+                    
+                    <span class="add__btn" onclick="openPopUpWindow('colorPopUp')">New</span>
                     {{-- colors can add new --}}
+                    <p class="add-product__p">Added colors:</p>
+                    <div id="new__colors" class="existing__colors"></div>
+
 
                 </div>
                 <p class="add-product__p">Write product description:</p>
@@ -87,6 +97,12 @@
             <span onclick="closePopUpWindow('subCategoryPopUp')" class="close-pop-up__btn" id="closePopUpBtn">&times;</span>
             <input id="subCategoryName" placeholder="Subcategory name*" name="subCategoryName" type="text">
             <button onclick="addNewCategory('subCategoryPopUp', 'subCategoryName', 'subCategorySelect')" >Add</button>
+        </div>
+        <div id="colorPopUp" class="category__pop-up hide__pop__up__window">
+            <span onclick="closePopUpWindow('colorPopUp')" class="close-pop-up__btn" id="closePopUpBtn">&times;</span>
+            <input id="colorName" placeholder="Color name*" name="colorName" type="text">
+            <input id="colorHex" placeholder="Color hex*" name="colorHex" type="text">
+            <button onclick="addNewColor()" >Add</button>
         </div>
         @push('scripts')
             <!-- @once -->
