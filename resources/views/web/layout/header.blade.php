@@ -18,19 +18,20 @@
                 <img class="navbar__search-icon" src="{{ URL::asset('assets/svg/search-icon.svg') }}" alt="Search" />
             </div>
             <div class="navbar__icons">
-                <a href="cart" class="navbar__cart-icon">
+                <a href="cart" class="navbar__cart-icon relative">
                     <img src="{{ URL::asset('assets/svg/shopping-basket.svg') }}" alt="Cart" />
+                    @include('components/cart-counter-popup')
                 </a>
                 @auth
                     <button class="navbar__auth-container" onclick="toggleActive()">
-                        <span>{{substr(Auth::user()->email, 0, 1)}}</span>
+                        <span>{{ substr(Auth::user()->email, 0, 1) }}</span>
                     </button>
 
                     <div class="navbar__auth-drop-container">
                         <div class="navbar__auth-option">
                             <b>Signed in as: </b>
                             <br>
-                            {{Auth::user()->email}}
+                            {{ Auth::user()->email }}
                         </div>
                         <hr class="navbar__auth-separator">
 
@@ -39,11 +40,11 @@
                             Cart
                         </a>
                         <a class="navbar__auth-option" href="wishlist">
-                            <img src="{{URL::asset('assets/svg/heart.svg')}}" alt="heart">
+                            <img src="{{ URL::asset('assets/svg/heart.svg') }}" alt="heart">
                             Liked
                         </a>
                         <a class="navbar__auth-option" href="settings">
-                            <img src="{{URL::asset('assets/svg/settings.svg')}}" alt="settings">
+                            <img src="{{ URL::asset('assets/svg/settings.svg') }}" alt="settings">
                             Settings
                         </a>
 
@@ -51,7 +52,7 @@
                         <form action="{{ route('logout') }}" method="POST">
                             @csrf
                             <button type="submit" class="navbar__auth-option">
-                                <img src="{{URL::asset('assets/svg/log-out.svg')}}" alt="logout">
+                                <img src="{{ URL::asset('assets/svg/log-out.svg') }}" alt="logout">
                                 Logout
                             </button>
                         </form>
@@ -115,13 +116,11 @@
 
 @auth
     @push('scripts')
-
         <script defer>
             const dropdown = document.querySelector('.navbar__auth-drop-container')
             const toggleActive = () => {
                 dropdown.classList.toggle("active")
             }
         </script>
-
-    @endpush    
+    @endpush
 @endauth

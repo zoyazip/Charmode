@@ -300,7 +300,7 @@ a.navbar__link-container {
     }
 
     .navbar__cart-icon {
-        display: none;
+        /* display: none; */
     }
 
     .navbar__bottom-search {
