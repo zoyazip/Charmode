@@ -40,7 +40,12 @@
                 <img src="assets/svg/arrow.svg" alt="">
             </div>
         </div>
-
+        <div class="home-title pt-10 font-bold text-2xl">
+            <h2>Products of the week 🏆</h2>
+        </div>
+        <div class="home-sort-container flex justify-end mt-4">
+            @include('components/list-sort')
+        </div>
         @include('components/grid-layout')
 
         @push('scripts')
