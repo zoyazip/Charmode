@@ -51,8 +51,8 @@
         ($product24 = new Product(12, 'Product 12', 150.0, 0, 150.0, false, false, 'assets/chair-placeholder.png')),
     ];
 @endphp
-<div class="plp">
-    <div class="plp-sort">
+<div class="plp flex flex-col gap-8">
+    <div class="plp-sort ml-auto">
         @include('components/list-sort')
     </div>
     <div class="plp-list grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
