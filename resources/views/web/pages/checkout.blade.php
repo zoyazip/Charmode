@@ -16,7 +16,7 @@
 @endpush
 
 @section('content')
-    <div class="main-container">
+    <div class="bigger-container">
         <div class="checkout__container">
 
             <div class="checkout__whole-form">
