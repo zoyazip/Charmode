@@ -22,11 +22,17 @@ class AdminController extends Controller
         $colors = Color::all();
         $categories = Category::all();
         $subCategories = SubCategory::all();
-        return view('web/pages/addproduct')->with([
-            "categories" => $categories,
-            "subcategories" => $subCategories,
-            "colors" => $colors,
-        ]);
+
+        session()->put('allCategories', $categories);
+        session()->put('allSubCategories', $subCategories);
+        session()->put('allColors', $colors);
+
+        return view('web/pages/addproduct');
+        // return view('web/pages/addproduct')->with([
+        //     "categories" => $categories,
+        //     "subcategories" => $subCategories,
+        //     "colors" => $colors,
+        // ]);
     }
      // edit product
         // probably delete color or category or subcategory

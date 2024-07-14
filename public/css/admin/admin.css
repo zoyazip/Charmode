@@ -184,6 +184,7 @@
     align-items: baseline;
     gap: 2%;
     width: 100%;
+    margin-bottom: 10px;
 }
 
 .select__option {
@@ -203,5 +204,18 @@
     left: 30%;
     background-color: white;
     border: 1px solid black;
+}
+
+.show__pop__up__window {
+    display: block;
+}
+
+.hide__pop__up__window {
+    display: none;
+}
+
+.added__spec__div {
+    display: flex;
+    flex-direction: column;
 }
 

@@ -17,27 +17,28 @@
                 <div class="select__row">
                     <div>
                         <label>Category: </label>
-                        <select class="select__option" name="category">
-                            @if(isset($categories))
-                                @foreach($categories as $category)
+                        <select id="categorySelect" class="select__option" name="category">
+                            @if(session()->has('allCategories'))
+                                @foreach(session()->get('allCategories') as $category)
                                     <option>{{$category->name}}</option>
                                 @endforeach
                             @endif
                         </select>
                     </div>
-                    <button class="add__btn" onClick="addCategoryBtn()">Add new category</button>
+                    <span class="add__btn" onclick="openPopUpWindow('categoryPopUp')">Add new</span>
                 </div>
                 <div class="select__row">
                     <div>
                         <label>Subcategory: </label>
-                        <select class="select__option" name="subcategoryID"></select>
-                        @if(isset($subCategories))
-                            @foreach($subCategories as $subCategory)
+                        <select id="subCategorySelect" class="select__option" name="subcategoryID">
+                        @if(session()->has('allSubCategories'))
+                            @foreach(session()->get('allSubCategories') as $subCategory)
                                 <option>{{$subCategory->name}}</option>
                             @endforeach
                         @endif
+                        </select>
                     </div>
-                    <button class="add__btn" onClick="addSubCategoryBtn()">Add new subcategory</button>
+                    <span class="add__btn" onclick="openPopUpWindow('subCategoryPopUp')">Add new subcategory</span>
                 </div>
                 <div class="row__input">
                     <input placeholder="Price*" class="add__input input__row" name="price">
@@ -47,11 +48,17 @@
            
                 <p class="add-product__p">Add additional fields:</p>
                 <div class="specification__div">
-                    <div class="spec__div__row" id="added__fields"></div>
+                    <div id="added__fields" class="added__spec__div">
+                        <!-- <div class="spec__div__row">
+                            <input value="Key1" class="add__input" type="text" >
+                            <input value="Value1" class="add__input" type="text" >
+                            <span class="add__btn">Remove</span>
+                        </div> -->
+                    </div>
                     <div class="spec__div__row" id="newField">
                         <input class="add__input" type="text" id="key" >
                         <input class="add__input" type="text" id="value" >
-                        <button class="add__btn">Save</button>
+                        <span onclick="addSpecification()" class="add__btn">Save</span>
                     </div>
                 </div>
                 <p class="add-product__p">Add colors:</p>
@@ -71,16 +78,20 @@
 {{-- images --}}
             </div>
         </form>
-        <div class="category__pop-up">
-            <span class="close-pop-up__btn" id="closePopUpBtn">&times;</span>
-            <form>
-
-            </form>
+        <div id="categoryPopUp" class="category__pop-up hide__pop__up__window">
+            <span onclick="closePopUpWindow('categoryPopUp')" class="close-pop-up__btn" id="closePopUpBtn">&times;</span>
+            <input id="categoryName" placeholder="Category name*" name="categoryName" type="text">
+            <button onclick="addNewCategory('categoryPopUp', 'categoryName', 'categorySelect')" >Add</button>
+        </div>
+        <div id="subCategoryPopUp" class="category__pop-up hide__pop__up__window">
+            <span onclick="closePopUpWindow('subCategoryPopUp')" class="close-pop-up__btn" id="closePopUpBtn">&times;</span>
+            <input id="subCategoryName" placeholder="Subcategory name*" name="subCategoryName" type="text">
+            <button onclick="addNewCategory('subCategoryPopUp', 'subCategoryName', 'subCategorySelect')" >Add</button>
         </div>
         @push('scripts')
-            @once
-                <script type="module" src="{{ URL::asset('js/admin.js') }}" defer></script>
-            @endonce
+            <!-- @once -->
+                <script src="{{ URL::asset('js/admin/admin.js') }}" ></script>
+            <!-- @endonce -->
         @endpush
 
     </div>
