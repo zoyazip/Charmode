@@ -81,7 +81,3 @@
         })
     })
 </script>
-
-<style>
-
-</style>
