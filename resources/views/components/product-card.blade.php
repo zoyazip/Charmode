@@ -1,7 +1,9 @@
 <div id='product-{{ $product->id }}'
     style="background-image: url('{{ $product->img_path }}'); background-position: center;  {{ isset($suggestion) ? 'background-size: cover;' : 'background-size: cover;' }}"
-    class="product-card cursor-zoom-in p-4 rounded-2xl overflow-hidden relative transition-all bg-center bg-no-repeat {{ isset($suggestion) ? 'w-full min-h-[400px] md:min-h-[400px] lg:min-h-[300px] xl:min-h-[250px]' : 'min-h-[500px]' }}
-            {{ isset($main) ? ($product->expand ? 'lg:col-span-2 lg:row-span-2' : '') : '' }} ">
+    class="product-card cursor-zoom-in p-4 rounded-2xl overflow-hidden relative transition-all bg-center bg-no-repeat 
+            {{ isset($suggestion) ? 'w-full min-h-[400px] md:min-h-[400px] lg:min-h-[300px] xl:min-h-[250px]' : 'min-h-[500px]' }}
+            {{ isset($main) ? ($product->expand ? 'lg:col-span-2 lg:row-span-2' : '') : '' }} 
+            {{ isset($plp) ? 'w-full min-h-[400px] md:min-h-[400px] lg:min-h-[300px] xl:min-h-[250px]' : '' }} ">
     <div class="card-data flex flex-col items-start justify-between h-full">
         @include('components/price', [
             'price' => $product->price,
@@ -9,7 +11,7 @@
         ])
         <div class="card__title-container w-full flex justify-between items-center z-10">
             <div class="title">
-                <h3 class="font-bold text-white text-xl truncate">{{ $product->title }}</h3>
+                <h3 class="font-bold text-white text-lg truncate">{{ $product->title }}</h3>
             </div>
             <div
                 class="add-to-cart w-8 h-8 rounded-full bg-white transition-all cursor-pointer flex justify-center items-center">

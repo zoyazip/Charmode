@@ -1,5 +1,3 @@
-
-
 @php
     if (!class_exists('ProductTmp')) {
         class ProductTmp
@@ -99,12 +97,9 @@
                 <div class="filter__option">
                     <label for="min-price" class=".option-label"></label>
                     <div class="option-input-container">
-                        <input
-                            id="min-price"
-                            name="min_price"
+                        <input id="min-price" name="min_price"
                             class="filter__option-input @error('max_price') error @enderror "
-                            value="{{ old('min_price', $data['min_price'] ?? '') }}"
-                            placeholder="Min" />
+                            value="{{ old('min_price', $data['min_price'] ?? '') }}" placeholder="Min" />
                         <span class="currency-symbol">€</span>
 
                     </div>
@@ -113,12 +108,9 @@
 
                     <label for="max-price" class=".option-label"></label>
                     <div class="option-input-container">
-                        <input
-                            id="max-price"
-                            name="max_price"
+                        <input id="max-price" name="max_price"
                             class="filter__option-input @error('max_price') error @enderror"
-                            value="{{ old('max_price', $data['max_price'] ?? '') }}"
-                            placeholder="Max" />
+                            value="{{ old('max_price', $data['max_price'] ?? '') }}" placeholder="Max" />
                         <span class="currency-symbol">€</span>
                     </div>
                 </div>
@@ -139,12 +131,9 @@
                 <div class="filter__option">
                     <label for="product-width" class="option-label"></label>
                     <div class="option-input-container">
-                        <input
-                            id="product-width"
-                            name="product_width"
+                        <input id="product-width" name="product_width"
                             class="filter__option-input @error('product_width') error @enderror"
-                            value="{{ old('product_width', $data['product_width'] ?? '') }}"
-                            placeholder="W" />
+                            value="{{ old('product_width', $data['product_width'] ?? '') }}" placeholder="W" />
                         @error('product_width')
                             <div class="register__error-tooltip">{{ $message }}</div>
                         @enderror
@@ -155,12 +144,9 @@
 
                     <label for="product-height" class=".option-label"></label>
                     <div class="option-input-container">
-                        <input
-                        id="product-height"
-                        name="product_height"
-                        class="filter__option-input @error('product_height') error @enderror"
-                        value="{{ old('product_height', $data['product_height'] ?? '') }}"
-                        placeholder="H" />
+                        <input id="product-height" name="product_height"
+                            class="filter__option-input @error('product_height') error @enderror"
+                            value="{{ old('product_height', $data['product_height'] ?? '') }}" placeholder="H" />
                         @error('product_height')
                             <div class="register__error-tooltip">{{ $message }}</div>
                         @enderror
@@ -169,12 +155,9 @@
 
                     <label for="product-depth" class=".option-label"></label>
                     <div class="option-input-container">
-                        <input
-                        id="product-depth"
-                        name="product_depth"
-                        class="filter__option-input @error('product_depth') error @enderror"
-                        value="{{ old('product_depth', $data['product_depth'] ?? '') }}"
-                        placeholder="D" />
+                        <input id="product-depth" name="product_depth"
+                            class="filter__option-input @error('product_depth') error @enderror"
+                            value="{{ old('product_depth', $data['product_depth'] ?? '') }}" placeholder="D" />
                         @error('product_depth')
                             <div class="register__error-tooltip">{{ $message }}</div>
                         @enderror
@@ -190,14 +173,9 @@
                         <label>
                             <div class="checkbox-wrapper">
                                 <label>
-                                    <input
-                                        type="checkbox"
-                                        name="colors[]"
-                                        value="{{ $color }}"
-                                        class="styled-checkbox"
-                                        style="background-color: {{ $color }}"
-                                        {{ in_array($color, old('colors', $data['colors'] ?? [])) ? 'checked' : '' }}
-                                    />
+                                    <input type="checkbox" name="colors[]" value="{{ $color }}"
+                                        class="styled-checkbox" style="background-color: {{ $color }}"
+                                        {{ in_array($color, old('colors', $data['colors'] ?? [])) ? 'checked' : '' }} />
                                 </label>
                             </div>
                         </label>
@@ -210,12 +188,8 @@
                 <div class="filter__option__title">Is available</div>
                 <div class="checkbox-container">
                     <div class="checkbox-wrapper">
-                        <input
-                            name="is_available"
-                            type="checkbox"
-                            class="styled-checkbox"
-                            {{ isset($data['is_available']) && $data['is_available'] ? 'checked' : '' }}
-                        />
+                        <input name="is_available" type="checkbox" class="styled-checkbox"
+                            {{ isset($data['is_available']) && $data['is_available'] ? 'checked' : '' }} />
                     </div>
                 </div>
             </div>
@@ -234,7 +208,7 @@
     </form>
 </div>
 {{--
-@if(isset($data))
+@if (isset($data))
     <div>
         <p>{{$data['min_price']}}</p>
     </div>

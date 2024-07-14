@@ -1,4 +1,3 @@
-
 @push('styles')
     <link href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.5.1/nouislider.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="{{ URL::asset('css/pages/plp/filter.css') }}">
@@ -8,12 +7,12 @@
 @extends('layouts.main')
 
 @section('content')
-<div class="inner-container">
-    <div class="plp-page-container">
-        @include('components/filter')
-        <div>
-            <h1>Products</h1>
-            @if(isset($data))
+    <div class="inner-container">
+        <div class="plp-page-container">
+            @include('components/filter')
+            <div>
+                {{-- <h1>Products</h1>
+            @if (isset($data))
                 <div>
                     <p>Min Price: {{ $data['min_price'] ?? 'N/A' }}</p>
                     <p>Max Price: {{ $data['max_price'] ?? 'N/A' }}</p>
@@ -28,8 +27,13 @@
                         @endif
                     </ul>
                 </div>
-            @endif
+            @endif --}}
+                {{-- @if (isset($data)) --}}
+                <div class="plp-product-list-container">
+                    @include('../../components/PLP-components/plp-pdoruct-list')
+                </div>
+                {{-- @endif --}}
+            </div>
         </div>
     </div>
-</div>
 @endsection
