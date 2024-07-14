@@ -8,7 +8,7 @@
 
 /* filter classes */
 .filter {
-    width: 15%;
+    width: 25%;
 }
 
 .filter__header {
@@ -42,7 +42,7 @@
     margin-top: 2%;
     display: flex;
     flex-direction: column;
-    gap: 35px;
+    gap: 25px;
     margin-left: 7%;
 }
 
@@ -278,6 +278,8 @@
 
 /* Reset button */
 .div-button-container {
+    margin-left: 7%;
+    margin-top: 14px;
 }
 
 .div-button {
@@ -308,11 +310,13 @@
 }
 
 .div-button:hover {
-    background-color: var(--green-light);
+    background-color: var(--green);
+    color: white;
 }
 
 .div-button:active {
-    background-color: var(--green-light);
+    background-color: var(--green);
+    color: white;
 }
 
 .div-button:focus {
