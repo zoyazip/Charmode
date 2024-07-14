@@ -16,12 +16,17 @@ class AdminController extends Controller
         return view('web/pages/admin')->with("products", $products);
     }
 
+    public function getSubcategories() {
+        $subCategories = SubCategory::all();
+        return $subCategories;
+    }
+
     // add new product
         // if neccessary add new color and new category and subcategory
     public function openAddProductPage() {
         $colors = Color::all();
         $categories = Category::all();
-        $subCategories = SubCategory::all();
+        $subCategories = []; //SubCategory::all();
 
         session()->put('allCategories', $categories);
         session()->put('allSubCategories', $subCategories);

@@ -25,21 +25,31 @@ function addNewColor() {
     const colorNameValue = document.getElementById('colorName').value;
     const colorHexValue = document.getElementById('colorHex').value;
     const newColorDiv = document.createElement('div');
+    const newColorCheckbox = document.createElement('input');
+    newColorCheckbox.type = "checkbox";
+    newColorCheckbox.checked = true;
     newColorDiv.classList.add('color__div');
     newColorDiv.style.backgroundColor = colorHexValue;
-    newColorDiv.id = colorNameValue;
+    newColorCheckbox.name = "checked_colors[]";
+    newColorCheckbox.value = '{'
+        +'"name" : "' + colorNameValue + '",'
+        +'"hex" : "' + colorHexValue + '"}';
+    console.log(newColorCheckbox.value);
     newColorDiv.innerHTML = "";
+    newColorCheckbox.innerHTML = "";
     document.getElementById('new__colors').appendChild(newColorDiv);
+    document.getElementById('new__colors').appendChild(newColorCheckbox);
     document.getElementById('colorName').value = "";
     document.getElementById('colorHex').value = "";
     document.getElementById('colorPopUp').classList.remove('show__pop__up__window');
     document.getElementById('colorPopUp').classList.add('hide__pop__up__window');
 
-    newColorDiv.addEventListener('click', function () {
+    newColorCheckbox.addEventListener('click', function () {
         // const i = checkedColors.indexOf(color['id']);
         // checkedColors.splice(i, 1);
         // console.log(checkedColors.length);
         newColorDiv.remove();
+        newColorCheckbox.remove();
     });
 }
 
@@ -111,22 +121,78 @@ function checkColor(color) {
 
         checkedColors.push(color['id']);
         // console.log(checkedColors);
+        const newColorCheckbox = document.createElement('input');
         const newColorDiv = document.createElement('div');
+        newColorCheckbox.type = "checkbox";
+        newColorCheckbox.checked = true;
         newColorDiv.classList.add('color__div');
         newColorDiv.style.backgroundColor = color['hex'];
-        newColorDiv.id = color['hex'];
+        newColorCheckbox.name = "checked_colors[]";
+        newColorCheckbox.value = color['id'];
         newColorDiv.innerHTML = "";
+        newColorCheckbox.innerHTML = "";
         document.getElementById('new__colors').appendChild(newColorDiv);
+        document.getElementById('new__colors').appendChild(newColorCheckbox);
     
-        newColorDiv.addEventListener('click', function () {
+        newColorCheckbox.addEventListener('click', function () {
             const i = checkedColors.indexOf(color['id']);
             checkedColors.splice(i, 1);
-            console.log(checkedColors.length);
+            // console.log(checkedColors.length);
             newColorDiv.remove();
+            newColorCheckbox.remove();
         });
     }
 }
 
 
 colorDiv();
+
+// function loadSubCategory() {
+    const subcategoryDiv = document.getElementById('subCategorySelect');
+    var options = document.getElementById('categorySelect').querySelectorAll("option");
+    console.log(document.getElementById('categorySelect').value);
+    $.get('/subcategories',function(data, status){
+        data.forEach(subcategory => {
+            if (subcategory['categoryID'] == 1) {
+                const newOption = subcategory['name'];
+                let option = document.createElement('option');
+                option.value = newOption;
+                option.innerHTML = newOption;
+                subcategoryDiv.appendChild(option);
+            }
+        });
+    })
+// }
+
+document.getElementById('categorySelect').addEventListener("change", function() {
+    // document.getElementById('subCategorySelect').removeChild(document.getElementById('subCategorySelect'));
+    const selectDiv = document.getElementById('subCategorySelect');
+
+    while (selectDiv.hasChildNodes()) {
+        selectDiv.removeChild(selectDiv.firstChild);
+    }
+    const subcategoryDiv = document.getElementById('subCategorySelect');
+    const selectedCategoryId = document.getElementById('categorySelect').value;
+    var options = document.getElementById('categorySelect').querySelectorAll("option");
+    console.log(document.getElementById('categorySelect').value);
+    $.get('/subcategories',function(data, status){
+        // console.log(data[0]['id']);
+        // console.log(JSON.stringify(data));
+        data.forEach(subcategory => {
+            // console.log(subcategory['id']);
+            if (subcategory['categoryID'] == selectedCategoryId) {
+                const newOption = subcategory['name'];
+                let option = document.createElement('option');
+                option.value = newOption;
+                option.innerHTML = newOption;
+                subcategoryDiv.appendChild(option);
+            }
+            
+        });
+
+        // var jResult = JSON.stringify(data);
+        // $_SESSION["allSubCategories"] = "' + JSON.stringify(data) + '";
+        // <% $_SESSION.set('allSubCategories', JSON.stringify(data));
+    })
+});
 

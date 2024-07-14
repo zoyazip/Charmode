@@ -76,6 +76,7 @@ Route::post('/to_checkout', [CheckoutController::class, 'checkInput']);
 
 Route::get('/admin', [AdminController::class, 'openAllProductPage']);
 Route::get('/createproduct', [AdminController::class, 'openAddProductPage']);
+Route::get('/subcategories', [AdminController::class, 'getSubcategories']);
 
 
 

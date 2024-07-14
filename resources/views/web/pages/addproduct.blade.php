@@ -20,12 +20,12 @@
                         <select id="categorySelect" class="select__option" name="category">
                             @if(session()->has('allCategories'))
                                 @foreach(session()->get('allCategories') as $category)
-                                    <option>{{$category->name}}</option>
+                                    <option value={{$category->id}}>{{$category->name}}</option>
                                 @endforeach
                             @endif
                         </select>
                     </div>
-                    <span class="add__btn" onclick="openPopUpWindow('categoryPopUp')">Add new</span>
+                    <span class="add__btn" onclick="openPopUpWindow('categoryPopUp')">Add new category</span>
                 </div>
                 <div class="select__row">
                     <div>
@@ -86,6 +86,8 @@
             </div>
             <div class="add-product__right-div">
 {{-- images --}}
+
+
             </div>
         </form>
         <div id="categoryPopUp" class="category__pop-up hide__pop__up__window">
@@ -109,6 +111,8 @@
                 <script src="{{ URL::asset('js/admin/admin.js') }}" ></script>
             <!-- @endonce -->
         @endpush
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 
     </div>
 @endsection
