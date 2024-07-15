@@ -10,15 +10,18 @@
     <div class="inner-container">
         <div class="plp-page-container">
             @include('components/filter')
-            <div>
-                {{-- <h1>Products</h1>
+            <div style="width: 100%">
+                {{-- <h1>Filter debug list</h1>
             @if (isset($data))
                 <div>
                     <p>Min Price: {{ $data['min_price'] ?? 'N/A' }}</p>
                     <p>Max Price: {{ $data['max_price'] ?? 'N/A' }}</p>
-                    <p>Product Width: {{ $data['product_width'] ?? 'N/A' }}</p>
-                    <p>Product Height: {{ $data['product_height'] ?? 'N/A' }}</p>
-                    <p>Product Depth: {{ $data['product_depth'] ?? 'N/A' }}</p>
+                    <p>Product Width: {{ $data['min_width'] ?? 'N/A' }}</p>
+                    <p>Product Width: {{ $data['max_width'] ?? 'N/A' }}</p>
+                    <p>Product Height: {{ $data['min_height'] ?? 'N/A' }}</p>
+                    <p>Product Height: {{ $data['max_height'] ?? 'N/A' }}</p>
+                    <p>Product Depth: {{ $data['min_depth'] ?? 'N/A' }}</p>
+                    <p>Product Depth: {{ $data['max_depth'] ?? 'N/A' }}</p>
                     <p>Is Available: {{ isset($data['is_available']) ? 'Yes' : 'No' }}</p>
                     <h2>Colors:</h2>
                     <ul>

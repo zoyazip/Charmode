@@ -56,11 +56,33 @@
         @include('components/list-sort')
     </div>
     <div class="plp-list grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
+        @php
+            $counter = 0;
+        @endphp
         @foreach ($products as $product)
-            @include('components/product-card', ['plp' => true])
+            {{-- {{dd($product);}} --}}
+            @if($product->price > $data['min_price'] and $product->price < $data['max_price'])
+
+                @include('components/product-card', ['plp' => true])
+                @php
+                    $counter++;
+                @endphp
+            @endif
         @endforeach
+        @php
+            $isCounterZero = ($counter === 0);
+        @endphp
+
     </div>
+
 </div>
+@if ($isCounterZero)
+        <div style="width: 100%">
+            <p class="text-3xl text-center text-gray-700">
+                No products found :(
+            </p>
+        </div>
+    @endif
 
 <script>
     [...document.querySelectorAll('.product-card')].forEach(function(item) {
