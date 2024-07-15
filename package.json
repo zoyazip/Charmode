@@ -12,5 +12,8 @@
         "postcss": "^8.4.39",
         "tailwindcss": "^3.4.4",
         "vite": "^5.0.0"
+    },
+    "dependencies": {
+        "star-rating.js": "^4.3.1"
     }
 }
