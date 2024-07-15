@@ -254,26 +254,14 @@
 
 .styled-checkbox:checked {
     border-color: var(--green);
-    /* Change border color when checked */
+    background-color: var(--green); /* Change background color when checked */
 }
 
 .styled-checkbox:checked::after {
-    content: "";
+    content: "✔";
     position: absolute;
-    width: 27px;
-    height: 27px;
-    border-radius: 3px;
-    border: 1px solid black; /* Outer border color */
-    box-sizing: border-box; /* Include border in the element's total width and height */
-}
-.styled-checkbox:checked::before {
-    content: "";
-    position: absolute;
-    width: 27px;
-    height: 27px;
-    border-radius: 3px;
-    border: 4px solid var(--green); /* Outer border color */
-    box-sizing: border-box; /* Include border in the element's total width and height */
+    color: white; /* Color of the checkmark */
+    font-size: 18px; /* Size of the checkmark */
 }
 
 /* Reset button */
@@ -365,7 +353,7 @@
 
 .noUi-horizontal .noUi-handle {
     top: -6px;
-    left: 100%;
+    left: 98%;
     /* Adjust handle position */
 }
 
@@ -378,11 +366,14 @@
         width: 100%;
     }
     .filter__main {
-        width: 50%;
-        height: 200px;
+        width: 90%;
+        height: 350px;
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
+    }
+    .filter__container-option {
+        width: 30%;
     }
 }
 @media screen and (max-width: 550px) {
@@ -396,16 +387,18 @@
         /* flex-direction: row; */
         flex-wrap: nowrap;
     }
+    .filter__container-option {
+        width: 100%;
+    }
 }
-
 
 /* PLP filter colors */
 .color-input {
-        display: none;
-    }
+    display: none;
+}
 
 .color-input[type="checkbox"]:checked + .color::after {
-    content: '';
+    content: "";
     width: 100%;
     height: 100%;
     border-radius: 100%;

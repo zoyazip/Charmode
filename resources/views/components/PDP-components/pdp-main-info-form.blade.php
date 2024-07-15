@@ -42,7 +42,7 @@
     <div class="">
         <div class="add-to-cart flex gap-4 mt-10 md:mt-0 items-center">
             <button type="submit"
-                class="bg-main-green text-white flex items-center justify-between px-4 py-3 rounded-lg w-3/4 md:w-full xl:w-2/3">
+                class="bg-main-green text-white flex items-center justify-between px-4 py-3 rounded-lg w-3/4 md:w-full xl:w-2/3 hover:drop-shadow-lg transition-all">
                 <div class="add-to-cart-btn-text">
                     <p>Add to Cart</p>
                 </div>
@@ -50,30 +50,18 @@
                     <p class="font-bold text-2xl">{{ number_format($product1->price, 2) }} €</p>
                 </div>
             </button>
-            <label>
-                <input type="checkbox" id='{{ $product1->id }}-like' class="like-checkbox">
+            {{-- <label>
+                <input type="checkbox" id='{{ $product1->id }}-like' class="like-checkbox" />
                 <div class="like-element cursor-pointer pr-5">
                     <img src="assets/svg/heart.svg" />
                 </div>
-            </label>
+            </label> --}}
         </div>
     </div>
-
 </form>
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-
-        const MAX_COUNT = document.querySelector('.counter').max
-
-        let productCount = 1
-
-        const counter = document.querySelector('.counter')
-        const counter_increment = document.querySelector('.increment')
-        const counter_decrement = document.querySelector('.decrement')
-
-        const increment_text = counter_increment.querySelector('.increment_text')
-        const decrement_text = counter_decrement.querySelector('.decrement_text')
 
         const likeCheckbox = document.querySelector('.like-checkbox')
         const likeCheckboxHeart = document.querySelector('.like-element').querySelector('img')
@@ -84,7 +72,6 @@
         //like feature
 
         likeCheckboxHeart.addEventListener('click', () => {
-            console.log('clicked')
             if (likeCheckbox.checked) {
                 likeCheckboxHeart.src = 'assets/svg/heart_filled.svg'
             } else {
@@ -92,45 +79,7 @@
             }
         })
 
-        // increase and decrease count
 
-        counter_increment.addEventListener('click', () => {
-            if (productCount < MAX_COUNT) {
-                productCount++
-                counter.value = `${productCount}`
-            }
-            greyout(productCount, MAX_COUNT, increment_text)
-            decrement_text.style.color = '#204012'
-
-
-        })
-
-        counter_decrement.addEventListener('click', () => {
-            if (productCount > 1) {
-                productCount--
-                counter.value = `${productCount}`
-            }
-            greyout(productCount, 1, decrement_text)
-            increment_text.style.color = '#204012'
-
-
-
-        })
-
-        counter.addEventListener('change', (e) => {
-            if (e > MAX_COUNT) {
-                productCount = MAX_COUNT
-                counter.value = `${productCount}`
-
-            }
-
-        })
-
+    
     })
-
-    const greyout = (count, value, obj) => {
-        if (count == value) {
-            obj.style.color = '#ADADAD'
-        }
-    }
 </script>

@@ -45,7 +45,7 @@
 
 
 <div
-    class="login-container max-w-[500px] w-[90%] h-screen fixed right-0 top-0 transition-all flex justify-center items-center translate-x-full bg-white">
+    class="login-container max-w-[500px] w-[90%] h-screen fixed z-50 right-0 top-0 transition-all flex justify-center items-center translate-x-full bg-white">
     <div class="login-inner-container w-3/4 flex flex-col gap-4">
         <div class="login-greetings flex items-center justify-between">
             <div class="greet">

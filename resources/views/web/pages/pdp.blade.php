@@ -136,6 +136,14 @@
             'Color' => 'Red',
             'Weight' => '15kg',
             'Manufacturer' => 'Furniture Co.',
+            'Category1' => 'Chair',
+            'Height2' => '229',
+            'Width3' => '221',
+            'Depth4' => '225',
+            'Material5' => 'Wood',
+            'Color6' => 'Red',
+            'Weight7' => '15kg',
+            'Manufacturer8' => 'Furniture Co.',
         ],
     );
 
@@ -185,15 +193,15 @@
             @include('../../components/PDP-components/pdp-description')
             @include('../../components/PDP-components/pdp-characteristics')
         </div>
-        <div class="pdp-suggestion-container h-auto mt-14">
-            @include('../../components/PDP-components/pdp-suggestion')
-        </div>
-
+        <hr class="mt-24"/>
         <div class="pdp-comments-container mt-10 w-full">
             @include('../../components/PDP-components/pdp-comments')
         </div>
         <div class="pdp-comment-form-container flex justify-center mt-10 mb-20 w-full">
             @include('../../components/PDP-components/pdp-comment-form')
+        </div>
+        <div class="pdp-suggestion-container h-auto mt-20 mb-20 md:mt-14">
+            @include('../../components/PDP-components/pdp-suggestion')
         </div>
     </div>
 @endsection
