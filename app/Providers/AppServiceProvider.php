@@ -4,7 +4,12 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
+use Illuminate\Support\Facades\View;
+use App\Http\View\Composers\CategoryComposer;
+
+
 class AppServiceProvider extends ServiceProvider
+
 {
     /**
      * Register any application services.
@@ -19,6 +24,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        View::composer('web.layout.header', CategoryComposer::class);
     }
 }
