@@ -70,11 +70,13 @@ function addSpecification() {
     keyInput.type = "text";
     keyInput.value = newKey;
     keyInput.classList.add('add__input');
+    keyInput.name = "key[]";
     keyInput.innerHTML = newKey;
     let valueInput = document.createElement('input');
     valueInput.type = "text";
     valueInput.value = newValue;
     valueInput.classList.add('add__input');
+    valueInput.name = "value[]";
     valueInput.innerHTML = newValue;
     let deleteSpan = document.createElement('span');
     deleteSpan.classList.add('add__btn');
@@ -106,6 +108,7 @@ function colorDiv() {
         const color = element.getAttribute('value');
         const colorJSON = JSON.parse(color);
         element.id = colorJSON.id;
+        // element.id = color.id;
         // console.log(colorJSON.hex);
         element.style.backgroundColor = colorJSON.hex;
     });
@@ -156,7 +159,7 @@ colorDiv();
             if (subcategory['categoryID'] == 1) {
                 const newOption = subcategory['name'];
                 let option = document.createElement('option');
-                option.value = newOption;
+                option.value = subcategory['id'];
                 option.innerHTML = newOption;
                 subcategoryDiv.appendChild(option);
             }

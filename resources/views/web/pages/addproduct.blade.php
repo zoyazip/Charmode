@@ -30,12 +30,12 @@
                 <div class="select__row">
                     <div>
                         <label>Subcategory: </label>
-                        <select id="subCategorySelect" class="select__option" name="subcategoryID">
-                        @if(session()->has('allSubCategories'))
+                        <select id="subCategorySelect" class="select__option" name="subcategory">
+                        {{-- @if(session()->has('allSubCategories'))
                             @foreach(session()->get('allSubCategories') as $subCategory)
-                                <option>{{$subCategory->name}}</option>
+                                <option value={{$subCategory->id}}>{{$subCategory->name}}</option>
                             @endforeach
-                        @endif
+                        @endif --}}
                         </select>
                     </div>
                     <span class="add__btn" onclick="openPopUpWindow('subCategoryPopUp')">Add new subcategory</span>
@@ -85,9 +85,12 @@
                 <input class="add__btn" type="submit" value="Save product">
             </div>
             <div class="add-product__right-div">
-{{-- images --}}
-
-
+                <input class="image__input" name="image1" type="file" >
+                <input class="image__input" name="image2" type="file" >
+                <input class="image__input" name="image3" type="file" >
+                <input class="image__input" name="image4" type="file" >
+                <input class="image__input" name="image5" type="file" >
+                <input class="image__input" name="image6" type="file" >
             </div>
         </form>
         <div id="categoryPopUp" class="category__pop-up hide__pop__up__window">

@@ -20,8 +20,8 @@ return new class extends Migration
             $table->integer('discount');
             $table->integer('stockQuantity');
             $table->json('specifications');
-            $table->json('colorID');
-            $table->json('images');
+            $table->json('colorID')->nullable();
+            $table->json('images')->nullable();
             $table->timestamps();
 
             $table->foreign('subcategoryID')->references('id')->on('sub_categories');
