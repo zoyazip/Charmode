@@ -30,6 +30,15 @@
     width: 24px;
     height: 24px;
 }
+
+.close__arrow {
+    transform: rotate(180deg);
+}
+
+.open__arrow {
+    transform: rotate(0deg);
+}
+
 .filter__reset {
     color: var(--green);
     text-decoration: underline;
@@ -221,7 +230,11 @@
 }
 
 /* Is available */
-
+.filter__option__checkbox {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}
 .checkbox-container {
     display: flex;
     flex-wrap: wrap;
@@ -353,7 +366,7 @@
 
 .noUi-horizontal .noUi-handle {
     top: -6px;
-    left: 98%;
+    left: calc(100% - 10px);
     /* Adjust handle position */
 }
 
@@ -405,4 +418,12 @@
     outline: 1px solid black;
     outline-offset: 2px;
     position: absolute;
+}
+
+.hidden__div {
+    display: none;
+}
+
+.visible__div {
+    display: visible;
 }

@@ -87,14 +87,16 @@ $product1 = new ProductTmp(
         <div class="filter__header">
             <div class="filter__title">Filters</div>
             <div class="filter__icon">
-                <img src="assets/svg/filter.svg" alt="" />
+                {{-- <img src="assets/svg/filter.svg" alt="" /> --}}
+                <img onclick="changeDataArrow('filter__main', 'filterDataArrow')" id="filterDataArrow"
+                                    class="close__arrow" src="assets/svg/arrow.svg" />
             </div>
             <button form="reset_filter" name="is_reset" form="" class="filter__reset">Reset</button>
         </div>
-        <div class="filter__main">
+        <div class="filter__main hidden__div" id="filter__main">
             <!-- price -->
             {{-- <x-bounds option="Price" symbol="€" min="0" max="1000"> --}}
-            {{-- <x-filter-option title="Price" symbol="€" minName="min_price" maxName="max_price"
+            {{-- <x-filter-option title="Price" symbol="€" minName="min-price" maxName="max-price"
             minValue="{{ $data['min_price'] ?? '' }}" maxValue="{{ $data['max_price'] ?? '' }}" /> --}}
             <div class="filter__container-option">
                 <div class="filter__option__title">Price</div>
@@ -246,33 +248,39 @@ $product1 = new ProductTmp(
 
             {{-- availability --}}
             <div class="filter__container-option">
-                <div class="filter__option__title">Is available</div>
-                <div class="checkbox-container">
-                    <div class="checkbox-wrapper">
-                        <input name="is_available" type="checkbox" class="styled-checkbox"
-                            {{ isset($data['is_available']) && $data['is_available'] ? 'checked' : '' }} />
+                <div class="filter__option__checkbox">
+                    <div class="filter__option__title">Is available</div>
+                    <div class="checkbox-container">
+                        <div class="checkbox-wrapper">
+                            <input name="is_available" type="checkbox" class="styled-checkbox"
+                                {{ isset($data['is_available']) && $data['is_available'] ? 'checked' : '' }} />
+                        </div>
                     </div>
                 </div>
             </div>
 
             {{-- discount --}}
             <div class="filter__container-option">
-                <div class="filter__option__title">Discounted</div>
-                <div class="checkbox-container">
-                    <div class="checkbox-wrapper">
-                        <input name="is_discount" type="checkbox" class="styled-checkbox"
-                            {{ isset($data['is_discount']) && $data['is_discount'] ? 'checked' : '' }} />
+                <div class="filter__option__checkbox">
+                    <div class="filter__option__title">Discounted</div>
+                    <div class="checkbox-container">
+                        <div class="checkbox-wrapper">
+                            <input name="is_discount" type="checkbox" class="styled-checkbox"
+                                {{ isset($data['is_discount']) && $data['is_discount'] ? 'checked' : '' }} />
+                        </div>
                     </div>
                 </div>
             </div>
 
             {{-- free delivery --}}
             <div class="filter__container-option">
-                <div class="filter__option__title">Free delivery</div>
-                <div class="checkbox-container">
-                    <div class="checkbox-wrapper">
-                        <input name="free_delivery" type="checkbox" class="styled-checkbox"
-                            {{ isset($data['free_delivery']) && $data['free_delivery'] ? 'checked' : '' }} />
+                <div class="filter__option__checkbox">
+                    <div class="filter__option__title">Free delivery</div>
+                    <div class="checkbox-container">
+                        <div class="checkbox-wrapper">
+                            <input name="free_delivery" type="checkbox" class="styled-checkbox"
+                                {{ isset($data['free_delivery']) && $data['free_delivery'] ? 'checked' : '' }} />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -292,6 +300,7 @@ $product1 = new ProductTmp(
 </div>
 @push('scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.5.1/nouislider.min.js"></script>
-    {{-- <script src="js/slider.js" defer></script> --}}
     <script src="js/filter.js" defer></script>
+    {{-- <script src="js/slider.js" defer></script> --}}
+    <script src="{{ URL::asset('js/checkout/checkout.js') }}"></script>
 @endpush
