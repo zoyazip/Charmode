@@ -80,6 +80,7 @@ Route::get('/get_product', [AdminController::class, 'getProducts']);
 
 Route::get('/get_spec', [AdminController::class, 'getSpecifications']);
 Route::get('/get_prod_colors', [AdminController::class, 'getProductColors']);
+Route::get('/get_images', [AdminController::class, 'getImages']);
 
 
 // AUTH
