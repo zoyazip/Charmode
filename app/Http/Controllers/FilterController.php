@@ -21,6 +21,8 @@ class FilterController extends Controller
             'max_depth' => null,
             'colors' => [],
             'is_available' => false,
+            'is_discount' => false,
+            'free_delivery' => false,
         ]);
 
         return view('web.pages.plp', compact('data'));
@@ -41,6 +43,8 @@ class FilterController extends Controller
                 'max_depth' => null,
                 'colors' => [],
                 'is_available' => false,
+                'is_discount' => false,
+                'free_delivery' => false,
             ]);
         } else {
             $request->validate([

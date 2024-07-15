@@ -255,6 +255,28 @@ $product1 = new ProductTmp(
                 </div>
             </div>
 
+            {{-- discount --}}
+            <div class="filter__container-option">
+                <div class="filter__option__title">Discounted</div>
+                <div class="checkbox-container">
+                    <div class="checkbox-wrapper">
+                        <input name="is_discount" type="checkbox" class="styled-checkbox"
+                            {{ isset($data['is_discount']) && $data['is_discount'] ? 'checked' : '' }} />
+                    </div>
+                </div>
+            </div>
+
+            {{-- free delivery --}}
+            <div class="filter__container-option">
+                <div class="filter__option__title">Free delivery</div>
+                <div class="checkbox-container">
+                    <div class="checkbox-wrapper">
+                        <input name="free_delivery" type="checkbox" class="styled-checkbox"
+                            {{ isset($data['free_delivery']) && $data['free_delivery'] ? 'checked' : '' }} />
+                    </div>
+                </div>
+            </div>
+
 
         </div>
         {{-- search --}}
