@@ -3,7 +3,7 @@
 @endphp
 
 <div class="sort relative cursor-pointer">
-    <div class="sort-title flex gap-2">
+    <div class="sort-title flex gap-2 align-end">
         <p id="sort-current">Sorted by {{ $types[0] }}</p>
         <img src="assets/svg/sort-icon.svg" />
     </div>

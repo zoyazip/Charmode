@@ -27,7 +27,7 @@
                 $colors,
                 $product_code,
                 $rating,
-                $comments_count,
+                $comments_count
             ) {
                 $this->id = $id;
                 $this->title = $title;
@@ -43,41 +43,42 @@
                 $this->comments_count = $comments_count;
             }
         }
-    }
+    };
 
-    $product1 = new ProductTmp(
-        1,
-        'Krēsls Comfivo 204 (Aston 8)',
-        100.0,
-        10,
-        110.0,
-        false,
-        false,
-        [
-            'assets/chair-placeholder.png',
-            'assets/chair-placeholder.png',
-            'assets/chair-placeholder.png',
-            'assets/chair-placeholder.png',
-            'assets/chair-placeholder.png',
-            'assets/chair-placeholder.png',
-            'assets/chair-placeholder.png',
-            'assets/chair-placeholder.png',
-            'assets/chair-placeholder.png',
-            'assets/chair-placeholder.png',
-            'assets/chair-placeholder.png',
-            'assets/chair-placeholder.png',
-            'assets/chair-placeholder.png',
-            'assets/chair-placeholder.png',
-            'assets/chair-placeholder.png',
-            'assets/chair-placeholder.png',
-            'assets/chair-placeholder.png',
-            'assets/chair-placeholder.png',
-        ],
-        ['#F64141', '#2F591B', '#4289F4', '#ffffff', '#000000'],
-        '2281488ZV',
-        7.8,
-        27,
-    );
+$product1 = new ProductTmp(
+    1,
+    'Krēsls Comfivo 204 (Aston 8)',
+    100.0,
+    10,
+    110.0,
+    false,
+    false,
+    [
+        'assets/chair-placeholder.png',
+        'assets/chair-placeholder.png',
+        'assets/chair-placeholder.png',
+        'assets/chair-placeholder.png',
+        'assets/chair-placeholder.png',
+        'assets/chair-placeholder.png',
+        'assets/chair-placeholder.png',
+        'assets/chair-placeholder.png',
+        'assets/chair-placeholder.png',
+        'assets/chair-placeholder.png',
+        'assets/chair-placeholder.png',
+        'assets/chair-placeholder.png',
+        'assets/chair-placeholder.png',
+        'assets/chair-placeholder.png',
+        'assets/chair-placeholder.png',
+        'assets/chair-placeholder.png',
+        'assets/chair-placeholder.png',
+        'assets/chair-placeholder.png',
+    ],
+    ['#F64141', '#2F591B', '#4289F4', '#ffffff', '#000000'],
+    '2281488ZV',
+    7.8,
+    27
+);
+
 @endphp
 
 <div class="filter">
@@ -92,13 +93,16 @@
         </div>
         <div class="filter__main">
             <!-- price -->
+            {{-- <x-bounds option="Price" symbol="€" min="0" max="1000"> --}}
+            {{-- <x-filter-option title="Price" symbol="€" minName="min_price" maxName="max_price"
+            minValue="{{ $data['min_price'] ?? '' }}" maxValue="{{ $data['max_price'] ?? '' }}" /> --}}
             <div class="filter__container-option">
                 <div class="filter__option__title">Price</div>
                 <div class="filter__option">
-                    <label for="min-price" class=".option-label"></label>
+                    <label for="min-price" class="option-label"></label>
                     <div class="option-input-container">
                         <input id="min-price" name="min_price"
-                            class="filter__option-input @error('max_price') error @enderror "
+                            class="filter__option-input @error('min_price') error @enderror "
                             value="{{ old('min_price', $data['min_price'] ?? '') }}" placeholder="Min" />
                         <span class="currency-symbol">€</span>
 
@@ -121,47 +125,98 @@
                     <div id="price-slider"></div>
                 </div>
             </div>
-
-            <!-- Dimentions -->
+            <!-- Width -->
             <div class="filter__container-option">
-                <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-                    <div class="filter__option__title">Dimentions</div>
-                    <span> (w x h x d)</span>
-                </div>
+                <div class="filter__option__title">Width</div>
                 <div class="filter__option">
-                    <label for="product-width" class="option-label"></label>
+                    <label for="min-width" class=".option-label"></label>
                     <div class="option-input-container">
-                        <input id="product-width" name="product_width"
-                            class="filter__option-input @error('product_width') error @enderror"
-                            value="{{ old('product_width', $data['product_width'] ?? '') }}" placeholder="W" />
-                        @error('product_width')
-                            <div class="register__error-tooltip">{{ $message }}</div>
-                        @enderror
+                        <input id="min-width" name="min_width"
+                            class="filter__option-input @error('min_width') error @enderror "
+                            value="{{ old('min_width', $data['min_width'] ?? '') }}" placeholder="Min" />
+                        <span class="currency-symbol">cm</span>
 
                     </div>
 
-                    <span class="dash">x</span>
+                    <span class="dash">-</span>
 
-                    <label for="product-height" class=".option-label"></label>
+                    <label for="max-width" class="option-label"></label>
                     <div class="option-input-container">
-                        <input id="product-height" name="product_height"
-                            class="filter__option-input @error('product_height') error @enderror"
-                            value="{{ old('product_height', $data['product_height'] ?? '') }}" placeholder="H" />
-                        @error('product_height')
-                            <div class="register__error-tooltip">{{ $message }}</div>
-                        @enderror
+                        <input id="max-width" name="max_width"
+                            class="filter__option-input @error('max_width') error @enderror"
+                            value="{{ old('max_width', $data['max_width'] ?? '') }}" placeholder="Max" />
+                        <span class="currency-symbol">cm</span>
                     </div>
-                    <span class="dash">x</span>
+                </div>
+            </div>
 
-                    <label for="product-depth" class=".option-label"></label>
+            <div class="filter__option">
+                <div class="slider-container">
+                    <div id="width-slider"></div>
+                </div>
+            </div>
+
+            <!-- Height -->
+
+            <div class="filter__container-option">
+                <div class="filter__option__title">Height</div>
+                <div class="filter__option">
+                    <label for="min-height" class="option-label"></label>
                     <div class="option-input-container">
-                        <input id="product-depth" name="product_depth"
-                            class="filter__option-input @error('product_depth') error @enderror"
-                            value="{{ old('product_depth', $data['product_depth'] ?? '') }}" placeholder="D" />
-                        @error('product_depth')
-                            <div class="register__error-tooltip">{{ $message }}</div>
-                        @enderror
+                        <input id="min-height" name="min_height"
+                            class="filter__option-input @error('min_height') error @enderror "
+                            value="{{ old('min_height', $data['min_height'] ?? '') }}" placeholder="Min" />
+                        <span class="currency-symbol">cm</span>
+
                     </div>
+
+                    <span class="dash">-</span>
+
+                    <label for="max-height" class=".option-label"></label>
+                    <div class="option-input-container">
+                        <input id="max-height" name="max_height"
+                            class="filter__option-input @error('max_height') error @enderror"
+                            value="{{ old('max_height', $data['max_height'] ?? '') }}" placeholder="Max" />
+                        <span class="currency-symbol">cm</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="filter__option">
+                <div class="slider-container">
+                    <div id="height-slider"></div>
+                </div>
+            </div>
+
+            <!-- Depth -->
+
+            <div class="filter__container-option">
+                <div class="filter__option__title">Depth</div>
+                <div class="filter__option">
+                    <label for="min-depth" class=".option-label"></label>
+                    <div class="option-input-container">
+                        <input id="min-depth" name="min_depth"
+                            class="filter__option-input @error('min_depth') error @enderror "
+                            value="{{ old('min_depth', $data['min_depth'] ?? '') }}" placeholder="Min" />
+                        <span class="currency-symbol">cm</span>
+
+                    </div>
+
+                    <span class="dash">-</span>
+
+                    <label for="max-depth" class=".option-label"></label>
+                    <div class="option-input-container">
+                        <input id="max-depth" name="max_depth"
+                            class="filter__option-input @error('max_depth') error @enderror"
+                            value="{{ old('max_depth', $data['max_depth'] ?? '') }}" placeholder="Max" />
+                        <span class="currency-symbol">cm</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="filter__option">
+                <div class="slider-container">
+                    <div id="depth-slider"></div>
                 </div>
             </div>
 
@@ -180,7 +235,7 @@
                             </div>
                         </label> --}}
                         <label>
-                            <input id={{ $index }} type="checkbox" name='color' class="color-input pl-3" />
+                            <input id={{ $index }} type="checkbox" name='colors[]' class="color-input pl-3" value="{{ $color }}" {{ in_array($color, old('colors', $data['colors'] ?? [])) ? 'checked' : '' }} />
                             <div id={{ $index }} style="background-color: {{ $color }}"
                                 class="color relative w-8 h-8 rounded-full cursor-pointer outline-offset-4 {{ $color === '#ffffff' ? 'border border-black' : '' }}">
                             </div>
@@ -204,7 +259,7 @@
         </div>
         {{-- search --}}
         <div class="div-button-container">
-            <button type="submit" class="div-button">
+            <button id="filter__submit" type="submit" class="div-button">
                 Search
             </button>
         </div>
@@ -213,13 +268,8 @@
         @csrf
     </form>
 </div>
-{{--
-@if (isset($data))
-    <div>
-        <p>{{$data['min_price']}}</p>
-    </div>
-@endif --}}
 @push('scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.5.1/nouislider.min.js"></script>
+    {{-- <script src="js/slider.js" defer></script> --}}
     <script src="js/filter.js" defer></script>
 @endpush
