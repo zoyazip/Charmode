@@ -52,7 +52,7 @@
     ];
 @endphp
 
-<body>
+
     <div class=" flex flex-col items-center justify-center py-10">
         <div class="inner-container max-w-[1200px] w-[90%] h-full">
             <div
