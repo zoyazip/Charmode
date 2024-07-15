@@ -86,12 +86,12 @@
                 <input class="add__btn" type="submit" value="Save product">
             </div>
             <div class="add-product__right-div">
-                <input class="image__input" name="image" type="file" >
-                {{-- <input class="image__input" name="image[]" type="file" >
+                {{-- <input class="image__input" name="image" type="file" > --}}
                 <input class="image__input" name="image[]" type="file" >
                 <input class="image__input" name="image[]" type="file" >
                 <input class="image__input" name="image[]" type="file" >
-                <input class="image__input" name="image[]" type="file" > --}}
+                <input class="image__input" name="image[]" type="file" >
+                <input class="image__input" name="image[]" type="file" >
             </div>
         </form>
         <div id="categoryPopUp" class="category__pop-up hide__pop__up__window">

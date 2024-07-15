@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Color;
+use App\Models\Image;
 use App\Models\ProductColors;
 use App\Models\Category;
 use App\Models\SubCategory;
 use App\Models\Specification;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -117,6 +119,31 @@ class AdminController extends Controller
         }
 
         // add images
+        $images = $request->image;
+        if (isset($images)) {
+            foreach($images as $image){
+                $disk = Storage::build([
+                    'driver' => 'local',
+                    'root' => storage_path().'/images/'.$productID,
+                ]);
+                $imageName = time().$image->getClientOriginalExtension();
+                $disk->put($imageName, $image);
+                $newImage = new Image;
+                $newImage->url = '/images/'.$productID.'/'.$imageName;
+                $newImage->productID = $productID;
+                $newImage->save();
+            }
+        }
+
+        // $disk = Storage::build([
+        //     'driver' => 'local',
+        //     'root' => storage_path().'/images',
+        // ]);
+         
+        // $disk->put('image.jpg', $request->image);
+
+                
+
 
         // redirect
 
@@ -154,6 +181,12 @@ class AdminController extends Controller
      public function getProductColors() {
         $products = ProductColors::all();
         return $products;
+     }
+
+     // get images
+     public function getImages() {
+        $images = Image::all();
+        return $images;
      }
 
 
