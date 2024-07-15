@@ -160,6 +160,7 @@ colorDiv();
                 const newOption = subcategory['name'];
                 let option = document.createElement('option');
                 option.value = subcategory['id'];
+                option.name = subcategory['id'];
                 option.innerHTML = newOption;
                 subcategoryDiv.appendChild(option);
             }
@@ -186,7 +187,8 @@ document.getElementById('categorySelect').addEventListener("change", function() 
             if (subcategory['categoryID'] == selectedCategoryId) {
                 const newOption = subcategory['name'];
                 let option = document.createElement('option');
-                option.value = newOption;
+                option.value = subcategory['id'];
+                option.name = subcategory['id'];
                 option.innerHTML = newOption;
                 subcategoryDiv.appendChild(option);
             }

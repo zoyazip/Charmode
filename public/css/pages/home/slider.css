@@ -37,3 +37,15 @@
 .swiper-pagination-bullet.swiper-pagination-bullet-active {
     background-color: var(--text-primary);
 }
+
+
+@media screen and (max-width: 768px) {
+    .swiper-button-prev {
+        left: 10px;
+        transform: rotate(180deg);
+    }
+    
+    .swiper-button-next {
+        right: 10px;
+    }
+}

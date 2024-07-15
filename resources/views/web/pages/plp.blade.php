@@ -7,11 +7,10 @@
 @extends('layouts.main')
 
 @section('content')
-    <div class="inner-container">
-        <div class="plp-page-container">
-            @include('components/filter')
-            <div style="width: 100%">
-                {{-- <h1>Filter debug list</h1>
+    <div class="plp-page-container">
+        @include('components/filter')
+        <div style="width: 100%">
+            {{-- <h1>Filter debug list</h1>
             @if (isset($data))
                 <div>
                     <p>Min Price: {{ $data['min_price'] ?? 'N/A' }}</p>
@@ -31,12 +30,11 @@
                     </ul>
                 </div>
             @endif --}}
-                {{-- @if (isset($data)) --}}
-                <div class="plp-product-list-container">
-                    @include('../../components/PLP-components/plp-pdoruct-list')
-                </div>
-                {{-- @endif --}}
+            {{-- @if (isset($data)) --}}
+            <div class="plp-product-list-container">
+                @include('../../components/PLP-components/plp-pdoruct-list')
             </div>
+            {{-- @endif --}}
         </div>
     </div>
 @endsection
