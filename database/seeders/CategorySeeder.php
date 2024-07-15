@@ -16,16 +16,10 @@ class CategorySeeder extends Seeder
     {
         //
         $categories = [
-            ['name' => 'bedroom', 'sub_category' => 'chair'],
-            ['name' => 'bedroom', 'sub_category' => 'bed'],
-            ['name' => 'bedroom', 'sub_category' => 'cupboard'],
-            ['name' => 'kitchen', 'sub_category' => 'table'],
-            ['name' => 'kitchen', 'sub_category' => 'chair'],
-            ['name' => 'living_room', 'sub_category' => 'chair'],
-            ['name' => 'living_room', 'sub_category' => 'sofa'],
-            ['name' => 'living_room', 'sub_category' => 'table'],
-            ['name' => 'living_room', 'sub_category' => 'cupboard'],
-            ['name' => 'bath_room', 'sub_category' => 'cupboard'],
+            ['name' => 'bedroom'],
+            ['name' => 'kitchen'],
+            ['name' => 'living_room'],
+            ['name' => 'bath_room'],
         ];
         DB::table('categories')->insert($categories);
     }

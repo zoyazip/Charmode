@@ -15,17 +15,17 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('description');
-            $table->integer('subcategoryID');
+            $table->unsignedBigInteger('subcategoryID');
             $table->integer('price');
             $table->integer('discount');
             $table->integer('stockQuantity');
             $table->json('specifications');
-            $table->integer('colorID');
+            $table->json('colorID');
             $table->json('images');
             $table->timestamps();
 
             $table->foreign('subcategoryID')->references('id')->on('sub_categories');
-            $table->foreign('colorID')->references('id')->on('colors');
+            // $table->foreign('colorID')->references('id')->on('colors');
         
         });
     }
