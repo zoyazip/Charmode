@@ -8,6 +8,7 @@ use App\Models\Color;
 use App\Models\Category;
 use App\Models\SubCategory;
 use Illuminate\Http\RedirectResponse;
+// use Intervention\Image\Facades\Image;
 
 class AdminController extends Controller
 {
@@ -127,6 +128,7 @@ class AdminController extends Controller
         }
 
         $subcategory = $request->subcategory;
+        dd($subcategory);
         if(!ctype_digit($subcategory)) {
             // new subcategory
             $newSubCategory = new Subcategory;
@@ -136,24 +138,32 @@ class AdminController extends Controller
             $subcategory = $newSubCategory->id;
         }
 
-        // dd($subcategory);
+        $imagesArray = [];
+
+        $imagesJson = '[';
+
+        if (isset($imagesArray)) {
+            for ($x = 0; $x < sizeof($imagesArray); $x++) {
+                $imagesJson = $imagesJson.'{'.$x." : ".$imagesArray[$x].'},';
+            }
+
+        }
+        $imagesJson = $imagesJson.']';
+        $imagesJson = json_encode($imagesJson);
 
 
-
-        $images = [""];
 
         
 
+    
         $product = new Product;
         $product->name = $request->name;
         $product->description = $request->description;
         $product->subcategoryID = $subcategory;
-        $product->price = $request->price;
+        $product->oldPrice = $request->oldPrice;
+        $product->newPrice = $request->newPrice;
         $product->discount = $request->discount;
         $product->stockQuantity = $request->stockQuantity;
-        $product->specifications = $specificationsJSON;
-        $product->colorID = $colorIdJson;
-        // $product->imagesID = $images;
         $product->save();
     }
      // edit product
