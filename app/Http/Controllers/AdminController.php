@@ -128,6 +128,7 @@ class AdminController extends Controller
         }
 
         $subcategory = $request->subcategory;
+        dd($subcategory);
         if(!ctype_digit($subcategory)) {
             // new subcategory
             $newSubCategory = new Subcategory;
@@ -137,33 +138,7 @@ class AdminController extends Controller
             $subcategory = $newSubCategory->id;
         }
 
-        // dd($subcategory);
-
-
-
-        // add images
-        // $images = $request->image;
         $imagesArray = [];
-        // if (isset($images)) {
-        //     dd($request->file('image'));
-        //     // foreach($images as $image) {
-        //     //     $imageName = time().'.png';
-
-        //     //     $image->save(storage_path('/images'.$imageName));
-
-        //     //     // $image->put(public_path('images'), $imageName);
-        //     //     array_push($imagesArray, '/images'.$imageName);
-        //     // }
-        // }
-
-        // if ($request->has('image')) {
-        //     $imageFile = $request->file('image');
-        //     $imageFile->storeAs('image', $imageFile->getClientOriginalName());
-        // }
-
-        
-        
-
 
         $imagesJson = '[';
 
@@ -180,16 +155,15 @@ class AdminController extends Controller
 
         
 
+    
         $product = new Product;
         $product->name = $request->name;
         $product->description = $request->description;
         $product->subcategoryID = $subcategory;
-        $product->price = $request->price;
+        $product->oldPrice = $request->oldPrice;
+        $product->newPrice = $request->newPrice;
         $product->discount = $request->discount;
         $product->stockQuantity = $request->stockQuantity;
-        $product->specifications = $specificationsJSON;
-        $product->colorID = $colorIdJson;
-        $product->imagesID = $imagesJson;
         $product->save();
     }
      // edit product

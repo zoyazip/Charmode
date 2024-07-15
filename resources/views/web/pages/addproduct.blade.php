@@ -41,7 +41,8 @@
                     <span class="add__btn" onclick="openPopUpWindow('subCategoryPopUp')">Add new subcategory</span>
                 </div>
                 <div class="row__input">
-                    <input placeholder="Price*" class="add__input input__row" name="price">
+                    <input placeholder="Old price*" class="add__input input__row" name="oldPrice">
+                    <input placeholder="New price*" class="add__input input__row" name="newPrice">
                     <input placeholder="Discount*" class="add__input input__row" name="discount">
                     <input  placeholder="Stock quantity*" class="add__input input__row" name="stockQuantity">
                 </div>
