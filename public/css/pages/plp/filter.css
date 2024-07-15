@@ -2,7 +2,7 @@
     display: none;
 }
 
-.color-input[type="radio"]:checked + .color {
+.color-input[type="radio"]:checked+.color {
     box-shadow: 0px 0px 0px 2px #204012;
 }
 
@@ -30,6 +30,7 @@
     width: 24px;
     height: 24px;
 }
+
 .filter__reset {
     color: var(--green);
     text-decoration: underline;
@@ -38,6 +39,7 @@
     margin-left: auto;
     cursor: pointer;
 }
+
 .filter__main {
     margin-top: 2%;
     display: flex;
@@ -61,6 +63,7 @@
 .filter__option-input.error {
     border-color: red;
 }
+
 /* errors */
 
 .register__error-tooltip {
@@ -254,14 +257,17 @@
 
 .styled-checkbox:checked {
     border-color: var(--green);
-    background-color: var(--green); /* Change background color when checked */
+    background-color: var(--green);
+    /* Change background color when checked */
 }
 
 .styled-checkbox:checked::after {
     content: "✔";
     position: absolute;
-    color: white; /* Color of the checkmark */
-    font-size: 18px; /* Size of the checkmark */
+    color: white;
+    /* Color of the checkmark */
+    font-size: 18px;
+    /* Size of the checkmark */
 }
 
 /* Reset button */
@@ -292,8 +298,10 @@
     border-radius: 7px;
     cursor: pointer;
     transition: background-color 0.3s;
-    text-align: center; /* Center the text inside the div */
-    user-select: none; /* Prevent text selection on double click */
+    text-align: center;
+    /* Center the text inside the div */
+    user-select: none;
+    /* Prevent text selection on double click */
     margin: 10px 0;
 }
 
@@ -361,10 +369,12 @@
     box-shadow: 0 0 5px #4caf50;
     /* Green shadow on focus for accessibility */
 }
+
 @media screen and (max-width: 1000px) {
     .filter {
         width: 100%;
     }
+
     .filter__main {
         width: 90%;
         height: 350px;
@@ -372,21 +382,38 @@
         flex-direction: column;
         flex-wrap: wrap;
     }
+
     .filter__container-option {
         width: 30%;
     }
 }
+
+@media screen and (max-width: 768px) {
+    .filter__main {
+        width: 100%;
+    }
+
+    .filter__reset {
+        margin-right: 0;
+    }
+    .filter__main {
+        margin-top: 0;
+        margin-left: 0;
+    }
+}
+
 @media screen and (max-width: 550px) {
     .filter {
         width: 100%;
     }
+
     .filter__main {
         display: flex;
         height: auto;
-        width: 90%;
         /* flex-direction: row; */
         flex-wrap: nowrap;
     }
+
     .filter__container-option {
         width: 100%;
     }
@@ -397,7 +424,7 @@
     display: none;
 }
 
-.color-input[type="checkbox"]:checked + .color::after {
+.color-input[type="checkbox"]:checked+.color::after {
     content: "";
     width: 100%;
     height: 100%;

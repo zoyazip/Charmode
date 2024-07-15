@@ -27,7 +27,7 @@
 .navbar__logo {
     cursor: pointer;
     max-width: 300px;
-    width: 50vw;
+    width: 30vw;
     min-width: 150px;
 }
 
@@ -132,7 +132,7 @@
 .navbar__icons {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 13px;
 }
 
 .navbar__icons img {
@@ -159,6 +159,7 @@
 .navbar__auth-drop-container {
     position: absolute;
     min-width: 200px;
+    max-width: 288px;
     height: min-content;
     top: 100%;
     right: 0;
