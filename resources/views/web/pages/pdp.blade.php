@@ -193,7 +193,7 @@
             @include('../../components/PDP-components/pdp-description')
             @include('../../components/PDP-components/pdp-characteristics')
         </div>
-        <hr class="mt-24"/>
+        <hr class="mt-24" />
         <div class="pdp-comments-container mt-10 w-full">
             @include('../../components/PDP-components/pdp-comments')
         </div>

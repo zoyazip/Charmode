@@ -1,5 +1,4 @@
-@php
-
+{{-- @php
     class Product
     {
         public $id;
@@ -50,31 +49,54 @@
         // ($product3 = new Product(23, 'Product 23', 150.0, 20, 180.0, false)),
         // ($product4 = new Product(24, 'Product 24', 150.0, 0, 150.0, false)),
     ];
-@endphp
+@endphp --}}
 
 
-    <div class=" flex flex-col items-center justify-center py-4">
-        <div class="inner-container max-w-[1200px] w-[90%] h-full">
-            <div
-                class="grid-layout w-full grid gap-3 grid-flow-dense grid-rows-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-                @foreach ($products as $index => $product)
-                    @include('components/product-card', ['main' => true])
-                @endforeach
-            </div>
+<div class=" flex flex-col items-center justify-center py-4">
+    <div class="inner-container max-w-[1200px] w-[90%] h-full">
+        <div class="grid-layout w-full grid gap-3 grid-flow-dense grid-rows-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+            @foreach ($products as $index => $product)
+                @include('components/product-card', [
+                    'main' => true,
+                    'expand' => $loop->index % 4 == 0 || $loop->index % 8 == 0 ? true : false,
+                ])
+            @endforeach
+        </div>
+        <div class="pagination">
+            <!-- Display previous page link if it exists -->
+            @if ($currentPage > 2)
+                <a href="{{ $products->url(1) }}">1...</a>
+            @endif
+
+            @if ($previousPage)
+                <a href="{{ $products->url($previousPage) }}">{{ $previousPage }}</a>
+            @endif
+
+            <!-- Display current page -->
+            <b>{{ $currentPage }}</b>
+
+            <!-- Display next 3 pages -->
+            @foreach ($nextPages as $page)
+                @if ($page != $currentPage)
+                    <a href="{{ $products->url($page) }}">{{ $page }}</a>
+                @endif
+            @endforeach
         </div>
     </div>
-    <script>
-        [...document.querySelectorAll('.product-card')].forEach(function(item) {
+</div>
 
-            const selectedProduct = document.getElementById(item.id)
-            const selectedProductBtn = selectedProduct.querySelector('.card-data').querySelector(
-                '.card__title-container').querySelector('.add-to-cart')
+<script>
+    [...document.querySelectorAll('.product-card')].forEach(function(item) {
 
-            item.addEventListener('mouseenter', function() {
-                item.style.transform = 'rotate(1deg)'
-            })
-            item.addEventListener('mouseleave', function() {
-                item.style.transform = 'rotate(0deg)'
-            })
+        const selectedProduct = document.getElementById(item.id)
+        const selectedProductBtn = selectedProduct.querySelector('.card-data').querySelector(
+            '.card__title-container').querySelector('.add-to-cart')
+
+        item.addEventListener('mouseenter', function() {
+            item.style.transform = 'rotate(1deg)'
         })
-    </script>
+        item.addEventListener('mouseleave', function() {
+            item.style.transform = 'rotate(0deg)'
+        })
+    })
+</script>

@@ -16,49 +16,49 @@
             </div>
             <select></select>
         </div>
-        <div  class="admin__table__div">
-                <div class="table__head">
-                    <div class="table__head__left">
-                        <h6 class="table__checkbox"></h6>
-                        <h6 class="table__photo"></h6>
-                        <h6 class="table__name">Nosaukums</h6>
-                    </div>
-                    <div class="table__head__right">
-                        <h6 class="table__date">Datums</h6>
-                        <h6 class="table__price">Cena</h6>
-                        <h6 class="table__edit"></h6>
-                    </div>
+        <div class="admin__table__div">
+            <div class="table__head">
+                <div class="table__head__left">
+                    <h6 class="table__checkbox"></h6>
+                    <h6 class="table__photo"></h6>
+                    <h6 class="table__name">Nosaukums</h6>
                 </div>
-                @if(isset($products))
-                    @foreach($products as $product)
+                <div class="table__head__right">
+                    <h6 class="table__date">Datums</h6>
+                    <h6 class="table__price">Cena</h6>
+                    <h6 class="table__edit"></h6>
+                </div>
+            </div>
+            @if (isset($products))
+                @foreach ($products as $product)
                     <div class="table__row">
                         <div class="table__head__left">
                             <h6 class="table__checkbox"></h6>
                             <h6 class="table__photo"></h6>
-                            <h6 class="table__name">{{$product->name}}</h6>
+                            <h6 class="table__name">{{ $product->name }}</h6>
                         </div>
                         <div class="table__head__right">
-                            <h6 class="table__date">{{$product->created_at}}</h6>
-                            <h6 class="table__price">{{$product->price}}</h6>
+                            <h6 class="table__date">{{ $product->created_at }}</h6>
+                            <h6 class="table__price">{{ $product->price }}</h6>
                             <h6 class="table__edit"></h6>
                         </div>
                     </div>
-                    @endforeach
-                @endif
+                @endforeach
+            @endif
 
-                <div class="table__row">
-                    <div class="table__head__left">
-                        <h6 class="table__checkbox"></h6>
-                        <h6 class="table__photo"></h6>
-                        <h6 class="table__name">Nosaukums1</h6>
-                    </div>
-                    <div class="table__head__right">
-                        <h6 class="table__date">Nosaukums1</h6>
-                        <h6 class="table__price">Nosaukums1</h6>
-                        <h6 class="table__edit">...</h6>
-                    </div>
+            <div class="table__row">
+                <div class="table__head__left">
+                    <h6 class="table__checkbox"></h6>
+                    <h6 class="table__photo"></h6>
+                    <h6 class="table__name">Nosaukums1</h6>
                 </div>
-                
+                <div class="table__head__right">
+                    <h6 class="table__date">Nosaukums1</h6>
+                    <h6 class="table__price">Nosaukums1</h6>
+                    <h6 class="table__edit">...</h6>
+                </div>
+            </div>
+
         </div>
         <div class="admin__after__table__div">
             <p class="admin__text__after__table">0 of 4 row(s) selected</p>

@@ -90,7 +90,6 @@ class ProductSeeder extends Seeder
                 'discount' => '0',
                 'stockQuantity' => '150',
             ],
-
         ];
         DB::table('products')->insert($products);
     }

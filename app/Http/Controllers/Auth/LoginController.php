@@ -22,7 +22,7 @@ class LoginController extends Controller
             'password' => ['required', 'string'],
         ]);
 
-        $remember = $request->has('remember_me'); // Check if "Remember Me" checkbox is checked
+        $remember = $request->has('remember_me'); // Checks if "Remember Me" checkbox is checked
 
         if (Auth::attempt($request->only('email', 'password'), $remember)) {
             return redirect()->back();

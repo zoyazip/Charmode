@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
 
-    public function openRegistrationPage() {
+    public function render() {
         return view('web.pages.registration');
     }
 

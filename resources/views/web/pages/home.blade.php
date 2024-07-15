@@ -13,52 +13,49 @@
 @endpush
 
 @section('content')
-    <div class="inner-container">
-        <!-- Slider main container -->
-        <div class="swiper">
-            <!-- Additional required wrapper -->
-            <div class="swiper-wrapper">
-                <!-- Slides -->
-                <div class="swiper-slide">
-                    <img src="/assets/chair-placeholder.png" alt="">
-                </div>
-                <div class="swiper-slide">
-                    <img src="/assets/chair-placeholder.png" alt="">
-                </div>
-                <div class="swiper-slide">
-                    <img src="/assets/chair-placeholder.png" alt="">
-                </div>
+    <!-- Slider main container -->
+    <div class="swiper">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+            <!-- Slides -->
+            <div class="swiper-slide">
+                <img src="/assets/chair-placeholder.png" alt="">
             </div>
-            <!-- pagination -->
-            <div class="swiper-pagination">
-                
+            <div class="swiper-slide">
+                <img src="/assets/chair-placeholder.png" alt="">
             </div>
+            <div class="swiper-slide">
+                <img src="/assets/chair-placeholder.png" alt="">
+            </div>
+        </div>
+        <!-- pagination -->
+        <div class="swiper-pagination"></div>
 
-            <!-- navigation buttons -->
-            <div class="swiper-button-prev">
-                <img src="assets/svg/arrow.svg" alt="">
-            </div>
-            <div class="swiper-button-next">
-                <img src="assets/svg/arrow.svg" alt="">
-            </div>
+        <!-- navigation buttons -->
+        <div class="swiper-button-prev">
+            <img src="assets/svg/arrow.svg" alt="←">
         </div>
-        <div class="sale-line-container pt-14">
-            @include('components/sale-line')
+        <div class="swiper-button-next">
+            <img src="assets/svg/arrow.svg" alt="→">
         </div>
-        <div class="home-sort-container flex justify-end mt-8">
-            @include('components/list-sort')
-        </div>
-        <div class="main-grid-container pb-10">
-            @include('components/grid-layout')
-        </div>
-        
+    </div>
 
-        @push('scripts')
-            @once
-                <script type="module" src="{{ URL::asset('js/swiper.js') }}" defer></script>
-                <script type="module" src="{{ URL::asset('js/gallery-horizontal-scroll.js') }}" defer></script>
-            @endonce
-        @endpush
+    <div class="sale-line-container pt-14">
+        @include('components/sale-line')
+    </div>
 
+    <div class="home-sort-container flex justify-end mt-8">
+        @include('components/list-sort')
+    </div>
+
+    <div class="main-grid-container pb-10">
+        @include('components/grid-layout')
     </div>
 @endsection
+
+@push('scripts')
+    @once
+        <script type="module" src="{{ URL::asset('js/swiper.js') }}" defer></script>
+        <script type="module" src="{{ URL::asset('js/gallery-horizontal-scroll.js') }}" defer></script>
+    @endonce
+@endpush
