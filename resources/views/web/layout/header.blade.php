@@ -73,15 +73,26 @@
         <ul class="navbar__links">
             @foreach ($categories as $category)
                 <li class="navbar__link-container">{{ $category->name }}</li>
+                <div class="navbar__links-mobile__subcategories">
+                    @if ($category->subcategories && $category->subcategories->isNotEmpty())
+                        @foreach ($category->subcategories as $subcategory)
+                            <div class="nav-links-dd flex">
+                                <a href="" class="navbar__link-container">{{ $subcategory->name }}</a>
+                            </div>   
+                        @endforeach
+                    @endif
+                </div>
             @endforeach
         </ul>
 
         <div class="navbar__links-mobile">
             <ul class="navbar__links-mobile__categories">
-                @foreach ($categories as $category)
-                    <li class="navbar__link-container">{{ $category->name }}</li>
-
-                    <div class="navbar__links-mobile__subcategories">
+                @foreach ($categories as $index => $category)
+                <div id={{ 'category-' . $index }} class="nav-category-link flex items-center p-4 gap-2">
+                    <li class="navbar__link-container"><span class=" text-xl">{{ $category->name }}</span></li>
+                    <h4 class="nav-dd text-xl">+</h4>
+                </div>
+                    <div id={{ 'sub-category-' . $index }} class="navbar__links-mobile__subcategories hidden">
                         @if ($category->subcategories && $category->subcategories->isNotEmpty())
                             @foreach ($category->subcategories as $subcategory)
                                 <a href="" class="navbar__link-container">{{ $subcategory->name }}</a>
@@ -107,6 +118,41 @@
     <script src="{{ URL::asset('js/header/login.js') }}"></script>
 @endpush
 
+
+@push('scripts')
+<script defer>
+    document.addEventListener('DOMContentLoaded', function () {
+        const categories = document.querySelectorAll('.nav-category-link')
+
+        categories.forEach((element, idx) => {
+
+            
+            
+            element.addEventListener('click', (e) => {
+                const subCat = document.querySelector(`#sub-category-${idx}`)
+                const navDD = element.querySelector('.nav-dd')
+            
+                
+                
+                // Check if sub-category exists
+                if (subCat) {
+                    if (navDD) {
+                        console.log(navDD)
+                    }
+                    // Toggle the visibility of the sub-category
+                    subCat.classList.toggle('hidden')
+                    // Toggle the text content between + and -
+                    if (navDD.textContent === '+') {
+                        navDD.textContent = '-'
+                    } else {
+                        navDD.textContent = '+'
+                    }
+                }
+            })
+        })
+    })
+</script>
+@endpush
 
 @auth
     @push('scripts')

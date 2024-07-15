@@ -254,7 +254,7 @@
 
 .navbar__link-container {
     border-radius: 14px;
-    padding: 10px 20px;
+    /* padding: 10px 20px; */
     transition: background-color 0.3s;
     display: inline-block;
     width: max-content;
@@ -370,7 +370,7 @@ a.navbar__link-container {
         background-color: white;
         border: 1px solid black;
         border-radius: 8px;
-        overflow-y: scroll;
+        /* overflow-y: scroll; */
     }
 
     .navbar__links-mobile {
@@ -419,4 +419,7 @@ a.navbar__link-container {
         padding-top: 0;
         padding-bottom: 0;
     }
+
 }
+
+
