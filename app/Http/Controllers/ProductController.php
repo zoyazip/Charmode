@@ -15,19 +15,22 @@ class ProductController extends Controller
     //     return view('plp')->with("products", $products);
     // }
 
-    public function readProducts() {
+    public function readProducts()
+    {
         $products = Product::all();
         $colors = Color::all();
         $categories = Category::all();
         return view('web/pages/plp')->with(["products" => $products, "colors" => $colors, "categories" => $categories]);
     }
 
-    public function readProduct(Request $request) {
+    public function readProduct(Request $request)
+    {
         $product = Product::find($request->id);
         return $product;
     }
 
-    public function createProduct(Request $request) {
+    public function createProduct(Request $request)
+    {
         $product = new Product;
         $product->name = $request->name;
         $product->description = $request->description;
@@ -42,7 +45,8 @@ class ProductController extends Controller
         return "Success";
     }
 
-    public function updateProduct(Request $request) {
+    public function updateProduct(Request $request)
+    {
         $product = Product::find($request->id);
         $product->update([
             'name' => $request->name,
@@ -58,7 +62,8 @@ class ProductController extends Controller
         return "Success";
     }
 
-    public function deleteProduct(Request $request) {
+    public function deleteProduct(Request $request)
+    {
         $product = Product::find($request->id);
         $product->delete();
         return "Success";

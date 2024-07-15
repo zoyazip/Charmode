@@ -1,5 +1,4 @@
 @php
-
     class Product_Sugg
     {
         public $id;
