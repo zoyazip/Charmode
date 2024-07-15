@@ -15,15 +15,14 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('userID')->nullable();
             $table->unsignedBigInteger('guestID')->nullable();
-            $table->integer('deliveryCost');
+            $table->double('deliveryCost');
             $table->boolean('bussinessPaper');
             $table->string('comment')->nullable();
             $table->string('deliveryMethod');
             $table->string('deliveryPlace');
             $table->string('paymentMethod');
             $table->string('status');
-            $table->json('itemID');
-            $table->integer('totalSum');
+            $table->double('totalSum');
             $table->timestamps();
 
             $table->foreign('userID')->references('id')->on('users');

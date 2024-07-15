@@ -8,6 +8,7 @@ use App\Models\Color;
 use App\Models\Category;
 use App\Models\SubCategory;
 use Illuminate\Http\RedirectResponse;
+// use Intervention\Image\Facades\Image;
 
 class AdminController extends Controller
 {
@@ -140,7 +141,42 @@ class AdminController extends Controller
 
 
 
-        $images = [""];
+        // add images
+        // $images = $request->image;
+        $imagesArray = [];
+        // if (isset($images)) {
+        //     dd($request->file('image'));
+        //     // foreach($images as $image) {
+        //     //     $imageName = time().'.png';
+
+        //     //     $image->save(storage_path('/images'.$imageName));
+
+        //     //     // $image->put(public_path('images'), $imageName);
+        //     //     array_push($imagesArray, '/images'.$imageName);
+        //     // }
+        // }
+
+        // if ($request->has('image')) {
+        //     $imageFile = $request->file('image');
+        //     $imageFile->storeAs('image', $imageFile->getClientOriginalName());
+        // }
+
+        
+        
+
+
+        $imagesJson = '[';
+
+        if (isset($imagesArray)) {
+            for ($x = 0; $x < sizeof($imagesArray); $x++) {
+                $imagesJson = $imagesJson.'{'.$x." : ".$imagesArray[$x].'},';
+            }
+
+        }
+        $imagesJson = $imagesJson.']';
+        $imagesJson = json_encode($imagesJson);
+
+
 
         
 
@@ -153,7 +189,7 @@ class AdminController extends Controller
         $product->stockQuantity = $request->stockQuantity;
         $product->specifications = $specificationsJSON;
         $product->colorID = $colorIdJson;
-        // $product->imagesID = $images;
+        $product->imagesID = $imagesJson;
         $product->save();
     }
      // edit product

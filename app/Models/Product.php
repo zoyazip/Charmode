@@ -13,11 +13,9 @@ class Product extends Model
         'name',
         'description',
         'subcategoryID',
-        'price',
+        'oldprice',
+        'newprice',
         'discount',
         'stockQuantity',
-        'specifications',
-        'colorID',
-        'images',
     ];
 }
