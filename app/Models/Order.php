@@ -19,7 +19,6 @@ class Order extends Model
         'deliveryPlace',
         'paymentMethod',
         'status',
-        'itemID',
         'totalSum',
     ];
 }
