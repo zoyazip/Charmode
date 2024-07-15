@@ -53,7 +53,7 @@
 @endphp
 
 
-    <div class=" flex flex-col items-center justify-center py-10">
+    <div class=" flex flex-col items-center justify-center py-4">
         <div class="inner-container max-w-[1200px] w-[90%] h-full">
             <div
                 class="grid-layout w-full grid gap-3 grid-flow-dense grid-rows-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
