@@ -18,13 +18,13 @@ class SubCategorySeeder extends Seeder
         DB::table('sub_categories')->truncate();
 
         $subCategories = [
-            ['name' => 'table', 'categoryID' => '1'],
-            ['name' => 'chair', 'categoryID' => '1'],
-            ['name' => 'sofa', 'categoryID' => '1'],
-            ['name' => 'bed', 'categoryID' => '2'],
-            ['name' => 'chair', 'categoryID' => '2'],
-            ['name' => 'lamp', 'categoryID' => '2'],
-            ['name' => 'cupboard', 'categoryID' => '2'],
+            ['name' => 'table', 'category_id' => '1'],
+            ['name' => 'chair', 'category_id' => '1'],
+            ['name' => 'sofa', 'category_id' => '1'],
+            ['name' => 'bed', 'category_id' => '2'],
+            ['name' => 'chair', 'category_id' => '2'],
+            ['name' => 'lamp', 'category_id' => '2'],
+            ['name' => 'cupboard', 'category_id' => '2'],
         ];
         DB::table('sub_categories')->insert($subCategories);
     }
