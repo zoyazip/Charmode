@@ -21,14 +21,19 @@
 {{--            @include('components/checkout-button')--}}
 
             <div class="middle-wrapper checkout-section">
-                <div class="checkout-section__left">
-                    <button class="checkout-section__continue-btn">Continue shopping</button>
-                    <button>Reset</button>
-                </div>
-                <div class="checkout-section__right">
 
-                <x-checkout-button checkoutPrice="30"></x-checkout-button>
-                </div>
+                    <div class="checkout-section__left">
+                        <form target="_self" action="/plp">
+                            <button class="checkout-section__continue-btn">Continue shopping</button>
+                        </form>
+                        <button>Reset</button>
+                    </div>
+                    <div class="checkout-section__right">
+
+                        <x-checkout-button checkoutPrice="30"></x-checkout-button>
+                    </div>
+
+
 
             </div>
         </div>
