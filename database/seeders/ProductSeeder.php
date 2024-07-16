@@ -26,7 +26,7 @@ class ProductSeeder extends Seeder
                 'newPrice' => '150.99',
                 'discount' => '0',
                 'stockQuantity' => '100',
-                'shippingCost' => '5.99',
+                'shippingCost' => '0'
                 'product_code' => 'ihgwq21v',
             ],
             [
@@ -102,7 +102,7 @@ class ProductSeeder extends Seeder
                 'oldPrice' => '500',
                 'newPrice' => '500',
                 'discount' => '0',
-                'stockQuantity' => '150',
+                'stockQuantity' => '0',
                 'shippingCost' => '5.99',
                 'product_code' => '238jhwef',
             ],
@@ -135,8 +135,8 @@ class ProductSeeder extends Seeder
                 'oldPrice' => '500',
                 'newPrice' => '500',
                 'discount' => '0',
-                'stockQuantity' => '150',
-                'shippingCost' => '5.99',
+                'stockQuantity' => '0',
+                'shippingCost' => '5.99'
                 'product_code' => '238jhwef',
             ],
             [
@@ -146,8 +146,8 @@ class ProductSeeder extends Seeder
                 'oldPrice' => '600',
                 'newPrice' => '540',
                 'discount' => '10',
-                'stockQuantity' => '150',
-                'shippingCost' => '5.99',
+                'stockQuantity' => '0',
+                'shippingCost' => '5.99'
                 'product_code' => '238jhwef',
             ],
             [
@@ -157,7 +157,7 @@ class ProductSeeder extends Seeder
                 'oldPrice' => '700',
                 'newPrice' => '700',
                 'discount' => '0',
-                'stockQuantity' => '150',
+                'stockQuantity' => '0',
                 'shippingCost' => '5.99',
                 'product_code' => '238jhwef',
             ],

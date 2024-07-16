@@ -81,7 +81,7 @@
 @endphp
 
 <div class="filter">
-    <form action="{{ route('filter') }}" method="GET">
+    <form id="filter-form" action="{{ route('filter') }}" method="GET">
 
         <div class="filter__header">
             <div class="filter__title">Filters</div>
@@ -221,22 +221,14 @@
             <div class="filter__container-option">
                 <div class="filter__option__title">Color</div>
                 <div class="color-container flex gap-4">
-                    @foreach ($product1->colors as $index => $color)
-                        {{-- <label>
-                            <div class="checkbox-wrapper">
-                                <label>
-                                    <input type="checkbox" name="colors[]" value="{{ $color }}"
-                                        class="styled-checkbox" style="background-color: {{ $color }}"
-                                        {{ in_array($color, old('colors', $data['colors'] ?? [])) ? 'checked' : '' }} />
-                                </label>
-                            </div>
-                        </label> --}}
+                    @foreach ($colors as $index => $color)
                         <label>
                             <input id={{ $index }} type="checkbox" name='colors[]' class="color-input pl-3"
-                                value="{{ $color }}"
-                                {{ in_array($color, old('colors', $data['colors'] ?? [])) ? 'checked' : '' }} />
-                            <div id={{ $index }} style="background-color: {{ $color }}"
-                                class="color relative w-8 h-8 rounded-full cursor-pointer outline-offset-4 {{ $color === '#ffffff' ? 'border border-black' : '' }}">
+                                value="{{ $color->id }}"
+                                {{ in_array($color->id, old('colors', $data['colors'] ?? [])) ? 'checked' : '' }} />
+                            <div id={{ $index }} style="background-color: {{ $color->hex }}"
+
+                                class="color relative w-8 h-8 rounded-full cursor-pointer outline-offset-4 {{ $color->hex === '#ffffff' ? 'border border-black' : '' }}">
                             </div>
                         </label>
                     @endforeach
