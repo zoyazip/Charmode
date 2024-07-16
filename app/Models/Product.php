@@ -28,7 +28,7 @@ class Product extends Model
 
     public function productColors(): HasMany
     {
-        return $this->hasMany(ProductColors::class);
+        return $this->hasMany(ProductColor::class);
     }
 
     public function cartItems(): HasMany
@@ -53,6 +53,6 @@ class Product extends Model
 
     public function specification(): HasMany
     {
-        return $this->hasMany(Review::class);
+        return $this->hasMany(Specification::class);
     }
 }
