@@ -14,13 +14,22 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        DB::table('categories')->truncate();
         $categories = [
-            ['name' => 'bedroom'],
-            ['name' => 'kitchen'],
-            ['name' => 'living_room'],
-            ['name' => 'bath_room'],
+            ['name' => 'Bedroom'],
+            ['name' => 'Kitchen & Appliances'],
+            ['name' => 'Living room'],
+            ['name' => 'Outdoor'],
+            ['name' => 'Garage'],
+            ['name' => 'Bath'],
+            ['name' => 'Office & Office room'],
+            ['name' => 'Dorm room'],
+            ['name' => 'Kids room'],
+            ['name' => 'Hallway'],
+            ['name' => 'Laundry'],
+            ['name' => 'Dining'],
         ];
+
         DB::table('categories')->insert($categories);
     }
 }

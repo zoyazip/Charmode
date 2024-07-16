@@ -36,8 +36,8 @@
             <div class="register__essentials-container active">
                 <div class="register__fullname-container">
                     <div class="register__name__input">
-                        <input class="register__input @error('name') is-invalid @enderror" placeholder="Name"
-                            type="text" id="name" name="name" value="{{ old('name') }}">
+                        <input class="register__input @error('name') is-invalid @enderror" placeholder="Name" type="text"
+                            id="name" name="name" value="{{ old('name') }}">
                         @error('name')
                             <p class="register__error">{{ $message }}</p>
                         @enderror
@@ -82,8 +82,8 @@
 
             <div class="register__additional-container">
                 <div class="register__phone__input">
-                    <input class="register__input @error('phone_number') is-invalid @enderror" placeholder="Phone*" type="tel"
-                        id="phone" name="phone_number" value="{{ old('phone_number') }}">
+                    <input class="register__input @error('phone_number') is-invalid @enderror" placeholder="Phone*"
+                        type="tel" id="phone" name="phone_number" value="{{ old('phone_number') }}">
                     @error('phone_number')
                         <p class="register__error">{{ $message }}</p>
                     @enderror

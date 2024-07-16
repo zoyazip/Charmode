@@ -1,4 +1,4 @@
-@php
+{{-- @php
 
     class Product
     {
@@ -50,17 +50,43 @@
         ($product23 = new Product(11, 'Product 11', 150.0, 20, 180.0, true, true, 'assets/chair-placeholder.png')),
         ($product24 = new Product(12, 'Product 12', 150.0, 0, 150.0, false, false, 'assets/chair-placeholder.png')),
     ];
-@endphp
+@endphp --}}
+{{-- @if(isset($products))
+    @php
+    dd($products);
+    @endphp
+@endif --}}
 <div class="plp flex flex-col gap-8">
     <div class="plp-sort ml-auto">
         @include('components/list-sort')
     </div>
     <div class="plp-list grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
+        @php
+            $counter = 0;
+        @endphp
         @foreach ($products as $product)
-            @include('components/product-card', ['plp' => true])
+            @if(($product->newPrice > $data['min_price'] and $product->newPrice < $data['max_price']) or ($data['min_price']==null))
+
+                @include('components/product-card', ['plp' => true, 'product' => $product])
+                @php
+                    $counter++;
+                @endphp
+            @endif
         @endforeach
+        @php
+            $isCounterZero = ($counter === 0);
+        @endphp
+
     </div>
+
 </div>
+@if ($isCounterZero)
+    <div style="width: 100%">
+        <p class="text-3xl text-center text-gray-700">
+            No products found :(
+        </p>
+    </div>
+@endif
 
 <script>
     [...document.querySelectorAll('.product-card')].forEach(function(item) {

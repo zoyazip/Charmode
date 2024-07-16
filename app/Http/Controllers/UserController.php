@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
 
-    public function openRegistrationPage() {
+    public function render() {
         return view('web.pages.registration');
     }
 
@@ -40,7 +40,7 @@ class UserController extends Controller
 
         if (Auth::attempt( ['email' => $user->email, 'password' => $request->first_password] )) {
             $request->session()->regenerate();
-            return redirect('/checkout'); // '/checkout' must be replaced
+            return redirect('/');
         }
 
         return back()->withErrors([

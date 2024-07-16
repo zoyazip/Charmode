@@ -2,7 +2,7 @@
     display: none;
 }
 
-.color-input[type="radio"]:checked + .color {
+.color-input[type="radio"]:checked+.color {
     box-shadow: 0px 0px 0px 2px #204012;
 }
 
@@ -30,6 +30,15 @@
     width: 24px;
     height: 24px;
 }
+
+.close__arrow {
+    transform: rotate(180deg);
+}
+
+.open__arrow {
+    transform: rotate(0deg);
+}
+
 .filter__reset {
     color: var(--green);
     text-decoration: underline;
@@ -38,6 +47,7 @@
     margin-left: auto;
     cursor: pointer;
 }
+
 .filter__main {
     margin-top: 2%;
     display: flex;
@@ -61,6 +71,7 @@
 .filter__option-input.error {
     border-color: red;
 }
+
 /* errors */
 
 .register__error-tooltip {
@@ -221,7 +232,11 @@
 }
 
 /* Is available */
-
+.filter__option__checkbox {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}
 .checkbox-container {
     display: flex;
     flex-wrap: wrap;
@@ -254,26 +269,17 @@
 
 .styled-checkbox:checked {
     border-color: var(--green);
-    /* Change border color when checked */
+    background-color: var(--green);
+    /* Change background color when checked */
 }
 
 .styled-checkbox:checked::after {
-    content: "";
+    content: "✔";
     position: absolute;
-    width: 27px;
-    height: 27px;
-    border-radius: 3px;
-    border: 1px solid black; /* Outer border color */
-    box-sizing: border-box; /* Include border in the element's total width and height */
-}
-.styled-checkbox:checked::before {
-    content: "";
-    position: absolute;
-    width: 27px;
-    height: 27px;
-    border-radius: 3px;
-    border: 4px solid var(--green); /* Outer border color */
-    box-sizing: border-box; /* Include border in the element's total width and height */
+    color: white;
+    /* Color of the checkmark */
+    font-size: 18px;
+    /* Size of the checkmark */
 }
 
 /* Reset button */
@@ -304,8 +310,10 @@
     border-radius: 7px;
     cursor: pointer;
     transition: background-color 0.3s;
-    text-align: center; /* Center the text inside the div */
-    user-select: none; /* Prevent text selection on double click */
+    text-align: center;
+    /* Center the text inside the div */
+    user-select: none;
+    /* Prevent text selection on double click */
     margin: 10px 0;
 }
 
@@ -365,7 +373,7 @@
 
 .noUi-horizontal .noUi-handle {
     top: -6px;
-    left: 100%;
+    left: calc(100% - 10px);
     /* Adjust handle position */
 }
 
@@ -373,43 +381,75 @@
     box-shadow: 0 0 5px #4caf50;
     /* Green shadow on focus for accessibility */
 }
+
 @media screen and (max-width: 1000px) {
     .filter {
         width: 100%;
     }
+
     .filter__main {
-        width: 50%;
-        height: 200px;
+        width: 90%;
+        height: 350px;
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
     }
+
+    .filter__container-option {
+        width: 30%;
+    }
 }
+
+@media screen and (max-width: 768px) {
+    .filter__main {
+        width: 100%;
+    }
+
+    .filter__reset {
+        margin-right: 0;
+    }
+    .filter__main {
+        margin-top: 0;
+        margin-left: 0;
+    }
+}
+
 @media screen and (max-width: 550px) {
     .filter {
         width: 100%;
     }
+
     .filter__main {
         display: flex;
         height: auto;
-        width: 90%;
         /* flex-direction: row; */
         flex-wrap: nowrap;
     }
-}
 
+    .filter__container-option {
+        width: 100%;
+    }
+}
 
 /* PLP filter colors */
 .color-input {
-        display: none;
-    }
+    display: none;
+}
 
-.color-input[type="checkbox"]:checked + .color::after {
-    content: '';
+.color-input[type="checkbox"]:checked+.color::after {
+    content: "";
     width: 100%;
     height: 100%;
     border-radius: 100%;
     outline: 1px solid black;
     outline-offset: 2px;
     position: absolute;
+}
+
+.hidden__div {
+    display: none;
+}
+
+.visible__div {
+    display: visible;
 }

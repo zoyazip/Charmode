@@ -1,3 +1,8 @@
+@php
+    $items = 33;
+@endphp
+
+
 <div class="inner-container">
     <div class="navbar">
         <div class="navbar__top">
@@ -10,9 +15,11 @@
                     <span class="navbar__burger-line3 navbar__burger-line"></span>
                 </div>
             </div>
+
             <a href="/">
                 <img class="navbar__logo" src="{{ URL::asset('assets/svg/logo.svg') }}" alt="Logo" />
             </a>
+            
             <div class="navbar__search-container">
                 <input class="navbar__search-text" type="text" placeholder="Find your cheapest luxury brand..." />
                 <img class="navbar__search-icon" src="{{ URL::asset('assets/svg/search-icon.svg') }}" alt="Search" />
@@ -37,7 +44,7 @@
 
                         <a class="navbar__auth-option cart" href="cart">
                             <img src="{{ URL::asset('assets/svg/shopping-basket.svg') }}" alt="Cart" />
-                            Cart
+                            Cart ({{ $items }})
                         </a>
                         <a class="navbar__auth-option" href="wishlist">
                             <img src="{{ URL::asset('assets/svg/heart.svg') }}" alt="heart">
@@ -62,42 +69,29 @@
                 @endauth
             </div>
         </div>
-        <div class="navbar__links">
-            <a href="1" class="navbar__link-container">Living room</a>
-            <a href="2" class="navbar__link-container">Bathroom</a>
-            <a href="3" class="navbar__link-container">Kitchen</a>
-            <a href="4" class="navbar__link-container">Bedroom</a>
-            <a href="5" class="navbar__link-container">Foyer</a>
-            <a href="1" class="navbar__link-container">Living room</a>
-            <a href="2" class="navbar__link-container">Bathroom</a>
-            <a href="3" class="navbar__link-container">Kitchen</a>
-            <a href="4" class="navbar__link-container">Bedroom</a>
-            <a href="5" class="navbar__link-container">Foyer</a>
-            <a href="1" class="navbar__link-container">Living room</a>
-            <a href="2" class="navbar__link-container">Bathroom</a>
-            <a href="3" class="navbar__link-container">Kitchen</a>
-            <a href="4" class="navbar__link-container">Bedroom</a>
-            <a href="5" class="navbar__link-container">Foyer</a>
-        </div>
+
+        <ul class="navbar__links">
+            @foreach ($categories as $category)
+                <li class="navbar__link-container">{{ $category->name }}</li>
+            @endforeach
+        </ul>
+
         <div class="navbar__links-mobile">
-            <div class="navbar__links-mobile__categories">
-                <a href="1" class="navbar__link-container">Living room</a>
-                <a href="2" class="navbar__link-container">Bathroom</a>
-                <a href="3" class="navbar__link-container">Kitchen</a>
-                <a href="4" class="navbar__link-container">Bedroom</a>
-                <a href="5" class="navbar__link-container">Foyer</a>
-            </div>
-            <div class="navbar__links-mobile__subcategories">
-                <a href="1" class="navbar__link-container">Tables</a>
-                <a href="2" class="navbar__link-container">Chairs</a>
-                <a href="3" class="navbar__link-container">Beds</a>
-                <a href="4" class="navbar__link-container">Waredrobes</a>
-            </div>
+            <ul class="navbar__links-mobile__categories">
+                @foreach ($categories as $index => $category)
+                    <li class="navbar__link-container">{{ $category->name }} <span id>+</span></li>
+
+                    <div class="navbar__links-mobile__subcategories">
+                        @if ($category->subcategories && $category->subcategories->isNotEmpty())
+                            @foreach ($category->subcategories as $subcategory)
+                                <a href="" class="navbar__link-container">{{ $subcategory->name }}</a>
+                            @endforeach
+                        @endif
+                    </div>
+                @endforeach
+            </ul>
         </div>
-        {{-- <!-- Commented out dynamic category links -->
-			<!-- @foreach ($categories as $category)
-				<div class="navbar__link-container"><a href="#{{ strtolower($category->category) }}">{{ $category->category }}</a></div>
-			@endforeach --> --}}
+
     </div>
     <div class="navbar__bottom-search">
         <input class="navbar__search-text" type="text" placeholder="Find your luxury brand..." />
@@ -113,6 +107,11 @@
     <script src="{{ URL::asset('js/header/login.js') }}"></script>
 @endpush
 
+@push('scripts')
+    <script>
+        const 
+    </script>
+@endpush
 
 @auth
     @push('scripts')
