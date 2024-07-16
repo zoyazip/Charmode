@@ -27,7 +27,7 @@
                 $colors,
                 $product_code,
                 $rating,
-                $comments_count
+                $comments_count,
             ) {
                 $this->id = $id;
                 $this->title = $title;
@@ -43,61 +43,56 @@
                 $this->comments_count = $comments_count;
             }
         }
-    };
+    }
 
-$product1 = new ProductTmp(
-    1,
-    'Krēsls Comfivo 204 (Aston 8)',
-    100.0,
-    10,
-    110.0,
-    false,
-    false,
-    [
-        'assets/chair-placeholder.png',
-        'assets/chair-placeholder.png',
-        'assets/chair-placeholder.png',
-        'assets/chair-placeholder.png',
-        'assets/chair-placeholder.png',
-        'assets/chair-placeholder.png',
-        'assets/chair-placeholder.png',
-        'assets/chair-placeholder.png',
-        'assets/chair-placeholder.png',
-        'assets/chair-placeholder.png',
-        'assets/chair-placeholder.png',
-        'assets/chair-placeholder.png',
-        'assets/chair-placeholder.png',
-        'assets/chair-placeholder.png',
-        'assets/chair-placeholder.png',
-        'assets/chair-placeholder.png',
-        'assets/chair-placeholder.png',
-        'assets/chair-placeholder.png',
-    ],
-    ['#F64141', '#2F591B', '#4289F4', '#ffffff', '#000000'],
-    '2281488ZV',
-    7.8,
-    27
-);
-
+    $product1 = new ProductTmp(
+        1,
+        'Krēsls Comfivo 204 (Aston 8)',
+        100.0,
+        10,
+        110.0,
+        false,
+        false,
+        [
+            'assets/chair-placeholder.png',
+            'assets/chair-placeholder.png',
+            'assets/chair-placeholder.png',
+            'assets/chair-placeholder.png',
+            'assets/chair-placeholder.png',
+            'assets/chair-placeholder.png',
+            'assets/chair-placeholder.png',
+            'assets/chair-placeholder.png',
+            'assets/chair-placeholder.png',
+            'assets/chair-placeholder.png',
+            'assets/chair-placeholder.png',
+            'assets/chair-placeholder.png',
+            'assets/chair-placeholder.png',
+            'assets/chair-placeholder.png',
+            'assets/chair-placeholder.png',
+            'assets/chair-placeholder.png',
+            'assets/chair-placeholder.png',
+            'assets/chair-placeholder.png',
+        ],
+        ['#F64141', '#2F591B', '#4289F4', '#ffffff', '#000000'],
+        '2281488ZV',
+        7.8,
+        27,
+    );
 @endphp
 
 <div class="filter">
-    <form action="/plp" method="POST">
-        @csrf
+    <form action="{{ route('filter') }}" method="GET">
+
         <div class="filter__header">
             <div class="filter__title">Filters</div>
             <div class="filter__icon">
-                {{-- <img src="assets/svg/filter.svg" alt="" /> --}}
-                <img onclick="changeDataArrow('filter__main', 'filterDataArrow')" id="filterDataArrow"
-                                    class="close__arrow" src="assets/svg/arrow.svg" />
+                <img onclick="changeDataArrow('filter__main', 'filterDataArrow')" id="filterDataArrow" class="close__arrow"
+                    src="assets/svg/arrow.svg" />
             </div>
-            <button form="reset_filter" name="is_reset" form="" class="filter__reset">Reset</button>
+            <a href="{{ route('filter') }}" class="filter__reset">Reset</a>
         </div>
+
         <div class="filter__main hidden__div" id="filter__main">
-            <!-- price -->
-            {{-- <x-bounds option="Price" symbol="€" min="0" max="1000"> --}}
-            {{-- <x-filter-option title="Price" symbol="€" minName="min-price" maxName="max-price"
-            minValue="{{ $data['min_price'] ?? '' }}" maxValue="{{ $data['max_price'] ?? '' }}" /> --}}
             <div class="filter__container-option">
                 <div class="filter__option__title">Price</div>
                 <div class="filter__option">
@@ -107,7 +102,6 @@ $product1 = new ProductTmp(
                             class="filter__option-input @error('min_price') error @enderror "
                             value="{{ old('min_price', $data['min_price'] ?? '') }}" placeholder="Min" />
                         <span class="currency-symbol">€</span>
-
                     </div>
 
                     <span class="dash">-</span>
@@ -127,6 +121,7 @@ $product1 = new ProductTmp(
                     <div id="price-slider"></div>
                 </div>
             </div>
+
             <!-- Width -->
             <div class="filter__container-option">
                 <div class="filter__option__title">Width</div>
@@ -159,7 +154,6 @@ $product1 = new ProductTmp(
             </div>
 
             <!-- Height -->
-
             <div class="filter__container-option">
                 <div class="filter__option__title">Height</div>
                 <div class="filter__option">
@@ -237,7 +231,9 @@ $product1 = new ProductTmp(
                             </div>
                         </label> --}}
                         <label>
-                            <input id={{ $index }} type="checkbox" name='colors[]' class="color-input pl-3" value="{{ $color }}" {{ in_array($color, old('colors', $data['colors'] ?? [])) ? 'checked' : '' }} />
+                            <input id={{ $index }} type="checkbox" name='colors[]' class="color-input pl-3"
+                                value="{{ $color }}"
+                                {{ in_array($color, old('colors', $data['colors'] ?? [])) ? 'checked' : '' }} />
                             <div id={{ $index }} style="background-color: {{ $color }}"
                                 class="color relative w-8 h-8 rounded-full cursor-pointer outline-offset-4 {{ $color === '#ffffff' ? 'border border-black' : '' }}">
                             </div>
@@ -284,20 +280,18 @@ $product1 = new ProductTmp(
                     </div>
                 </div>
             </div>
-
-
         </div>
-        {{-- search --}}
+
+        {{-- submit --}}
         <div class="div-button-container">
             <button id="filter__submit" type="submit" class="div-button">
                 Search
             </button>
         </div>
-    </form>
-    <form method="POST" action="/plp" class="hidden" id="reset_filter">
-        @csrf
+
     </form>
 </div>
+
 @push('scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.5.1/nouislider.min.js"></script>
     <script src="js/filter.js" defer></script>

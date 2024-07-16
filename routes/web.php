@@ -14,6 +14,8 @@ use App\Http\Controllers\Auth\LoginController;
 
 // pages controllers 
 use App\Http\Controllers\Pages\HomeController;
+use App\Http\Controllers\Pages\ProductListPageController;
+
 
 
 /*
@@ -51,9 +53,6 @@ Route::post('/categories/create', [CategoryController::class, 'createProduct']);
 Route::post('/categories/edit/{id}', [CategoryController::class, 'updateProduct']);
 Route::get('/categories/delete/{id}', [CategoryController::class, 'deleteProduct']);
 
-Route::get('/plp', [FilterController::class, 'noInput']);
-
-Route::post('/plp', [FilterController::class, 'testInput']);
 
 Route::get('/checkout', [CheckoutController::class, 'openCheckoutPage']);
 Route::post('/to_checkout', [CheckoutController::class, 'checkInput']);
@@ -81,7 +80,9 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 
 // page routes
-Route::get('/', [HomeController::class, 'render']);
+Route::get('/', [HomeController::class, 'index']);
+Route::get('/filter', [ProductListPageController::class, 'index'])->name('filter');
+
 
 Route::get('/pdp', function () {
     return view('web.pages.pdp');
