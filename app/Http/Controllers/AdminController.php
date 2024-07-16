@@ -11,6 +11,12 @@ use App\Models\SubCategory;
 use App\Models\Specification;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\SubCategoryController;
+use App\Http\Controllers\ColorController;
+
+use App\Http\Controllers\ProductController;
+
 use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
@@ -33,9 +39,9 @@ class AdminController extends Controller
         $categories = Category::all();
         $subCategories = []; //SubCategory::all();
 
-        // session()->put('allCategories', $categories);
-        // session()->put('allSubCategories', $subCategories);
-        // session()->put('allColors', $colors);
+        session()->put('allCategories', $categories);
+        session()->put('allSubCategories', $subCategories);
+        session()->put('allColors', $colors);
 
         return view('web/pages/addproduct');
         // return view('web/pages/addproduct')->with([
@@ -45,77 +51,53 @@ class AdminController extends Controller
         // ]);
     }
 
-    public function createProductColor($color, $productID) {
-        $newProductColor = new ProductColors;
-        $newProductColor->productID = $productID;
-        $newProductColor->colorID = $color;
-        $newProductColor->save();
-    }
+    
 
 
     public function addProduct(Request $request) {
         // validate data
+        $request->validate([
+            'product_code' => 'required|max:255',
+            'name' => 'required|max:255',
+            'oldPrice' => 'required|decimal:0,2',
+            'newPrice' => 'required|decimal:0,2',
+            'discount' => 'required|integer',
+            'stockQuantity' => 'required|integer',
+            'shippingCost' => 'required|decimal:0,2',
+            'description' => 'required|string',
+        ]);
     
         // add category
         $category = $request->category;
         if (!ctype_digit($category)) {
-            // new category
-            $newCategory = new Category;
-            $newCategory->name = $category;
-            $newCategory->save();
-            $category = $newCategory->id;
+            $categoryController = new CategoryController;
+            $category = $categoryController->createCategory($category);
         }
 
         // add subcategory
-        $subcategory = $request->subcategory;
-        if (!ctype_digit($subcategory)) {
-            // new category
-            $newSubCategory = new SubCategory;
-            $newSubCategory->name = $subcategory;
-            $newSubCategory->categoryID = $category;
-            $newSubCategory->save();
-            $subcategory = $newSubCategory->id;
+        $subCategory = $request->subcategory;
+        if (!ctype_digit($subCategory)) {
+            $subCategoryController = new SubCategoryController;
+            $subCategory = $subCategoryController->createSubCategory($subCategory, $category);
         }
 
         // add product
-        $product = new Product;
-        $product->name = $request->name;
-        $product->description = $request->description;
-        $product->subcategoryID = $subcategory;
-        $product->oldPrice = $request->oldPrice;
-        $product->newPrice = $request->newPrice;
-        $product->discount = $request->discount;
-        $product->stockQuantity = $request->stockQuantity;
-        $product->save();
-        $productID = $product->id;
+        $productController = new ProductController;
+        $productID = $productController->createProduct($request, $subCategory);
 
         // add colors and productcolors
         $colors = $request->checked_colors;
         if (isset($colors)) {
-            foreach($colors as $color) {
-                if(!ctype_digit($color)) {
-                    $colorDecoded = json_decode($color);
-                    $newColor = new Color;
-                    $newColor->name = $colorDecoded->name;
-                    $newColor->hex = $colorDecoded->hex;
-                    $newColor->save();
-                    $color = $newColor->id;
-                }
-                $this->createProductColor($color, $productID);
-            }
+            $colorController = new ColorController;
+            $colorController->createProductColors($colors, $productID);
         }
 
         //add specification
         $specKeys = $request->key;
         $specValues = $request->value;
         if (isset($specKeys)) {
-            for ($x = 0; $x < sizeof($specKeys); $x++) {
-                $specification = new Specification;
-                $specification->key = $specKeys[$x];
-                $specification->value = $specValues[$x];
-                $specification->productID = $productID;
-                $specification->save();
-            }
+            $specificationController = new SpecificationController;
+            $specificationController->createSpecification($specKeys, $specValues, $productID);
         }
 
         // add images
@@ -123,32 +105,7 @@ class AdminController extends Controller
         if (isset($images)) {
             $imageController = new ImageController;
             $imageController->storeImages($images, $productID);
-            // foreach($images as $image){
-            //     $disk = Storage::build([
-            //         'driver' => 'local',
-            //         'root' => storage_path().'/images/'.$productID,
-            //     ]);
-            //     $imageName = time().$image->getClientOriginalExtension();
-            //     $disk->put($imageName, $image);
-            //     $newImage = new Image;
-            //     $newImage->url = '/images/'.$productID.'/'.$imageName;
-            //     $newImage->productID = $productID;
-            //     $newImage->save();
-            // }
         }
-
-        // $disk = Storage::build([
-        //     'driver' => 'local',
-        //     'root' => storage_path().'/images',
-        // ]);
-         
-        // $disk->put('image.jpg', $request->image);
-
-                
-
-
-        // redirect
-
     }
 
    
@@ -193,29 +150,7 @@ class AdminController extends Controller
 
      public function editProduct(Request $request) {
         $product = Product::find($request->id);
-        $specifications = DB::table('specifications')->where('productID', $request->id)->get();
-        $images = DB::table('images')->where('productID', $request->id)->get();
-        $subCategoryID = $product->subcategoryID;
-        $subcategory = DB::table('sub_categories')->where('id', $subCategoryID)->first();
-        // dd($subcategory);
-        $categoryId = $subcategory->categoryID;
-        $category = DB::table('categories')->where('id', $categoryId)->first();
-        $productColorIDs = DB::table('product_colors')->where('id', $request->id)->get();
-        $colors = Color::all();
-        $checkedColors = [];
-        foreach($productColorIDs as $productColorID) {
-            foreach($colors as $color) {
-                if ($color->id == $productColorID->colorID) {
-                    array_push($checkedColors, $color);
-                }
-            }
-        }
-        return view('web/pages/editproduct')->with(["product" => $product, 
-        "productSpecifications" => $specifications,
-        "productSubcategory" => $subcategory,
-        "productCategory" => $category,
-        "productCheckedColors" => $checkedColors,
-        "productImages" => $images]);
+        return view('web/pages/editproduct')->with('product', $product);
      }
 
 

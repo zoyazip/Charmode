@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Models\Product;
 
 class Specification extends Model
 {
@@ -12,7 +14,10 @@ class Specification extends Model
     protected $fillable = [
         'key',
         'value',
-        'productID',
+        'product_id',
     ];
 
+    public function product(): BelongsTo {
+        return $this->belongsTo(Product::class, 'product_id');
+    }
 }
