@@ -6,30 +6,32 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\Product;
-
-use Illuminate\Support\Facades\DB;
-
+use App\Models\Review;
 
 
 class ProductDisplayPageController extends Controller
 {
     public function index(Request $request, int $id)
     {
-        $product = Product::with(['images', "specification", "productColors.color", "reviews.user"])->find($id);
-
-        $recomendations = DB::table('products')->where("subcategory_id");
-
-        dd($recomendations);
-
-
-        // dd($product);
-
+        $product = Product::with(['images', "specifications", "productColors.color", "reviews.user"])->find($id);
         // Check if the product exists
         if (!$product) {
             abort(404);
         }
 
-        // Return a view with the product data, or return JSON for an API
-        return view('web.pages.pdp', ["product" => $product]);
+        $reviews = Review::where("product_id", $product->id)->get();
+
+        $rating = 0;
+        if (count($reviews) > 0) {
+            foreach ($reviews as &$value) {
+                $rating += $value->rating;
+            }
+            $rating /= count($reviews);
+        }
+
+        return view('web.pages.pdp', [
+            "product" => $product,
+            "rating" => $rating
+        ]);
     }
 }

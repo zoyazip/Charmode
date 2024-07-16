@@ -8,8 +8,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Models\Color;
 use App\Models\Product;
 
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-
 
 class ProductColor extends Model
 {
