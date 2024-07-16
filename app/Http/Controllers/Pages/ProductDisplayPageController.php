@@ -19,19 +19,32 @@ class ProductDisplayPageController extends Controller
             abort(404);
         }
 
-        $reviews = Review::where("product_id", $product->id)->get();
+        $reviews = Review::where("product_id", $product->id)->paginate(1);
 
+        $currentPage = $reviews->currentPage();
+        $lastPage = $reviews->lastPage();
+        $nextPages = collect(range($currentPage + 1, min($currentPage + 3, $lastPage)))->filter(function($page) use ($lastPage) {
+            return $page <= $lastPage;
+        });
+        $previousPage = $currentPage > 1 ? $currentPage - 1 : null;
+
+        $allReviews = Review::where("product_id", $product->id)->get();
+        
         $rating = 0;
-        if (count($reviews) > 0) {
-            foreach ($reviews as &$value) {
-                $rating += $value->rating;
-            }
-            $rating /= count($reviews);
+        if ($allReviews->count() > 0) {
+            $rating = $allReviews->sum('rating') / $allReviews->count();
         }
+
 
         return view('web.pages.pdp', [
             "product" => $product,
-            "rating" => $rating
+            "rating" => $rating,
+            "reviews" => $reviews,
+
+            // comment pagination
+            'currentPage' => $currentPage,
+            'nextPages' => $nextPages,
+            'previousPage' => $previousPage,
         ]);
     }
 }
