@@ -12,7 +12,7 @@ class CartController extends Controller
 
         $cartWithProducts = DB::table('cart_items')->join('products', 'cart_items.product_id', '=', 'products.id')->where('cart_items.user_id', $userId)->get();
 
-        return view('web.pages.cart')->with('$cartWithProducts', $cartWithProducts);
+        return view('web.pages.cart')->with('cartWithProducts', $cartWithProducts);
     }
 
     public function updateList(){

@@ -18,6 +18,7 @@
         <div class="inner-container">
             @foreach($cartWithProducts as $product)
                 @include('components/cart-item-card')
+                <hr>
             @endforeach
             @include('components/sum-up')
 
