@@ -20,7 +20,7 @@ class ImageController extends Controller
             $disk->put($imageName, $image);
             $newImage = new Image;
             $newImage->url = '/images/'.$productID.'/'.$imageName;
-            $newImage->productID = $productID;
+            $newImage->product_id = $productID;
             $newImage->save();
         }
     }

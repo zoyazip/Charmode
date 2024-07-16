@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
+            $table->string('product_code');
             $table->string('name');
             $table->longText('description');
             $table->unsignedBigInteger('subcategory_id');
