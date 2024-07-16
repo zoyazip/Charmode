@@ -15,4 +15,9 @@ class Specification extends Model
         'productID',
     ];
 
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
+
 }

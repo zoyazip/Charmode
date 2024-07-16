@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('product_id');
             $table->unsignedBigInteger('user_id');
             $table->integer('rating');
-            $table->string('comment');
+            $table->longText('comment');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');

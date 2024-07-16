@@ -29,7 +29,7 @@ class Product extends Model
 
     public function productColors(): HasMany
     {
-        return $this->hasMany(ProductColor::class);
+        return $this->hasMany(ProductColor::class, 'product_id');
     }
 
     public function cartItems(): HasMany

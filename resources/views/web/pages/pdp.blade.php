@@ -93,59 +93,59 @@
         }
     }
 
-    $product1 = new Product(
-        1,
-        'Krēsls Comfivo 204 (Aston 8)',
-        100.0,
-        10,
-        110.0,
-        false,
-        10,
-        [
-            'assets/chair-placeholder.png',
-            'assets/chair-placeholder.png',
-            'assets/chair-placeholder.png',
-            'assets/chair-placeholder.png',
-            'assets/chair-placeholder.png',
-            'assets/chair-placeholder.png',
-            'assets/chair-placeholder.png',
-            'assets/chair-placeholder.png',
-            'assets/chair-placeholder.png',
-            'assets/chair-placeholder.png',
-            'assets/chair-placeholder.png',
-            'assets/chair-placeholder.png',
-            'assets/chair-placeholder.png',
-            'assets/chair-placeholder.png',
-            'assets/chair-placeholder.png',
-            'assets/chair-placeholder.png',
-            'assets/chair-placeholder.png',
-            'assets/chair-placeholder.png',
-        ],
-        ['#F64141', '#2F591B', '#4289F4', '#ffffff', '#000000'],
-        '2281488ZV',
-        7.8,
-        27,
-        10,
-        "Indulge in the epitome of opulence with the Monarch Velvet Armchair, a masterpiece that blends timeless elegance with modern sophistication. Handcrafted from the finest materials, this chair features sumptuous velvet upholstery that invites you to sink into its plush depths. The meticulously carved wooden legs and gracefully curved arms showcase exceptional artistry, making it a stunning focal point in any room. \n\nWhether placed in a grand living area or an intimate reading nook, the Monarch Velvet Armchair promises to elevate your space with its regal charm and unparalleled comfort. Perfect for those who appreciate the finer things in life, this chair is not just a piece of furniture—it's a statement of style and luxury.",
-        [
-            'Category' => 'Chair',
-            'Height' => '229',
-            'Width' => '221',
-            'Depth' => '225',
-            'Material' => 'Wood',
-            'Color' => 'Red',
-            'Weight' => '15kg',
-            'Manufacturer' => 'Furniture Co.',
-            'Category1' => 'Chair',
-            'Height2' => '229',
-            'Width3' => '221',
-            'Depth4' => '225',
-            'Material5' => 'Wood',
-            'Color6' => 'Red',
-            'Weight7' => '15kg',
-            'Manufacturer8' => 'Furniture Co.',
-        ],
-    );
+    // $product1 = new Product(
+    //     1,
+    //     'Krēsls Comfivo 204 (Aston 8)',
+    //     100.0,
+    //     10,
+    //     110.0,
+    //     false,
+    //     10,
+    //     [
+    //         'assets/chair-placeholder.png',
+    //         'assets/chair-placeholder.png',
+    //         'assets/chair-placeholder.png',
+    //         'assets/chair-placeholder.png',
+    //         'assets/chair-placeholder.png',
+    //         'assets/chair-placeholder.png',
+    //         'assets/chair-placeholder.png',
+    //         'assets/chair-placeholder.png',
+    //         'assets/chair-placeholder.png',
+    //         'assets/chair-placeholder.png',
+    //         'assets/chair-placeholder.png',
+    //         'assets/chair-placeholder.png',
+    //         'assets/chair-placeholder.png',
+    //         'assets/chair-placeholder.png',
+    //         'assets/chair-placeholder.png',
+    //         'assets/chair-placeholder.png',
+    //         'assets/chair-placeholder.png',
+    //         'assets/chair-placeholder.png',
+    //     ],
+    //     ['#F64141', '#2F591B', '#4289F4', '#ffffff', '#000000'],
+    //     '2281488ZV',
+    //     7.8,
+    //     27,
+    //     10,
+    //     "Indulge in the epitome of opulence with the Monarch Velvet Armchair, a masterpiece that blends timeless elegance with modern sophistication. Handcrafted from the finest materials, this chair features sumptuous velvet upholstery that invites you to sink into its plush depths. The meticulously carved wooden legs and gracefully curved arms showcase exceptional artistry, making it a stunning focal point in any room. \n\nWhether placed in a grand living area or an intimate reading nook, the Monarch Velvet Armchair promises to elevate your space with its regal charm and unparalleled comfort. Perfect for those who appreciate the finer things in life, this chair is not just a piece of furniture—it's a statement of style and luxury.",
+    //     [
+    //         'Category' => 'Chair',
+    //         'Height' => '229',
+    //         'Width' => '221',
+    //         'Depth' => '225',
+    //         'Material' => 'Wood',
+    //         'Color' => 'Red',
+    //         'Weight' => '15kg',
+    //         'Manufacturer' => 'Furniture Co.',
+    //         'Category1' => 'Chair',
+    //         'Height2' => '229',
+    //         'Width3' => '221',
+    //         'Depth4' => '225',
+    //         'Material5' => 'Wood',
+    //         'Color6' => 'Red',
+    //         'Weight7' => '15kg',
+    //         'Manufacturer8' => 'Furniture Co.',
+    //     ],
+    // );
 
     class Comments
     {
@@ -186,7 +186,7 @@
 @section('content')
     <div class="inner-container">
         <div class="product-main-info-container h-auto w-full md:h-[70vh] flex flex-col md:flex-row gap-8">
-            @include('../../components/PDP-components/pdp-gallery')
+            {{-- @include('../../components/PDP-components/pdp-gallery') --}}
             @include('../../components/PDP-components/pdp-main-info-form')
         </div>
         <div class="pdp-description-container mt-10 md:w-full flex flex-col md:flex-row gap-4">
