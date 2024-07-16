@@ -1,7 +1,4 @@
 @isset($product)
-{{-- @php
-    dd($product);
-@endphp --}}
     <div id='product-{{ $product->id }}'
         style="background-image: url('{{ URL::asset('assets/chair-placeholder.png') }}'); background-position: center;  {{ isset($suggestion) ? 'background-size: cover;' : 'background-size: cover;' }}"
         class="product-card cursor-zoom-in p-4 rounded-2xl overflow-hidden relative transition-all bg-center bg-no-repeat
