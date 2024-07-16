@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\OrderStatus;
+use App\Models\OrderItem;
 
 class Order extends Model
 {
@@ -11,14 +13,20 @@ class Order extends Model
 
     protected $fillable = [
         'userID',
-        'guestID',
+        'totalCost',
         'deliveryCost',
-        'bussinessPaper',
+        'fullName',
+        'city',
+        'address',
         'comment',
         'deliveryMethod',
         'deliveryPlace',
         'paymentMethod',
         'status',
-        'totalSum',
     ];
+
+    public function orderItems(): HasMany
+    {
+        return $this->hasMany(OrderItem::class);
+    }
 }

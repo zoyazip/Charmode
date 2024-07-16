@@ -20,11 +20,12 @@ return new class extends Migration
             $table->double('newPrice');
             $table->integer('discount');
             $table->integer('stockQuantity');
+            $table->integer('shippingCost');
             $table->timestamps();
 
             $table->foreign('subcategoryID')->references('id')->on('sub_categories');
-            // $table->foreign('colorID')->references('id')->on('colors');
-        
+
+            $table->softDeletes('deleted_at', precision: 0);
         });
     }
 

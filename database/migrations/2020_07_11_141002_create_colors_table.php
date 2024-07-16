@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('hex');
             $table->timestamps();
+
+            $table->softDeletes('deleted_at', precision: 0);
         });
     }
 

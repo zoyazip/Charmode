@@ -13,20 +13,23 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('userID')->nullable();
-            $table->unsignedBigInteger('guestID')->nullable();
+            $table->unsignedBigInteger('userID');
+            $table->double('totalCost');
             $table->double('deliveryCost');
-            $table->boolean('bussinessPaper');
+            $table->string('fullName');
+            $table->string('city');
+            $table->string('address');
             $table->string('comment')->nullable();
             $table->string('deliveryMethod');
             $table->string('deliveryPlace');
             $table->string('paymentMethod');
             $table->string('status');
-            $table->double('totalSum');
             $table->timestamps();
 
             $table->foreign('userID')->references('id')->on('users');
-            $table->foreign('guestID')->references('id')->on('guests');
+
+            $table->softDeletes('deleted_at', precision: 0);
+
 
         });
     }
