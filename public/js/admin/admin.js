@@ -109,6 +109,12 @@ function removeSpecification(id) {
     document.getElementById(id).remove();
 }
 
+function removeColor(id1, id2) {
+    document.getElementById(id1).remove();
+    document.getElementById(id2).remove();
+
+}
+
 function colorDiv() {
     const colorDivs = document.getElementsByName('color__div');
     console.log(colorDivs.length);
