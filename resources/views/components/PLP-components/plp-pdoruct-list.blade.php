@@ -9,6 +9,7 @@
 
     <div class="plp-list grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
         @foreach ($products as $product)
+
             @include('components/product-card', ['plp' => true])
             @php
                 $counter++;

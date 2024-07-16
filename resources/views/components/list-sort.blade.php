@@ -9,18 +9,18 @@
     </div>
     <ul
         class="sort-drop-down bg-white border border-main-green mt-2 absolute z-10 right-0 rounded-lg opacity-0 translate-y-10 transition-all overflow-hidden hidden">
-        <form action="">
+        {{-- <form action=""> --}}
             @foreach ($types as $index => $type)
                 <li id="{{ 'sort-' . $index }}"
                     class="{{ $index === 0 ? 'pt-2' : '' }} {{ $index === count($types) - 1 ? 'pb-2' : '' }} py-1 px-6 transition-all hover:bg-main-green hover:text-white">
                     <label for="{{ 'sort-' . $index }}" class="cursor-pointer">
-                        <input id="{{ 'sort-' . $index }}" name="sort" type="radio" class="hidden"
+                        <input form="filter-form" id="{{ 'sort-' . $index }}" name="sort" type="radio" class="hidden"
                             value="{{ $type }}">
                         {{ $type }}
                     </label>
                 </li>
             @endforeach
-        </form>
+        {{-- </form> --}}
     </ul>
 </div>
 
