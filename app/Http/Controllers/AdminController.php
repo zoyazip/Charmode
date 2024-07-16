@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\Color;
 use App\Models\ProductColors;
 use App\Models\Category;
+use App\Models\Image;
 use App\Models\SubCategory;
 use App\Models\Specification;
 use Illuminate\Http\RedirectResponse;

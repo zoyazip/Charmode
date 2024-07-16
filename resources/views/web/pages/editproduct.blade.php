@@ -21,12 +21,11 @@
                @error('product_code')
                     <p class="admin__error">{{ $message }}</p>
                 @enderror
-                <p>{{$product->subCategory->category}}</p>
                 <div class="select__row">
                     <div>
                         <label>Category: </label>
 
-                        <select value="{{$product->subCategory}}" id="categorySelect" class="select__option" name="category">
+                        <select value="{{$product->subCategory->category->id}}" id="categorySelect" class="select__option" name="category">
                             @if (session()->has('allCategories'))
                                 @foreach (session()->get('allCategories') as $category)
                                     <option value={{ $category->id }}>{{ $category->name }}</option>
@@ -40,7 +39,7 @@
                 <div class="select__row">
                     <div>
                         <label>Subcategory: </label>
-                        <select value="{{$product->subcategory_id}}" id="subCategorySelect" class="select__option" name="subcategory">
+                        <select value="{{$product->subCategory->id}}" id="subCategorySelect" class="select__option" name="subcategory">
                         </select>
                     </div>
                     <span class="add__btn" onclick="openPopUpWindow('subCategoryPopUp')">Add new subcategory</span>
@@ -83,10 +82,10 @@
                     <div id="added__fields" class="added__spec__div">
                         @if(isset($product->specifications))
                         @foreach ($product->specifications as $specification)
-                        <div class="spec__div__row" id="{{$specification->id}}">
+                        <div class="spec__div__row" id="spec{{$specification->id}}">
                         <input value="{{$specification->key}}" class="add__input spec__input__row" type="text" name="key[]">
                         <input value="{{$specification->value}}" class="add__input spec__input__row" type="text" name="value[]">
-                        <span onclick="removeSpecification({{$specification->id}})" class="add__btn">Remove</span>
+                        <span onclick="removeSpecification('spec'+{{$specification->id}})" class="add__btn">Remove</span>
                         </div>
                         @endforeach
                         @endif
@@ -114,8 +113,8 @@
                     <div id="new__colors" class="existing__colors">
                         @if(isset($product->productColors))
                         @foreach ($product->productColors as $color)
-                        <div id="{{$color->id}}" style="background-color: {{$color->color->hex}}" class="color__div edit__div"></div>
-                        <input onclick="removeColor({{$color->id}})" value="{{$color->id}}" name="checked_colors[]" type="checkbox" checked>
+                        <div id="color{{$color->id}}" style="background-color: {{$color->color->hex}}" class="color__div edit__div"></div>
+                        <input id="input{{$color->id}}" onclick="removeColor('color'+{{$color->id}}, 'input'+{{$color->id}})" value="{{$color->id}}" name="checked_colors[]" type="checkbox" checked>
                         
                         @endforeach
                         @endif
@@ -134,6 +133,15 @@
                 <input class="add__btn" type="submit" value="Save product">
             </div>
             <div class="add-product__right-div">
+
+                @if(isset($product->images))
+                @foreach ($product->images as $image)
+                    <p>{{$image->url}}</p>
+                    <img src="{{$image->url}}">
+                @endforeach
+                @endif
+
+
                 <input class="image__input" name="image[]" type="file" >
                 <input class="image__input" name="image[]" type="file">
                 <input class="image__input" name="image[]" type="file">
