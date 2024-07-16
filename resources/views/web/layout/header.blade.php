@@ -78,8 +78,8 @@
 
         <div class="navbar__links-mobile">
             <ul class="navbar__links-mobile__categories">
-                @foreach ($categories as $category)
-                    <li class="navbar__link-container">{{ $category->name }}</li>
+                @foreach ($categories as $index => $category)
+                    <li class="navbar__link-container">{{ $category->name }} <span id>+</span></li>
 
                     <div class="navbar__links-mobile__subcategories">
                         @if ($category->subcategories && $category->subcategories->isNotEmpty())
@@ -107,6 +107,11 @@
     <script src="{{ URL::asset('js/header/login.js') }}"></script>
 @endpush
 
+@push('scripts')
+    <script>
+        const 
+    </script>
+@endpush
 
 @auth
     @push('scripts')

@@ -3,7 +3,9 @@
     class="product-card cursor-zoom-in p-4 rounded-2xl overflow-hidden relative transition-all bg-center bg-no-repeat 
             {{ isset($suggestion) ? 'w-full min-h-[400px] md:min-h-[400px] lg:min-h-[300px] xl:min-h-[250px]' : 'min-h-[500px]' }}
             {{ isset($main) ? ($expand ? 'lg:col-span-2 lg:row-span-2' : '') : '' }} 
-            {{ isset($plp) ? 'w-full min-h-[400px] md:min-h-[400px] lg:min-h-[300px] xl:min-h-[250px]' : '' }} ">
+            {{ isset($plp) ? 'w-full min-h-[400px] md:min-h-[400px] lg:min-h-[300px] xl:min-h-[250px]' : '' }} 
+            ">
+            
     <div class="card-data flex flex-col items-start justify-between h-full">
         @include('components/price', [
             'price' => $product->newPrice,
