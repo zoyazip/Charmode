@@ -19,13 +19,13 @@
         <div class="swiper-wrapper">
             <!-- Slides -->
             <div class="swiper-slide">
-                <img src="/assets/chair-placeholder.png" alt="">
+                <img src="/assets/webp/main-slider/Main_1.webp" alt="">
             </div>
             <div class="swiper-slide">
-                <img src="/assets/chair-placeholder.png" alt="">
+                <img src="/assets/webp/main-slider/Main_2.webp" alt="">
             </div>
             <div class="swiper-slide">
-                <img src="/assets/chair-placeholder.png" alt="">
+                <img src="/assets/webp/main-slider/Main_3.webp" alt="">
             </div>
         </div>
         <!-- pagination -->
@@ -50,6 +50,9 @@
 
     <div class="main-grid-container pb-10">
         @include('components/grid-layout')
+    </div>
+    <div class="about-us-container mb-20">
+        @include('components/main-page-about-us')
     </div>
 @endsection
 

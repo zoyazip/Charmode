@@ -10,10 +10,10 @@
                 ])
             @endforeach
         </div>
-        <div class="pagination">
+        <div class="pagination text-2xl flex gap-2 mt-10 justify-center">
             <!-- Display previous page link if it exists -->
             @if ($currentPage > 2)
-                <a href="{{ $products->url(1) }}">1...</a>
+                <a href="{{ $products->url(1) }}" class="" >1...</a>
             @endif
 
             @if ($previousPage)
@@ -21,7 +21,11 @@
             @endif
 
             <!-- Display current page -->
-            <b>{{ $currentPage }}</b>
+            <div class="relative">
+                <b class="text-main-green">{{ $currentPage }}</b>
+                <div class="w-2 h-[2px] bg-main-green absolute bottom-1"></div>
+            </div>
+            
 
             <!-- Display next 3 pages -->
             @foreach ($nextPages as $page)

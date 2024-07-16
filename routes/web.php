@@ -16,6 +16,8 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Pages\HomeController;
 use App\Http\Controllers\Pages\ProductListPageController;
 
+use App\Http\Controllers\Pages\ProductDisplayPageController;
+
 
 
 /*
@@ -83,11 +85,8 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 // page routes
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/filter', [ProductListPageController::class, 'index'])->name('filter');
+Route::get('/product/{id}', [ProductDisplayPageController::class, 'index'])->name('product');
 
-
-Route::get('/pdp', function () {
-    return view('web.pages.pdp');
-});
 
 Route::get('/cart', function () {
     return view('web.pages.cart');

@@ -43,20 +43,19 @@ class ProductController extends Controller
         return $product;
     }
 
-    public function createProduct(Request $request)
-    {
+    public function createProduct($request, $subCategory) {
         $product = new Product;
+        $product->product_code = $request->product_code;
         $product->name = $request->name;
         $product->description = $request->description;
-        $product->category_id = $request->category_id;
-        $product->old_price = $request->old_price;
-        $product->new_price = $request->new_price;
-        $product->stock_quantity = $request->stock_quantity;
-        $product->specifications = $request->specifications;
-        $product->color_id = $request->color_id;
-        $product->delivery_cost = $request->delivery_cost;
+        $product->subcategory_id = $subCategory;
+        $product->oldPrice = $request->oldPrice;
+        $product->newPrice = $request->newPrice;
+        $product->discount = $request->discount;
+        $product->stockQuantity = $request->stockQuantity;
+        $product->shippingCost = $request->shippingCost;
         $product->save();
-        return "Success";
+        return $product->id;
     }
 
     public function updateProduct(Request $request)

@@ -1,0 +1,17 @@
+.checkout-btn{
+    border-radius: 8px;
+    width: 240px;
+    height: 3.3rem;
+    background: var(--green-light);
+    color: var(--text-primary);
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 768px) {
+    .checkout-btn{
+        width: 100%;
+
+    }
+
+}
+

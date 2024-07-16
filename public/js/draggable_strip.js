@@ -87,6 +87,7 @@ class DraggableStrip {
             startX: e.pageX - this.HTMLElement.offsetLeft,
             scrollLeft: this.HTMLElement.scrollLeft
         }
+
     }
 
     // start dragging
