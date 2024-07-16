@@ -10,7 +10,7 @@ class HomeController extends Controller
 {
     public function render()
     {
-        $products = Product::paginate(1);
+        $products = Product::paginate(8);
 
         // Get the total count of products
         $currentPage = $products->currentPage();
