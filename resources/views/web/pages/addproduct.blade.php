@@ -121,12 +121,50 @@
                 <input class="add__btn" type="submit" value="Save product">
             </div>
             <div class="add-product__right-div">
-                <input class="image__input" name="image[]" type="file" >
-                <input class="image__input" name="image[]" type="file">
-                <input class="image__input" name="image[]" type="file">
-                <input class="image__input" name="image[]" type="file">
-                <input class="image__input" name="image[]" type="file">
-                <input class="image__input" name="image[]" type="file">
+                        <div class="edit-images__div">
+                            <img class="img_tag" id="img1" src="">
+                            <input id="img1input" class="image__input" name="image[]" type="file" >
+                        </div>
+                        <div class="edit-images__div">
+                            <img class="img_tag" id="img2" src="">
+                            <input id="img2input" class="image__input" name="image[]" type="file" >
+                        </div>
+                        <div class="edit-images__div">
+                            <img class="img_tag" id="img3" src="">
+                            <input id="img3input" class="image__input" name="image[]" type="file" >
+                        </div>
+                        <div class="edit-images__div">
+                            <img class="img_tag" id="img4" src="">
+                            <input id="img4input" class="image__input" name="image[]" type="file" >
+                        </div>
+                        <div class="edit-images__div">
+                            <img class="img_tag" id="img5" src="">
+                            <input id="img5input" class="image__input" name="image[]" type="file" >
+                        </div>
+                        <div class="edit-images__div">
+                            <img class="img_tag" id="img6" src="">
+                            <input id="img6input" class="image__input" name="image[]" type="file" >
+                        </div>
+                <!-- <div class="img__div">
+                    <span onclick="showPreviousImage()" class="image__btn">&lt;</span>
+                    <img class="big__image" id="bigImage" >
+                    <span onclick="showNextImage()" class="image__btn">&gt;</span>
+                </div> -->
+                <!-- <div class="little__img">
+                    <img class="img_tag" id="img1" src="">
+                    <img class="img_tag" id="img2" src="">
+                    <img class="img_tag" id="img3" src="">
+                    <img class="img_tag" id="img4" src="">
+                    <img class="img_tag" id="img5" src="">
+                    <img class="img_tag" id="img6" src="">
+                </div>
+
+                <input id="img1input" class="image__input" name="image[]" type="file" >
+                <input id="img2input" class="image__input" name="image[]" type="file">
+                <input id="img3input" class="image__input" name="image[]" type="file">
+                <input id="img4input" class="image__input" name="image[]" type="file">
+                <input id="img5input" class="image__input" name="image[]" type="file">
+                <input id="img6input" class="image__input" name="image[]" type="file"> -->
             </div>
         </form>
         <div id="categoryPopUp" class="category__pop-up hide__pop__up__window">

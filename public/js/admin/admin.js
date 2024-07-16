@@ -237,5 +237,51 @@ document.getElementById('categorySelect').addEventListener("change", function() 
     })
 });
 
+// document.getElementById('img1input').onchange = function (evt) {
+//     var tgt = evt.target || window.event.srcElement,
+//         files = tgt.files;
+    
+//     if (FileReader && files && files.length) {
+//         var fr = new FileReader();
+//         fr.onload = function () {
+//             document.getElementById('img1').src = fr.result;
+//         }
+//         fr.readAsDataURL(files[0]);
+//     }
+// }
+
+function showImage(img, input) {
+    document.getElementById(input).onchange = function (x) {
+        var target = x.target || window.event.srcElement,
+        files = target.files;
+
+        if (FileReader && files && files.length) {
+            var fr = new FileReader();
+            fr.onload = function () {
+                document.getElementById(img).src = fr.result;
+                
+            }
+            fr.readAsDataURL(files[0]);
+        }
+    }
+}
+
+showImage('img1','img1input');
+showImage('img2','img2input');
+showImage('img3','img3input');
+showImage('img4','img4input');
+showImage('img5','img5input');
+showImage('img6','img6input');
+
+function showPreviousImage() {
+    console.log('prev');
+    const bigImage = document.getElementById("bigImage");
+}
+
+function showNextImage() {
+    console.log('next');
+    const bigImage = document.getElementById("bigImage");
+}
+
 
 

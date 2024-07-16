@@ -134,20 +134,36 @@
             </div>
             <div class="add-product__right-div">
 
-                @if(isset($product->images))
-                @foreach ($product->images as $image)
-                    <p>{{$image->url}}</p>
-                    <img src="{{$image->url}}">
-                @endforeach
-                @endif
+            @for ($i = 0; $i < 6; $i++)
+                        <div class="edit-images__div">
+                            @if(isset($product->images[$i]))
+                            <img class="img_tag" src="{{$product->images[$i]->url}}">
+                            <input value="{{$product->images[$i]->url}}" class="image__input" name="image[]" type="file" >
+                            @else
+                            <img class="img_tag">
+                            <input class="image__input" name="image[]" type="file" >
+                            @endif
+                        </div>
+            @endfor
+                        
 
+                <!-- <p class="add-product__p">New images:</p>
+                <div class="little__img">
+                    <img class="img_tag" id="img1" src="">
+                    <img class="img_tag" id="img2" src="">
+                    <img class="img_tag" id="img3" src="">
+                    <img class="img_tag" id="img4" src="">
+                    <img class="img_tag" id="img5" src="">
+                    <img class="img_tag" id="img6" src="">
+                </div>
 
-                <input class="image__input" name="image[]" type="file" >
-                <input class="image__input" name="image[]" type="file">
-                <input class="image__input" name="image[]" type="file">
-                <input class="image__input" name="image[]" type="file">
-                <input class="image__input" name="image[]" type="file">
-                <input class="image__input" name="image[]" type="file">
+                <input id="img1input" class="image__input" name="image[]" type="file" >
+                <input id="img2input" class="image__input" name="image[]" type="file">
+                <input id="img3input" class="image__input" name="image[]" type="file">
+                <input id="img4input" class="image__input" name="image[]" type="file">
+                <input id="img5input" class="image__input" name="image[]" type="file">
+                <input id="img6input" class="image__input" name="image[]" type="file"> -->
+
             </div>
         </form>
         <div id="categoryPopUp" class="category__pop-up hide__pop__up__window">
