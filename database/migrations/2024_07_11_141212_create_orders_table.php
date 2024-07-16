@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('userID');
+            $table->unsignedBigInteger('user_id');
             $table->double('totalCost');
             $table->double('deliveryCost');
             $table->string('fullName');
@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('status');
             $table->timestamps();
 
-            $table->foreign('userID')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users');
 
             $table->softDeletes('deleted_at', precision: 0);
 

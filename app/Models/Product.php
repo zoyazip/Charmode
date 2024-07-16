@@ -10,6 +10,7 @@ use App\Models\Image;
 use App\Models\Review;
 use App\Models\Specification;
 use App\Models\OrderItem;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Product extends Model
 {

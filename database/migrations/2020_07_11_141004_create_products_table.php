@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->longText('description');
-            $table->unsignedBigInteger('subcategoryID');
+            $table->unsignedBigInteger('subcategory_id');
             $table->double('oldPrice');
             $table->double('newPrice');
             $table->integer('discount');
@@ -23,7 +23,7 @@ return new class extends Migration
             $table->integer('shippingCost');
             $table->timestamps();
 
-            $table->foreign('subcategoryID')->references('id')->on('sub_categories');
+            $table->foreign('subcategory_id')->references('id')->on('sub_categories');
 
             $table->softDeletes('deleted_at', precision: 0);
         });
