@@ -51,6 +51,9 @@
     <div class="main-grid-container pb-10">
         @include('components/grid-layout')
     </div>
+    <div class="about-us-container mb-20">
+        @include('components/main-page-about-us')
+    </div>
 @endsection
 
 @push('scripts')
