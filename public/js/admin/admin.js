@@ -152,16 +152,25 @@ colorDiv();
 
 // function loadSubCategory() {
     const subcategoryDiv = document.getElementById('subCategorySelect');
+    const catValue = document.getElementById('categorySelect').value;
+    // console.log(catValue);
+    // const subValue = document.getElementById('subDiv').value;
+    // console.log(subValue);
+    // console.log(document.getElementById('subCategorySelect').value);
     var options = document.getElementById('categorySelect').querySelectorAll("option");
-    console.log(document.getElementById('categorySelect').value);
+    // console.log(document.getElementById('categorySelect').value);
     $.get('/subcategories',function(data, status){
         data.forEach(subcategory => {
-            if (subcategory['categoryID'] == 1) {
+            if (subcategory['categoryID'] == catValue) {
                 const newOption = subcategory['name'];
                 let option = document.createElement('option');
                 option.value = subcategory['id'];
                 option.name = subcategory['id'];
                 option.innerHTML = newOption;
+                // if (subValue == subcategory['id']) {
+                //     console.log("here");
+                //     option.selected = true;
+                // }
                 subcategoryDiv.appendChild(option);
             }
         });

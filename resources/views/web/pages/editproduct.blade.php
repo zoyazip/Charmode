@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', 'Add product page')
+@section('title', 'Edit product page')
 
 @push('styles')
     <link rel="stylesheet" href="{{ URL::asset('css/admin/admin.css') }}" />
@@ -17,10 +17,10 @@
                 <div class="select__row">
                     <div>
                         <label>Category: </label>
-                        <select value="1" id="categorySelect" class="select__option" name="category">
+                        <select value="{{$productCategory->id}}" id="categorySelect" class="select__option" name="category">
                             @if(session()->has('allCategories'))
                                 @foreach(session()->get('allCategories') as $category)
-                                    <option value={{$category->id}}>{{$category->name}}</option>
+                                    <option <?php if($category->id === $productCategory->id) echo "selected"?> value={{$category->id}}>{{$category->name}}</option>
                                 @endforeach
                             @endif
                         </select>
@@ -41,10 +41,10 @@
                     <span class="add__btn" onclick="openPopUpWindow('subCategoryPopUp')">Add new subcategory</span>
                 </div>
                 <div class="row__input">
-                    <input placeholder="Old price*" class="add__input input__row" name="oldPrice">
-                    <input placeholder="New price*" class="add__input input__row" name="newPrice">
-                    <input placeholder="Discount*" class="add__input input__row" name="discount">
-                    <input  placeholder="Stock quantity*" class="add__input input__row" name="stockQuantity">
+                    <input value="{{$product->oldPrice}}" placeholder="Old price*" class="add__input input__row" name="oldPrice">
+                    <input value="{{$product->newPrice}}" placeholder="New price*" class="add__input input__row" name="newPrice">
+                    <input value="{{$product->discount}}" placeholder="Discount*" class="add__input input__row" name="discount">
+                    <input value="{{$product->stockQuantity}}" placeholder="Stock quantity*" class="add__input input__row" name="stockQuantity">
                 </div>
            
                 <p class="add-product__p">Add additional fields:</p>

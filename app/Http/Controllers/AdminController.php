@@ -5,13 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Color;
-use App\Models\Image;
 use App\Models\ProductColors;
 use App\Models\Category;
 use App\Models\SubCategory;
 use App\Models\Specification;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\ImageController;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -121,18 +121,20 @@ class AdminController extends Controller
         // add images
         $images = $request->image;
         if (isset($images)) {
-            foreach($images as $image){
-                $disk = Storage::build([
-                    'driver' => 'local',
-                    'root' => storage_path().'/images/'.$productID,
-                ]);
-                $imageName = time().$image->getClientOriginalExtension();
-                $disk->put($imageName, $image);
-                $newImage = new Image;
-                $newImage->url = '/images/'.$productID.'/'.$imageName;
-                $newImage->productID = $productID;
-                $newImage->save();
-            }
+            $imageController = new ImageController;
+            $imageController->storeImages($images, $productID);
+            // foreach($images as $image){
+            //     $disk = Storage::build([
+            //         'driver' => 'local',
+            //         'root' => storage_path().'/images/'.$productID,
+            //     ]);
+            //     $imageName = time().$image->getClientOriginalExtension();
+            //     $disk->put($imageName, $image);
+            //     $newImage = new Image;
+            //     $newImage->url = '/images/'.$productID.'/'.$imageName;
+            //     $newImage->productID = $productID;
+            //     $newImage->save();
+            // }
         }
 
         // $disk = Storage::build([
@@ -187,6 +189,33 @@ class AdminController extends Controller
      public function getImages() {
         $images = Image::all();
         return $images;
+     }
+
+     public function editProduct(Request $request) {
+        $product = Product::find($request->id);
+        $specifications = DB::table('specifications')->where('productID', $request->id)->get();
+        $images = DB::table('images')->where('productID', $request->id)->get();
+        $subCategoryID = $product->subcategoryID;
+        $subcategory = DB::table('sub_categories')->where('id', $subCategoryID)->first();
+        // dd($subcategory);
+        $categoryId = $subcategory->categoryID;
+        $category = DB::table('categories')->where('id', $categoryId)->first();
+        $productColorIDs = DB::table('product_colors')->where('id', $request->id)->get();
+        $colors = Color::all();
+        $checkedColors = [];
+        foreach($productColorIDs as $productColorID) {
+            foreach($colors as $color) {
+                if ($color->id == $productColorID->colorID) {
+                    array_push($checkedColors, $color);
+                }
+            }
+        }
+        return view('web/pages/editproduct')->with(["product" => $product, 
+        "productSpecifications" => $specifications,
+        "productSubcategory" => $subcategory,
+        "productCategory" => $category,
+        "productCheckedColors" => $checkedColors,
+        "productImages" => $images]);
      }
 
 

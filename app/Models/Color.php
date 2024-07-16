@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\ProductColor;
 
 class Color extends Model
 {
@@ -13,4 +14,9 @@ class Color extends Model
         'name',
         'hex',
     ];
+
+    public function productColors(): HasMany
+    {
+        return $this->hasMany(ProductColor::class);
+    }
 }

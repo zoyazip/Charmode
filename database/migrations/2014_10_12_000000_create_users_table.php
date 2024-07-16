@@ -22,6 +22,8 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+
+            $table->softDeletes('deleted_at', precision: 0);
         });
     }
 
