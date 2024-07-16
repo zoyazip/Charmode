@@ -18,6 +18,6 @@ class Color extends Model
 
     public function productColors(): HasMany
     {
-        return $this->hasMany(ProductColor::class);
+        return $this->hasMany(ProductColor::class, 'color_id'); // 'colorID' should match the foreign key in product_colors table
     }
 }
