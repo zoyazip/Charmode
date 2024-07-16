@@ -6,12 +6,12 @@
 {{--  vieninieka vietā pie id tagiem pēc - jāraksta unikālais id  --}}
     <div class="item-wrapper__right">
         <div class="item-wrapper__right-left">
-            <p class="item-wrapper__product-name">Lorem ipsum dolor sit.</p>
-            <p class="item-wrapper__amount-price">1 x 366€</p>
+            <p class="item-wrapper__product-name">{{$product->name}}</p>
+            <p class="item-wrapper__amount-price">{{$product->quantity}} x {{$product->newPrice}}€</p>
             <div class="item-wrapper__color-row">
                 <span class="item-wrapper__red-color"></span>
             </div>
-            <p class="item-wrapper__free-delivery">Free delivery</p>
+            <p class="item-wrapper__free-delivery">{{$product->shippingCost}}</p>
         </div>
         <div class="item-wrapper__right-right">
             <p class="item-wrapper__end-price">366€</p>
