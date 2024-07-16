@@ -20,7 +20,7 @@ return new class extends Migration
             $table->double('newPrice');
             $table->integer('discount');
             $table->integer('stockQuantity');
-            $table->integer('shippingCost');
+            $table->double('shippingCost');
             $table->timestamps();
 
             $table->foreign('subcategory_id')->references('id')->on('sub_categories');

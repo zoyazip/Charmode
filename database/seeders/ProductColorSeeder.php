@@ -19,52 +19,52 @@ class ProductColorSeeder extends Seeder
 
         $ProductColors = [
             [
-                "productID" => "1",
-                "colorID" => "1",
+                "product_id" => "1",
+                "color_id" => "1",
             ],
             [
-                "productID" => "2",
-                "colorID" => "2",
+                "product_id" => "2",
+                "color_id" => "2",
             ],
             [
-                "productID" => "2",
-                "colorID" => "3",
+                "product_id" => "2",
+                "color_id" => "3",
             ],
             [
-                "productID" => "2",
-                "colorID" => "4",
+                "product_id" => "2",
+                "color_id" => "4",
             ],
             [
-                "productID" => "3",
-                "colorID" => "1",
+                "product_id" => "3",
+                "color_id" => "1",
             ],
             [
-                "productID" => "4",
-                "colorID" => "1",
+                "product_id" => "4",
+                "color_id" => "1",
             ],
             [
-                "productID" => "4",
-                "colorID" => "1",
+                "product_id" => "4",
+                "color_id" => "1",
             ],
             [
-                "productID" => "5",
-                "colorID" => "1",
+                "product_id" => "5",
+                "color_id" => "1",
             ],
             [
-                "productID" => "6",
-                "colorID" => "1",
+                "product_id" => "6",
+                "color_id" => "1",
             ],
             [
-                "productID" => "7",
-                "colorID" => "1",
+                "product_id" => "7",
+                "color_id" => "1",
             ],
             [
-                "productID" => "8",
-                "colorID" => "1",
+                "product_id" => "8",
+                "color_id" => "1",
             ],
             [
-                "productID" => "8",
-                "colorID" => "5",
+                "product_id" => "8",
+                "color_id" => "5",
             ],
         ];
 
