@@ -1,4 +1,4 @@
-@php
+{{-- @php
     if (!class_exists('ProductTmp')) {
         class ProductTmp
         {
@@ -78,7 +78,7 @@
         7.8,
         27,
     );
-@endphp
+@endphp --}}
 
 <div class="filter">
     <form action="{{ route('filter') }}" method="GET">
@@ -220,7 +220,8 @@
             <div class="filter__container-option">
                 <div class="filter__option__title">Color</div>
                 <div class="color-container flex gap-4">
-                    @foreach ($product1->colors as $index => $color)
+
+                    @foreach ($colors as $index => $color)
                         {{-- <label>
                             <div class="checkbox-wrapper">
                                 <label>
@@ -232,9 +233,9 @@
                         </label> --}}
                         <label>
                             <input id={{ $index }} type="checkbox" name='colors[]' class="color-input pl-3"
-                                value="{{ $color }}"
+                                value="{{ $color->hex }}"
                                 {{ in_array($color, old('colors', $data['colors'] ?? [])) ? 'checked' : '' }} />
-                            <div id={{ $index }} style="background-color: {{ $color }}"
+                            <div id={{ $index }} style="background-color: {{ $color->hex }}"
                                 class="color relative w-8 h-8 rounded-full cursor-pointer outline-offset-4 {{ $color === '#ffffff' ? 'border border-black' : '' }}">
                             </div>
                         </label>
