@@ -18,12 +18,11 @@ class CategoryController extends Controller
         return $category;
     }
 
-    public function createCategory(Request $request) {
+    public function createCategory($name) {
         $category = new Category;
-        $category->name = $request->name;
-        $category->sub_category = $request->sub_category;
+        $category->name = $name;
         $category->save();
-        return "Success";
+        return $category->id;
     }
 
     public function updateCategory(Request $request) {

@@ -70,17 +70,21 @@ function addSpecification() {
     keyInput.type = "text";
     keyInput.value = newKey;
     keyInput.classList.add('add__input');
+    keyInput.classList.add('spec__input__row');
     keyInput.name = "key[]";
     keyInput.innerHTML = newKey;
     let valueInput = document.createElement('input');
     valueInput.type = "text";
     valueInput.value = newValue;
     valueInput.classList.add('add__input');
+    valueInput.classList.add('spec__input__row');
     valueInput.name = "value[]";
     valueInput.innerHTML = newValue;
     let deleteSpan = document.createElement('span');
     deleteSpan.classList.add('add__btn');
     deleteSpan.innerHTML = "Remove";
+    
+    rowDiv.classList.add('spec__div__row');
 
     rowDiv.appendChild(keyInput);
     rowDiv.appendChild(valueInput);
@@ -99,6 +103,10 @@ function addSpecification() {
     // deleteSpan.id = "deleteSpanId" + specificationCount;
 
     specificationCount = specificationCount + 1;
+}
+
+function removeSpecification(id) {
+    document.getElementById(id).remove();
 }
 
 function colorDiv() {
@@ -147,6 +155,19 @@ function checkColor(color) {
     }
 }
 
+// function colorEditDiv(divc) {
+//     divc.style.backgroundColor = divc.value;
+// }
+// const editColorDivs = document.getElementsByClassName("edit__div");
+// editColorDivs.forEach(function (item) {
+//     item.style.backgroundColor = item.value;
+// });
+
+function onLoadFunction() {
+    comsole.log("onload");
+}
+
+
 
 colorDiv();
 
@@ -161,7 +182,7 @@ colorDiv();
     // console.log(document.getElementById('categorySelect').value);
     $.get('/subcategories',function(data, status){
         data.forEach(subcategory => {
-            if (subcategory['categoryID'] == catValue) {
+            if (subcategory['category_id'] == catValue) {
                 const newOption = subcategory['name'];
                 let option = document.createElement('option');
                 option.value = subcategory['id'];
@@ -193,7 +214,7 @@ document.getElementById('categorySelect').addEventListener("change", function() 
         // console.log(JSON.stringify(data));
         data.forEach(subcategory => {
             // console.log(subcategory['id']);
-            if (subcategory['categoryID'] == selectedCategoryId) {
+            if (subcategory['category_id'] == selectedCategoryId) {
                 const newOption = subcategory['name'];
                 let option = document.createElement('option');
                 option.value = subcategory['id'];
@@ -209,4 +230,6 @@ document.getElementById('categorySelect').addEventListener("change", function() 
         // <% $_SESSION.set('allSubCategories', JSON.stringify(data));
     })
 });
+
+
 

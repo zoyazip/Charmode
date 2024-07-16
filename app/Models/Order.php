@@ -7,13 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\OrderStatus;
 use App\Models\OrderItem;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Models\User;
 
 class Order extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'userID',
+        'user_id',
         'totalCost',
         'deliveryCost',
         'fullName',
@@ -29,5 +31,9 @@ class Order extends Model
     public function orderItems(): HasMany
     {
         return $this->hasMany(OrderItem::class);
+    }
+
+    public function user(): BelongsTo{
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

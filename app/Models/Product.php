@@ -11,21 +11,28 @@ use App\Models\Review;
 use App\Models\Specification;
 use App\Models\OrderItem;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Models\SubCategory;
 
 class Product extends Model
 {
     use HasFactory;
 
     protected $fillable = [
+        'product_code',
         'name',
         'description',
-        'subcategoryID',
+        'subcategory_id',
         'oldPrice',
         'newPrice',
         'discount',
         'stockQuantity',
         'shippingCost',
     ];
+
+    public function subCategory(): BelongsTo {
+        return $this->belongsTo(SubCategory::class, 'subcategory_id');
+    }
 
     public function productColors(): HasMany
     {
@@ -52,7 +59,7 @@ class Product extends Model
         return $this->hasMany(Review::class);
     }
 
-    public function specification(): HasMany
+    public function specifications(): HasMany
     {
         return $this->hasMany(Specification::class);
     }

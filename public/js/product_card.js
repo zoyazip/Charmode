@@ -5,7 +5,7 @@
         '.card__title-container').querySelector('.add-to-cart')
 
     item.addEventListener('mouseenter', function() {
-        item.style.transform = 'rotate(1deg)'
+        item.style.transform = 'rotate(0.5deg)'
     })
     item.addEventListener('mouseleave', function() {
         item.style.transform = 'rotate(0deg)'
