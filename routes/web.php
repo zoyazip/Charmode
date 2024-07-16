@@ -90,5 +90,6 @@ Route::get('/pdp', function () {
 });
 
 Route::get('/cart', function () {
+
     return view('web.pages.cart');
 });
