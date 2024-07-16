@@ -16,9 +16,10 @@
     {{-- removed main container class --}}
     <div class="">
         <div class="inner-container">
-            @include('components/cart-item-card')
+            @foreach($cartWithProducts as $product)
+                @include('components/cart-item-card')
+            @endforeach
             @include('components/sum-up')
-{{--            @include('components/checkout-button')--}}
 
             <div class="middle-wrapper checkout-section">
 

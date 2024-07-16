@@ -15,4 +15,7 @@ class CartItem extends Model
         'colorID',
         'quantity',
     ];
+
+
+
 }
