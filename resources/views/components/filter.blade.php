@@ -1,99 +1,21 @@
-@php
-    if (!class_exists('ProductTmp')) {
-        class ProductTmp
-        {
-            public $id;
-            public $title;
-            public $price;
-            public $discount;
-            public $old_price;
-            public $expand;
-            public $free_delivery;
-            public $img_path;
-            public $colors;
-            public $product_code;
-            public $rating;
-            public $comments_count;
-
-            public function __construct(
-                $id,
-                $title,
-                $price,
-                $discount,
-                $old_price,
-                $expand,
-                $free_delivery,
-                $img_path,
-                $colors,
-                $product_code,
-                $rating,
-                $comments_count,
-            ) {
-                $this->id = $id;
-                $this->title = $title;
-                $this->price = $price;
-                $this->discount = $discount;
-                $this->old_price = $old_price;
-                $this->expand = $expand;
-                $this->free_delivery = $free_delivery;
-                $this->img_path = $img_path;
-                $this->colors = $colors;
-                $this->product_code = $product_code;
-                $this->rating = $rating;
-                $this->comments_count = $comments_count;
-            }
-        }
-    }
-
-    $product1 = new ProductTmp(
-        1,
-        'Krēsls Comfivo 204 (Aston 8)',
-        100.0,
-        10,
-        110.0,
-        false,
-        false,
-        [
-            'assets/chair-placeholder.png',
-            'assets/chair-placeholder.png',
-            'assets/chair-placeholder.png',
-            'assets/chair-placeholder.png',
-            'assets/chair-placeholder.png',
-            'assets/chair-placeholder.png',
-            'assets/chair-placeholder.png',
-            'assets/chair-placeholder.png',
-            'assets/chair-placeholder.png',
-            'assets/chair-placeholder.png',
-            'assets/chair-placeholder.png',
-            'assets/chair-placeholder.png',
-            'assets/chair-placeholder.png',
-            'assets/chair-placeholder.png',
-            'assets/chair-placeholder.png',
-            'assets/chair-placeholder.png',
-            'assets/chair-placeholder.png',
-            'assets/chair-placeholder.png',
-        ],
-        ['#F64141', '#2F591B', '#4289F4', '#ffffff', '#000000'],
-        '2281488ZV',
-        7.8,
-        27,
-    );
-@endphp
-
 <div class="filter">
     <form id="filter-form" action="{{ route('filter') }}" method="GET">
-
+        {{-- hidden fields for sorting --}}
+        <input type="hidden" id="sort-by" name="sort_by" value="{{ old('sort_by', $data['sort_by'] ?? '') }}">
+        <input type="hidden" id="sort-order" name="sort_order" value="{{ old('sort_order', $data['sort_order'] ?? '') }}">
+        {{-- the rest of the filter form --}}
         <div class="filter__header">
             <div class="filter__title">Filters</div>
             <div class="filter__icon">
-                {{-- <img src="assets/svg/filter.svg" alt="" /> --}}
-                <img onclick="changeDataArrow('filter__main', 'filterDataArrow')" id="filterDataArrow"
-                                    class="close__arrow" src="{{ asset('assets/svg/arrow.svg') }}" />
+                <img onclick="toggleElements('filter__main','filter__submit', 'filterDataArrow');"
+                                    id="filterDataArrow"
+                                    class="close__arrow"
+                                    src="{{ asset('assets/svg/arrow.svg') }}" />
             </div>
             <a href="{{ route('filter') }}" class="filter__reset">Reset</a>
         </div>
 
-        <div class="filter__main hidden__div" id="filter__main">
+        <div class="filter__main filter__hidden__div" id="filter__main">
             <div class="filter__container-option">
                 <div class="filter__option__title">Price</div>
                 <div class="filter__option">
@@ -277,7 +199,7 @@
 
         {{-- submit --}}
         <div class="div-button-container">
-            <button id="filter__submit" type="submit" class="div-button">
+            <button id="filter__submit" type="submit" class="div-button filter__hidden__div">
                 Search
             </button>
         </div>
@@ -288,6 +210,5 @@
 @push('scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.5.1/nouislider.min.js"></script>
     <script src="{{ asset('js/filter.js') }}" defer></script>
-    {{-- <script src="js/slider.js" defer></script> --}}
     <script src="{{ URL::asset('js/checkout/checkout.js') }}"></script>
 @endpush

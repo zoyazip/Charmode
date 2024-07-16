@@ -16,149 +16,124 @@ class ProductListPageController extends Controller
 {
     public function index(Request $request)
     {
-        $query = DB::table('products')
-                    ->select('products.*')
-                    ->join('product_colors', 'products.id', '=', 'product_colors.product_id', 'full outer');
+        // $product = Product::first();
+        // dd($product->productColors);
 
+        $products = Product::all();
+
+
+        $filteredProducts = collect();
+        foreach ($products as $product) {
+            if ($request->has('min_price')) {
+                $minPrice = $request->query('min_price');
+                $maxPrice = $request->query('max_price');
+                $thePrice = $product->newPrice;
+                if ($thePrice < $minPrice || $thePrice > $maxPrice) {
+                    continue;
+                }
+            }
+            if ($request->has('is_available') && $product->stockQuantity <= 0) {
+                continue;
+            }
+            if ($request->has('is_discount') && $product->discount <= 0) {
+                continue;
+            }
+            if ($request->has('free_delivery') && $product->shippingCost != 0) {
+                continue;
+            }
+            if ($request->has('min_width')) {
+                $minWidth = $request->query('min_width');
+                $specification = $product->specifications->firstWhere('key', 'width');
+                if (!$specification || $specification->value < $minWidth) {
+                    continue;
+                }
+            }
+            if ($request->has('max_width')) {
+                $maxWidth = $request->query('max_width');
+                $specification = $product->specifications->firstWhere('key', 'width');
+                if (!$specification || $specification->value > $maxWidth) {
+                    continue;
+                }
+            }
+
+            // Height filtering
+            if ($request->has('min_height')) {
+                $minHeight = $request->query('min_height');
+                $specification = $product->specifications->firstWhere('key', 'height');
+                if (!$specification || $specification->value < $minHeight) {
+                    continue;
+                }
+            }
+
+            if ($request->has('max_height')) {
+                $maxHeight = $request->query('max_height');
+                $specification = $product->specifications->firstWhere('key', 'height');
+                if (!$specification || $specification->value > $maxHeight) {
+                    continue;
+                }
+            }
+
+            // Depth filtering
+            if ($request->has('min_depth')) {
+                $minDepth = $request->query('min_depth');
+                $specification = $product->specifications->firstWhere('key', 'depth');
+                if (!$specification || $specification->value < $minDepth) {
+                    continue;
+                }
+            }
+
+            if ($request->has('max_depth')) {
+                $maxDepth = $request->query('max_depth');
+                $specification = $product->specifications->firstWhere('key', 'depth');
+                if (!$specification || $specification->value > $maxDepth) {
+                    continue;
+                }
+            }
+            $selectedColors = $request->query('colors');
+            if(!empty($selectedColors)>0){
+                if ($product->productColors) {
+                    foreach ($product->productColors as $productColor) {
+                        if (in_array($productColor->color_id, $selectedColors)) {
+                            $filteredProducts->push($product);
+                            break;
+                        }
+                    }
+                }
+            } else {
+                $filteredProducts->push($product);
+            }
+        }
+        // dd("output: ",$filteredProducts);
 
 
         $allParams = request()->all();
-        // dd($allParams);
 
-        // search here
+        // Sorting
+        $sortBy = $request->query('sort_by', 'name'); // Default sorting by name
+        $sortOrder = $request->query('sort_order', 'asc'); // Default order ascending
 
-        //pagination??
-
-        //filter by specs
-
-        // Filtering by price range
-        if ($request->has('min_price')) {
-            $query->where('newPrice', '>=', $request->query('min_price'));
+        if ($sortBy === 'price') {
+            $filteredProducts = $filteredProducts->sortBy(function ($product) {
+                return $product->newPrice;
+            }, SORT_REGULAR, $sortOrder === 'desc');
+        } elseif ($sortBy === 'name') {
+            $filteredProducts = $filteredProducts->sortBy(function ($product) {
+                return $product->name;
+            }, SORT_REGULAR, $sortOrder === 'desc');
         }
-        if ($request->has('max_price')) {
-            $query->where('newPrice', '<=', $request->query('max_price'));
-        }
-        // Filter by selected colors
-        if ($request->has('colors')) {
-            $selectedColors = $request->query('colors'); // array of selected color IDs
-            $query->whereIn('product_colors.color_id', $selectedColors);
-        }
-        // Filter by booleans
-        if ($request->has('is_available')) {
-            $query->where('stockQuantity', '>', '0');
-        }
-        if ($request->has('is_discount')) {
-            $query->where('discount', '>', '0');
-        }
-        if ($request->has('free_delivery')) {
-            $query->where('shippingCost', '=', '0');
-        }
-        // Filter by specifications
-        // only the min values work, not the max and i don't know why
-        // if ($request->has('min_width')) {
-        //     $minWidthSubquery = DB::table('products')
-        //         ->join('specifications', 'products.id', '=', 'specifications.product_id')
-        //         ->where('specifications.key', 'width')
-        //         ->where('specifications.value', '>=', $request->query('min_width'))
-        //         ->select('products.id');
-        //         // dd($minWidthSubquery->get());
-        //     $query->whereIn('products.id', $minWidthSubquery);
-        // }
-
-        // if ($request->has('max_width')) {
-        //     $maxWidthSubquery = DB::table('products')
-        //         ->join('specifications', 'products.id', '=', 'specifications.product_id')
-        //         ->where('specifications.key', 'width')
-        //         ->where('specifications.value', '<=', $request->query('max_width'))
-        //         ->select('products.id');
-        //         dd($maxWidthSubquery->get());
-        //     $query->whereIn('products.id', $maxWidthSubquery);
-        // }
-
-        // if ($request->has('min_height')) {
-        //     $minHeightSubquery = DB::table('products')
-        //         ->join('specifications', 'products.id', '=', 'specifications.product_id')
-        //         ->where('specifications.key', 'height')
-        //         ->where('specifications.value', '>=', $request->query('min_height'))
-        //         ->select('products.id');
-        //         // dd($minHeightSubquery->get());
-        //     $query->whereIn('products.id', $minHeightSubquery);
-        // }
-
-        // if ($request->has('max_height')) {
-        //     $maxHeightSubquery = DB::table('products')
-        //         ->join('specifications', 'products.id', '=', 'specifications.product_id')
-        //         ->where('specifications.key', 'height')
-        //         ->where('specifications.value', '<=', $request->query('max_height'))
-        //         ->select('products.id');
-        //         dd($maxHeightSubquery->get());
-        //     $query->whereIn('products.id', $maxHeightSubquery);
-        // }
-
-        // if ($request->has('min_depth')) {
-        //     $minDepthSubquery = DB::table('products')
-        //         ->join('specifications', 'products.id', '=', 'specifications.product_id')
-        //         ->where('specifications.key', 'depth')
-        //         ->where('specifications.value', '>=', $request->query('min_depth'))
-        //         ->select('products.id');
-        //     $query->whereIn('products.id', $minDepthSubquery);
-        // }
-
-        // if ($request->has('max_depth')) {
-        //     $maxDepthSubquery = DB::table('products')
-        //         ->join('specifications', 'products.id', '=', 'specifications.product_id')
-        //         ->where('specifications.key', 'depth')
-        //         ->where('specifications.value', '<=', $request->query('max_depth'))
-        //         ->select('products.id');
-        //     $query->whereIn('products.id', $maxDepthSubquery);
-        // }
-
-
-
-
-        // if ($request->has('min_width')) {
-        //     $query->where('specifications.key', '=', 'width');
-        //     $query->where('specifications.value', '>=', $request->query('min_width'));
-        // }
-        // if ($request->has('max_width')) {
-        //     $query->where('width.value', '<=', $request->query('max_width'));
-        // }
-        // if ($request->has('min_height')) {
-        //     $query->where('height.value', '>=', $request->query('min_height'));
-        // }
-        // if ($request->has('max_height')) {
-        //     $query->where('height.value', '<=', $request->query('max_height'));
-        // }
-        // if ($request->has('min_depth')) {
-        //     $query->where('depth.value', '>=', $request->query('min_depth'));
-        // }
-        // if ($request->has('max_depth')) {
-        //     $query->where('depth.value', '<=', $request->query('max_depth'));
-        // }
-
-        // create a filter by dimensions
-
-        // dd($query);
-        $query->groupBy('products.id');
-        $query->distinct();
-        $products = $query->get();
-        // dd($products);
-
-
-        // sort
-
 
 
         // additional params for filter form
-        $colors = Color::all();
+        $allColors = Color::all();
         // dd($colors);
         $categories = Category::all();
 
         return view('web.pages.plp')->with([
             "data" => $allParams,
-            "products" => $products,
-            "colors" => $colors,
+            "products" => $filteredProducts,
+            "colors" => $allColors,
             "categories" => $categories
         ]);
     }
+
 }
