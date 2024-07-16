@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\RedirectResponse;
 
 use Illuminate\Http\Request;
+use App\Models\Product;
+use App\Models\Color;
+use App\Models\Category;
 
 class FilterController extends Controller
 {
@@ -25,12 +28,16 @@ class FilterController extends Controller
             'free_delivery' => false,
         ]);
 
-        return view('web.pages.plp', compact('data'));
+        $products = Product::all();
+        $colors = Color::all();
+        $categories = Category::all();
+        // dd($products);
+        return view('web.pages.plp')->with(["products" => $products, "data" => $data, "colors" => $colors, "categories" => $categories]);
+        // return view('web.pages.plp', compact('data'));
     }
 
     public function testInput(Request $request) {
         $data = $request->all();
-        // dd($data);
         if(array_key_exists('is_reset', $data)){
             $data = $request->session()->get('filter_data', [
                 'min_price' => null,
@@ -59,7 +66,10 @@ class FilterController extends Controller
                 'colors' => 'nullable|array',
             ]);
         }
-
-        return view('web.pages.plp', compact('data'));
+        $products = Product::all();
+        $colors = Color::all();
+        $categories = Category::all();
+        return view('web.pages.plp')->with(["products" => $products, "data" => $data, "colors" => $colors, "categories" => $categories]);
+        // return view('web.pages.plp', compact('data'));
     }
 }

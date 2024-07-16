@@ -82,14 +82,14 @@ $product1 = new ProductTmp(
 @endphp
 
 <div class="filter">
-    <form action="/plp" method="POST">
+    <form action="{{ url('/plp/filter') }}" method="POST">
         @csrf
         <div class="filter__header">
             <div class="filter__title">Filters</div>
             <div class="filter__icon">
                 {{-- <img src="assets/svg/filter.svg" alt="" /> --}}
                 <img onclick="changeDataArrow('filter__main', 'filterDataArrow')" id="filterDataArrow"
-                                    class="close__arrow" src="assets/svg/arrow.svg" />
+                                    class="close__arrow" src="{{ asset('assets/svg/arrow.svg') }}" />
             </div>
             <button form="reset_filter" name="is_reset" form="" class="filter__reset">Reset</button>
         </div>
@@ -294,13 +294,13 @@ $product1 = new ProductTmp(
             </button>
         </div>
     </form>
-    <form method="POST" action="/plp" class="hidden" id="reset_filter">
+    <form method="POST" action="/plp/filter" class="hidden" id="reset_filter">
         @csrf
     </form>
 </div>
 @push('scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.5.1/nouislider.min.js"></script>
-    <script src="js/filter.js" defer></script>
+    <script src="{{ asset('js/filter.js') }}" defer></script>
     {{-- <script src="js/slider.js" defer></script> --}}
     <script src="{{ URL::asset('js/checkout/checkout.js') }}"></script>
 @endpush

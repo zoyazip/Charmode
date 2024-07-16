@@ -12,7 +12,7 @@ use App\Http\Controllers\AdminController;
 
 use App\Http\Controllers\Auth\LoginController;
 
-// pages controllers 
+// pages controllers
 use App\Http\Controllers\Pages\HomeController;
 
 
@@ -52,8 +52,7 @@ Route::post('/categories/edit/{id}', [CategoryController::class, 'updateProduct'
 Route::get('/categories/delete/{id}', [CategoryController::class, 'deleteProduct']);
 
 Route::get('/plp', [FilterController::class, 'noInput']);
-
-Route::post('/plp', [FilterController::class, 'testInput']);
+Route::post('/plp/filter', [FilterController::class, 'testInput']);
 
 Route::get('/checkout', [CheckoutController::class, 'openCheckoutPage']);
 Route::post('/to_checkout', [CheckoutController::class, 'checkInput']);

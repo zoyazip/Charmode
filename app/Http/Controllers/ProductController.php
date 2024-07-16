@@ -20,7 +20,21 @@ class ProductController extends Controller
         $products = Product::all();
         $colors = Color::all();
         $categories = Category::all();
-        return view('web/pages/plp')->with(["products" => $products, "colors" => $colors, "categories" => $categories]);
+        $data = [
+            'min_price' => null,
+            'max_price' => null,
+            'min_width' => null,
+            'max_width' => null,
+            'min_height' => null,
+            'max_height' => null,
+            'min_depth' => null,
+            'max_depth' => null,
+            'colors' => [],
+            'is_available' => false,
+            'is_discount' => false,
+            'free_delivery' => false,
+        ];
+        return view('web/pages/plp')->with(["products" => $products, "data" => $data, "colors" => $colors, "categories" => $categories]);
     }
 
     public function readProduct(Request $request)

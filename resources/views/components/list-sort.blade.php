@@ -5,7 +5,7 @@
 <div class="sort relative cursor-pointer">
     <div class="sort-title flex gap-2 align-end">
         <p id="sort-current">Sorted by {{ $types[0] }}</p>
-        <img src="assets/svg/sort-icon.svg" />
+        <img src="{{ asset('assets/svg/sort-icon.svg') }}"/>
     </div>
     <ul
         class="sort-drop-down bg-white border border-main-green mt-2 absolute z-10 right-0 rounded-lg opacity-0 translate-y-10 transition-all overflow-hidden hidden">
