@@ -33,9 +33,9 @@ class AdminController extends Controller
         $categories = Category::all();
         $subCategories = []; //SubCategory::all();
 
-        session()->put('allCategories', $categories);
-        session()->put('allSubCategories', $subCategories);
-        session()->put('allColors', $colors);
+        // session()->put('allCategories', $categories);
+        // session()->put('allSubCategories', $subCategories);
+        // session()->put('allColors', $colors);
 
         return view('web/pages/addproduct');
         // return view('web/pages/addproduct')->with([

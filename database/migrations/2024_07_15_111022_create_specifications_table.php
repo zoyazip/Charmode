@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('key');
             $table->string('value');
-            $table->unsignedBigInteger('productID');
+            $table->unsignedBigInteger('product_id');
             $table->timestamps();
 
-            $table->foreign('productID')->references('id')->on('products');
+            $table->foreign('product_id')->references('id')->on('products');
 
         });
 
