@@ -1,3 +1,8 @@
+{{-- @if(isset($products))
+    @php
+    dd($products);
+    @endphp
+@endif --}}
 @push('styles')
     <link href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.5.1/nouislider.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="{{ URL::asset('css/pages/plp/filter.css') }}">
@@ -32,7 +37,10 @@
             @endif --}}
             {{-- @if (isset($data)) --}}
             <div class="plp-product-list-container">
-                @include('../../components/PLP-components/plp-pdoruct-list')
+                @if(isset($products))
+
+                @include('components/PLP-components/plp-pdoruct-list', ["products" => $products])
+                @endif
             </div>
             {{-- @endif --}}
         </div>

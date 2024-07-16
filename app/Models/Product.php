@@ -13,8 +13,8 @@ class Product extends Model
         'name',
         'description',
         'subcategoryID',
-        'oldprice',
-        'newprice',
+        'oldPrice',
+        'newPrice',
         'discount',
         'stockQuantity',
     ];

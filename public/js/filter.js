@@ -8,7 +8,7 @@ const priceSlider = document.getElementById("price-slider");
 console.log("min: ", minPriceInput.value);
 if (maxPriceInput.value == 0) {
     maxPriceInput.value = 1000;
-    submitBtn.click();
+    // submitBtn.click();
 }
 noUiSlider.create(priceSlider, {
     start: [minPriceInput.value, maxPriceInput.value], // Initial values
@@ -53,7 +53,7 @@ const widthSlider = document.getElementById("width-slider");
 console.log("min: ", minWidthInput.value);
 if (maxWidthInput.value == 0) {
     maxWidthInput.value = 1000;
-    submitBtn.click();
+    // submitBtn.click();
 }
 noUiSlider.create(widthSlider, {
     start: [minWidthInput.value, maxWidthInput.value], // Initial values
@@ -98,7 +98,7 @@ const heightSlider = document.getElementById("height-slider");
 console.log("min: ", minHeightInput.value);
 if (maxHeightInput.value == 0) {
     maxHeightInput.value = 1000;
-    submitBtn.click();
+    // submitBtn.click();
 }
 noUiSlider.create(heightSlider, {
     start: [minHeightInput.value, maxHeightInput.value], // Initial values
@@ -143,7 +143,7 @@ const depthSlider = document.getElementById("depth-slider");
 console.log("min: ", minDepthInput.value);
 if (maxDepthInput.value == 0) {
     maxDepthInput.value = 1000;
-    submitBtn.click();
+    // submitBtn.click();
 }
 noUiSlider.create(depthSlider, {
     start: [minDepthInput.value, maxDepthInput.value], // Initial values
