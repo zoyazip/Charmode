@@ -24,15 +24,15 @@ class ProductColorSeeder extends Seeder
                 "color_id" => "1",
             ],
             [
-                "product_id" => "2",
+                "product_id" => "1",
                 "color_id" => "2",
             ],
             [
-                "product_id" => "2",
+                "product_id" => "1",
                 "color_id" => "3",
             ],
             [
-                "product_id" => "2",
+                "product_id" => "1",
                 "color_id" => "4",
             ],
 

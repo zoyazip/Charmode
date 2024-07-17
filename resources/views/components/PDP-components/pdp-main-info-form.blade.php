@@ -27,7 +27,7 @@
                             <input id={{ $index }} type="radio" name='color_id' class="color-input pl-3"
                                 @checked($index == 0 ? true : false) value="{{$color->id}}"/>
                             <div id={{ $index }} style="background-color: {{ $color->color->hex }}"
-                                class="color relative w-8 h-8 rounded-full cursor-pointer outline-offset-2 {{ $color === '#ffffff' ? 'border border-black' : '' }}">
+                                class="color relative w-8 h-8 rounded-full cursor-pointer outline-offset-2 {{ $color->color->hex === '#ffffff' ? 'border border-black' : '' }}">
                             </div>
                         </label>
                     @endforeach
