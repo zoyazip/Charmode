@@ -115,7 +115,7 @@ class CartController extends Controller
 
     public function addOrRemoveItem(Request $request)
     {
-
+    }
 
     public function removeItem(Request $request, $product_id)
     {
@@ -152,6 +152,11 @@ class CartController extends Controller
         } else {
             // cookies
             Cookie::forget('cartitems');
+            $userId = Auth::id();
+            $userId = 1;
+            DB::table('cart_items')->where('user_id', $userId)->delete();
+
+            return Redirect::refresh();
         }
         return redirect()->back();
 /*
@@ -168,16 +173,6 @@ class CartController extends Controller
 
     }
 
-    public function removeAllItems(){
-
-        $userId = Auth::id();
-        $userId = 1;
-        DB::table('cart_items')->where('user_id', $userId)->delete();
-
-        return Redirect::refresh();
-
-
-    }
 
 
 
