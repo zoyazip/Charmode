@@ -1,6 +1,6 @@
 @php
     $items = 33;
-    
+
 @endphp
 
 
@@ -20,13 +20,13 @@
             <a href="/">
                 <img class="navbar__logo" src="{{ URL::asset('assets/svg/logo.svg') }}" alt="Logo" />
             </a>
-            
+
             <div class="navbar__search-container">
                 <input class="navbar__search-text" type="text" placeholder="Find your cheapest luxury brand..." />
                 <img class="navbar__search-icon" src="{{ URL::asset('assets/svg/search-icon.svg') }}" alt="Search" />
             </div>
             <div class="navbar__icons">
-                <a href="cart" class="navbar__cart-icon relative">
+                <a href="{{ url('cart') }}" class="navbar__cart-icon relative">
                     <img src="{{ URL::asset('assets/svg/shopping-basket.svg') }}" alt="Cart" />
                     @include('components/cart-counter-popup')
                 </a>
@@ -74,7 +74,9 @@
             @foreach ($categories as $index => $category)
                 <li id="desktop-nav-{{ $index }}" class="desktop-nav-container navbar__link-container relative">
                     <div class="desktop-nav flex gap-2">
-                        <div><h4 class="md:text-[16px]">{{ $category->name }}</h4></div>
+                        <div>
+                            <h4 class="md:text-[16px]">{{ $category->name }}</h4>
+                        </div>
                         <div class="cat-expand-sign flex flex-col">
                             <h4>
                                 @if ($category->subcategories->isNotEmpty())
@@ -84,32 +86,38 @@
                         </div>
                     </div>
                     <div class="pt-1">
-                        <div class="desktop-subcat absolute left-2 z-[999] hidden flex-col bg-white rounded-xl p-2 {{ $category->subcategories && $category->subcategories->isNotEmpty() ? 'md:bg-white drop-shadow-lg' : ' ' }}">
+                        <div
+                            class="desktop-subcat absolute left-2 z-[999] hidden flex-col bg-white rounded-xl p-2 {{ $category->subcategories && $category->subcategories->isNotEmpty() ? 'md:bg-white drop-shadow-lg' : ' ' }}">
                             @if ($category->subcategories && $category->subcategories->isNotEmpty())
                                 @foreach ($category->subcategories as $subcategory)
-                                    <a href="" class="inline-block hover:bg-main-green hover:text-white px-4 py-2 rounded-xl md:bg-white transition-all">{{ $subcategory->name }}</a>
+                                    <a href=""
+                                        class="inline-block hover:bg-main-green hover:text-white px-4 py-2 rounded-xl md:bg-white transition-all">{{ $subcategory->name }}</a>
                                 @endforeach
                             @endif
                         </div>
                     </div>
-                    
+
                 </li>
             @endforeach
         </ul>
-        
+
         <div class="navbar__links-mobile">
             <ul class="navbar__links-mobile__categories">
                 @foreach ($categories as $index => $category)
                     <div class="nav-category-link flex items-center p-2">
                         <li class="navbar__link-container"><span class="text-xl">{{ $category->name }}</span></li>
-                        <h4 class="nav-dd text-xl">@if ($category->subcategories->isNotEmpty())
-                                    +
-                                @endif</h4>
+                        <h4 class="nav-dd text-xl">
+                            @if ($category->subcategories->isNotEmpty())
+                                +
+                            @endif
+                        </h4>
                     </div>
-                    <div id="sub-category-{{ $index }}" class="navbar__links-mobile__subcategories hidden {{ $category->subcategories && $category->subcategories->isNotEmpty() ? 'py-2' : '' }}">
+                    <div id="sub-category-{{ $index }}"
+                        class="navbar__links-mobile__subcategories hidden {{ $category->subcategories && $category->subcategories->isNotEmpty() ? 'py-2' : '' }}">
                         @if ($category->subcategories && $category->subcategories->isNotEmpty())
                             @foreach ($category->subcategories as $index => $subcategory)
-                                <a href="" class="navbar__link-container text-lg"> -> {{ $subcategory->name }}</a>
+                                <a href="" class="navbar__link-container text-lg"> ->
+                                    {{ $subcategory->name }}</a>
                             @endforeach
                         @endif
                     </div>
@@ -136,7 +144,7 @@
     <script>
         // Mobile
 
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             const categories = document.querySelectorAll('.nav-category-link');
             let currentlyOpenSubcat = null;
             let currentlyOpenNavDD = null;
@@ -181,35 +189,34 @@
         })
 
 
-    // Desktop
-    const desktopNav = document.querySelectorAll('.desktop-nav-container')
+        // Desktop
+        const desktopNav = document.querySelectorAll('.desktop-nav-container')
 
-    desktopNav.forEach((element, idx) => {
-        const subCat = element.querySelector('.desktop-subcat')
+        desktopNav.forEach((element, idx) => {
+            const subCat = element.querySelector('.desktop-subcat')
 
-        let isMouseOverSubcat = false
+            let isMouseOverSubcat = false
 
-        element.addEventListener('mouseover', () => {
-            subCat.classList.remove('hidden')
-        })
+            element.addEventListener('mouseover', () => {
+                subCat.classList.remove('hidden')
+            })
 
-        element.addEventListener('mouseout', () => {
-            if (!isMouseOverSubcat) {
+            element.addEventListener('mouseout', () => {
+                if (!isMouseOverSubcat) {
+                    subCat.classList.add('hidden')
+                }
+            })
+
+            subCat.addEventListener('mouseover', () => {
+                isMouseOverSubcat = true
+                subCat.classList.remove('hidden')
+            })
+
+            subCat.addEventListener('mouseout', () => {
+                isMouseOverSubcat = false
                 subCat.classList.add('hidden')
-            }
+            })
         })
-
-        subCat.addEventListener('mouseover', () => {
-            isMouseOverSubcat = true
-            subCat.classList.remove('hidden')
-        })
-
-        subCat.addEventListener('mouseout', () => {
-            isMouseOverSubcat = false
-            subCat.classList.add('hidden')
-        })
-    })
-
     </script>
 @endpush
 

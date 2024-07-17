@@ -25,6 +25,14 @@ class CartController extends Controller
                 with('productCountSum', $productCountSum);
     }
 
+    public function store(Request $request, $color_id) {
+        if (!$color_id) {
+            return response()->json(['message' => 'color id was not provided'], 400);
+        }
+
+        dd($request);
+    } 
+
     public function updateList(){
 
 
@@ -44,6 +52,4 @@ class CartController extends Controller
     public function setUpForCheckout($id){
 
     }
-
-
 }
