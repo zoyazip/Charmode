@@ -9,7 +9,6 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\FilterController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\ReviewController;
 
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\Auth\LoginController;

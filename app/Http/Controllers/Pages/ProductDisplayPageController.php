@@ -35,11 +35,17 @@ class ProductDisplayPageController extends Controller
         if ($allReviews->count() > 0) {
             $rating = $allReviews->sum('rating') / $allReviews->count();
         }
+        
+        $similar = Product::where('subcategory_id', $product->subcategory_id)->limit(6)->get();
 
         return view('web.pages.pdp', [
-            "product" => $product,
-            "rating" => $rating,
-            "reviews" => $reviews,
+            // main
+            'product' => $product,
+            'rating' => $rating,
+
+            // collections
+            'similar' => $similar,
+            'reviews' => $reviews,
 
             // comment pagination
             'currentPage' => $currentPage,
