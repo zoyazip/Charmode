@@ -30,13 +30,19 @@ class Product extends Model
         'shippingCost',
     ];
 
-    public function subCategory(): BelongsTo {
+    public function subCategory(): BelongsTo
+    {
         return $this->belongsTo(SubCategory::class, 'subcategory_id');
     }
 
     public function productColors(): HasMany
     {
-        return $this->hasMany(ProductColor::class);
+        return $this->hasMany(ProductColor::class, 'product_id');
+    }
+
+    public function specifications(): HasMany
+    {
+        return $this->hasMany(Specification::class, 'product_id');
     }
 
     public function cartItems(): HasMany
@@ -59,8 +65,5 @@ class Product extends Model
         return $this->hasMany(Review::class);
     }
 
-    public function specifications(): HasMany
-    {
-        return $this->hasMany(Specification::class);
-    }
+
 }

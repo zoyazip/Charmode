@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Models\Color;
 use App\Models\Product;
 
+
 class ProductColor extends Model
 {
     use HasFactory;
@@ -16,6 +17,7 @@ class ProductColor extends Model
         'product_id',
         'color_id',
     ];
+
 
     public function color(): BelongsTo {
         return $this->belongsTo(Color::class, 'color_id');

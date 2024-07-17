@@ -18,13 +18,15 @@ class ColorSeeder extends Seeder
         DB::table('colors')->truncate();
 
         $colors = [
-            ['name' => 'red', 'hex' => '#ff0000'],
-            ['name' => 'blue', 'hex' => '#00ff00'],
-            ['name' => 'green', 'hex' => '#0000ff'],
+            ['name' => 'red', 'hex' => '#FF3333'],
+            ['name' => 'blue', 'hex' => '#4870FF'],
+            ['name' => 'green', 'hex' => '#204012'],
             ['name' => 'white', 'hex' => '#ffffff'],
             ['name' => 'black', 'hex' => '#000000'],
-            ['name' => 'pink', 'hex' => '#ffc0cb'],
-            ['name' => 'brown', 'hex' => '#7c3f00'],
+            ['name' => 'pink', 'hex' => '#FF6BA9'],
+            ['name' => 'brown', 'hex' => '#592F0A'],
+            ['name' => 'orange', 'hex' => '#FF7A40'],
+            ['name' => 'grey', 'hex' => '#CFCFCF'],
         ];
         DB::table('colors')->insert($colors);
     }
