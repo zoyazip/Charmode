@@ -9,6 +9,8 @@
 @section('content')
     <div class="inner-container">
         <h1>Hi, Admin!</h1>
+        <button onclick="window.location='/adminproducts'">To all orders</button>
+
         <form enctype="multipart/form-data" class="add-product__div" method="POST" action="/add_product">
             @csrf
             <div class="add-product__left-div">

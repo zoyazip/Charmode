@@ -59,9 +59,15 @@ Route::get('/categories/delete/{id}', [CategoryController::class, 'deleteProduct
 Route::get('/checkout', [CheckoutController::class, 'openCheckoutPage']);
 Route::post('/to_checkout', [CheckoutController::class, 'checkInput']);
 
-
-Route::get('/admin', [AdminController::class, 'openAllProductPage']);
+// Admin routes
+Route::get('/adminproducts', [AdminController::class, 'openAllProductPage']);
 Route::get('/createproduct', [AdminController::class, 'openAddProductPage']);
+Route::get('/adminproducts/edit/{id}', [AdminController::class, 'editProduct']);
+Route::get('/orders/{id}', [AdminController::class, 'openOneOrderPage']);
+Route::get('/adminproducts/{id}', [AdminController::class, 'openOneProductPage']);
+Route::get('/orders', [AdminController::class, 'openOrdersPage']);
+
+
 Route::get('/subcategories', [AdminController::class, 'getSubcategories']);
 Route::post('/add_product', [AdminController::class, 'addProduct']);
 Route::get('/edit_product/{id}', [AdminController::class, 'editProduct']);
