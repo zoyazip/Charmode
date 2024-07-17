@@ -15,8 +15,10 @@
 
                     <h3 class="font-bold text-white text-lg truncate">{{ $product->name }}</h3>
                 </div>
-                <div
-                    class="add-to-cart w-8 h-8 rounded-full bg-white transition-all cursor-pointer flex justify-center items-center">
+                <div 
+                    data-product-id="{{ $product->id }}"
+                    onclick="addToCart(event, {{ $product->id }})"
+                    class="add-to-cart w-8 h-8 rounded-full bg-white transition-all cursor-pointer absolute right-4 z-[100] flex justify-center items-center">
                     <h4 class="text-xl font-bold text-main-green">+</h4>
                 </div>
             </div>
@@ -35,6 +37,27 @@
                 </div>
             @endif
         </div>
-
     </a>
+
+    @push('scripts')
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+    function addToCart(event, productId) {
+        event.preventDefault()
+
+        // Make Ajax request using Axios
+        axios.post('{{ route('cart.add') }}', { product_id: productId })
+            .then(function(response) {
+                console.log(response.data)
+
+            })
+            .catch(function(error) {
+                console.error('Error:', error)
+            })
+    }
+</script>
+        
+    @endpush
 @endisset
+

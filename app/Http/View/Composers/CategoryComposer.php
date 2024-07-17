@@ -11,5 +11,6 @@ class CategoryComposer
     {
         $categories = Category::with('subcategories')->get();
         $view->with('categories', $categories);
+        
     }
 }
