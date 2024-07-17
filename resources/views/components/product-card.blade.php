@@ -24,12 +24,16 @@
             </div>
         </div>
         <div class="discounts-delivery-badges absolute top-3 right-3 flex flex-col gap-2">
-            <div class="discount">
-                @include('components/product-card-discount')
-            </div>
-            <div class="delivery">
-                @include('components/product-card-delivery')
-            </div>
+            @if ($product->discount != 0)
+                <div class="discount">
+                    @include('components/product-card-discount')
+                </div>
+            @endif
+            @if ($product->shippingCost == 0)
+                <div class="delivery">
+                    @include('components/product-card-delivery')
+                </div>
+            @endif
         </div>
 
     </a>
