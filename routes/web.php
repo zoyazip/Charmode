@@ -90,10 +90,11 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // page routes
 Route::get('/', [HomeController::class, 'index']);
-Route::get('/filter', [ProductListPageController::class, 'index'])->name('filter');
 Route::get('/product/{id}', [ProductDisplayPageController::class, 'index'])->name('product');
 
-
+// plp routes
+// Route::get('/filter', [ProductListPageController::class, 'index'])->name('filter');
+Route::get('/filter/{subcat?}', [ProductListPageController::class, 'categoryIndex'])->name('filter');
 
 Route::get('/cart', [CartController::class, 'index']);
 Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
