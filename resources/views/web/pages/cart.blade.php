@@ -15,8 +15,17 @@
 
 @section('content')
     {{-- removed main container class --}}
+    @if(count($cartWithProducts) === 0)
+        <div class="flex h-[50vh] justify-center items-center" >
+            <h1>Your cart is empty</h1>
+        </div>
+
+    @else
     <div class="">
         <div class="inner-container">
+
+
+
 
             <form id="update-form" target="_self" action="/cart" method="post">
                 @csrf
@@ -51,6 +60,8 @@
 
 
             </div>
+            @endif
+
         </div>
     </div>
 @endsection
