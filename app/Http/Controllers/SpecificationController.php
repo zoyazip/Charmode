@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Specification;
 
+use Illuminate\Support\Facades\DB;
+
 class SpecificationController extends Controller
 {
     //
@@ -17,5 +19,15 @@ class SpecificationController extends Controller
             $specification->product_id = $productID;
             $specification->save();
         }
+    }
+
+    public function deleteSpecification($product_id) {
+        $specifications = DB::table('specifications')
+            ->where('product_id', '=', $product_id)
+            ->delete();
+            // dd()
+        // foreach($specifications as $specification) {
+        //     $specification->delete();
+        // }
     }
 }

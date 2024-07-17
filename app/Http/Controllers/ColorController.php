@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Color;
 use App\Models\ProductColor;
+use Illuminate\Support\Facades\DB;
 
 class ColorController extends Controller
 {
@@ -28,6 +29,15 @@ class ColorController extends Controller
             }
             $this->createProductColor($color, $productID);
         }
+    }
+
+    public function deleteProductColors($product_id) {
+        $productColors = DB::table('product_colors')
+            ->where('product_id', '=', $product_id)
+            ->delete();
+        // foreach($productColors as $productColor) {
+        //     $productColor->delete();
+        // }
     }
 
     public function readColors() {

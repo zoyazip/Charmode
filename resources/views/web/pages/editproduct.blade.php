@@ -11,7 +11,7 @@
     <div class="inner-container">
         <h1>Hi, Admin!</h1>
         <button onclick="window.location='/adminproducts/{{$product->id}}'">To show product</button>
-        <form enctype="multipart/form-data" class="add-product__div" method="POST" action="/add_product">
+        <form enctype="multipart/form-data" class="add-product__div" method="POST" action="/update_product/{{$product->id}}">
             @csrf
             <div class="add-product__left-div">
                 <p class="add-product__p">Fill required fields:</p>
