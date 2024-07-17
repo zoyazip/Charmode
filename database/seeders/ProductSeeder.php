@@ -19,40 +19,6 @@ class ProductSeeder extends Seeder
 
         $products = [
             [
-
-                'product_code' => 'c456d',
-                'name' => 'Zenith',
-                'description' => 'The Modern Zenith Chair is a sleek, stylish addition to any workspace.',
-                'subcategory_id' =>  '1',
-                'oldPrice' => '150.99',
-                'newPrice' => '150.99',
-                'discount' => '0',
-                'stockQuantity' => '100',
-                'shippingCost' => '5',
-            ],
-            [
-                'product_code' => '1456d',
-                'name' => 'Blossom',
-                'description' => 'The Blossom Executive Chair combines comfort and style, perfect for any modern office or home workspace.',
-                'subcategory_id' =>  '1',
-                'oldPrice' => '180',
-                'newPrice' => '153',
-                'discount' => '15',
-                'stockQuantity' => '100',
-                'shippingCost' => '5',
-            ],
-            [
-                'product_code' => 'c12456d',
-                'name' => 'Glacier',
-                'description' => 'The Glacier Ergonomic Chair is designed to enhance your comfort and productivity.',
-                'subcategory_id' =>  '1',
-                'oldPrice' => '200',
-                'newPrice' => '200',
-                'discount' => '0',
-                'stockQuantity' => '150',
-                'shippingCost' => '5',
-            ],
-            [
                 'product_code'=>'MWO-12345',
                 'name' => 'Zenith',
                 'description' => 'The Modern Zenith Chair is a sleek, stylish addition to any workspace. With its ergonomic design, this chair provides maximum comfort for long hours of work. The chair features adjustable height, a tilting backrest, and sturdy armrests. Its clean white finish adds a touch of elegance and professionalism to your office.',
