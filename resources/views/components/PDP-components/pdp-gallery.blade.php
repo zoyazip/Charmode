@@ -2,13 +2,6 @@
     {{-- Swiper JS --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="{{ URL::asset('/css/pages/pdp/slider.css') }}">
-
-    {{-- lightgallery --}}
-    <link type="text/css" rel="stylesheet" href="css/lightgallery.css" />
-
-    <!-- lightgallery plugins -->
-    <link type="text/css" rel="stylesheet" href="css/lg-zoom.css" />
-    <link type="text/css" rel="stylesheet" href="css/lg-thumbnail.css" />
 @endpush
 
 <div class="swiper mySwiper h-[50vh] md:h-full rounded-2xl flex gap-4 w-full md:w-1/2 lg:w-2/3 lg:h-full">
@@ -39,7 +32,4 @@
             loop: true
         });
     </script>
-
-    {{-- lightgallery --}}
-    <script src="js/lightgallery.min.js"></script>
 @endpush

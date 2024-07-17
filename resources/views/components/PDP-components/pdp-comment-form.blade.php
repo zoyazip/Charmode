@@ -5,8 +5,9 @@
 
 <div class="pdp-comment-form w-full md:w-1/2">
     <div class="comment-form mt-4">
-        <form class="flex flex-col gap-4" method="POST" action="{{ route('reviews.store', ['id' => $product->id]) }}">
+        <form class="flex flex-col gap-4" method="POST" action="{{ route('reviews.store') }}">
             @csrf
+            <input type="hidden" value="{{ $product->id }}" name="product_id">
             <textarea id="comment-form-area" name="comment"
                 class="w-full h-full outline-none py-2 px-4 border border-main-green rounded-lg resize-none"
                 placeholder="Share your thoughts with others..."></textarea>

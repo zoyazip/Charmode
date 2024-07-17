@@ -12,6 +12,12 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\Auth\LoginController;
 
+use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\ImageController;
+use App\Http\Controllers\OrderController;
+
+
+
 // pages controllers
 use App\Http\Controllers\Pages\HomeController;
 use App\Http\Controllers\Pages\ProductListPageController;
@@ -118,13 +124,21 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/product/{id}', [ProductDisplayPageController::class, 'index'])->name('product');
 
+// add reviews
+Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
+
+
 // plp routes
 // Route::get('/filter', [ProductListPageController::class, 'index'])->name('filter');
 Route::get('/filter/{subcat?}', [ProductListPageController::class, 'categoryIndex'])->name('filter');
 
+//  please dont touch this routes 
 Route::get('/cart', [CartController::class, 'index']);
-Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
-Route::post('/cart/{product_id}', [CartController::class, 'store'])->name('cart.store');
+Route::post('/cart', [CartController::class, 'storeGuest'])->name('cart.store.guest')->middleware('guest');
+Route::post('/cart', [CartController::class, 'storeAuth'])->name('cart.store')->middleware('auth');
+
+
+
 Route::delete('/cart', [CartController::class, 'removeAllItems']);
 Route::put('/cart', [CartController::class, 'addOrRemoveItem']);
 Route::patch('/cart', [CartController::class, 'updateList']);

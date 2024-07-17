@@ -17,10 +17,12 @@ class UserSeeder extends Seeder
         DB::table('users')->truncate();
 
         $users = [
-            ['full_name' => 'Jesus',
-            'email' => 'jesus@charmode.com',
-            'phone' => '123456789',
-            'password' => 'password'],
+            [
+                'full_name' => 'Jesus',
+                'email' => 'jesus@charmode.com',
+                'phone' => '123456789',
+                'password' => 'password'
+            ],
         ];
 
         DB::table('users')->insert($users);
