@@ -6,8 +6,9 @@
         @foreach ($similar as $product)
             @include('components/product-card', ['suggestion' => true])
         @endforeach
-
     </div>
 </div>
 
-<script src="{{ URL::asset('js/product_card.js') }}"></script>
+@push('scripts')
+    <script src="{{ URL::asset('js/product_card.js') }}"></script>
+@endpush
