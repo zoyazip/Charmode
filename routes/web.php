@@ -9,6 +9,8 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\FilterController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ReviewController;
+
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\Auth\LoginController;
 
@@ -61,11 +63,14 @@ Route::post('/to_checkout', [CheckoutController::class, 'checkInput']);
 
 // Admin routes
 Route::get('/adminproducts', [AdminController::class, 'openAllProductPage']);
-Route::get('/createproduct', [AdminController::class, 'openAddProductPage']);
+Route::get('/adminproducts/create', [AdminController::class, 'openAddProductPage']);
 Route::get('/adminproducts/edit/{id}', [AdminController::class, 'editProduct']);
 Route::get('/orders/{id}', [AdminController::class, 'openOneOrderPage']);
 Route::get('/adminproducts/{id}', [AdminController::class, 'openOneProductPage']);
 Route::get('/orders', [AdminController::class, 'openOrdersPage']);
+
+// Delete Review
+Route::get('/reviews/delete/{id}', [ReviewController::class, 'delete']);
 
 
 Route::get('/subcategories', [AdminController::class, 'getSubcategories']);
