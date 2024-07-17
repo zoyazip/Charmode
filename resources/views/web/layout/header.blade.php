@@ -22,6 +22,9 @@
             </a>
 
             <div class="navbar__search-container">
+                @php
+                    // dd($data);
+                @endphp
                 <input class="navbar__search-text" type="text" placeholder="Find your cheapest luxury brand..." />
                 <img class="navbar__search-icon" src="{{ URL::asset('assets/svg/search-icon.svg') }}" alt="Search" />
             </div>

@@ -146,7 +146,7 @@ class ProductListPageController extends Controller
 
         $filteredProducts = collect();
         foreach ($products as $product) {
-            if ($subcat != $product->subcategory_id){
+            if (!(is_null($subcat)) && ($subcat != $product->subcategory_id)){
                 // dump("here", $product->subcategory_id);
                 continue;
             }
