@@ -9,6 +9,9 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\FilterController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ImageController;
 
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\Auth\LoginController;
@@ -75,9 +78,15 @@ Route::get('/orders', [AdminController::class, 'openOrdersPage']);
 Route::get('/reviews/delete/{id}', [ReviewController::class, 'delete']);
 // Delete Product
 Route::get('/adminproducts/delete/{id}', [ProductController::class, 'delete']);
+// Delete Image
+Route::get('/adminproducts/images/delete/{id}', [ImageController::class, 'delete']);
+
 
 // Save Product
 Route::post('/add_product', [AdminController::class, 'addProduct']);
+
+// Update status
+Route::post('/orders/update/{id}', [OrderController::class, 'updateStatus']);
 
 
 Route::get('/subcategories', [AdminController::class, 'getSubcategories']);
