@@ -28,8 +28,9 @@
 </div>
 <script>
     function setSort(sortType) {
-        const sortBy = document.getElementById('sort-by');
-        const sortOrder = document.getElementById('sort-order');
+        console.log("here");
+        const sortBy = document.getElementById('sort_by_form');
+        const sortOrder = document.getElementById('sort_order_form');
         const sortCurrent = document.getElementById('sort-current');
 
         switch (sortType) {
@@ -51,7 +52,7 @@
                 break;
         }
 
-        document.getElementById('filter-form').submit();
+        document.getElementById('search-form').submit();
     }
 
     const sortContainer = document.querySelector('.sort');

@@ -1,8 +1,8 @@
 <div class="filter">
-    <form id="filter-form" action="{{ route('filter', ['subcat'=> $subcat]) }}" method="GET">
+    {{-- <form id="filter-form" action="{{ route('filter', ['subcat'=> $subcat]) }}" method="GET"> --}}
         {{-- hidden fields for sorting --}}
-        <input type="hidden" id="sort-by" name="sort_by" value="{{ old('sort_by', $data['sort_by'] ?? '') }}">
-        <input type="hidden" id="sort-order" name="sort_order" value="{{ old('sort_order', $data['sort_order'] ?? '') }}">
+        {{-- <input type="hidden" id="sort-by" name="sort_by" value="{{ old('sort_by', $data['sort_by'] ?? '') }}">
+        <input type="hidden" id="sort-order" name="sort_order" value="{{ old('sort_order', $data['sort_order'] ?? '') }}"> --}}
         {{-- the rest of the filter form --}}
         <div class="filter__header">
             <div class="filter__title">Filters</div>
@@ -163,7 +163,7 @@
                     <div class="filter__option__title">Is available</div>
                     <div class="checkbox-container">
                         <div class="checkbox-wrapper">
-                            <input name="is_available" type="checkbox" class="styled-checkbox"
+                            <input id="is-available" name="is_available" type="checkbox" class="styled-checkbox"
                                 {{ isset($data['is_available']) && $data['is_available'] ? 'checked' : '' }} />
                         </div>
                     </div>
@@ -176,7 +176,7 @@
                     <div class="filter__option__title">Discounted</div>
                     <div class="checkbox-container">
                         <div class="checkbox-wrapper">
-                            <input name="is_discount" type="checkbox" class="styled-checkbox"
+                            <input id="is-discount" name="is_discount" type="checkbox" class="styled-checkbox"
                                 {{ isset($data['is_discount']) && $data['is_discount'] ? 'checked' : '' }} />
                         </div>
                     </div>
@@ -189,7 +189,7 @@
                     <div class="filter__option__title">Free delivery</div>
                     <div class="checkbox-container">
                         <div class="checkbox-wrapper">
-                            <input name="free_delivery" type="checkbox" class="styled-checkbox"
+                            <input id="free-delivery" name="free_delivery" type="checkbox" class="styled-checkbox"
                                 {{ isset($data['free_delivery']) && $data['free_delivery'] ? 'checked' : '' }} />
                         </div>
                     </div>
@@ -199,16 +199,75 @@
 
         {{-- submit --}}
         <div class="div-button-container">
-            <button id="filter__submit" type="submit" class="div-button filter__hidden__div">
+            <button id="filter__submit" type="submit" class="div-button filter__hidden__div" onClick="submitFilters();">
                 Search
             </button>
         </div>
 
-    </form>
+    {{-- </form> --}}
 </div>
 
 @push('scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.5.1/nouislider.min.js"></script>
     <script src="{{ asset('js/filter.js') }}" defer></script>
     <script src="{{ URL::asset('js/checkout/checkout.js') }}"></script>
+    <script>
+        function submitFilters(){
+            const minPriceInput = document.getElementById('min-price');
+            const minPriceForm = document.getElementById('min_price_form');
+            minPriceForm.value = minPriceInput.value;
+            const maxPriceInput = document.getElementById('max-price');
+            const maxPriceForm = document.getElementById('max_price_form');
+            maxPriceForm.value = maxPriceInput.value;
+
+            const minWidthInput = document.getElementById('min-width');
+            const minWidthForm = document.getElementById('min_width_form');
+            minWidthForm.value = minWidthInput.value;
+
+            const maxWidthInput = document.getElementById('max-width');
+            const maxWidthForm = document.getElementById('max_width_form');
+            maxWidthForm.value = maxWidthInput.value;
+
+            const minHeightInput = document.getElementById('min-height');
+            const minHeightForm = document.getElementById('min_height_form');
+            minHeightForm.value = minHeightInput.value;
+
+            const maxHeightInput = document.getElementById('max-height');
+            const maxHeightForm = document.getElementById('max_height_form');
+            maxHeightForm.value = maxHeightInput.value;
+
+            const minDepthInput = document.getElementById('min-depth');
+            const minDepthForm = document.getElementById('min_depth_form');
+            minDepthForm.value = minDepthInput.value;
+
+            const maxDepthInput = document.getElementById('max-depth');
+            const maxDepthForm = document.getElementById('max_depth_form');
+            maxDepthForm.value = maxDepthInput.value;
+
+            const colorCheckboxes = document.querySelectorAll('input[name="colors[]"]');
+            const colorsForm = document.getElementById('colors_form');
+            const selectedColors = [];
+            colorCheckboxes.forEach(checkbox => {
+                if (checkbox.checked) {
+                    selectedColors.push(checkbox.value);
+                }
+            });
+            colorsForm.value = selectedColors.join(',');
+
+            const isAvailableInput = document.getElementById('is-available');
+            const isAvailableForm = document.getElementById('is_available_form');
+            isAvailableForm.value = isAvailableInput.checked ? 'on' : '';
+
+            const isDiscountInput = document.getElementById('is-discount');
+            const isDiscountForm = document.getElementById('is_discount_form');
+            isDiscountForm.value = isDiscountInput.checked ? 'on' : '';
+
+            const freeDeliveryInput = document.getElementById('free-delivery');
+            const freeDeliveryForm = document.getElementById('free_delivery_form');
+            freeDeliveryForm.value = freeDeliveryInput.checked ? 'on' : '';
+
+
+            document.getElementById('search-form').submit();
+        }
+    </script>
 @endpush

@@ -21,13 +21,32 @@
                 <img class="navbar__logo" src="{{ URL::asset('assets/svg/logo.svg') }}" alt="Logo" />
             </a>
 
-            <div class="navbar__search-container">
-                @php
-                    // dd($data);
-                @endphp
-                <input class="navbar__search-text" type="text" placeholder="Find your cheapest luxury brand..." />
-                <img class="navbar__search-icon" src="{{ URL::asset('assets/svg/search-icon.svg') }}" alt="Search" />
-            </div>
+            <form id="search-form" action="{{ route('filter') }}" method="GET" class="navbar__search-container">
+                {{-- all the hidden fields for filter --}}
+                <input type="hidden" id="sort_by_form" name="sort_by" value="{{ old('sort_by', $data['sort_by'] ?? '') }}">
+                <input type="hidden" id="sort_order_form" name="sort_order" value="{{ old('sort_order', $data['sort_order'] ?? '') }}">
+                <input type="hidden" id="min_price_form" name="min_price" value="{{ old('min_price', $data['min_price'] ?? '') }}">
+                <input type="hidden" id="max_price_form" name="max_price" value="{{ old('max_price', $data['max_price'] ?? '') }}">
+                <input type="hidden" id="min_width_form" name="min_width" value="{{ old('min_width', $data['min_width'] ?? '') }}">
+                <input type="hidden" id="max_width_form" name="max_width" value="{{ old('max_width', $data['max_width'] ?? '') }}">
+                <input type="hidden" id="min_height_form" name="min_height" value="{{ old('min_height', $data['min_height'] ?? '') }}">
+                <input type="hidden" id="max_height_form" name="max_height" value="{{ old('max_height', $data['max_height'] ?? '') }}">
+                <input type="hidden" id="min_depth_form" name="min_depth" value="{{ old('min_depth', $data['min_depth'] ?? '') }}">
+                <input type="hidden" id="max_depth_form" name="max_depth" value="{{ old('max_depth', $data['max_depth'] ?? '') }}">
+                <input type="hidden" id="colors_form" name="colors" value="{{ old('colors', implode(',', $data['colors'] ?? [])) }}">
+                <input type="hidden" id="is_available_form" name="is_available" value="{{ old('is_available', $data['is_available'] ?? '') }}">
+                <input type="hidden" id="is_discount_form" name="is_discount" value="{{ old('is_discount', $data['is_discount'] ?? '') }}">
+                <input type="hidden" id="free_delivery_form" name="free_delivery" value="{{ old('free_delivery', $data['free_delivery'] ?? '') }}">
+                <input
+                    name="search"
+                    class="navbar__search-text"
+                    type="text"
+                    placeholder="Find your cheapest luxury brand..."
+                    value="{{ old('search', $data['search'] ?? '') }}"/>
+                <button type="submit" class="navbar__search-icon-btn">
+                    <img class="navbar__search-icon" src="{{ URL::asset('assets/svg/search-icon.svg') }}" alt="Search" />
+                </button>
+            </form>
             <div class="navbar__icons">
                 <a href="cart" class="navbar__cart-icon relative">
                     <img src="{{ URL::asset('assets/svg/shopping-basket.svg') }}" alt="Cart" />
