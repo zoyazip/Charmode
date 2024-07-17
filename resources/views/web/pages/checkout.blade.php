@@ -135,8 +135,8 @@
                 </form>
             </div>
             <div class="item-Container">
-                @include('components/cart-item-card')
-                @include('components/sum-up')
+                {{-- @include('components/cart-item-card')
+                @include('components/sum-up') --}}
             </div>
         </div>
 

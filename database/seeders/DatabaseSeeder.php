@@ -25,8 +25,8 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             ReviewSeeder::class,
             OrderSeeder::class,
-            SpecificationSeeder::class,
-            ImageSeeder::class,
+            // SpecificationSeeder::class,
+            // ImageSeeder::class,
         ]);
     }
 }

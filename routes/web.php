@@ -68,15 +68,41 @@ Route::get('/adminproducts/{id}', [AdminController::class, 'openOneProductPage']
 Route::get('/orders', [AdminController::class, 'openOrdersPage']);
 
 
+// Delete Review
+Route::get('/reviews/delete/{id}', [ReviewController::class, 'delete']);
+// Delete Product
+Route::get('/adminproducts/delete/{id}', [ProductController::class, 'delete']);
+// Delete Image
+Route::get('/adminproducts/images/delete/{id}', [ImageController::class, 'delete']);
+
+
+// Save Product
+Route::post('/add_product', [AdminController::class, 'addProduct']);
+
+// Update Product
+Route::post('/update_product/{id}', [AdminController::class, 'updateProduct']);
+
+// Update status
+Route::post('/orders/update/{id}', [OrderController::class, 'updateStatus']);
+
+Route::post('/cartitem/create/{product_id}/{quantity}', [CartController::class, 'store']);
+
+
+/*
 Route::get('/subcategories', [AdminController::class, 'getSubcategories']);
 Route::post('/add_product', [AdminController::class, 'addProduct']);
 Route::get('/edit_product/{id}', [AdminController::class, 'editProduct']);
 Route::get('/get_product', [AdminController::class, 'getProducts']);
+*/
+
+// Route::get('/subcategories', [AdminController::class, 'getSubcategories']);
+// Route::get('/edit_product/{id}', [AdminController::class, 'editProduct']);
+// Route::get('/get_product', [AdminController::class, 'getProducts']);
 
 
-Route::get('/get_spec', [AdminController::class, 'getSpecifications']);
-Route::get('/get_prod_colors', [AdminController::class, 'getProductColors']);
-Route::get('/get_images', [AdminController::class, 'getImages']);
+// Route::get('/get_spec', [AdminController::class, 'getSpecifications']);
+// Route::get('/get_prod_colors', [AdminController::class, 'getProductColors']);
+// Route::get('/get_images', [AdminController::class, 'getImages']);
 
 
 // AUTH

@@ -7,7 +7,7 @@ use App\Models\Order;
 
 class OrderController extends Controller
 {
-    //
+    // admin side function
     public function updateStatus(Request $request) {
         $request->validate([
             'status' => 'required|max:255',
@@ -16,4 +16,10 @@ class OrderController extends Controller
         $order->update(['status' => $request->status]);
         return redirect()->back();
     }
+
+    // client side function
+    public function createOrder(Request $request) {
+        
+    }
+
 }
