@@ -40,12 +40,8 @@
         </div>
     </div>
 
-    <div class="sale-line-container pt-14">
+    <div class="sale-line-container pt-8 md:pb-10">
         @include('components/sale-line')
-    </div>
-
-    <div class="home-sort-container flex justify-end mt-8">
-        @include('components/list-sort')
     </div>
 
     <div class="main-grid-container pb-10">
