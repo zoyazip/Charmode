@@ -51,6 +51,8 @@
             @endif
         </div>
 
+        
+        @if(sizeof($product->reviews) > 0)
         <h4>Product reviews:</h4>
         <div class="review__row">
             <div class="row__div">Review id</div>
@@ -59,7 +61,6 @@
             <div class="row__div">Comment</div>
             <div class="row__div row__div_right">Delete</div>
         </div>
-        @if(sizeof($product->reviews) > 0)
         @foreach($product->reviews as $review)
         <div class="review__row">
             <div class="row__div">{{$review->id}}</div>

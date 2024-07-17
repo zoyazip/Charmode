@@ -11,9 +11,13 @@
         <button onclick="window.location='/orders'">To all orders</button>
         @if (isset($order))
         <p>{{$order->id}}</p>
+        <p>Status: {{$order->status}}</p>
         <form method="POST" action="/orders/update/{{$order->id}}">
             @csrf
-            <input name="status" type="text">
+            <input placeholder="New status*" class="@error('status') is-invalid @enderror add__input add-product__name__input" type="text" name="status" value="{{ old('status') }}">
+               @error('status')
+                    <p class="admin__error">{{ $message }}</p>
+                @enderror
             <input type="submit" value="Update status">
         </form>
                 {{-- @foreach ($products as $product)
