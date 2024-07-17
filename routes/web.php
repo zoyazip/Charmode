@@ -96,3 +96,5 @@ Route::get('/product/{id}', [ProductDisplayPageController::class, 'index'])->nam
 
 
 Route::get('/cart', [CartController::class, 'index']);
+Route::patch('/cart', [CartController::class, 'updateList']);
+

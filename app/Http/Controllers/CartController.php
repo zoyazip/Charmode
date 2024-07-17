@@ -27,6 +27,9 @@ class CartController extends Controller
 
     public function updateList(){
 
+
+
+
     }
 
     public function removeItem($id)

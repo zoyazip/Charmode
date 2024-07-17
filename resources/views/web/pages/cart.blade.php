@@ -34,7 +34,7 @@
                     </div>
                     <div class="checkout-section__right">
 
-                        <x-checkout-button checkoutPrice="{{number_format($productPriceSum + $deliveryPriceSum, 2, ',', '.')}}"></x-checkout-button>
+                        <x-checkout-button checkoutPrice="{{number_format($productPriceSum + $deliveryPriceSum, 2, ',', '.') }}"></x-checkout-button>
                     </div>
 
 
