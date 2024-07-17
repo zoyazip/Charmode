@@ -1,47 +1,6 @@
-<style>
-    .wave {
-        animation-name: waving-hand;
-        animation-duration: 2.5s;
-        font-size: 32px;
-        animation-iteration-count: infinite;
-        transform-origin: 70% 70%;
-        display: inline-block;
-    }
-
-    @keyframes waving-hand {
-        0% {
-            transform: rotate(0.0deg);
-        }
-
-        10% {
-            transform: rotate(14.0deg);
-        }
-
-        20% {
-            transform: rotate(-8.0deg);
-        }
-
-        30% {
-            transform: rotate(14.0deg);
-        }
-
-        40% {
-            transform: rotate(-4.0deg);
-        }
-
-        50% {
-            transform: rotate(10.0deg);
-        }
-
-        60% {
-            transform: rotate(0.0deg);
-        }
-
-        100% {
-            transform: rotate(0.0deg);
-        }
-    }
-</style>
+@push('styles')
+    <link rel="stylesheet" href="{{URL::asset('css/header/greetings.css')}}">
+@endpush
 
 
 <div
