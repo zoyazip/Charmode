@@ -22,8 +22,8 @@ class DatabaseSeeder extends Seeder
             SubCategorySeeder::class,
             ProductSeeder::class,
             ProductColorSeeder::class,
-            ReviewSeeder::class,
-            OrderSeeder::class,
+            // ReviewSeeder::class,
+            // OrderSeeder::class,
             SpecificationSeeder::class,
             ImageSeeder::class,
         ]);
