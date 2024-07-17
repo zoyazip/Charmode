@@ -47,7 +47,7 @@
         event.preventDefault()
 
         // Make Ajax request using Axios
-        axios.post('{{ route('cart.add') }}', { product_id: productId })
+        axios.post("{{ route('cart.store', ['product_id' => $product->id]) }}", { product_id: productId })
             .then(function(response) {
                 console.log(response.data)
 

@@ -1,4 +1,6 @@
-<form class="main-info-container md:py-10 md:w-1/2 lg:w-1/3 h-full flex flex-col justify-between">
+<form class="main-info-container md:py-10 md:w-1/2 lg:w-1/3 h-full flex flex-col justify-between"
+    action="{{ route('cart.store', ['product_id' => $product->id]) }}" method="POST">
+    @csrf
     <div class="">
         <div class="product-title">
             <h2 class="font-bold text-3xl lg:text-3xl text-main-green">{{ $product->name }}</h2>
@@ -22,8 +24,8 @@
                 <div class="color-container flex gap-2 pt-2">
                     @foreach ($product->productColors as $index => $color)
                         <label>
-                            <input id={{ $index }} type="radio" name='color' class="color-input pl-3"
-                                @checked($index == 0 ? true : false) />
+                            <input id={{ $index }} type="radio" name='color_id' class="color-input pl-3"
+                                @checked($index == 0 ? true : false) value="{{$color->id}}"/>
                             <div id={{ $index }} style="background-color: {{ $color->color->hex }}"
                                 class="color relative w-8 h-8 rounded-full cursor-pointer outline-offset-2 {{ $color === '#ffffff' ? 'border border-black' : '' }}">
                             </div>
@@ -50,12 +52,6 @@
                     <p class="font-bold text-2xl">{{ number_format($product->newPrice, 2) }} €</p>
                 </div>
             </button>
-            {{-- <label>
-                <input type="checkbox" id='{{ $product1->id }}-like' class="like-checkbox" />
-                <div class="like-element cursor-pointer pr-5">
-                    <img src="assets/svg/heart.svg" />
-                </div>
-            </label> --}}
         </div>
     </div>
 </form>

@@ -10,7 +10,7 @@ class CreateOrderController extends Controller
 {
     //
     public function addItem(Request $request, $product_id, $color_id, $quantity) {
-        if (Auth::check) {
+        if (Auth::check()) {
             // user is logged in
             $cartItem = DB::table('cart_items')
             ->where([

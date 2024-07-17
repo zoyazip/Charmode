@@ -130,3 +130,6 @@ Route::get('/filter/{subcat?}', [ProductListPageController::class, 'categoryInde
 
 Route::patch('/cart', [CartController::class, 'updateList']);
 Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
+
+Route::post('/cart/{product_id}', [CartController::class, 'store'])->name('cart.store');
+
