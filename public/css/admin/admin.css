@@ -286,11 +286,30 @@
 
 }
 
-.delete__row {
+.review__row {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
     padding: 10px 20px;
     border-bottom: 1px solid var(--green);
+}
+.row__div {
+    width: 20%;
+}
+.row__div_right {
+    text-align: right;
+}
+
+.each-color__div {
+    aspect-ratio: 1/1;
+    width: 5%;
+    border: 1px solid var(--green);
+}
+
+.product-color__div {
+    display: flex;
+    gap: 1%;
+    flex-direction: row;
+    justify-content: left;
 }

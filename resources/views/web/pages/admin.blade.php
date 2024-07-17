@@ -24,7 +24,7 @@
                 @foreach ($products as $product)
                 <div class="one-product__row">
                     <div class="one-product__row-left">
-                        <div>{{$product->code}}</div>
+                        <div>{{$product->product_code}}</div>
                         <div>{{$product->name}}</div>
                     </div>
                     <button onclick="window.location='/adminproducts/{{$product->id}}'">Show More</button>
