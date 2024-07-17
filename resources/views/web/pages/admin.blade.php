@@ -10,7 +10,7 @@
     <div class="admin__container">
         <div class="hi__div">
             <h1>Hi, Admin!</h1>
-            <button onclick="window.location='/adminproducts/create'" class="admin__btn green">Add product</button>
+            <button onclick="window.location='/createproduct'" class="admin__btn green">Add product</button>
             <button onclick="window.location='/orders'" class="admin__btn green">Orders</button>
         </div>
         <div class="one-product__row">
