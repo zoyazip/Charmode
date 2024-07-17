@@ -1,5 +1,5 @@
 <div class="filter">
-    <form id="filter-form" action="{{ route('filter') }}" method="GET">
+    <form id="filter-form" action="{{ route('filter', ['subcat'=> $subcat]) }}" method="GET">
         {{-- hidden fields for sorting --}}
         <input type="hidden" id="sort-by" name="sort_by" value="{{ old('sort_by', $data['sort_by'] ?? '') }}">
         <input type="hidden" id="sort-order" name="sort_order" value="{{ old('sort_order', $data['sort_order'] ?? '') }}">
@@ -12,7 +12,7 @@
                                     class="close__arrow"
                                     src="{{ asset('assets/svg/arrow.svg') }}" />
             </div>
-            <a href="{{ route('filter') }}" class="filter__reset">Reset</a>
+            <a href="{{ route('filter', ['subcat'=> $subcat]) }}" class="filter__reset">Reset</a>
         </div>
 
         <div class="filter__main filter__hidden__div" id="filter__main">

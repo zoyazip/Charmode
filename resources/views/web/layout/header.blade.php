@@ -1,6 +1,6 @@
 @php
     $items = 33;
-    
+
 @endphp
 
 
@@ -20,7 +20,7 @@
             <a href="/">
                 <img class="navbar__logo" src="{{ URL::asset('assets/svg/logo.svg') }}" alt="Logo" />
             </a>
-            
+
             <div class="navbar__search-container">
                 <input class="navbar__search-text" type="text" placeholder="Find your cheapest luxury brand..." />
                 <img class="navbar__search-icon" src="{{ URL::asset('assets/svg/search-icon.svg') }}" alt="Search" />
@@ -87,16 +87,16 @@
                         <div class="desktop-subcat absolute left-2 z-[999] hidden flex-col bg-white rounded-xl p-2 {{ $category->subcategories && $category->subcategories->isNotEmpty() ? 'md:bg-white drop-shadow-lg' : ' ' }}">
                             @if ($category->subcategories && $category->subcategories->isNotEmpty())
                                 @foreach ($category->subcategories as $subcategory)
-                                    <a href="" class="inline-block hover:bg-main-green hover:text-white px-4 py-2 rounded-xl md:bg-white transition-all">{{ $subcategory->name }}</a>
+                                    <a href="{{ route('filter', ['subcat'=> $subcategory->id]) }}" class="inline-block hover:bg-main-green hover:text-white px-4 py-2 rounded-xl md:bg-white transition-all">{{ $subcategory->name }}</a>
                                 @endforeach
                             @endif
                         </div>
                     </div>
-                    
+
                 </li>
             @endforeach
         </ul>
-        
+
         <div class="navbar__links-mobile">
             <ul class="navbar__links-mobile__categories">
                 @foreach ($categories as $index => $category)
