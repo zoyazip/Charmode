@@ -109,7 +109,7 @@
                     <div id="sub-category-{{ $index }}" class="navbar__links-mobile__subcategories hidden {{ $category->subcategories && $category->subcategories->isNotEmpty() ? 'py-2' : '' }}">
                         @if ($category->subcategories && $category->subcategories->isNotEmpty())
                             @foreach ($category->subcategories as $index => $subcategory)
-                                <a href="" class="navbar__link-container text-lg"> -> {{ $subcategory->name }}</a>
+                                <a href="{{ route('filter', ['subcat'=> $subcategory->id]) }}" class="navbar__link-container text-lg"> -> {{ $subcategory->name }}</a>
                             @endforeach
                         @endif
                     </div>
