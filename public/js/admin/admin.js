@@ -237,5 +237,17 @@ document.getElementById('categorySelect').addEventListener("change", function() 
     })
 });
 
+function deleteImage(id) {
+    console.log(id);
+    document.getElementById(id+'image').classList.add('div__hidden');
+    let input = document.createElement('input');
+    input.classList.add('image__input');
+    input.name = "image[]";
+    input.type = "file";
+    input.innerHTML = "";
+    document.getElementById('imageDiv').appendChild(input);
+    window.location='/adminproducts/images/delete/'+id;
+}
+
 
 

@@ -35,9 +35,14 @@ class CartController extends Controller
 
     public function updateList(){
 
+    }
 
+    public function add(Request $request) {
+        $productId = $request->input('product_id');
 
-
+        
+        
+        return response()->json(['product_id' => $productId]);
     }
 
     public function removeItem($id)

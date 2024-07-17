@@ -313,3 +313,7 @@
     flex-direction: row;
     justify-content: left;
 }
+
+.div__hidden {
+    display: none;
+}

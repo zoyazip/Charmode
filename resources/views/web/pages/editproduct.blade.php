@@ -4,13 +4,14 @@
 
 @push('styles')
     <link rel="stylesheet" href="{{ URL::asset('css/admin/admin.css') }}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 @endpush
 
 @section('content')
     <div class="inner-container">
         <h1>Hi, Admin!</h1>
         <button onclick="window.location='/adminproducts/{{$product->id}}'">To show product</button>
-        <form enctype="multipart/form-data" class="add-product__div" method="POST" action="/add_product">
+        <form enctype="multipart/form-data" class="add-product__div" method="POST" action="/update_product/{{$product->id}}">
             @csrf
             <div class="add-product__left-div">
                 <p class="add-product__p">Fill required fields:</p>
@@ -133,22 +134,28 @@
 
                 <input class="add__btn" type="submit" value="Save product">
             </div>
-            <div class="add-product__right-div">
+            <div id="imageDiv" class="add-product__right-div">
 
                 @if(isset($product->images))
-                @foreach ($product->images as $image)
-                    <p>{{$image->url}}</p>
-                    <img src="{{$image->url}}">
-                @endforeach
+                @for ($i = 0; $i < 6; $i++)
+                    @if(isset($product->images[$i]))
+                    <div id="{{$product->images[$i]->id.'image'}}">
+                    <img src="{{$product->images[$i]->url}}">
+                    <span onclick="deleteImage({{$product->images[$i]->id}})" class="fa fa-trash-o"></span>
+                    </div>
+                    @else                
+                    <input class="image__input" name="image[]" type="file" >
+                    @endif
+                @endfor
                 @endif
 
 
-                <input class="image__input" name="image[]" type="file" >
+                {{-- <input class="image__input" name="image[]" type="file" >
                 <input class="image__input" name="image[]" type="file">
                 <input class="image__input" name="image[]" type="file">
                 <input class="image__input" name="image[]" type="file">
                 <input class="image__input" name="image[]" type="file">
-                <input class="image__input" name="image[]" type="file">
+                <input class="image__input" name="image[]" type="file"> --}}
             </div>
         </form>
         <div id="categoryPopUp" class="category__pop-up hide__pop__up__window">
