@@ -32,7 +32,7 @@ class CartController extends Controller
     public function updateList(Request $request){
 
         $allrequest = $request->input();
-
+        // TODO pievienot validāciju
         unset($allrequest['_token']);
         unset($allrequest['_method']);
 
@@ -45,7 +45,6 @@ class CartController extends Controller
         where('product_id', $key)->update(['quantity' => $value]);
         }
 
-        $userId = 1;
         return Redirect::refresh();
 
     }
@@ -55,13 +54,18 @@ class CartController extends Controller
 
     }
 
-    public function removeAllItems($id){
+    public function removeAllItems(){
+
+        $userId = Auth::id();
+        $userId = 1;
+        DB::table('cart_items')->where('user_id', $userId)->delete();
+
+        return Redirect::refresh();
+
 
     }
 
-    public function setUpForCheckout($id){
 
-    }
 
 
 }

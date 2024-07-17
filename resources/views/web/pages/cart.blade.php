@@ -36,7 +36,11 @@
                         <form target="_self" action="/">
                             <button class="checkout-section__continue-btn">Continue shopping</button>
                         </form>
-                        <button>Reset</button>
+                        <form target="_self" action="/cart" method="post" id="reset-form">
+                            @csrf
+                            @method('delete')
+                            <button type="submit">Reset</button>
+                        </form>
                     </div>
                     <div class="checkout-section__right">
 
@@ -58,8 +62,6 @@
         const allFormFields = document.querySelectorAll(".item-wrapper__more-or-less")
 
 
-
-
         for (const form of allFormFields){
 
             const inputField = form.children[1]
@@ -76,7 +78,6 @@
                     submitUpdateForm()
                 }
             })
-
 
 
 

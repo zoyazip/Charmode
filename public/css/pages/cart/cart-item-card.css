@@ -99,6 +99,10 @@
     white-space: nowrap;
 }
 
+#reset-form{
+    display: flex;
+}
+
 @media only screen and (max-width: 480px) {
     .item-wrapper__more-or-less-item{
         font-size: 1.2rem;
@@ -142,3 +146,4 @@ input::-webkit-inner-spin-button {
         max-height: 220px;
     }
 }
+
