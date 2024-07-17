@@ -20,18 +20,18 @@ class ImageSeeder extends Seeder
             // Zenith
             [
                 "product_id" => "1",
-                "url" => "assets/webp/products/zenith/zenit_1.webp",
+                "url" => "assets/webp/products/zenith/zenith_1.webp",
             ],
             [
-                "url" => "assets/webp/products/zenith/zenit_2.webp",
+                "url" => "assets/webp/products/zenith/zenith_2.webp",
                 "product_id" => "1",
             ],
             [
-                "url" => "assets/webp/products/zenith/zenit_3.webp",
+                "url" => "assets/webp/products/zenith/zenith_3.webp",
                 "product_id" => "1",
             ],
             [
-                "url" => "assets/webp/products/zenith/zenit_4.webp",
+                "url" => "assets/webp/products/zenith/zenith_4.webp",
                 "product_id" => "1",
             ],
             // Blossom

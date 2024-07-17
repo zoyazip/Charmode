@@ -17,6 +17,8 @@ use App\Http\Controllers\Pages\HomeController;
 use App\Http\Controllers\Pages\ProductListPageController;
 
 use App\Http\Controllers\Pages\ProductDisplayPageController;
+use App\Http\Controllers\ReviewController;
+
 
 
 
@@ -92,6 +94,10 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/filter', [ProductListPageController::class, 'index'])->name('filter');
 Route::get('/product/{id}', [ProductDisplayPageController::class, 'index'])->name('product');
+
+// post routes
+Route::post('/product/{id}', [ReviewController::class, 'store'])->name('reviews.store');
+
 
 
 Route::get('/cart', function () {

@@ -18,8 +18,9 @@ class ProductDisplayPageController extends Controller
         if (!$product) {
             abort(404);
         }
+        // dd($product);
 
-        $reviews = Review::where("product_id", $product->id)->paginate(1);
+        $reviews = Review::where("product_id", $product->id)->paginate(3);
 
         $currentPage = $reviews->currentPage();
         $lastPage = $reviews->lastPage();
@@ -34,7 +35,6 @@ class ProductDisplayPageController extends Controller
         if ($allReviews->count() > 0) {
             $rating = $allReviews->sum('rating') / $allReviews->count();
         }
-
 
         return view('web.pages.pdp', [
             "product" => $product,
