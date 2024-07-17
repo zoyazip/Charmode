@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 @extends('layouts.main')
 
 @section('title', 'Cart page')
@@ -61,10 +62,11 @@
 
         const allFormFields = document.querySelectorAll(".item-wrapper__more-or-less")
 
-
         for (const form of allFormFields){
 
             const inputField = form.children[1]
+
+
 
 
             form.addEventListener("click", (e) => {
@@ -81,7 +83,7 @@
 
 
 
-            }
+        }
 
         function submitUpdateForm(){
             const form = document.getElementById('update-form');

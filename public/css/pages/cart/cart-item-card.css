@@ -50,6 +50,7 @@
 .item-wrapper__right-right .item-wrapper__end-price{
     font-size: var(--title-heading);
     font-weight: bold;
+    text-wrap: nowrap;
 }
 
 .item-wrapper__more-or-less-item{
@@ -86,6 +87,7 @@
 }
 
 .item-wrapper__trash-icon{
+    cursor: pointer;
     width: 20vw;
     max-width: 30px;
     min-width: 26px;

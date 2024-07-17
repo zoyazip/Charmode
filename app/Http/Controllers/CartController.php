@@ -49,8 +49,18 @@ class CartController extends Controller
 
     }
 
-    public function removeItem($id)
+    public function addOrRemoveItem(Request $request)
     {
+
+        $itemId = $request->input('productID');
+        $userId = Auth::id();
+        $userId = 1;
+        DB::table('cart_items')->where('user_id', $userId)->
+        where('product_id', $itemId)->delete();
+
+
+        return Redirect::refresh();
+
 
     }
 
