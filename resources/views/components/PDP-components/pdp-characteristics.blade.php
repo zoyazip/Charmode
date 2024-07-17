@@ -28,7 +28,7 @@
         @foreach ($product->specifications as $spec)
             <div class="w-full flex flex-col gap-2 ">
                 <div class="characteristic mt-2 flex justify-between px-2">
-                    <p class="text-main-grey">{{ $spec->key }}</p>
+                    <p class="text-main-grey">{{ ucfirst($spec->key) }}</p>
                     <h3 class="font-bold text-main-green">{{ $spec->value }}</h3>
                 </div>
                 <hr class="border-slate-300">
