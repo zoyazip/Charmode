@@ -6,7 +6,8 @@
     <div class="admin__container">
         <div class="hi__div">
             <h1>Hi, Admin!</h1>
-            <button onclick="window.location='/createproduct'" class="admin__btn green">Add product</button>
+            <button onclick="window.location='/adminproducts/create'" class="admin__btn green">Add product</button>
+            <button onclick="window.location='/orders'" class="admin__btn green">Orders</button>
         </div>
         <h4 class="admin__h4">All Products</h4>
         <div class="admin__filter__div">
@@ -25,7 +26,7 @@
                 </div>
                 <div class="table__head__right">
                     <h6 class="table__date">Datums</h6>
-                    <h6 class="table__price">Cena</h6>
+                    <h6 class="table__price">Jaunā cena</h6>
                     <h6 class="table__edit"></h6>
                 </div>
             </div>
@@ -39,8 +40,8 @@
                         </div>
                         <div class="table__head__right">
                             <h6 class="table__date">{{ $product->created_at }}</h6>
-                            <h6 class="table__price">{{ $product->price }}</h6>
-                            <h6 class="table__edit"></h6>
+                            <h6 class="table__price">{{ $product->newPrice }}</h6>
+                            <button onclick="window.location='/adminproducts/{{$product->id}}'">Show product</button>
                         </div>
                     </div>
                 @endforeach

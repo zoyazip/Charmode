@@ -56,10 +56,16 @@ return [
             'throw' => false,
         ],
 
-        'images' => [
-            'driver' => 'local',
-            'root' => 'public/images',
-        ],
+        
+
+        'disks' => [
+            'public' => [
+                'driver' => 'local',
+                'root'   => public_path() . '/uploads',
+                'url' => env('APP_URL').'/public',
+                'visibility' => 'public',
+            ]
+        ]
 
     ],
 
