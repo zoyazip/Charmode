@@ -1,5 +1,6 @@
 <form class="main-info-container md:py-10 md:w-1/2 lg:w-1/3 h-full flex flex-col justify-between"
-    action="{{ route('cart.store', ['product_id' => $product->id]) }}" method="POST">
+    action="/cartitem/create/{{$product->id}}/1" method="POST">
+    {{-- action="{{ route('cart.store', ['product_id' => $product->id, 'color_id' => $color_id, 'quantity' => 1]) }}" method="POST"> --}}
     @csrf
     <div class="">
         <div class="product-title">
