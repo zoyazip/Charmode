@@ -121,4 +121,6 @@ Route::post('/product/{id}', [ReviewController::class, 'store'])->name('reviews.
 
 Route::get('/cart', [CartController::class, 'index']);
 Route::patch('/cart', [CartController::class, 'updateList']);
+Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
+
 
