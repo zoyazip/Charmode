@@ -1,5 +1,5 @@
 <div class="price-container">
-    <div class="price bg-white px-3 py-2 rounded-xl flex items-center {{ $old_price != $price ? 'gap-4' : '' }}">
+    <div class="price bg-white px-3 py-2 rounded-xl flex items-center {{ $old_price != $price ? 'gap-2' : '' }}">
         <h2 class="font-bold text-xl text-green-900">{{ number_format($price, 2) }} €</h2>
         <h2 class=" text-slate-300 line-through text-[14px]">
             @if ($old_price != $price)

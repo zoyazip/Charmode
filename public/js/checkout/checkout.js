@@ -6,13 +6,11 @@ function changeDataArrow(divId, arrowId) {
         arrow.classList.add("open__arrow");
         div.classList.remove("hidden__div");
         div.classList.add("visible__div");
-        console.log("asdf");
     } else {
         arrow.classList.remove("open__arrow");
         arrow.classList.add("close__arrow");
         div.classList.add("hidden__div");
         div.classList.remove("visible__div");
-        console.log("fdas");
     }
 }
 

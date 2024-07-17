@@ -11,6 +11,8 @@ export default {
         'main-green': '#204012',
         'secondary-green': '#B9D99A',
         'secondary-grey': '#ADADAD',
+        'delivery-brown': '#D9B19A',
+        'dark-brown': '#592F0A',
         'main-grey': '#5B5B5B',
         'gold':'#FFBC39',
         'product-red': '#F64141',

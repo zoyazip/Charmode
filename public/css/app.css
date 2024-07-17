@@ -68,6 +68,11 @@ h1 {
     font-size: var(--title-2xl);
 }
 
+hr {
+    border-bottom-width: 1px;
+    border-top-width: 0;
+}
+
 
 
 /* base classes */

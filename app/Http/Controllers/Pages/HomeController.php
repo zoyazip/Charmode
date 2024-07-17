@@ -8,9 +8,9 @@ use App\Models\Product;
 
 class HomeController extends Controller
 {
-    public function render()
+    public function index(Request $request)
     {
-        $products = Product::paginate(8);
+        $products = Product::paginate(12);
 
         // Get the total count of products
         $currentPage = $products->currentPage();
