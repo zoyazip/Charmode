@@ -8,6 +8,7 @@ use App\Models\Color;
 use App\Models\ProductColors;
 use App\Models\Category;
 use App\Models\Image;
+use App\Models\Order;
 use App\Models\SubCategory;
 use App\Models\Specification;
 use Illuminate\Http\RedirectResponse;
@@ -28,11 +29,27 @@ class AdminController extends Controller
         return view('web/pages/admin')->with("products", $products);
     }
 
+
+    public function openOneProductPage(Request $request) {
+        $product = Product::find($request->id);
+        return view('web/pages/adminproduct')->with("product", $product);
+    }
+
+    public function openOneOrderPage(Request $request) {
+        $order = Order::find($request->id);
+        return view('web/pages/order')->with("order", $order);
+    }
+
+    public function openOrdersPage(Request $request) {
+        $orders = Order::all();
+        return view('web/pages/orderlist')->with("orders", $orders);
+    }
+
+
     public function getSubcategories() {
         $subCategories = SubCategory::all();
         return $subCategories;
     }
-
     // add new product
         // if neccessary add new color and new category and subcategory
     public function openAddProductPage() {
