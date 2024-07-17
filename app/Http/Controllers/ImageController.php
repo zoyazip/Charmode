@@ -21,11 +21,11 @@ class ImageController extends Controller
             // // $imageName = $path;
             // $filename = 'img.png';
             $filename = time().'.'.$image->getClientOriginalExtension();
-            $image->move(base_path('public/images'), $filename);
+            $image->move(base_path('public/assets/webp/products/'.$productID), $filename);
             // $User->image = $fileName;
             // dd($images);
             $newImage = new Image;
-            $newImage->url = '/images/'.$filename;
+            $newImage->url = '/assets/webp/products/'.$productID.'/'.$filename;
             $newImage->product_id = $productID;
             $newImage->save();
         }
