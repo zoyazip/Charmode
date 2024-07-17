@@ -38,7 +38,6 @@
             {{-- @if (isset($data)) --}}
             <div class="plp-product-list-container">
                 @if(isset($products))
-
                 @include('components/PLP-components/plp-pdoruct-list', ["products" => $products])
                 @endif
             </div>

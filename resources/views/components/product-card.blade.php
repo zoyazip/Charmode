@@ -12,6 +12,7 @@
             ])
             <div class="card__title-container w-full flex justify-between items-center z-10">
                 <div class="title">
+
                     <h3 class="font-bold text-white text-lg truncate">{{ $product->name }}</h3>
                 </div>
                 <div
@@ -22,5 +23,14 @@
             <div class="card-gradiet absolute h-1/2 w-full bottom-0 left-0 bg-gradient-to-t from-gray-800 opacity-50 z-1">
             </div>
         </div>
+        <div class="discounts-delivery-badges absolute top-3 right-3 flex flex-col gap-2">
+            <div class="discount">
+                @include('components/product-card-discount')
+            </div>
+            <div class="delivery">
+                @include('components/product-card-delivery')
+            </div>
+        </div>
+        
     </div>
 @endisset

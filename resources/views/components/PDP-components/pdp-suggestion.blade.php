@@ -13,10 +13,10 @@
         public function __construct($id, $title, $price, $discount, $old_price, $expand, $free_delivery, $img_path)
         {
             $this->id = $id;
-            $this->title = $title;
-            $this->price = $price;
+            $this->name = $title;
+            $this->newPrice = $price;
             $this->discount = $discount;
-            $this->old_price = $old_price;
+            $this->oldPrice = $old_price;
             $this->expand = $expand;
             $this->free_delivery = $free_delivery;
             $this->img_path = $img_path;
@@ -44,18 +44,4 @@
     </div>
 </div>
 
-<script>
-    [...document.querySelectorAll('.product-card')].forEach(function(item) {
-
-        const selectedProduct = document.getElementById(item.id)
-        const selectedProductBtn = selectedProduct.querySelector('.card-data').querySelector(
-            '.card__title-container').querySelector('.add-to-cart')
-
-        item.addEventListener('mouseenter', function() {
-            item.style.transform = 'rotate(1deg)'
-        })
-        item.addEventListener('mouseleave', function() {
-            item.style.transform = 'rotate(0deg)'
-        })
-    })
-</script>
+<script src="{{ URL::asset('js/product_card.js') }}"></script>
