@@ -19,7 +19,6 @@ use App\Http\Controllers\Pages\HomeController;
 use App\Http\Controllers\Pages\ProductListPageController;
 
 use App\Http\Controllers\Pages\ProductDisplayPageController;
-use App\Http\Controllers\ReviewController;
 
 
 
