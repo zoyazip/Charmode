@@ -7,6 +7,7 @@
 @endpush
 
 @section('content')
+
     <div class="admin__container pb-10">
         <div class="hi__div py-10">
             <h1 class="text-main-green">Hi, Admin!</h1>
@@ -14,7 +15,7 @@
                 <button onclick="window.location='/orders'" class="admin__btn">Orders</button>
                 <button onclick="window.location='/adminproducts/create'" class="px-4 py-2 rounded-lg bg-main-green text-white hover:shadow-lg transition-all">Add product</button>
             </div>
-            
+        
         </div>
         <div class="one-product__row">
             <div class="one-product__row-left font-bold text-main-green">
