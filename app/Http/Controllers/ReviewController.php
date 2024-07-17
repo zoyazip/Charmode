@@ -26,7 +26,11 @@ class ReviewController extends Controller
         $review->comment = $request->comment;
         $review->rating = $request->star;
         $review->save();
-
-        return redirect()->back();
     }
+  
+    public function delete(Request $request) {
+          $review = Review::find($request->id);
+          $review->delete();
+          return redirect()->back();
+      }
 }

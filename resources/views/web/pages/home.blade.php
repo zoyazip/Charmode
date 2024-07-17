@@ -49,7 +49,7 @@
     </div>
 
     <div class="main-grid-container pb-10">
-        @include('components/grid-layout')
+        @include('components/grid-layout', ['main'=>true])
     </div>
     <div class="about-us-container mb-20">
         @include('components/main-page-about-us')

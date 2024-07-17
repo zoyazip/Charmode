@@ -11,6 +11,11 @@
         <button onclick="window.location='/orders'">To all orders</button>
         @if (isset($order))
         <p>{{$order->id}}</p>
+        <form method="POST" action="/orders/update/{{$review->id}}">
+            @csrf
+            <input name="status" type="text">
+            <input type="submit" value="Update status">
+        </form>
                 {{-- @foreach ($products as $product)
                     <div class="table__row">
                         <div class="table__head__left">

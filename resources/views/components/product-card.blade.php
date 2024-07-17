@@ -1,5 +1,5 @@
 @isset($product)
-    <div id='product-{{ $product->id }}'
+    <a href="{{ route('product', ['id' => $product->id]) }}" id='product-{{ $product->id }}'
         style="background-image: url('{{ URL::asset('assets/chair-placeholder.png') }}'); background-position: center;  {{ isset($suggestion) ? 'background-size: cover;' : 'background-size: cover;' }}"
         class="product-card cursor-zoom-in p-4 rounded-2xl overflow-hidden relative transition-all bg-center bg-no-repeat
                 {{ isset($suggestion) ? 'w-full min-h-[400px] md:min-h-[400px] lg:min-h-[300px] xl:min-h-[250px]' : 'min-h-[500px]' }}
@@ -23,5 +23,18 @@
             <div class="card-gradiet absolute h-1/2 w-full bottom-0 left-0 bg-gradient-to-t from-gray-800 opacity-50 z-1">
             </div>
         </div>
-    </div>
+        <div class="discounts-delivery-badges absolute top-3 right-3 flex flex-col gap-2">
+            @if ($product->discount != 0)
+                <div class="discount">
+                    @include('components/product-card-discount')
+                </div>
+            @endif
+            @if ($product->shippingCost == 0)
+                <div class="delivery">
+                    @include('components/product-card-delivery')
+                </div>
+            @endif
+        </div>
+
+    </a>
 @endisset

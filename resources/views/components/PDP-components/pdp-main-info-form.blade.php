@@ -17,7 +17,7 @@
             </div>
         </div>
         <div class="">
-            <div class="product-color mt-4">
+            <div class="product-color mt-6">
                 <h3 class="text-lg font-bold text-main-green">Color</h3>
                 <div class="color-container flex gap-2 pt-2">
                     @foreach ($product->productColors as $index => $color)
@@ -31,8 +31,8 @@
                     @endforeach
                 </div>
             </div>
-            <div class="delivery-container flex items-center gap-4 mt-6">
-                <img src="{{ URL::asset('assets/svg/delivery.svg') }}" class="w-8">
+            <div class="delivery-container flex gap-1 mt-6 flex-col">
+                <h3 class="text-lg font-bold text-main-green">Delivery</h3>
                 <p class="text-md">
                     {{ $product->shippingCost ? number_format($product->shippingCost, 2) . ' € delivery' : 'Free delivery' }}
                 </p>

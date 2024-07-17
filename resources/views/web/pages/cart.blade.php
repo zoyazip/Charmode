@@ -16,9 +16,13 @@
     {{-- removed main container class --}}
     <div class="">
         <div class="inner-container">
-            @include('components/cart-item-card')
+
+
+            @foreach($cartWithProducts as $product)
+                @include('components/cart-item-card')
+                <hr>
+            @endforeach
             @include('components/sum-up')
-{{--            @include('components/checkout-button')--}}
 
             <div class="middle-wrapper checkout-section">
 
@@ -30,7 +34,7 @@
                     </div>
                     <div class="checkout-section__right">
 
-                        <x-checkout-button checkoutPrice="30"></x-checkout-button>
+                        <x-checkout-button checkoutPrice="{{number_format($productPriceSum + $deliveryPriceSum, 2, ',', '.') }}"></x-checkout-button>
                     </div>
 
 
