@@ -112,7 +112,6 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // page routes
 Route::get('/', [HomeController::class, 'index']);
-Route::get('/filter', [ProductListPageController::class, 'index'])->name('filter');
 Route::get('/product/{id}', [ProductDisplayPageController::class, 'index'])->name('product');
 
 // post routes
@@ -122,4 +121,15 @@ Route::post('/product/{id}', [ReviewController::class, 'store'])->name('reviews.
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
 Route::patch('/cart', [CartController::class, 'store']);
 
+Route::post('/cart', [CartController::class, 'store'])->name('cart.store');
+
+// plp routes
+// Route::get('/filter', [ProductListPageController::class, 'index'])->name('filter');
+Route::get('/filter/{subcat?}', [ProductListPageController::class, 'categoryIndex'])->name('filter');
+
+
+Route::patch('/cart', [CartController::class, 'updateList']);
+Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
+
 Route::post('/cart/{product_id}', [CartController::class, 'store'])->name('cart.store');
+
