@@ -22,7 +22,7 @@
             <form>
                 <p class="item-wrapper__more-or-less">
                     <a class="item-wrapper__inc-btn" ><span class="item-wrapper__more-or-less-item minus" >-</span></a>
-                    <input type="number" min="1" max="{{$product->stockQuantity}}" value="{{$product->quantity}}" class="item-wrapper__more-or-less-item item-wrapper__price">
+                    <input name="{{$product->id}}" form="update-form" id="{{$product->id}}" type="number" min="1" max="{{$product->stockQuantity}}" value="{{$product->quantity}}" class="item-wrapper__more-or-less-item item-wrapper__price">
                     {{--                inputam max jāsaņem no datubazes, tā pat arī ar value--}}
                     <a class="item-wrapper__inc-btn" ><span class="item-wrapper__more-or-less-item plus" >+</span></a>
                 </p>

@@ -1,13 +1,17 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\CartItem;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class CartController extends Controller
 {
     public function index()
     {
+        $userId = Auth::id();
         $userId = 1;
         $productPriceSum = 0;
         $deliveryPriceSum = 0;
@@ -25,10 +29,24 @@ class CartController extends Controller
                 with('productCountSum', $productCountSum);
     }
 
-    public function updateList(){
+    public function updateList(Request $request){
+
+        $allrequest = $request->input();
+
+        unset($allrequest['_token']);
+        unset($allrequest['_method']);
+
+        $userId = Auth::id();
+        $userId = 1;
 
 
+        foreach ($allrequest as $key => $value) {
+        DB::table('cart_items')->where('user_id', $userId)->
+        where('product_id', $key)->update(['quantity' => $value]);
+        }
 
+        $userId = 1;
+        return Redirect::refresh();
 
     }
 

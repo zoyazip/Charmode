@@ -121,7 +121,7 @@
 .item-wrapper__more-or-less-item::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
-    margin: 0;
+    /*margin: 0;*/
 }
 
 .item-wrapper__more-or-less-item[type=number] {
