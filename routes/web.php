@@ -90,3 +90,4 @@ Route::get('/pdp', function () {
 });
 
 Route::get('/cart', [CartController::class, 'index']);
+Route::patch('/cart', [CartController::class, 'updateList']);
