@@ -15,7 +15,7 @@ class SpecificationSeeder extends Seeder
     public function run(): void
     {
         //
-        DB::table('specifications')->truncate();
+        // DB::table('specifications')->truncate();
 
         $specifications = [
             // Zenith

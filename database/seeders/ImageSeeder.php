@@ -14,7 +14,7 @@ class ImageSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('images')->truncate();
+        // DB::table('images')->truncate();
 
         $Images = [
             // Zenith

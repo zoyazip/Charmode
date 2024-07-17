@@ -15,7 +15,7 @@ class ColorSeeder extends Seeder
     public function run(): void
     {
         //
-        DB::table('colors')->truncate();
+        // DB::table('colors')->truncate();
 
         $colors = [
             ['name' => 'red', 'hex' => '#FF3333'],

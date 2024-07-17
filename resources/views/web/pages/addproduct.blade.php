@@ -28,8 +28,8 @@
                         <label>Category: </label>
 
                         <select id="categorySelect" class="select__option" name="category">
-                            @if (session()->has('allCategories'))
-                                @foreach (session()->get('allCategories') as $category)
+                            @if (isset($allCategories))
+                                @foreach ($allCategories as $category)
                                     <option value={{ $category->id }}>{{ $category->name }}</option>
 
                                 @endforeach
@@ -42,11 +42,6 @@
                     <div>
                         <label>Subcategory: </label>
                         <select id="subCategorySelect" class="select__option" name="subcategory">
-                            {{-- @if (session()->has('allSubCategories'))
-                            @foreach (session()->get('allSubCategories') as $subCategory)
-                                <option value={{$subCategory->id}}>{{$subCategory->name}}</option>
-                            @endforeach
-                        @endif --}}
                         </select>
                     </div>
                     <span class="add__btn" onclick="openPopUpWindow('subCategoryPopUp')">Add new subcategory</span>
@@ -97,8 +92,8 @@
                 <p class="add-product__p">Add colors:</p>
                 <div class="all__color__div">
                     <div id="existing__colors" class="existing__colors">
-                        @if (session()->has('allColors'))
-                            @foreach (session()->get('allColors') as $color)
+                        @if (isset($allColors))
+                            @foreach ($allColors as $color)
                                 <div onclick="checkColor({{ $color }})" name="color__div" value='{{ $color }}'
                                     class="color__div"></div>
                             @endforeach

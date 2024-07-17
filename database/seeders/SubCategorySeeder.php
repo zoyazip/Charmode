@@ -14,7 +14,7 @@ class SubCategorySeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('sub_categories')->truncate();
+        // DB::table('sub_categories')->truncate();
 
         $subCategories = [
             ['name' => 'table', 'category_id' => '1'],

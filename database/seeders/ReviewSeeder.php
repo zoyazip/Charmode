@@ -12,7 +12,7 @@ class ReviewSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('reviews')->truncate();
+        // DB::table('reviews')->truncate();
 
         $reviews = [
             ['product_id' => '3', 'user_id' => '1', 'rating' => '8', 'comment' => 'comment for product 1'],

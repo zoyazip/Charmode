@@ -15,7 +15,7 @@ class ProductColorSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('product_colors')->truncate();
+        // DB::table('product_colors')->truncate();
 
         $ProductColors = [
             // Zenith

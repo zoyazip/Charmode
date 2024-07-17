@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Cookie;
 
 class CartController extends Controller
 {
@@ -88,14 +89,18 @@ class CartController extends Controller
         } else {
             // cookies
             // $addedItems = json_decode($request->cookie('cartitems'), true);
+            // $addedItems = [];
             $addedItems = json_decode(Cookie::get('cartitems'), true);
+            // array_push($addedItems, $addedItems2);
             $found = false;
-            foreach($addedItems as $item) {
-                if($item->product_id === $product_id && $item->color_id === $request->color_id) {
-                    // item with same color already has added, so we change quantity
-                    $item->quantity = $quantity;
-                    $found = true;
-                    break;
+            if($addedItems !== null){
+                foreach($addedItems as $item) {
+                    if($item->product_id === $product_id && $item->color_id === $request->color_id) {
+                        // item with same color already has added, so we change quantity
+                        $item->quantity = $quantity;
+                        $found = true;
+                        break;
+                    }
                 }
             }
             if(!$found) {
@@ -106,6 +111,7 @@ class CartController extends Controller
                     'color_id' => $request->color_id,
                     'quantity' => $quantity,
                 ];
+                $addedItems = [];
                 array_push($addedItems, $newItem);
             }
             Cookie::queue('cartitems', json_encode($addedItems), 60 * 24);
