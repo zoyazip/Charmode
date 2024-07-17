@@ -1,20 +1,17 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\CartItem;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-
-use App\Models\CartItem;
-
-use Illuminate\Support\Facades\Auth;
-
-
+use Illuminate\Support\Facades\Redirect;
 
 class CartController extends Controller
 {
     public function index()
     {
+        $userId = Auth::id();
         $userId = 1;
         $productPriceSum = 0;
         $deliveryPriceSum = 0;
@@ -30,15 +27,35 @@ class CartController extends Controller
         return view('web.pages.cart')->with('cartWithProducts', $cartWithProducts)->with('productPriceSum', $productPriceSum)->with('deliveryPriceSum', $deliveryPriceSum)->with('productCountSum', $productCountSum);
     }
 
+    public function updateList(Request $request){
+
+        $allrequest = $request->input();
+        // TODO pievienot validāciju
+        unset($allrequest['_token']);
+        unset($allrequest['_method']);
+
+        $userId = Auth::id();
+        $userId = 1;
+
+
+        foreach ($allrequest as $key => $value) {
+        DB::table('cart_items')->where('user_id', $userId)->
+        where('product_id', $key)->update(['quantity' => $value]);
+        }
+
+        return Redirect::refresh();
+
+    }
+
     public function store(Request $request, $product_id, $color_id, $quantity) {
         if (Auth::check()) {
             // user is logged in
             $cartItem = DB::table('cart_items')
-            ->where([
-                'product_id' => $product_id,
-                'user_id' => Auth::id(),
-                'color_id' => $color_id,])
-            ->first();
+                ->where([
+                    'product_id' => $product_id,
+                    'user_id' => Auth::id(),
+                    'color_id' => $color_id,])
+                ->first();
             if(!$cartItem) {
                 // create new
                 $newCartItem = new CartItem;
@@ -81,19 +98,33 @@ class CartController extends Controller
         return redirect()->back();
     }
 
-    public function updateList()
+    public function addOrRemoveItem(Request $request)
     {
+
+        $itemId = $request->input('productID');
+        $userId = Auth::id();
+        $userId = 1;
+        DB::table('cart_items')->where('user_id', $userId)->
+        where('product_id', $itemId)->delete();
+
+
+        return Redirect::refresh();
+
+
     }
 
-    public function removeItem($id)
-    {
+    public function removeAllItems(){
+
+        $userId = Auth::id();
+        $userId = 1;
+        DB::table('cart_items')->where('user_id', $userId)->delete();
+
+        return Redirect::refresh();
+
+
     }
 
-    public function removeAllItems($id)
-    {
-    }
 
-    public function setUpForCheckout($id)
-    {
-    }
+
+
 }

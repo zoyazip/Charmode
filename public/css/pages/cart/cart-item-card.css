@@ -50,6 +50,7 @@
 .item-wrapper__right-right .item-wrapper__end-price{
     font-size: var(--title-heading);
     font-weight: bold;
+    text-wrap: nowrap;
 }
 
 .item-wrapper__more-or-less-item{
@@ -86,6 +87,7 @@
 }
 
 .item-wrapper__trash-icon{
+    cursor: pointer;
     width: 20vw;
     max-width: 30px;
     min-width: 26px;
@@ -97,6 +99,10 @@
 
 .sum-up-top{
     white-space: nowrap;
+}
+
+#reset-form{
+    display: flex;
 }
 
 @media only screen and (max-width: 480px) {
@@ -121,7 +127,7 @@
 .item-wrapper__more-or-less-item::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
-    margin: 0;
+    /*margin: 0;*/
 }
 
 .item-wrapper__more-or-less-item[type=number] {
@@ -142,3 +148,4 @@ input::-webkit-inner-spin-button {
         max-height: 220px;
     }
 }
+

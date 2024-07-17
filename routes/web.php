@@ -9,20 +9,14 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\FilterController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\ReviewController;
-use App\Http\Controllers\OrderController;
-use App\Http\Controllers\ImageController;
-
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\Auth\LoginController;
 
 // pages controllers
 use App\Http\Controllers\Pages\HomeController;
 use App\Http\Controllers\Pages\ProductListPageController;
+
 use App\Http\Controllers\Pages\ProductDisplayPageController;
-
-
-
 
 
 
@@ -67,31 +61,15 @@ Route::post('/to_checkout', [CheckoutController::class, 'checkInput']);
 
 // Admin routes
 Route::get('/adminproducts', [AdminController::class, 'openAllProductPage']);
-Route::get('/adminproducts/create', [AdminController::class, 'openAddProductPage']);
+Route::get('/createproduct', [AdminController::class, 'openAddProductPage']);
 Route::get('/adminproducts/edit/{id}', [AdminController::class, 'editProduct']);
 Route::get('/orders/{id}', [AdminController::class, 'openOneOrderPage']);
 Route::get('/adminproducts/{id}', [AdminController::class, 'openOneProductPage']);
 Route::get('/orders', [AdminController::class, 'openOrdersPage']);
 
-// Delete Review
-Route::get('/reviews/delete/{id}', [ReviewController::class, 'delete']);
-// Delete Product
-Route::get('/adminproducts/delete/{id}', [ProductController::class, 'delete']);
-// Delete Image
-Route::get('/adminproducts/images/delete/{id}', [ImageController::class, 'delete']);
-
-
-// Save Product
-Route::post('/add_product', [AdminController::class, 'addProduct']);
-
-// Update Product
-Route::post('/update_product/{id}', [AdminController::class, 'updateProduct']);
-
-// Update status
-Route::post('/orders/update/{id}', [OrderController::class, 'updateStatus']);
-
 
 Route::get('/subcategories', [AdminController::class, 'getSubcategories']);
+Route::post('/add_product', [AdminController::class, 'addProduct']);
 Route::get('/edit_product/{id}', [AdminController::class, 'editProduct']);
 Route::get('/get_product', [AdminController::class, 'getProducts']);
 
@@ -112,24 +90,15 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // page routes
 Route::get('/', [HomeController::class, 'index']);
+Route::get('/filter', [ProductListPageController::class, 'index'])->name('filter');
 Route::get('/product/{id}', [ProductDisplayPageController::class, 'index'])->name('product');
 
-// post routes
-Route::post('/product/{id}', [ReviewController::class, 'store'])->name('reviews.store');
 
 
-Route::get('/cart', [CartController::class, 'index'])->name('cart');
-Route::patch('/cart', [CartController::class, 'store']);
-
-Route::post('/cart', [CartController::class, 'store'])->name('cart.store');
-
-// plp routes
-// Route::get('/filter', [ProductListPageController::class, 'index'])->name('filter');
-Route::get('/filter/{subcat?}', [ProductListPageController::class, 'categoryIndex'])->name('filter');
-
-
-Route::patch('/cart', [CartController::class, 'updateList']);
+Route::get('/cart', [CartController::class, 'index']);
 Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
-
 Route::post('/cart/{product_id}', [CartController::class, 'store'])->name('cart.store');
+Route::delete('/cart', [CartController::class, 'removeAllItems']);
+Route::put('/cart', [CartController::class, 'addOrRemoveItem']);
+Route::patch('/cart', [CartController::class, 'updateList']);
 
