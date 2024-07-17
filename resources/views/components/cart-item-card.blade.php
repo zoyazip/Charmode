@@ -12,7 +12,7 @@
                 <span class="item-wrapper__red-color"></span>
             </div>
             @if($product->shippingCost)
-                <p class="item-wrapper__free-delivery">{{$product->shippingCost}} €</p>
+                <p class="item-wrapper__free-delivery">{{number_format($product->shippingCost, 2, ',', '.')}} €</p>
             @else
                 <p class="item-wrapper__free-delivery">Free delivery</p>
             @endif
