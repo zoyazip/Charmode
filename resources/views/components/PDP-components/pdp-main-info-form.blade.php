@@ -1,8 +1,10 @@
 <form class="main-info-container md:py-10 md:w-1/2 lg:w-1/3 h-full flex flex-col justify-between"
-    action="/cartitem/create/{{$product->id}}/1" method="POST">
-    {{-- action="{{ route('cart.store', ['product_id' => $product->id, 'color_id' => $color_id, 'quantity' => 1]) }}" method="POST"> --}}
+    action="{{ route('cart.store') }}" method="POST">
     @csrf
-    <div class="">
+    <input type="hidden" value="{{ $product->id }}" name="product_id">
+    <input type="hidden" value="1" name="quantity">
+
+    <div>
         <div class="product-title">
             <h2 class="font-bold text-3xl lg:text-3xl text-main-green">{{ $product->name }}</h2>
         </div>
@@ -19,14 +21,14 @@
                 <img src='{{ URL::asset('assets/svg/comment.svg') }}' />
             </div>
         </div>
-        <div class="">
+        <div>
             <div class="product-color mt-6">
                 <h3 class="text-lg font-bold text-main-green">Color</h3>
                 <div class="color-container flex gap-2 pt-2">
                     @foreach ($product->productColors as $index => $color)
                         <label>
                             <input id={{ $index }} type="radio" name='color_id' class="color-input pl-3"
-                                @checked($index == 0 ? true : false) value="{{$color->id}}"/>
+                                @checked($index == 0 ? true : false) value="{{ $color->id }}" />
                             <div id={{ $index }} style="background-color: {{ $color->color->hex }}"
                                 class="color relative w-8 h-8 rounded-full cursor-pointer outline-offset-2 {{ $color->color->hex === '#ffffff' ? 'border border-black' : '' }}">
                             </div>
@@ -42,7 +44,7 @@
             </div>
         </div>
     </div>
-    <div class="">
+    <div>
         <div class="add-to-cart flex gap-4 mt-10 md:mt-0 items-center">
             <button type="submit"
                 class="bg-main-green text-white flex items-center justify-between px-4 py-3 rounded-lg w-3/4 md:w-full xl:w-2/3 hover:drop-shadow-lg transition-all">

@@ -11,14 +11,13 @@ use App\Models\Product;
 
 class ReviewController extends Controller
 {
-    public function store(Request $request, $id)
+    public function store(Request $request)
     {
         if (!Auth::check()) {
             return response()->json(['message' => 'Unauthorized'], 401);
         }
-        // dd($request);
         
-        $product = Product::findOrFail($id);
+        $product = Product::findOrFail($request->product_id);
 
         $review = new Review();
         $review->user_id = Auth::id();  // Get the authenticated user's ID

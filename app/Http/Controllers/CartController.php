@@ -1,139 +1,105 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\CartItem;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
+
+use Illuminate\Support\Facades\Cookie;
+
 
 class CartController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $userId = Auth::id();
-        $userId = 1;
-        $productPriceSum = 0;
-        $deliveryPriceSum = 0;
-        $productCountSum = 0;
-        $cartWithProducts = DB::table('cart_items')->join('products', 'cart_items.product_id', '=', 'products.id')->where('cart_items.user_id', $userId)->get();
-
-        foreach ($cartWithProducts as $product) {
-            $productPriceSum += ($product->newPrice * $product->quantity);
-            $deliveryPriceSum += $product->shippingCost;
-            $productCountSum += $product->quantity;
-        }
-
-        return view('web.pages.cart')->with('cartWithProducts', $cartWithProducts)->with('productPriceSum', $productPriceSum)->with('deliveryPriceSum', $deliveryPriceSum)->with('productCountSum', $productCountSum);
-    }
-
-
-    public function store(Request $request, $product_id, $quantity) {
         if (Auth::check()) {
-            // user is logged in
-            $cartItem = DB::table('cart_items')
-            ->where([
-                'product_id' => $product_id,
-                'user_id' => Auth::id(),
-                'color_id' => $request->color_id,])
-            ->first();
-/*
-    public function updateList(Request $request){
+            $products = CartItem::where('user_id', Auth::id())->with(['product', 'user'])->get();
 
-        $allrequest = $request->input();
-        // TODO pievienot validāciju
-        unset($allrequest['_token']);
-        unset($allrequest['_method']);
-
-        $userId = Auth::id();
-        $userId = 1;
-
-
-        foreach ($allrequest as $key => $value) {
-        DB::table('cart_items')->where('user_id', $userId)->
-        where('product_id', $key)->update(['quantity' => $value]);
-        }
-
-        return Redirect::refresh();
-
-    }
-
-    public function store(Request $request, $product_id, $color_id, $quantity) {
-        if (Auth::check()) {
-            // user is logged in
-            $cartItem = DB::table('cart_items')
-                ->where([
-                    'product_id' => $product_id,
-                    'user_id' => Auth::id(),
-                    'color_id' => $color_id,])
-                ->first();
-*/
-            if(!$cartItem) {
-                // create new
-                $newCartItem = new CartItem;
-                $newCartItem->user_id = Auth::id();
-                $newCartItem->product_id = $product_id;
-                $newCartItem->color_id = $request->color_id;
-                $newCartItem->quantity = $quantity;
-                $newCartItem->save();
-            } else {
-                DB::table('cart_items')
-                    ->where([
-                        'product_id' => $product_id,
-                        'user_id' => Auth::id(),
-                        'color_id' => $request->color_id,])
-                    ->update(['quantity' => $quantity]);
+            $productPriceSum = 0;
+            $deliveryPriceSum = 0;
+            foreach ($products as $entry) {
+                $productPriceSum += $entry->product->newPrice * $entry->quantity + $entry->product->shippingCost;
+                $deliveryPriceSum += $entry->product->shippingCost;
             }
 
+            return view('web.pages.cart', [
+                "cartItems" => $products,
+                "productPriceSum" => $productPriceSum,
+                "productCountSum" => count($products),
+                "deliveryPriceSum" => $deliveryPriceSum,
+            ]);
         } else {
-            // cookies
-            // $addedItems = json_decode($request->cookie('cartitems'), true);
-            $addedItems = json_decode(Cookie::get('cartitems'), true);
-            $found = false;
-            foreach($addedItems as $item) {
-                if($item->product_id === $product_id && $item->color_id === $request->color_id) {
-                    // item with same color already has added, so we change quantity
-                    $item->quantity = $quantity;
-                    $found = true;
-                    break;
-                }
-            }
-            if(!$found) {
-                // item is not added, so we add new item
-                $newItem = [
-                    'user_id' => null,
-                    'product_id' => $product_id,
-                    'color_id' => $request->color_id,
-                    'quantity' => $quantity,
-                ];
-                array_push($addedItems, $newItem);
-            }
-            Cookie::queue('cartitems', json_encode($addedItems), 60 * 24);
+            // here comes the logic for non-authorized users
         }
+    }
+
+    public function storeAuth(Request $request)
+    {
+        // user is logged in
+        $cartItem = CartItem::where(['user_id' => Auth::id(), 'product_id' => $request->product_id])->with('product')->first();
+        if (!$cartItem) {
+            // create new
+            $newCartItem = new CartItem;
+            $newCartItem->user_id = Auth::id();
+            $newCartItem->product_id = $request->product_id;
+            $newCartItem->color_id = $request->color_id;
+            $newCartItem->quantity = $request->quantity;
+            $newCartItem->save();
+        } else {
+            $cartItem->quantity++;
+            $cartItem->save();
+        }
+
         return redirect()->back();
     }
 
-    public function addOrRemoveItem(Request $request)
+    public function storeGuest(Request $request)
     {
+        // here comes the logic for non-auth users
+        // cookies
+        $addedItems = json_decode(Cookie::get('cartitems'), true);
+        $found = false;
+        foreach ($addedItems as $item) {
+            if ($item->product_id === $request->product_id && $item->color_id === $request->color_id) {
+                // item with same color already has added, so we change quantity
+                $item->quantity = $request->quantity;
+                $found = true;
+                break;
+            }
+        }
+        if (!$found) {
+            // item is not added, so we add new item
+            $newItem = [
+                'user_id' => null,
+                'product_id' => $request->product_id,
+                'color_id' => $request->color_id,
+                'quantity' => $request->quantity,
+            ];
+            array_push($addedItems, $newItem);
+        }
+        Cookie::queue('cartitems', json_encode($addedItems), 60 * 24);
     }
+
 
     public function removeItem(Request $request, $product_id)
     {
-        if (Auth::check()) {
-            // user is logged in
-            $cartItem = DB::table('cart_items')
-            ->where([
-                'product_id' => $product_id,
-                'user_id' => Auth::id(),
-                'color_id' => $request->color_id,])
-            ->first()->delete();
-
+        if (Auth::check()) { // user is logged in
+            DB::table('cart_items')
+                ->where([
+                    'product_id' => $product_id,
+                    'user_id' => Auth::id(),
+                    'color_id' => $request->color_id,
+                ])
+                ->first()
+                ->delete();
         } else {
             // cookies
             $addedItems = json_decode($request->cookie('cartitems'), true);
             $found = false;
-            foreach($addedItems as $index => $item) {
-                if($item->product_id === $product_id && $item->color_id === $request->color_id) {
+            foreach ($addedItems as $index => $item) {
+                if ($item->product_id === $product_id && $item->color_id === $request->color_id) {
                     // item with same color already has added, so we change quantity
                     array_splice($addedItems, $index, 1);
                     break;
@@ -147,34 +113,11 @@ class CartController extends Controller
     public function removeAllItems(Request $request)
     {
         if (Auth::check()) {
-            // user is logged in
-            DB::table('cart_items')->where(['user_id' => Auth::id(),])->delete();
+            DB::table('cart_items')->where(['user_id' => Auth::id()])->delete();  // user is logged in
         } else {
-            // cookies
-            Cookie::forget('cartitems');
-            $userId = Auth::id();
-            $userId = 1;
-            DB::table('cart_items')->where('user_id', $userId)->delete();
-
-            return Redirect::refresh();
+            Cookie::forget('cartitems');  // cookies
         }
         return redirect()->back();
-/*
-        $itemId = $request->input('productID');
-        $userId = Auth::id();
-        $userId = 1;
-        DB::table('cart_items')->where('user_id', $userId)->
-        where('product_id', $itemId)->delete();
-
-
-        return Redirect::refresh();
-*/
-
-
     }
-
-
-
-
 
 }
