@@ -9,7 +9,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\FilterController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
-
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\Auth\LoginController;
 
 // pages controllers
@@ -94,6 +94,5 @@ Route::get('/filter', [ProductListPageController::class, 'index'])->name('filter
 Route::get('/product/{id}', [ProductDisplayPageController::class, 'index'])->name('product');
 
 
-Route::get('/cart', function () {
-    return view('web.pages.cart');
-});
+
+Route::get('/cart', [CartController::class, 'index']);
