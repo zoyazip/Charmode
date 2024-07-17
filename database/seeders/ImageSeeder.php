@@ -16,11 +16,11 @@ class ImageSeeder extends Seeder
     {
         DB::table('images')->truncate();
 
-        $ProductColors = [
+        $Images = [
             // Zenith
             [
-                "url" => "assets/webp/products/zenith/zenit_1.webp",
                 "product_id" => "1",
+                "url" => "assets/webp/products/zenith/zenit_1.webp",
             ],
             [
                 "url" => "assets/webp/products/zenith/zenit_2.webp",
@@ -370,6 +370,6 @@ class ImageSeeder extends Seeder
 
         ];
 
-        DB::table('product_colors')->insert($ProductColors);
+        DB::table('images')->insert($Images);
     }
 }
