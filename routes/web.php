@@ -121,7 +121,7 @@ Route::post('/product/{id}', [ReviewController::class, 'store'])->name('reviews.
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
 Route::patch('/cart', [CartController::class, 'store']);
 
-Route::post('/cart', [CartController::class, 'store'])->name('cart.store')
+Route::post('/cart', [CartController::class, 'store'])->name('cart.store');
 
 // plp routes
 // Route::get('/filter', [ProductListPageController::class, 'index'])->name('filter');
