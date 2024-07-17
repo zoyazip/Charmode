@@ -19,11 +19,11 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             ReviewSeeder::class,
-            // CategorySeeder::class,
-            // ColorSeeder::class,
-            // SubCategorySeeder::class,
-            // ProductSeeder::class,
-            // ProductColorSeeder::class,
+            CategorySeeder::class,
+            ColorSeeder::class,
+            SubCategorySeeder::class,
+            ProductSeeder::class,
+            ProductColorSeeder::class,
 
         ]);
     }
