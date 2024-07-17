@@ -7,14 +7,18 @@
     <div class="item-wrapper__right">
         <div class="item-wrapper__right-left">
             <p class="item-wrapper__product-name">{{$product->name}}</p>
-            <p class="item-wrapper__amount-price">{{$product->quantity}} x {{$product->newPrice}}€</p>
+            <p class="item-wrapper__amount-price">{{$product->quantity}} x {{number_format($product->newPrice, 2, ',', '.')}} €</p>
             <div class="item-wrapper__color-row">
                 <span class="item-wrapper__red-color"></span>
             </div>
-            <p class="item-wrapper__free-delivery">{{$product->shippingCost}}</p>
+            @if($product->shippingCost)
+                <p class="item-wrapper__free-delivery">{{$product->shippingCost}} €</p>
+            @else
+                <p class="item-wrapper__free-delivery">Free delivery</p>
+            @endif
         </div>
         <div class="item-wrapper__right-right">
-            <p class="item-wrapper__end-price">{{$product->quantity*$product->newPrice}}€</p>
+            <p class="item-wrapper__end-price">{{number_format($product->quantity*$product->newPrice, 2, ',', '.')}} €</p>
             <form>
                 <p class="item-wrapper__more-or-less">
                     <a class="item-wrapper__inc-btn" ><span class="item-wrapper__more-or-less-item minus" >-</span></a>
