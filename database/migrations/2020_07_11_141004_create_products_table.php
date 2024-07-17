@@ -24,7 +24,7 @@ return new class extends Migration
             $table->integer('shippingCost');
             $table->timestamps();
 
-            $table->foreign('subcategory_id')->references('id')->on('sub_categories');
+            $table->foreign('subcategory_id')->references('id')->on('sub_categories')->onDelete('cascade');
 
             $table->softDeletes('deleted_at', precision: 0);
         });

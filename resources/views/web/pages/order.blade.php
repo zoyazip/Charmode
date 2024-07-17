@@ -11,7 +11,7 @@
         <button onclick="window.location='/orders'">To all orders</button>
         @if (isset($order))
         <p>{{$order->id}}</p>
-        <form method="POST" action="/orders/update/{{$review->id}}">
+        <form method="POST" action="/orders/update/{{$order->id}}">
             @csrf
             <input name="status" type="text">
             <input type="submit" value="Update status">

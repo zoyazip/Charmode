@@ -68,10 +68,14 @@ Route::get('/orders', [AdminController::class, 'openOrdersPage']);
 
 // Delete Review
 Route::get('/reviews/delete/{id}', [ReviewController::class, 'delete']);
+// Delete Product
+Route::get('/adminproducts/delete/{id}', [ProductController::class, 'delete']);
+
+// Save Product
+Route::post('/add_product', [AdminController::class, 'addProduct']);
 
 
 Route::get('/subcategories', [AdminController::class, 'getSubcategories']);
-Route::post('/add_product', [AdminController::class, 'addProduct']);
 Route::get('/edit_product/{id}', [AdminController::class, 'editProduct']);
 Route::get('/get_product', [AdminController::class, 'getProducts']);
 

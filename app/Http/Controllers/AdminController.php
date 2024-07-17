@@ -124,6 +124,8 @@ class AdminController extends Controller
             $imageController = new ImageController;
             $imageController->storeImages($images, $productID);
         }
+
+        return redirect('/adminproducts');
     }
 
    

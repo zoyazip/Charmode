@@ -75,10 +75,10 @@ class ProductController extends Controller
         return "Success";
     }
 
-    public function deleteProduct(Request $request)
+    public function delete(Request $request)
     {
         $product = Product::find($request->id);
         $product->delete();
-        return "Success";
+        return redirect('/adminproducts');
     }
 }

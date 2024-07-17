@@ -15,12 +15,12 @@ class ReviewSeeder extends Seeder
     {
         //
         $reviews = [
-            ['product_id' => '1', 'user_id' => '1', 'rating' => '8', 'comment' => 'comment for product 1'],
-            ['product_id' => '1', 'user_id' => '1', 'rating' => '8', 'comment' => 'comment for product 1'],
-            ['product_id' => '1', 'user_id' => '1', 'rating' => '6', 'comment' => 'comment for product 1'],
-            ['product_id' => '1', 'user_id' => '1', 'rating' => '8', 'comment' => 'comment 1'],
-            ['product_id' => '1', 'user_id' => '1', 'rating' => '7', 'comment' => 'product 1'],
-            ['product_id' => '1', 'user_id' => '1', 'rating' => '8', 'comment' => 'comment for product 1'],
+            ['product_id' => '3', 'user_id' => '1', 'rating' => '8', 'comment' => 'comment for product 1'],
+            ['product_id' => '3', 'user_id' => '1', 'rating' => '8', 'comment' => 'comment for product 1'],
+            ['product_id' => '3', 'user_id' => '1', 'rating' => '6', 'comment' => 'comment for product 1'],
+            ['product_id' => '3', 'user_id' => '1', 'rating' => '8', 'comment' => 'comment 1'],
+            ['product_id' => '3', 'user_id' => '1', 'rating' => '7', 'comment' => 'product 1'],
+            ['product_id' => '3', 'user_id' => '1', 'rating' => '8', 'comment' => 'comment for product 1'],
         ];
 
         DB::table('reviews')->insert($reviews);
