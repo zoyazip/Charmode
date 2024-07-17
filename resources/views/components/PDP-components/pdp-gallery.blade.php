@@ -1,7 +1,14 @@
-<!-- Swiper JS -->
 @push('styles')
+    {{-- Swiper JS --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="{{ URL::asset('/css/pages/pdp/slider.css') }}">
+
+    {{-- lightgallery --}}
+    <link type="text/css" rel="stylesheet" href="css/lightgallery.css" />
+
+    <!-- lightgallery plugins -->
+    <link type="text/css" rel="stylesheet" href="css/lg-zoom.css" />
+    <link type="text/css" rel="stylesheet" href="css/lg-thumbnail.css" />
 @endpush
 
 <div class="swiper mySwiper h-[50vh] md:h-full rounded-2xl flex gap-4 w-full md:w-1/2 lg:w-2/3 lg:h-full">
@@ -12,7 +19,8 @@
             </div>
         @endforeach
     </div>
-    <div class="swiper-button-next select-none"> <img src="{{ URL::asset('assets/svg/arrow.svg') }}" alt=""></div>
+    <div class="swiper-button-next select-none"> <img src="{{ URL::asset('assets/svg/arrow.svg') }}" alt="">
+    </div>
     <div class="swiper-button-prev select-none"> <img src="{{ URL::asset('assets/svg/arrow.svg') }}" alt="">
     </div>
 </div>
@@ -31,4 +39,7 @@
             loop: true
         });
     </script>
+
+    {{-- lightgallery --}}
+    <script src="js/lightgallery.min.js"></script>
 @endpush

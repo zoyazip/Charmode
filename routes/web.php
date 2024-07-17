@@ -119,10 +119,10 @@ Route::get('/product/{id}', [ProductDisplayPageController::class, 'index'])->nam
 Route::post('/product/{id}', [ReviewController::class, 'store'])->name('reviews.store');
 
 
+Route::get('/cart', [CartController::class, 'index'])->name('cart');
+Route::patch('/cart', [CartController::class, 'store']);
 
+Route::post('/cart', [CartController::class, 'store'])->name('cart.store')
 
-Route::get('/cart', [CartController::class, 'index']);
 Route::patch('/cart', [CartController::class, 'updateList']);
 Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
-
-
