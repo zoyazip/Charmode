@@ -12,6 +12,7 @@
             ])
             <div class="card__title-container w-full flex justify-between items-center z-10">
                 <div class="title">
+
                     <h3 class="font-bold text-white text-lg truncate">{{ $product->name }}</h3>
                 </div>
                 <div

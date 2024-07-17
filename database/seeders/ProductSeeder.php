@@ -99,6 +99,7 @@ class ProductSeeder extends Seeder
                 'product_code'=>'SGC-44567',
                 'name' => 'Slate',
                 'description' => 'The Slate Comfort Sofa combines modern design with exceptional comfort. Its neutral grey color fits seamlessly into any décor, providing a sophisticated look. The sofa features deep seating and plush back cushions, making it perfect for relaxation and gatherings.',
+
                 'subcategory_id' =>  '3',
                 'oldPrice' => '500',
                 'newPrice' => '500',
@@ -110,6 +111,7 @@ class ProductSeeder extends Seeder
                 'product_code'=>'IWE-56789',
                 'name' => 'Ivory',
                 'description' => 'The Ivory White Elegance Sofa embodies timeless sophistication and comfort. Its pristine white color complements any interior style, from classic to contemporary. The sofa features plush cushions, a sleek design, and sturdy construction, ensuring both aesthetic appeal and durability.',
+
                 'subcategory_id' =>  '3',
                 'oldPrice' => '600',
                 'newPrice' => '600',
@@ -121,6 +123,7 @@ class ProductSeeder extends Seeder
                 'product_code'=>'CBC-12345',
                 'name' => 'Chestnut',
                 'description' => 'The Chestnut Brown Classic Sofa exudes warmth and elegance, making it a focal point in any living room. Its rich brown hue complements traditional and rustic interiors alike. This sofa features deep seating, plush cushions, and rolled arms, providing comfort and timeless style.',
+
                 'subcategory_id' =>  '3',
                 'oldPrice' => '550',
                 'newPrice' => '495',
@@ -143,7 +146,7 @@ class ProductSeeder extends Seeder
                 'product_code'=>'TRDT-45678',
                 'name' => 'Timberwood',
                 'description' => 'The Timberwood Rustic Dining Table exudes charm and craftsmanship, perfect for creating a cozy dining atmosphere. Crafted from reclaimed timber, each table showcases unique wood grain patterns and knots, adding character to your space. Its sturdy build and rustic finish make it ideal for family gatherings and meals.',
-                'subcategory_id' =>  '1',
+                'subcategory_id' => '1',
                 'oldPrice' => '600',
                 'newPrice' => '540',
                 'discount' => '10',
@@ -259,6 +262,7 @@ class ProductSeeder extends Seeder
                 'discount' => '10',
                 'stockQuantity' => '13',
                 'shippingCost' => '4'
+
             ],
         ];
         DB::table('products')->insert($products);

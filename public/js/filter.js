@@ -7,7 +7,7 @@ const maxPriceInput = document.getElementById("max-price");
 const priceSlider = document.getElementById("price-slider");
 console.log("min: ", minPriceInput.value);
 if (maxPriceInput.value == 0) {
-    maxPriceInput.value = 1000;
+    maxPriceInput.value = 999;
     // submitBtn.click();
 }
 noUiSlider.create(priceSlider, {
@@ -15,7 +15,7 @@ noUiSlider.create(priceSlider, {
     connect: true,
     range: {
         min: 0,
-        max: 1000,
+        max: 999,
     },
     tooltips: false,
     format: {
@@ -52,7 +52,7 @@ const maxWidthInput = document.getElementById("max-width");
 const widthSlider = document.getElementById("width-slider");
 console.log("min: ", minWidthInput.value);
 if (maxWidthInput.value == 0) {
-    maxWidthInput.value = 1000;
+    maxWidthInput.value = 999;
     // submitBtn.click();
 }
 noUiSlider.create(widthSlider, {
@@ -60,7 +60,7 @@ noUiSlider.create(widthSlider, {
     connect: true,
     range: {
         min: 0,
-        max: 1000,
+        max: 999,
     },
     tooltips: false,
     format: {
@@ -97,7 +97,7 @@ const maxHeightInput = document.getElementById("max-height");
 const heightSlider = document.getElementById("height-slider");
 console.log("min: ", minHeightInput.value);
 if (maxHeightInput.value == 0) {
-    maxHeightInput.value = 1000;
+    maxHeightInput.value = 999;
     // submitBtn.click();
 }
 noUiSlider.create(heightSlider, {
@@ -105,7 +105,7 @@ noUiSlider.create(heightSlider, {
     connect: true,
     range: {
         min: 0,
-        max: 1000,
+        max: 999,
     },
     tooltips: false,
     format: {
@@ -142,7 +142,7 @@ const maxDepthInput = document.getElementById("max-depth");
 const depthSlider = document.getElementById("depth-slider");
 console.log("min: ", minDepthInput.value);
 if (maxDepthInput.value == 0) {
-    maxDepthInput.value = 1000;
+    maxDepthInput.value = 999;
     // submitBtn.click();
 }
 noUiSlider.create(depthSlider, {
@@ -150,7 +150,7 @@ noUiSlider.create(depthSlider, {
     connect: true,
     range: {
         min: 0,
-        max: 1000,
+        max: 999,
     },
     tooltips: false,
     format: {
@@ -178,3 +178,24 @@ minDepthInput.addEventListener("change", function () {
 maxDepthInput.addEventListener("change", function () {
     depthSlider.noUiSlider.set([null, Math.round(this.value)]);
 });
+
+function toggleElements(divId, divId2, arrowId) {
+    const div = document.getElementById(divId);
+    const div2 = document.getElementById(divId2);
+    const arrow = document.getElementById(arrowId);
+    if (arrow.classList.contains("close__arrow")) {
+        arrow.classList.remove("close__arrow");
+        arrow.classList.add("open__arrow");
+        div.classList.remove("filter__hidden__div");
+        div.classList.add("filter__visible__div");
+        div2.classList.remove("filter__hidden__div");
+        div2.classList.add("filter__visible__div");
+    } else {
+        arrow.classList.remove("open__arrow");
+        arrow.classList.add("close__arrow");
+        div.classList.add("filter__hidden__div");
+        div.classList.remove("filter__visible__div");
+        div2.classList.add("filter__hidden__div");
+        div2.classList.remove("filter__visible__div");
+    }
+}

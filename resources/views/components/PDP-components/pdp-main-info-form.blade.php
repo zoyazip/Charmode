@@ -8,12 +8,12 @@
         </div>
         <div class="rating-and-comments-container flex gap-6 mt-2">
             <div class="rating flex gap-2">
-                <h3 class="text-main-green font-bold text-xl">{{ $product->rating }}</h3>
-                <img src='assets/svg/rating.svg' />
+                <h3 class="text-main-green font-bold text-xl">{{ $rating }}</h3>
+                <img src='{{ URL::asset('assets/svg/rating.svg') }}' />
             </div>
             <div class="comments flex gap-2 cursor-pointer">
-                <h3 class="text-main-green font-bold text-xl">{{ $product->comments_count }}</h3>
-                <img src='assets/svg/comment.svg' />
+                <h3 class="text-main-green font-bold text-xl">{{ count($product->reviews) }}</h3>
+                <img src='{{ URL::asset('assets/svg/comment.svg') }}' />
             </div>
         </div>
         <div class="">
@@ -60,26 +60,22 @@
     </div>
 </form>
 
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
+@push('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const likeCheckbox = document.querySelector('.like-checkbox')
+            const likeCheckboxHeart = document.querySelector('.like-element').querySelector('img')
+            const price = document.querySelector('.price')
 
-        const likeCheckbox = document.querySelector('.like-checkbox')
-        const likeCheckboxHeart = document.querySelector('.like-element').querySelector('img')
+            //like feature
+            likeCheckboxHeart.addEventListener('click', () => {
+                if (likeCheckbox.checked) {
+                    likeCheckboxHeart.src = 'assets/svg/heart_filled.svg'
+                } else {
+                    likeCheckboxHeart.src = 'assets/svg/heart.svg'
+                }
+            })
 
-        const price = document.querySelector('.price')
-
-
-        //like feature
-
-        likeCheckboxHeart.addEventListener('click', () => {
-            if (likeCheckbox.checked) {
-                likeCheckboxHeart.src = 'assets/svg/heart_filled.svg'
-            } else {
-                likeCheckboxHeart.src = 'assets/svg/heart.svg'
-            }
         })
-
-
-
-    })
-</script>
+    </script>
+@endpush
