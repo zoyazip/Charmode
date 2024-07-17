@@ -12,7 +12,7 @@ class CartController extends Controller
     public function index()
     {
         $userId = Auth::id();
-        $userId = 1;
+//        $userId = 1;
         $productPriceSum = 0;
         $deliveryPriceSum = 0;
         $productCountSum = 0;
@@ -27,17 +27,17 @@ class CartController extends Controller
         return view('web.pages.cart')->with('cartWithProducts', $cartWithProducts)->with('productPriceSum', $productPriceSum)->with('deliveryPriceSum', $deliveryPriceSum)->with('productCountSum', $productCountSum);
     }
 
+//
+//    public function store(Request $request, $product_id, $quantity) {
+////        if (Auth::check()) {
+//            // user is logged in
+//            $cartItem = DB::table('cart_items')
+//            ->where([
+//                'product_id' => $product_id,
+//                'user_id' => Auth::id(),
+//                'color_id' => $request->color_id,])
+//            ->first();}
 
-    public function store(Request $request, $product_id, $quantity) {
-        if (Auth::check()) {
-            // user is logged in
-            $cartItem = DB::table('cart_items')
-            ->where([
-                'product_id' => $product_id,
-                'user_id' => Auth::id(),
-                'color_id' => $request->color_id,])
-            ->first();
-/*
     public function updateList(Request $request){
 
         $allrequest = $request->input();
@@ -46,7 +46,7 @@ class CartController extends Controller
         unset($allrequest['_method']);
 
         $userId = Auth::id();
-        $userId = 1;
+//        $userId = 1;
 
 
         foreach ($allrequest as $key => $value) {
@@ -67,7 +67,7 @@ class CartController extends Controller
                     'user_id' => Auth::id(),
                     'color_id' => $color_id,])
                 ->first();
-*/
+
             if(!$cartItem) {
                 // create new
                 $newCartItem = new CartItem;
@@ -117,15 +117,15 @@ class CartController extends Controller
     {
     }
 
-    public function removeItem(Request $request, $product_id)
+    public function removeItem(Request $request)
     {
+        $product_id = $request['productID'];
         if (Auth::check()) {
             // user is logged in
-            $cartItem = DB::table('cart_items')
+            DB::table('cart_items')
             ->where([
                 'product_id' => $product_id,
-                'user_id' => Auth::id(),
-                'color_id' => $request->color_id,])
+                'user_id' => Auth::id()])
             ->first()->delete();
 
         } else {

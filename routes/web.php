@@ -126,6 +126,6 @@ Route::get('/cart', [CartController::class, 'index']);
 Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
 Route::post('/cart/{product_id}', [CartController::class, 'store'])->name('cart.store');
 Route::delete('/cart', [CartController::class, 'removeAllItems']);
-Route::put('/cart', [CartController::class, 'addOrRemoveItem']);
+Route::put('/cart', [CartController::class, 'removeItem']);
 Route::patch('/cart', [CartController::class, 'updateList']);
 
