@@ -58,21 +58,21 @@ class ProductController extends Controller
         return $product->id;
     }
 
-    public function updateProduct(Request $request)
+    public function updateProduct(Request $request, $subCategory)
     {
         $product = Product::find($request->id);
         $product->update([
+            'product_code' => $request->product_code,
             'name' => $request->name,
             'description' => $request->description,
-            'category_id' => $request->desccategory_idiption,
-            'old_price' => $request->old_price,
-            'new_price' => $request->new_price,
-            'stock_quantity' => $request->stock_quantity,
-            'specifications' => $request->specifications,
-            'color_id' => $request->color_id,
-            'delivery_cost' => $request->delivery_cost,
+            'subcategory_id' => $subCategory,
+            'oldPrice' => $request->oldPrice,
+            'newPrice' => $request->newPrice,
+            'discount' => $request->discount,
+            'stockQuantity' => $request->stockQuantity,
+            'shippingCost' => $request->shippingCost,
         ]);
-        return "Success";
+        return $product->id;
     }
 
     public function delete(Request $request)

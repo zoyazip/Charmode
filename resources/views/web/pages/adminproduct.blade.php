@@ -10,7 +10,7 @@
     <div class="inner-container">
         <h1>Hi, Admin!</h1>
         <button onclick="window.location='/adminproducts'">To all products</button>
-        <button onclick="window.location='/adminproducts/edit/{{$product->id}}'">Labot</button>
+        <button onclick="window.location='/adminproducts/edit/{{$product->id}}'">Edit product</button>
         {{-- <p>{{$product->id}}</p> --}}
         <h3>Name: {{$product->name}}</h3>
         <h4>Product code: {{$product->product_code}}</h4>

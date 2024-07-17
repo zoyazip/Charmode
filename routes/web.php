@@ -22,7 +22,6 @@ use App\Http\Controllers\Pages\ProductListPageController;
 use App\Http\Controllers\Pages\ProductDisplayPageController;
 
 
-use App\Http\Controllers\ReviewController;
 
 
 
@@ -84,6 +83,9 @@ Route::get('/adminproducts/images/delete/{id}', [ImageController::class, 'delete
 
 // Save Product
 Route::post('/add_product', [AdminController::class, 'addProduct']);
+
+// Update Product
+Route::post('/update_product/{id}', [AdminController::class, 'updateProduct']);
 
 // Update status
 Route::post('/orders/update/{id}', [OrderController::class, 'updateStatus']);
