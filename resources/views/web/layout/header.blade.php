@@ -48,8 +48,8 @@
                             Cart ({{ $items }})
                         </a>
                         <a class="navbar__auth-option" href="wishlist">
-                            <img src="{{ URL::asset('assets/svg/heart.svg') }}" alt="heart">
-                            Liked
+                            <img src="{{ URL::asset('assets/svg/orders.svg') }}" alt="orders">
+                            My Orders
                         </a>
                         <a class="navbar__auth-option" href="settings">
                             <img src="{{ URL::asset('assets/svg/settings.svg') }}" alt="settings">
