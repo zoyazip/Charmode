@@ -1,0 +1,36 @@
+.color-input {
+    display: none;
+}
+
+/* .color-input[type="radio"]:checked+.color {
+    box-shadow: 0px 0px 0px 2px #2F591B;
+} */
+
+.color-input[type="radio"]:checked+.color::after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    outline: 1px solid black;
+    outline-offset: 2px;
+    position: absolute;
+
+}
+
+.like-checkbox {
+    display: none;
+}
+
+/* .like-checkbox[type="checkbox"]:checked + .like-element{
+    box-shadow: 0px 0px 0px 2px #2F591B;
+} */
+
+.counter::-webkit-outer-spin-button,
+.counter::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.counter[type=number] {
+    -moz-appearance: textfield;
+}

@@ -21,19 +21,19 @@ class ProductColorSeeder extends Seeder
             // Zenith
             [
                 "product_id" => "1",
-                "color_id" => "4",
-            ],
-            [
-                "product_id" => "1",
-                "color_id" => "3",
-            ],
-            [
-                "product_id" => "1",
                 "color_id" => "1",
             ],
             [
-                "product_id" => "1",
-                "color_id" => "5",
+                "product_id" => "2",
+                "color_id" => "2",
+            ],
+            [
+                "product_id" => "2",
+                "color_id" => "3",
+            ],
+            [
+                "product_id" => "2",
+                "color_id" => "4",
             ],
 
             // Blossom
@@ -169,8 +169,8 @@ class ProductColorSeeder extends Seeder
             ],
             // Snow
             [
-                "product_id" => "17",
-                "color_id" => "4",
+                "product_id" => "3",
+                "color_id" => "1",
             ],
             // Charcoal
             [

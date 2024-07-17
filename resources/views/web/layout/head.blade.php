@@ -5,9 +5,11 @@
 <title>@yield('title', 'Default Title')</title>
 
 {{-- styles --}}
-<link rel="stylesheet" href="{{ asset('css/app.css') }}">
-<link rel="stylesheet" href="{{ asset('css/footer/footer.css') }}">
-<link rel="stylesheet" href="{{ asset('css/header/header.css') }}">
+<link rel="stylesheet" href="{{ URL::asset('css/app.css') }}">
+<link rel="stylesheet" href="{{ URL::asset('css/footer/footer.css') }}">
+<link rel="stylesheet" href="{{ URL::asset('css/header/header.css') }}">
+<link rel="stylesheet" href="{{ URL::asset('css/header/greetings.css') }}">
+
 
 {{-- images / icons --}}
-<link rel="icon" type="image/x-icon" href="{{asset('assets/ico/main.ico') }}">
+<link rel="icon" type="image/x-icon" href="{{ URL::asset('assets/ico/main.ico') }}">
