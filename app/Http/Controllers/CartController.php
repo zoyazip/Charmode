@@ -15,18 +15,17 @@ class CartController extends Controller
 {
     public function index(Request $request)
     {
-        dd(json_decode(Cookie::get('cartitems'), true));
         if (Auth::check()) {
-            $products = CartItem::where('user_id', Auth::id())->with(['product', 'user'])->get();
+            $products = CartItem::where('user_id', Auth::id())->with(['product', 'user', 'color'])->get();
             $productPriceSum = 0;
             $deliveryPriceSum = 0;
             $productTotalcount = 0;
+
             foreach ($products as $entry) {
                 $productPriceSum += $entry->product->newPrice * $entry->quantity + $entry->product->shippingCost;
                 $deliveryPriceSum += $entry->product->shippingCost;
                 $productTotalcount += $entry->quantity;
             }
-//            dd($products);
             return view('web.pages.cart', [
                 "cartItems" => $products,
                 "productPriceSum" => $productPriceSum,
@@ -41,7 +40,7 @@ class CartController extends Controller
     public function storeAuth(Request $request)
     {
         // user is logged in
-        $cartItem = CartItem::where(['user_id' => Auth::id(), 'product_id' => $request->product_id])->with('product')->first();
+        $cartItem = CartItem::where(['user_id' => Auth::id(), 'product_id' => $request->product_id, 'color_id' => $request->color_id])->with('product')->first();
         if (!$cartItem) {
             // create new
             $newCartItem = new CartItem;
@@ -99,7 +98,6 @@ class CartController extends Controller
         $product_id = $allRequest['product_id'];
         $color_id = $allRequest['color_id'];
         if (Auth::check()) { // user is logged in
-//            dd($allRequest['product_id']);
             DB::table('cart_items')
                 ->where([
                     'product_id' => $product_id,

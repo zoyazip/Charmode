@@ -14,7 +14,6 @@
         "vite": "^5.0.0"
     },
     "dependencies": {
-        "lightgallery": "^2.7.2",
         "star-rating.js": "^4.3.1",
         "vite": "^5.3.4"
     }

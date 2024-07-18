@@ -1,1 +1,0 @@
-const scroll = document.querySelector('·image-list-container').addEventListener('click', () => {})

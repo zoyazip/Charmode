@@ -12,11 +12,7 @@ use App\Models\Product;
 class ReviewController extends Controller
 {
     public function store(Request $request)
-    {
-        if (!Auth::check()) {
-            return response()->json(['message' => 'Unauthorized'], 401);
-        }
-        
+    {        
         $product = Product::findOrFail($request->product_id);
 
         $review = new Review();

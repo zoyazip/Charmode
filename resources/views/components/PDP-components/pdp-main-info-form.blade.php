@@ -1,5 +1,5 @@
 <form class="main-info-container md:py-10 md:w-1/2 lg:w-1/3 h-full flex flex-col justify-between"
-    action="{{ route('cart.store') }}" method="POST">
+    action="@auth {{ route('cart.store') }} @endauth @guest {{ route('cart.store.guest') }} @endguest" method="POST">
     @csrf
     <input type="hidden" value="{{ $product->id }}" name="product_id">
     <input type="hidden" value="1" name="quantity">
@@ -28,7 +28,7 @@
                     @foreach ($product->productColors as $index => $color)
                         <label>
                             <input id={{ $index }} type="radio" name='color_id' class="color-input pl-3"
-                                @checked($index == 0 ? true : false) value="{{ $color->id }}" />
+                                @checked($index == 0 ? true : false) value="{{ $color->color_id }}" />
                             <div id={{ $index }} style="background-color: {{ $color->color->hex }}"
                                 class="color relative w-8 h-8 rounded-full cursor-pointer outline-offset-2 {{ $color->color->hex === '#ffffff' ? 'border border-black' : '' }}">
                             </div>
