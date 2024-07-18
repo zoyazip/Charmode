@@ -108,11 +108,11 @@
 }
 
 .add-product__right-div {
-    width: 49%;
+    /* width: 49%; */
     /* background-color: var(--green-light); */
-    display: grid;
-    grid-template-columns: auto auto;
-    gap: 5%;
+    /* display: grid; */
+    /* grid-template-columns: auto auto; */
+    /* gap: 5%; */
 }
 
 .image__input {

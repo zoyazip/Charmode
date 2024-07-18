@@ -12,7 +12,11 @@
                                     class="close__arrow"
                                     src="{{ asset('assets/svg/arrow.svg') }}" />
             </div>
+            @if(isset($subcat))
             <a href="{{ route('filter', ['subcat'=> $subcat]) }}" class="filter__reset">Reset</a>
+            @else
+            <a href="{{ route('filter') }}" class="filter__reset">Reset</a>
+            @endif
         </div>
 
         <div class="filter__main filter__hidden__div" id="filter__main">

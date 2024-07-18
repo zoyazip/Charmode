@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Pages;
 
 use Illuminate\Http\RedirectResponse;
 
+use Illuminate\Pagination\LengthAwarePaginator;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
@@ -16,6 +17,23 @@ class ProductListPageController extends Controller
 {
     public function categoryIndex(Request $request, $subcat = null)
     {
+        // $products = Product::with('images')->paginate(12);
+
+        // // Get the total count of products
+        // $currentPage = $products->currentPage();
+        // $lastPage = $products->lastPage();
+        // $nextPages = collect(range($currentPage + 1, min($currentPage + 3, $lastPage)))->filter(function($page) use ($lastPage) {
+        //     return $page <= $lastPage;
+        // });
+        // $previousPage = $currentPage > 1 ? $currentPage - 1 : null;
+
+        // // Pass the paginated products and pagination details to the view
+        // return view('web.pages.home', [
+        //     'products' => $products,
+        //     'currentPage' => $currentPage,
+        //     'nextPages' => $nextPages,
+        //     'previousPage' => $previousPage,
+        // ]);
         $products = Product::all();
 
 
@@ -159,6 +177,19 @@ class ProductListPageController extends Controller
             }, SORT_REGULAR, $sortOrder === 'desc');
         }
 
+        // Pagination
+
+        $currentPage = LengthAwarePaginator::resolveCurrentPage();
+        $perPage = 12;
+        $currentPageItems = $filteredProducts->slice(($currentPage - 1) * $perPage, $perPage)->values();
+        // $paginatedProducts = new LengthAwarePaginator($currentPageItems, $filteredProducts->count(), $perPage, $currentPage, [
+        //     'path' => LengthAwarePaginator::resolveCurrentPath(),
+        //     'query' => $request->query(),
+        // ]);
+        $paginatedFilteredProducts = new LengthAwarePaginator($currentPageItems, count($filteredProducts), $perPage);
+        $paginatedFilteredProducts->setPath($request->url());
+        $paginatedFilteredProducts->appends($request->query());
+        // dd($paginatedFilteredProducts);
 
         // additional params for filter form
         $allColors = Color::all();
@@ -168,7 +199,7 @@ class ProductListPageController extends Controller
         return view('web.pages.plp')->with([
             'subcat' => $subcat,
             "data" => $allParams,
-            "products" => $filteredProducts,
+            "products" => $paginatedFilteredProducts,
             "colors" => $allColors,
             "categories" => $categories
         ]);
