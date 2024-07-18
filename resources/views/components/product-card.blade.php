@@ -23,7 +23,7 @@
                     <input type="hidden" name="quantity" value="1">
                     <button type="submit"
                         class="add-to-cart w-8 h-8 rounded-full bg-white transition-all cursor-pointer z-[100] flex justify-center items-center">
-                        <span class="text-xl font-bold text-main-green">+</button>
+                        <span class="text-xl font-bold text-main-green">+</span>
                     </button>
                 </form>
 
