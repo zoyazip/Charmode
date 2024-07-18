@@ -133,14 +133,14 @@ Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store
 // Route::get('/filter', [ProductListPageController::class, 'index'])->name('filter');
 Route::get('/filter/{subcat?}', [ProductListPageController::class, 'categoryIndex'])->name('filter');
 
-//  please dont touch this routes 
+//  please dont touch this routes
 Route::get('/cart', [CartController::class, 'index']);
-Route::post('/cart', [CartController::class, 'storeGuest'])->name('cart.store.guest')->middleware('guest');
-Route::post('/cart', [CartController::class, 'storeAuth'])->name('cart.store')->middleware('auth');
+Route::post('/cart/store/guest', [CartController::class, 'storeGuest'])->name('cart.store.guest')->middleware('guest');
+Route::post('/cart/store', [CartController::class, 'storeAuth'])->name('cart.store')->middleware('auth');
 
 
 
 Route::delete('/cart', [CartController::class, 'removeAllItems']);
-Route::put('/cart', [CartController::class, 'addOrRemoveItem']);
+Route::put('/cart', [CartController::class, 'removeItem']);
 Route::patch('/cart', [CartController::class, 'updateList']);
 

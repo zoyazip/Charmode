@@ -42,11 +42,6 @@
                     <div>
                         <label>Subcategory: </label>
                         <select id="subCategorySelect" class="select__option" name="subcategory">
-                            {{-- @if (session()->has('allSubCategories'))
-                            @foreach (session()->get('allSubCategories') as $subCategory)
-                                <option value={{$subCategory->id}}>{{$subCategory->name}}</option>
-                            @endforeach
-                        @endif --}}
                         </select>
                     </div>
                     <span class="add__btn" onclick="openPopUpWindow('subCategoryPopUp')">Add new subcategory</span>
@@ -149,9 +144,9 @@
             <button onclick="addNewColor()">Add</button>
         </div>
         @push('scripts')
-            <!-- @once -->
+            @once
                 <script src="{{ URL::asset('js/admin/admin.js') }}"></script>
-            <!-- @endonce -->
+            @endonce
         @endpush
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
