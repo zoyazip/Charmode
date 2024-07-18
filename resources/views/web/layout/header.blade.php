@@ -101,11 +101,13 @@
                 @endauth
             </div>
         </div>
-        <ul class="navbar__links cursor-pointer">
+        <ul class="navbar__links hidden cursor-pointer md:flex gap-4">
             <div class="flex gap-2 navbar__all-container">
                 <li>
                     <div class="">
-                        <a href="/filter"><h4 class="navbar__all-container">All</h4></a>
+                        <a href="/filter">
+                            <h4 class="navbar__all-container">All</h4>
+                        </a>
                     </div>
                 </li>
                 <li class="navbar__all-container cursor-default">
@@ -146,6 +148,15 @@
 
         <div class="navbar__links-mobile">
             <ul class="navbar__links-mobile__categories">
+                <div class="flex gap-2 navbar__all-container">
+                    <li>
+                        <div class="p-2">
+                            <a href="/filter">
+                                <h4 class="navbar__all-container text-lg">All</h4>
+                            </a>
+                        </div>
+                    </li>
+                </div>
                 @foreach ($categories as $index => $category)
                     <div class="nav-category-link flex items-center p-2">
                         <li class="navbar__link-container"><span class="text-xl">{{ $category->name }}</span></li>

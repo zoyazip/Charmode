@@ -49,7 +49,7 @@
     line-height: 0;
 }
 .item-wrapper__right-right .item-wrapper__end-price{
-    font-size: var(--title-heading);
+    font-size: 24px;
     font-weight: bold;
     text-wrap: nowrap;
 }
@@ -89,9 +89,10 @@
 
 .item-wrapper__trash-icon{
     cursor: pointer;
-    width: 20vw;
+    /* width: 20vw;
     max-width: 30px;
-    min-width: 26px;
+    min-width: 26px; */
+    width: 26px;
 }
 
 .item-wrapper__price{

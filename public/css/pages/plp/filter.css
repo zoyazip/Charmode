@@ -26,11 +26,6 @@
     margin-left: 2%;
 }
 
-.filter__icon img {
-    width: 24px;
-    height: 24px;
-}
-
 .close__arrow {
     transform: rotate(180deg);
 }
@@ -53,7 +48,7 @@
     display: flex;
     flex-direction: column;
     gap: 25px;
-    margin-left: 7%;
+    /* margin-left: 7%; */
 }
 
 .filter__container-option {
@@ -63,7 +58,6 @@
 }
 
 .filter__option__title {
-    font-weight: 700;
     font-size: var(--title-regular);
     display: inline-block;
 }
@@ -234,6 +228,7 @@
 /* Is available */
 .filter__option__checkbox {
     display: flex;
+    align-items: center;
     flex-direction: row;
     gap: 8px;
 }
@@ -245,15 +240,17 @@
 
 .checkbox-wrapper {
     position: relative;
-    width: 25px;
-    height: 25px;
+    /* width: 25px;
+    height: 25px; */
 }
 
 .styled-checkbox {
     appearance: none;
     -webkit-appearance: none;
-    width: 100%;
-    height: 100%;
+    /* width: 100%;
+    height: 100%; */
+    width: 16px;
+    height: 16px;
     border-radius: 3px;
 
     /* Make the checkbox round */
@@ -284,7 +281,7 @@
 
 /* Reset button */
 .div-button-container {
-    margin-left: 7%;
+    /* margin-left: 7%; */
     margin-top: 14px;
 }
 
@@ -302,8 +299,9 @@
     Center the text inside the div
     user-select: none;
     Prevent text selection on double click */
-    width: 100px;
-    padding: 5px 20px;
+    /* width: 100px; */
+    width: 100%;
+    padding: 8px 20px;
     font-size: 16px;
     color: var(--green);
     border: 1px solid var(--green);
@@ -389,14 +387,14 @@
 
     .filter__main {
         width: 90%;
-        height: 350px;
+        /* height: 350px; */
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
     }
 
     .filter__container-option {
-        width: 30%;
+        /* width: 30%; */
     }
 }
 

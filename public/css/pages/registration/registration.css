@@ -69,20 +69,20 @@
     border-radius: 8px;
     padding: 10px 20px;
     background-color: white;
-    border: var(--green-light) solid 1px;
+    border: var(--text-inactive) solid 1px;
     color: var(--green);
     cursor: pointer;
 }
 
-.register__btn:hover {
+.register__btn:not(:disabled):hover {
     background-color: var(--green);
     color: white;
     transition: 0.2s;
 }
 
 .register__btn:disabled {
-    color: white;
-    background-color: var(--green-light);
+    color: var(--text-inactive);
+    /* background-color: var(--green-light); */
 }
 
 .login__a {
