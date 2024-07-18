@@ -1,4 +1,4 @@
-{{-- @if(isset($products))
+{{-- @if (isset($products))
     @php
     dd($products);
     @endphp
@@ -36,9 +36,9 @@
                 </div>
             @endif --}}
             {{-- @if (isset($data)) --}}
-            <div class="plp-product-list-container">
-                @if(isset($products))
-                    @include('components/PLP-components/plp-pdoruct-list', ["products" => $products])
+            <div class="plp-product-list-container min-h-[900px]">
+                @if (isset($products))
+                    @include('components/PLP-components/plp-pdoruct-list', ['products' => $products])
                 @endif
                 {{-- Pagination Elements --}}
                 @if ($products->hasPages() && $products->lastPage() > 1)
@@ -50,7 +50,8 @@
                             </li>
                         @else
                             <li>
-                                <a href="{{ $products->previousPageUrl() }}" rel="prev" aria-label="@lang('pagination.previous')">&laquo;</a>
+                                <a href="{{ $products->previousPageUrl() }}" rel="prev"
+                                    aria-label="@lang('pagination.previous')">&laquo;</a>
                             </li>
                         @endif
 
@@ -66,7 +67,8 @@
                         {{-- Next Page Link --}}
                         @if ($products->hasMorePages())
                             <li>
-                                <a href="{{ $products->nextPageUrl() }}" rel="next" aria-label="@lang('pagination.next')">&raquo;</a>
+                                <a href="{{ $products->nextPageUrl() }}" rel="next"
+                                    aria-label="@lang('pagination.next')">&raquo;</a>
                             </li>
                         @else
                             <li class="disabled" aria-disabled="true" aria-label="@lang('pagination.next')">
