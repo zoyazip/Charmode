@@ -51,12 +51,13 @@ class CartController extends Controller
                 $deliveryPriceSum += $alldata[$i]['products']->shippingCost;
                 $productTotalcount += $alldata[$i]['quantity'];
             }
-
+//            dd($alldata);
             return view('web.pages.cart', [
-                "cartItems" => $products,
+                "cartItems" => $alldata,
                 "productPriceSum" => $productPriceSum,
                 "deliveryPriceSum" => $deliveryPriceSum,
-                "productTotalcount" => $productTotalcount,]);
+                "productCountSum" => $productTotalcount,
+                ]);
         }
     }
 
