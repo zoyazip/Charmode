@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Order;
+
+use function PHPUnit\Framework\isEmpty;
 
 class OrderController extends Controller
 {
@@ -17,9 +20,26 @@ class OrderController extends Controller
         return redirect()->back();
     }
 
+    public function openMyOrdersPage(Request $request) {
+        if (Auth::check()) {
+            $orders = Order::all();
+            $filteredOrders = collect();
+            foreach ($orders as $order) {
+                if($order->user_id == Auth::id()){
+                    $filteredOrders->push($order);
+                }
+
+            }
+            return view('web/pages/userOrdersList')->with("orders", $filteredOrders);
+        } else {
+            return redirect()->back();
+        }
+
+    }
+
     // client side function
     public function createOrder(Request $request) {
-        
+
     }
 
 }

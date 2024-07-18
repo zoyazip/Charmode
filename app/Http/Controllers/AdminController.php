@@ -69,7 +69,7 @@ class AdminController extends Controller
         ]);
     }
 
-    
+
 
 
     public function addProduct(Request $request) {
@@ -84,7 +84,7 @@ class AdminController extends Controller
             'shippingCost' => 'required|decimal:0,2',
             'description' => 'required|string',
         ]);
-    
+
         // add category
         $category = $request->category;
         if (!ctype_digit($category)) {
@@ -128,7 +128,6 @@ class AdminController extends Controller
         return redirect('/adminproducts');
     }
 
-   
 
      // edit product
         // probably delete color or category or subcategory
@@ -144,25 +143,25 @@ class AdminController extends Controller
                 'shippingCost' => 'required|decimal:0,2',
                 'description' => 'required|string',
             ]);
-        
+
             // add category
             $category = $request->category;
             if (!ctype_digit($category)) {
                 $categoryController = new CategoryController;
                 $category = $categoryController->createCategory($category);
             }
-    
+
             // add subcategory
             $subCategory = $request->subcategory;
             if (!ctype_digit($subCategory)) {
                 $subCategoryController = new SubCategoryController;
                 $subCategory = $subCategoryController->createSubCategory($subCategory, $category);
             }
-    
+
             // add product
             $productController = new ProductController;
             $productID = $productController->updateProduct($request, $subCategory);
-    
+
             // add colors and productcolors
             $colors = $request->checked_colors;
             if (isset($colors)) {
@@ -172,7 +171,7 @@ class AdminController extends Controller
                 // tad izveido jaunas
                 $colorController->createProductColors($colors, $productID);
             }
-    
+
             //add specification
             $specKeys = $request->key;
             $specValues = $request->value;
@@ -183,14 +182,14 @@ class AdminController extends Controller
                 // tad izveido jaunas
                 $specificationController->createSpecification($specKeys, $specValues, $productID);
             }
-    
+
             // add images
             $images = $request->image;
             if (isset($images)) {
                 $imageController = new ImageController;
                 $imageController->storeImages($images, $productID);
             }
-    
+
             return redirect('/adminproducts/'.$productID);
         }
 
@@ -204,7 +203,7 @@ class AdminController extends Controller
      // edit color or category or subcategory
 
 
-     
+
      // get products
      public function getProducts() {
         $products = Product::all();

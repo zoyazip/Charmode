@@ -121,6 +121,18 @@ class ProductListPageController extends Controller
                         $isGoodProduct = true;
                         break;
                     }
+                    if (!$isGoodProduct){
+                        if (strtolower($product->subCategory->name) == $searchKey) {
+                            $isGoodProduct = true;
+                            break;
+                        }
+                    }
+                    if (!$isGoodProduct){
+                        if (strtolower($product->subCategory->category->name) == $searchKey) {
+                            $isGoodProduct = true;
+                            break;
+                        }
+                    }
                     // check for description
                     if (!$isGoodProduct){
                         $productContainingString = Product::where('id', $product->id)
