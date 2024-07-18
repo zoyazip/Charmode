@@ -27,6 +27,13 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('password'),
 
             ],
+            [
+                'full_name' => 'Adam',
+                'email' => 'adam@charmode.com',
+                'phone' => '223456789',
+                'password' => Hash::make('password'),
+
+            ],
         ];
 
         DB::table('users')->insert($users);
