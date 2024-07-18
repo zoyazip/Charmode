@@ -113,7 +113,7 @@ class CheckoutController extends Controller
             $user_id = Auth::id();
             DB::table('cart_items')->where('user_id', '=', Auth::id())->delete();
         } else {
-            Cookie::forget('cartitems');
+            Cookie::queue(Cookie::forget('cartitems'));
         }
         if (isset($order->user_id)){
 
