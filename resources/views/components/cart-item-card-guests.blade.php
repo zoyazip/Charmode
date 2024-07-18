@@ -2,7 +2,7 @@
 
     <div class="item-wrapper__left">
 {{--        Atrast bilde--}}
-{{--        <img class="cart-image" src="{{URL::asset($product->images[0]->url)}}" alt="chair">--}}
+        <img class="cart-image" src="{{URL::asset($product["products"]->images[0]->url)}}" alt="chair">
     </div>
     {{--  vieninieka vietā pie id tagiem pēc - jāraksta unikālais id  --}}
     <div class="item-wrapper__right">
