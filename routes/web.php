@@ -61,7 +61,7 @@ Route::post('/to_checkout', [CheckoutController::class, 'checkInput']);
 
 // Admin routes
 Route::get('/adminproducts', [AdminController::class, 'openAllProductPage']);
-Route::get('/createproduct', [AdminController::class, 'openAddProductPage']);
+Route::get('/adminproducts/create', [AdminController::class, 'openAddProductPage']);
 Route::get('/adminproducts/edit/{id}', [AdminController::class, 'editProduct']);
 Route::get('/orders/{id}', [AdminController::class, 'openOneOrderPage']);
 Route::get('/adminproducts/{id}', [AdminController::class, 'openOneProductPage']);

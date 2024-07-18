@@ -101,8 +101,8 @@
                 <p class="add-product__p">Add colors:</p>
                 <div class="all__color__div">
                     <div id="existing__colors" class="existing__colors">
-                        @if (session()->has('allColors'))
-                            @foreach (session()->get('allColors') as $color)
+                        @if (isset($allColors))
+                            @foreach ($allColors as $color) 
                                 <div onclick="checkColor({{ $color }})" name="color__div" value='{{ $color }}'
                                     class="color__div"></div>
                             @endforeach

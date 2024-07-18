@@ -16,8 +16,17 @@ class CheckoutController extends Controller
     public function checkInput(Request $request): RedirectResponse {
         $request->validate([
             'name' => 'required',
-            'surname' => 'required',
+            // 'surname' => 'required',
             'phone' => 'required',
+            // continue with input validation
         ]);
+
+        // get cartItems
+        // greate guest user
+        // create order
+        // create orderItems
+        // delete cartItems
+
+        // return to page X
     }
 }

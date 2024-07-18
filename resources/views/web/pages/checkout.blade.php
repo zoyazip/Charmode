@@ -41,8 +41,7 @@
                                 <input class="checkout__phone__input" placeholder="Tel." type="text" id="tel" name="tel" value=""> --}}
 
                                     <div class="checkout__name__input">
-                                        <input class="@error('name') is-invalid @enderror" placeholder="Name" type="text"
-                                            id="name" name="name" value="{{ old('name') }}">
+                                        <input class="@error('name') is-invalid @enderror" placeholder="Full name" type="text"                                            id="name" name="name" value="{{ old('name') }}">
                                         @error('name')
                                             <p class="checkout__error">{{ $message }}</p>
                                         @enderror

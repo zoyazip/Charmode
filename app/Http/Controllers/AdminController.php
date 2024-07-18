@@ -64,7 +64,7 @@ class AdminController extends Controller
         return view('web/pages/addproduct');
         // return view('web/pages/addproduct')->with([
         //     "categories" => $categories,
-        //     "subcategories" => $subCategories,
+        //     // "subcategories" => $subCategories,
         //     "colors" => $colors,
         // ]);
     }
@@ -231,7 +231,17 @@ class AdminController extends Controller
 
      public function editProduct(Request $request) {
         $product = Product::find($request->id);
-        return view('web/pages/editproduct')->with('product', $product);
+        $colors = Color::all();
+        $categories = Category::all();
+        // $subCategories = Category::all();
+        // $subCategories = DB::table('sub_categories')
+        //     ->where(['category_id' => $product->subCategory->category_id])->get();
+        return view('web/pages/editproduct')->with([
+            'product' => $product,
+            'categories' => $categories,
+            // 'subCategories' => $subCategories,
+            'colors' => $colors,
+        ]);
      }
 
 
