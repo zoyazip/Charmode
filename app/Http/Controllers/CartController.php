@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CartItem;
+use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -33,7 +34,26 @@ class CartController extends Controller
                 "deliveryPriceSum" => $deliveryPriceSum,
             ]);
         } else {
-            dd(json_decode(Cookie::get('cartitems'), true));
+//            dd(json_decode(Cookie::get('cartitems'), true));
+            $alldata = json_decode(Cookie::get('cartitems'), true);
+
+            $productPriceSum = 0;
+            $productTotalcount = 0;
+
+            for ($i = 0; $i < count($alldata); $i++) {
+
+                $product_id = $alldata[$i]['product_id'];
+                $products = Product::where(["id" => $product_id])->get();
+                $alldata[$i]['products'] = $products[0];
+                $productPriceSum += $alldata[$i]['products']->newPrice * $alldata[$i]['quantity'] + $alldata[$i]['products']->shippingCost;
+                $productTotalcount += $alldata[$i]['products']->shippingCost;
+
+            }
+
+
+
+            return view('web.pages.cart', ["cartItems" => $products,
+                "productPriceSum" => $productPriceSum]);
         }
     }
 
@@ -58,7 +78,7 @@ class CartController extends Controller
     }
 
 
-    // function helper for storeGuest mehtod
+    // function helper for storeGuest method
     private function findItemIndex($items, $productId, $colorId)
     {
         foreach ($items as $index => $item) {

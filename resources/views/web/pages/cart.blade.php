@@ -11,7 +11,19 @@
     <link rel="stylesheet" href="{{ URL::asset('css/pages/cart/checkout-section.css') }}" />
 @endpush
 
-@section('content')
+
+
+
+
+@if(Auth::check())
+{{--    User is logged in--}}
+
+
+
+
+
+
+    @section('content')
     {{-- removed main container class --}}
     @if (count($cartItems) === 0)
         <div class="flex h-[50vh] justify-center items-center">
@@ -47,8 +59,12 @@
             </div>
         </div>
     @endif
-@endsection
+    @endsection
+@else
+{{--User is not logged in--}}
 
+
+@endif
 
 @push('scripts')
     <script>
