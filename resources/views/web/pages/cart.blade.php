@@ -53,19 +53,60 @@
 @push('scripts')
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+
             const allFormFields = document.querySelectorAll(".item-wrapper__more-or-less")
             for (const form of allFormFields) {
                 const inputField = form.children[1]
-                form.addEventListener("click", (e) => {
-                    console.log(e)
+                const maxValueForInput = parseInt(inputField.max)
+                const minusText = form.children[0].children[0]
+                const plusText = form.children[2].children[0]
+                const inputFieldValue = parseInt(inputField.value)
+
+
+                if (inputFieldValue === maxValueForInput){
+                        plusText.style.color = "#ADADAD"
+                    } else if (inputFieldValue === 1){
+                        minusText.style.color = "#ADADAD"
+                    }
+
+
+                    form.addEventListener("click", (e) => {
                     if (e.target.classList.contains("minus")) {
-                        inputField.stepUp(-1)
-                        submitUpdateForm()
+                        if (inputFieldValue > 1 ){
+                            inputField.stepUp(-1)
+                            submitUpdateForm()
+                        } else {
+
+                        }
+
                     }
                     if (e.target.classList.contains("plus")) {
-                        inputField.stepUp(1)
+                        if(inputFieldValue < maxValueForInput){
+                            inputField.stepUp(1)
+                            submitUpdateForm()
+                        }
+                        else{
+                            console.log(inputField.value)
+                            console.log(maxValueForInput)
+
+                        }
+                    }
+                })
+
+                inputField.addEventListener("change", ()=> {
+
+                    if (inputFieldValue > maxValueForInput){
+                        inputField.value = maxValueForInput
+                        submitUpdateForm()
+
+                    } else if (inputFieldValue < maxValueForInput) {
+                        inputField.value = 1
                         submitUpdateForm()
                     }
+
+
+
+
                 })
             }
 
@@ -77,7 +118,7 @@
                 fetch('/cart', {
                         method: 'POST',
                         body: formData
-                    })
+                })
                     .then(response => {
                         if (response.ok) {
                             location.reload()
