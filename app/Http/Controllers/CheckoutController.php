@@ -23,36 +23,17 @@ class CheckoutController extends Controller
     }
 
     public function checkInput(Request $request): RedirectResponse {
-
-        // dd($request);
         $checkoutemail = "";
         $city = "";
         $address = "";
-        // if(!Auth::check()) {
-            $request->validate([
-                'checkoutemail' => 'required|max:255|email:rfc',
-                'city' => 'required|max:255',
-                'address' => 'required|max:255',
-            ]);
-
-            $checkoutemail = $request->checkoutemail;
-            $city = $request->city;
-            $address = $request->address;
-        // } else {
-            // $user = DB::table('users')->where('id','=',Auth::id())->first();
-            // $checkoutemail = $user->email;
-            // $city = $user->city;
-            // $address = $user->address;
-            // if ($city == "") {
-            //     $city = "City";
-            // }
-            // if ($address == "") {
-            //     $address = "Address";
-            // }
-        // }
-
-
-        // dd($request);
+        $request->validate([
+            'checkoutemail' => 'required|max:255|email:rfc',
+            'city' => 'required|max:255',
+            'address' => 'required|max:255',
+        ]);
+        $checkoutemail = $request->checkoutemail;
+        $city = $request->city;
+        $address = $request->address;
 
         $products = Product::all();
 
