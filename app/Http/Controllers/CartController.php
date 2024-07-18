@@ -58,7 +58,7 @@ class CartController extends Controller
     }
 
 
-    // function helper for storeGuest mehtod 
+    // function helper for storeGuest mehtod
     private function findItemIndex($items, $productId, $colorId)
     {
         foreach ($items as $index => $item) {
