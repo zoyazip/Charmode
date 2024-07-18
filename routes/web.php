@@ -16,6 +16,9 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\OrderController;
 
+use App\Http\Middleware\AdminRoutes;
+use App\Http\Middleware\RedirectAdmin;
+
 
 
 // pages controllers
@@ -66,53 +69,48 @@ Route::get('/checkout', [CheckoutController::class, 'openCheckoutPage']);
 Route::post('/to_checkout', [CheckoutController::class, 'checkInput']);
 
 // Admin routes
-Route::get('/adminproducts', [AdminController::class, 'openAllProductPage']);
-Route::get('/createproduct', [AdminController::class, 'openAddProductPage']);
-Route::get('/adminproducts/edit/{id}', [AdminController::class, 'editProduct']);
-Route::get('/orders/{id}', [AdminController::class, 'openOneOrderPage']);
-Route::get('/adminproducts/{id}', [AdminController::class, 'openOneProductPage']);
-Route::get('/orders', [AdminController::class, 'openOrdersPage']);
+Route::get('/adminproducts', [AdminController::class, 'openAllProductPage'])
+    ->middleware(AdminRoutes::class);
+Route::get('/createproduct', [AdminController::class, 'openAddProductPage'])
+    ->middleware(AdminRoutes::class);
+Route::get('/adminproducts/edit/{id}', [AdminController::class, 'editProduct'])
+    ->middleware(AdminRoutes::class);
+Route::get('/orders/{id}', [AdminController::class, 'openOneOrderPage'])
+    ->middleware(AdminRoutes::class);
+Route::get('/adminproducts/{id}', [AdminController::class, 'openOneProductPage'])
+    ->middleware(AdminRoutes::class);
+Route::get('/orders', [AdminController::class, 'openOrdersPage'])
+    ->middleware(AdminRoutes::class);
 
 // Users order history
 Route::get('/myorders', [OrderController::class, 'openMyOrdersPage']);
 
 // Delete Review
-Route::get('/reviews/delete/{id}', [ReviewController::class, 'delete']);
+Route::get('/reviews/delete/{id}', [ReviewController::class, 'delete'])
+    ->middleware(AdminRoutes::class);
 // Delete Product
-Route::get('/adminproducts/delete/{id}', [ProductController::class, 'delete']);
+Route::get('/adminproducts/delete/{id}', [ProductController::class, 'delete'])
+    ->middleware(AdminRoutes::class);
 // Delete Image
-Route::get('/adminproducts/images/delete/{id}', [ImageController::class, 'delete']);
+Route::get('/adminproducts/images/delete/{id}', [ImageController::class, 'delete'])
+->middleware(AdminRoutes::class);
 
 
 // Save Product
-Route::post('/add_product', [AdminController::class, 'addProduct']);
+Route::post('/add_product', [AdminController::class, 'addProduct'])
+->middleware(AdminRoutes::class);
 
 // Update Product
-Route::post('/update_product/{id}', [AdminController::class, 'updateProduct']);
+Route::post('/update_product/{id}', [AdminController::class, 'updateProduct'])
+->middleware(AdminRoutes::class);
 
 // Update status
-Route::post('/orders/update/{id}', [OrderController::class, 'updateStatus']);
+Route::post('/orders/update/{id}', [OrderController::class, 'updateStatus'])
+->middleware(AdminRoutes::class);
 
 Route::post('/cartitem/create/{product_id}/{quantity}', [CartController::class, 'store']);
 
-
-
 Route::get('/subcategories', [AdminController::class, 'getSubcategories']);
-/*
-Route::post('/add_product', [AdminController::class, 'addProduct']);
-Route::get('/edit_product/{id}', [AdminController::class, 'editProduct']);
-Route::get('/get_product', [AdminController::class, 'getProducts']);
-*/
-
-// Route::get('/subcategories', [AdminController::class, 'getSubcategories']);
-// Route::get('/edit_product/{id}', [AdminController::class, 'editProduct']);
-// Route::get('/get_product', [AdminController::class, 'getProducts']);
-
-
-// Route::get('/get_spec', [AdminController::class, 'getSpecifications']);
-// Route::get('/get_prod_colors', [AdminController::class, 'getProductColors']);
-// Route::get('/get_images', [AdminController::class, 'getImages']);
-
 
 // AUTH
 Route::get('/registration', [UserController::class, 'render'])->middleware('guest')->name('registration');

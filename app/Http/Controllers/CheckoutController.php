@@ -23,7 +23,7 @@ class CheckoutController extends Controller
         return view('web.pages.checkout');
     }
 
-    public function checkInput(Request $request): RedirectResponse {
+    public function checkInput(Request $request) {
         $checkoutemail = "";
         $city = "";
         $address = "";
@@ -57,7 +57,7 @@ class CheckoutController extends Controller
             $addedItems = json_decode(Cookie::get('cartitems'), true);
             if($addedItems !== NULL){
                 foreach($addedItems as $item) {
-                    $product = DB::table('products')->where('product_id', '=', $item['product_id'])->get();
+                    $product = DB::table('products')->where('id', '=', $item['product_id'])->first();
                     $totalCost = $totalCost + $product->newPrice;
                     $deliveryCost = $deliveryCost + $product->shippingCost;
                 }
@@ -115,6 +115,9 @@ class CheckoutController extends Controller
         } else {
             Cookie::forget('cartitems');
         }
-        return redirect('/');
+        return view('components.success')->with([
+            'totalCost' => $totalCost,
+            'payMethod' => $order->paymentMethod
+        ]);
     }
 }

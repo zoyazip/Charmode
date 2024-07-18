@@ -20,7 +20,13 @@
         @include('web.layout.footer')
     </footer>
 
+    @if ($showCookiePopup)
+        @include('web.layout.cookies')
+        <script src="{{ URL::asset('js/cookies.js') }}" defer></script>
+    @endif
+
     @stack('scripts')
+
 </body>
 
 </html>

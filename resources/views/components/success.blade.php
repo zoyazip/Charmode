@@ -1,3 +1,9 @@
+
+@extends('layouts.main')
+
+@section('title', 'success')
+
+@section('content')
 <div class="success relative bg-main-green rounded-2xl w-full max-w-[480px] pt-10 pb-14 px-10 flex flex-col justify-center items-center">
     <div class="flex flex-col items-center gap-4">
         <div class="bg-white w-20 h-20 rounded-full flex justify-center">
@@ -42,3 +48,5 @@
         @endforeach
     </div>
 </div>
+@endsection
+

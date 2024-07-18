@@ -128,8 +128,8 @@
                 <p class="add-product__p">Add colors:</p>
                 <div class="all__color__div">
                     <div id="existing__colors" class="existing__colors">
-                        @if (session()->has('allColors'))
-                            @foreach (session()->get('allColors') as $color)
+                        @if (isset($colors))
+                            @foreach ($colors as $color)
                                 <div onclick="checkColor({{ $color }})" name="color__div" value='{{ $color }}'
                                     class="color__div"></div>
                             @endforeach
@@ -143,7 +143,7 @@
                         @if(isset($product->productColors))
                             @foreach ($product->productColors as $color)
                                 <div id="color{{$color->id}}" style="background-color: {{$color->color->hex}}" class="w-10 h-10 rounded-full border edit__div"></div>
-                                <input id="input{{$color->id}}" class="w-5 accent-main-green" onclick="removeColor('color'+{{$color->id}}, 'input'+{{$color->id}})" value="{{$color->id}}" name="checked_colors[]" type="checkbox" checked>
+                                <input id="input{{$color->id}}" class="w-5 accent-main-green" onclick="removeColor('color'+{{$color->id}}, 'input'+{{$color->id}})" value="{{$color->color->id}}" name="checked_colors[]" type="checkbox" checked>
                             @endforeach
                         @endif
                     </div>

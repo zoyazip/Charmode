@@ -68,9 +68,9 @@
                 <div class="flex justify-between">
                     <h4 class="text-main-green">Colors:</h4>
                     <div class="product-color__div">
-                        @if (isset($colors))
-                            @foreach ($colors as $color)
-                                <div style="background-color: {{$productColor->color->hex}};" class="w-6 h-6 rounded-full"></div>
+                        @if (isset($product->productColors))
+                            @foreach ($product->productColors as $color)
+                                <div style="background-color: {{$color->color->hex}};" class="w-6 h-6 rounded-full"></div>
                             @endforeach
                         @endif
                     </div>
@@ -119,8 +119,8 @@
                         <div class="row__div">{{ $review->comment }}</div>
                         <form class="row__div row__div_right" method="GET" action="/reviews/delete/{{$review->id}}">
                             @csrf
-                            <input type="submit" value="">
-                                <img src="{{ URL::asset('assets/svg/trash.svg') }}" alt="trash" class="inline-block"/>
+                            <input type="submit" value="Delete">
+                                {{-- <img src="{{ URL::asset('assets/svg/trash.svg') }}" alt="trash" class="inline-block"/> --}}
                             </input>
                         </form>
                     </div>

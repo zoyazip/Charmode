@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CartItem;
+use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -33,7 +34,33 @@ class CartController extends Controller
                 "deliveryPriceSum" => $deliveryPriceSum,
             ]);
         } else {
-            dd(json_decode(Cookie::get('cartitems'), true));
+            $alldata = json_decode(Cookie::get('cartitems'), true);
+
+            $productPriceSum = 0;
+            $deliveryPriceSum = 0;
+            $productTotalcount = 0;
+
+
+            for ($i = 0; $i < count($alldata); $i++) {
+//                dd(DB::table("colors")->where("id", $alldata[$i]['color_id'])->get());
+                $product_id = $alldata[$i]['product_id'];
+                $products = Product::where(["id" => $product_id])->get();
+                $alldata[$i]['products'] = $products[0];
+                $productPriceSum += $alldata[$i]['products']->newPrice * $alldata[$i]['quantity'] + $alldata[$i]['products']->shippingCost;
+                $deliveryPriceSum += $alldata[$i]['products']->shippingCost;
+                $productTotalcount += $alldata[$i]['quantity'];
+                $colortable= DB::table("colors")->where("id", $alldata[$i]['color_id'])->get();
+                $alldata[$i]['hexColor'] = $colortable[0]->hex;
+            }
+
+//            dd($alldata);
+
+            return view('web.pages.cart', [
+                "cartItems" => $alldata,
+                "productPriceSum" => $productPriceSum,
+                "deliveryPriceSum" => $deliveryPriceSum,
+                "productCountSum" => $productTotalcount,
+                ]);
         }
     }
 
@@ -58,7 +85,7 @@ class CartController extends Controller
     }
 
 
-    // function helper for storeGuest mehtod
+    // function helper for storeGuest method
     private function findItemIndex($items, $productId, $colorId)
     {
         foreach ($items as $index => $item) {
