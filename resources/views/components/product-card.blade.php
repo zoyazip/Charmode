@@ -18,7 +18,7 @@
                 <form action="@auth {{ route('cart.store') }} @endauth @guest {{ route('cart.store.guest') }} @endguest" method="POST">
                     @csrf
                     <input type="hidden" name="product_id" value={{ $product->id }}>
-                    <input type="hidden" name="color_id" value={{ $product->productColors[0]->id }}>
+                    <input type="hidden" name="color_id" value={{ $product->productColors[0]->color_id }}>
                     <input type="hidden" name="quantity" value="1">
                     <button type="submit"
                         class="add-to-cart w-8 h-8 rounded-full bg-white transition-all cursor-pointer z-[100] flex justify-center items-center">
