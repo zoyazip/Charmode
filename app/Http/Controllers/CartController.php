@@ -38,7 +38,9 @@ class CartController extends Controller
             $alldata = json_decode(Cookie::get('cartitems'), true);
 
             $productPriceSum = 0;
+            $deliveryPriceSum = 0;
             $productTotalcount = 0;
+
 
             for ($i = 0; $i < count($alldata); $i++) {
 
@@ -46,14 +48,15 @@ class CartController extends Controller
                 $products = Product::where(["id" => $product_id])->get();
                 $alldata[$i]['products'] = $products[0];
                 $productPriceSum += $alldata[$i]['products']->newPrice * $alldata[$i]['quantity'] + $alldata[$i]['products']->shippingCost;
-                $productTotalcount += $alldata[$i]['products']->shippingCost;
-
+                $deliveryPriceSum += $alldata[$i]['products']->shippingCost;
+                $productTotalcount += $alldata[$i]['quantity'];
             }
 
-
-
-            return view('web.pages.cart', ["cartItems" => $products,
-                "productPriceSum" => $productPriceSum]);
+            return view('web.pages.cart', [
+                "cartItems" => $products,
+                "productPriceSum" => $productPriceSum,
+                "deliveryPriceSum" => $deliveryPriceSum,
+                "productTotalcount" => $productTotalcount,]);
         }
     }
 
