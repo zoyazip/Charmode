@@ -10,7 +10,7 @@
         </div>
         <button onclick="window.location='/adminproducts'" class="font-bold text-main-green"><- Back</button>
         <div class="flex flex-wrap pt-4 gap-4">
-        @if (isset($orders))
+        @if (isset($orders) && $orders->isNotEmpty())
             @foreach ($orders as $order)
                 <div class="w-[300px] border border-main-green rounded-2xl flex flex-col p-4 gap-1 text-main-green">
                     <div class="flex justify-between items-center">
@@ -62,11 +62,11 @@
                         <h4 class="font-bold">Status:</h4>
                         <p>{{$order->status}}</p>
                     </div>
-                    
-                    
+
+
                     <button onclick="window.location='/orders/{{$order->id}}'" class="font-bold pt-4">Order details -></button>
                 </div>
-                
+
                     {{-- <div class="table__row">
                         <div class="table__head__left">
                             <h6 class="table__checkbox"></h6>
@@ -80,6 +80,10 @@
                         </div>
                     </div> --}}
             @endforeach
+        @else
+            <p class="mt-10vh text-3xl text-center text-gray-700" style="justify-self: center;">
+                You have no orders yet. Feel free to find some products on our store :)
+            </p>
         @endif
     </div>
     @push('scripts')
