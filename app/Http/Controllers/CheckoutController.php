@@ -115,14 +115,24 @@ class CheckoutController extends Controller
         } else {
             Cookie::forget('cartitems');
         }
+        if (isset($order->user_id)){
 
-        $user = DB::table('users')->where('id', '=', $user_id)->first();
-        $name = $user->full_name;
+            $user = DB::table('users')->where('id', '=', $user_id)->first();
+            $name = $user->full_name;
+        } else {
+            $name = $order->email;
+        }
+        $currentDateTime = date('Y-m-d H:i');
+        $hash = substr(md5($name . $order->deliveryMethod . $currentDateTime), 0, 7);
+        $refnumber = strtoupper($hash); // Convert to uppercase for consistency
+
 
         return view('components.success')->with([
             'totalCost' => $totalCost,
             'payMethod' => $order->paymentMethod,
-            'name' => $name
+            'name' => $name,
+            'date' => $currentDateTime,
+            'refnumber' => $refnumber
         ]);
     }
 }
