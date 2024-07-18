@@ -34,7 +34,6 @@ class CartController extends Controller
                 "deliveryPriceSum" => $deliveryPriceSum,
             ]);
         } else {
-//            dd(json_decode(Cookie::get('cartitems'), true));
             $alldata = json_decode(Cookie::get('cartitems'), true);
 
             $productPriceSum = 0;
@@ -43,15 +42,19 @@ class CartController extends Controller
 
 
             for ($i = 0; $i < count($alldata); $i++) {
-
+//                dd(DB::table("colors")->where("id", $alldata[$i]['color_id'])->get());
                 $product_id = $alldata[$i]['product_id'];
                 $products = Product::where(["id" => $product_id])->get();
                 $alldata[$i]['products'] = $products[0];
                 $productPriceSum += $alldata[$i]['products']->newPrice * $alldata[$i]['quantity'] + $alldata[$i]['products']->shippingCost;
                 $deliveryPriceSum += $alldata[$i]['products']->shippingCost;
                 $productTotalcount += $alldata[$i]['quantity'];
+                $colortable= DB::table("colors")->where("id", $alldata[$i]['color_id'])->get();
+                $alldata[$i]['hexColor'] = $colortable[0]->hex;
             }
+
 //            dd($alldata);
+
             return view('web.pages.cart', [
                 "cartItems" => $alldata,
                 "productPriceSum" => $productPriceSum,

@@ -1,7 +1,6 @@
 <div class="item-wrapper middle-wrapper id-{{ $product["product_id"] }}" xmlns="http://www.w3.org/1999/html">
 
     <div class="item-wrapper__left">
-{{--        Atrast bilde--}}
         <img class="cart-image" src="{{URL::asset($product["products"]->images[0]->url)}}" alt="chair">
     </div>
     {{--  vieninieka vietā pie id tagiem pēc - jāraksta unikālais id  --}}
@@ -12,7 +11,7 @@
                 {{ $product["products"]->newPrice}} €</p>
             <div class="item-wrapper__color-row">
 {{--                izdomat ka krasu--}}
-{{--                <span class="item-wrapper__red-color" style="background-color: {{ $product->color->hex }}"></span>--}}
+                <span class="item-wrapper__red-color" style="background-color: {{ $product["hexColor"] }}"></span>
             </div>
             @if ($product["products"]->shippingCost)
                 <p class="item-wrapper__free-delivery">{{ number_format($product["products"]->shippingCost, 2, ',', '.') }}
