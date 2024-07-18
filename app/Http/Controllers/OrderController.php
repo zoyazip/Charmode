@@ -23,18 +23,14 @@ class OrderController extends Controller
     public function openMyOrdersPage(Request $request) {
         if (Auth::check()) {
             $orders = Order::all();
-            // dd($orders);
             $filteredOrders = collect();
             foreach ($orders as $order) {
                 if($order->user_id == Auth::id()){
                     $filteredOrders->push($order);
                 }
-                // dd($order->user_id);
 
             }
-            // dump($orders);
-            // dd($filteredOrders);
-            return view('web/pages/orderlist')->with("orders", $filteredOrders);
+            return view('web/pages/userOrdersList')->with("orders", $filteredOrders);
         } else {
             return redirect()->back();
         }
