@@ -38,7 +38,42 @@
             {{-- @if (isset($data)) --}}
             <div class="plp-product-list-container">
                 @if(isset($products))
-                @include('components/PLP-components/plp-pdoruct-list', ["products" => $products])
+                    @include('components/PLP-components/plp-pdoruct-list', ["products" => $products])
+                @endif
+                {{-- Pagination Elements --}}
+                @if ($products->hasPages() && $products->lastPage() > 1)
+                    <ul class="pagination">
+                        {{-- Previous Page Link --}}
+                        @if ($products->onFirstPage())
+                            <li class="disabled" aria-disabled="true" aria-label="@lang('pagination.previous')">
+                                <span aria-hidden="true">&laquo;</span>
+                            </li>
+                        @else
+                            <li>
+                                <a href="{{ $products->previousPageUrl() }}" rel="prev" aria-label="@lang('pagination.previous')">&laquo;</a>
+                            </li>
+                        @endif
+
+                        {{-- Pagination Elements --}}
+                        @foreach ($products->getUrlRange(1, $products->lastPage()) as $page => $url)
+                            @if ($page == $products->currentPage())
+                                <li class="active" aria-current="page"><span>{{ $page }}</span></li>
+                            @else
+                                <li><a href="{{ $url }}">{{ $page }}</a></li>
+                            @endif
+                        @endforeach
+
+                        {{-- Next Page Link --}}
+                        @if ($products->hasMorePages())
+                            <li>
+                                <a href="{{ $products->nextPageUrl() }}" rel="next" aria-label="@lang('pagination.next')">&raquo;</a>
+                            </li>
+                        @else
+                            <li class="disabled" aria-disabled="true" aria-label="@lang('pagination.next')">
+                                <span aria-hidden="true">&raquo;</span>
+                            </li>
+                        @endif
+                    </ul>
                 @endif
             </div>
             {{-- @endif --}}

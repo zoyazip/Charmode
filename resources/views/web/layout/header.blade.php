@@ -20,8 +20,11 @@
             <a href="/">
                 <img class="navbar__logo" src="{{ URL::asset('assets/svg/logo.svg') }}" alt="Logo" />
             </a>
-
-            <form id="search-form" action="{{ route('filter') }}" method="GET" class="navbar__search-container">
+            @if(isset($subcat))
+                <form id="search-form" action="{{ route('filter', ['subcat' => $subcat]) }}" method="GET" class="navbar__search-container">
+            @else
+                <form id="search-form" action="{{ route('filter') }}" method="GET" class="navbar__search-container">
+            @endif
                 {{-- all the hidden fields for filter --}}
                 <input type="hidden" id="sort_by_form" name="sort_by" value="{{ old('sort_by', $data['sort_by'] ?? '') }}">
                 <input type="hidden" id="sort_order_form" name="sort_order" value="{{ old('sort_order', $data['sort_order'] ?? '') }}">

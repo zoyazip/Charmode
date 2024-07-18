@@ -7,3 +7,38 @@
         flex-direction: column;
     }
 }
+
+.pagination {
+    margin: 3vh 0;
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+    padding: 0;
+    gap: 5px;
+}
+
+.pagination li {
+    /* margin: 0 5px; */
+}
+
+.pagination li a,
+.pagination li span {
+    padding: 8px 12px;
+    text-decoration: none;
+    /* border: 1px solid #ddd; */
+    color: black;
+}
+
+.pagination li a:hover {
+    background-color: #f4f4f4;
+}
+
+.pagination .active span {
+    color: var(--text-primary);
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.pagination .disabled span {
+    color: #ddd;
+}
