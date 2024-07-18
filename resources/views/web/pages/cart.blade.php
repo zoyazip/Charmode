@@ -75,8 +75,6 @@
                         if (inputFieldValue > 1 ){
                             inputField.stepUp(-1)
                             submitUpdateForm()
-                        } else {
-
                         }
 
                     }
@@ -85,26 +83,22 @@
                             inputField.stepUp(1)
                             submitUpdateForm()
                         }
-                        else{
-                            console.log(inputField.value)
-                            console.log(maxValueForInput)
 
-                        }
                     }
                 })
 
                 inputField.addEventListener("change", ()=> {
 
-                    if (inputFieldValue > maxValueForInput){
+                    if (inputField.value > maxValueForInput){
                         inputField.value = maxValueForInput
                         submitUpdateForm()
 
-                    } else if (inputFieldValue < maxValueForInput) {
+                    } else if (inputField.value < 1) {
                         inputField.value = 1
                         submitUpdateForm()
+                    } else{
+                        submitUpdateForm()
                     }
-
-
 
 
                 })
