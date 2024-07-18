@@ -23,7 +23,7 @@ class CheckoutController extends Controller
         return view('web.pages.checkout');
     }
 
-    public function checkInput(Request $request): RedirectResponse {
+    public function checkInput(Request $request) {
         $checkoutemail = "";
         $city = "";
         $address = "";
@@ -115,6 +115,9 @@ class CheckoutController extends Controller
         } else {
             Cookie::forget('cartitems');
         }
-        return redirect('/');
+        return view('components.success')->with([
+            'totalCost' => $totalCost,
+            'payMethod' => $order->paymentMethod
+        ]);
     }
 }
