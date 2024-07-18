@@ -55,7 +55,7 @@ class AdminController extends Controller
     public function openAddProductPage() {
         $colors = Color::all();
         $categories = Category::all();
-        $subCategories = []; //SubCategory::all();
+        $subCategories = SubCategory::all();
 
         session()->put('allCategories', $categories);
         session()->put('allSubCategories', $subCategories);
@@ -231,6 +231,14 @@ class AdminController extends Controller
 
      public function editProduct(Request $request) {
         $product = Product::find($request->id);
+        $colors = Color::all();
+        $categories = Category::all();
+        $subCategories = DB::table('sub_categories')->where('category_id', '=', $product->subCategory->category_id)->get();
+
+        session()->put('allCategories', $categories);
+        session()->put('allSubCategories', $subCategories);
+        session()->put('allColors', $colors);
+
         return view('web/pages/editproduct')->with('product', $product);
      }
 
