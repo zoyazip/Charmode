@@ -27,9 +27,9 @@
                 <div class="color-container flex gap-2 pt-2">
                     @foreach ($product->productColors as $index => $color)
                         <label>
-                            <input id={{ $index }} type="radio" name='color_id' class="color-input pl-3"
+                            <input id="{{ $index }}" type="radio" name='color_id' class="color-input pl-3"
                                 @checked($index == 0 ? true : false) value="{{ $color->id }}" />
-                            <div id={{ $index }} style="background-color: {{ $color->color->hex }}"
+                            <div id="{{ $index }}" style="background-color: {{ $color->color->hex }}"
                                 class="color relative w-8 h-8 rounded-full cursor-pointer outline-offset-2 {{ $color->color->hex === '#ffffff' ? 'border border-black' : '' }}">
                             </div>
                         </label>

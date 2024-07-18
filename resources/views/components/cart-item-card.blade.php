@@ -9,7 +9,7 @@
             <p class="item-wrapper__product-name">{{$product->product->name}}</p>
             <p class="item-wrapper__amount-price">{{$product->quantity}} x {{number_format($product->product->newPrice, 2, ',', '.')}} €</p>
             <div class="item-wrapper__color-row">
-                <span class="item-wrapper__red-color"></span>
+                <span class="item-wrapper__red-color" style="background-color: {{$product->color->hex}}"></span>
             </div>
             @if($product->product->shippingCost)
                 <p class="item-wrapper__free-delivery">{{number_format($product->product->shippingCost, 2, ',', '.')}} €</p>
