@@ -23,7 +23,6 @@ use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
-    // see all products
     public function openAllProductPage() {
         $products = Product::all();
         return view('web/pages/admin')->with("products", $products);
@@ -50,18 +49,11 @@ class AdminController extends Controller
         $subCategories = SubCategory::all();
         return $subCategories;
     }
-    // add new product
-        // if neccessary add new color and new category and subcategory
+
     public function openAddProductPage() {
         $colors = Color::all();
         $categories = Category::all();
         $subCategories = SubCategory::all();
-
-        // session()->put('allCategories', $categories);
-        // session()->put('allSubCategories', $subCategories);
-        // session()->put('allColors', $colors);
-
-        // return view('web/pages/addproduct');
         return view('web/pages/addproduct')->with([
             "categories" => $categories,
             "subcategories" => $subCategories,
@@ -69,14 +61,10 @@ class AdminController extends Controller
         ]);
     }
 
-
-
-
     public function addProduct(Request $request) {
-        // validate data
         $request->validate([
             'product_code' => 'required|max:255',
-            'name' => 'required|max:255',
+            'name' => 'required|unique:products,name|max:255',
             'oldPrice' => 'required|decimal:0,2',
             'newPrice' => 'required|decimal:0,2',
             'discount' => 'required|integer',
@@ -84,145 +72,96 @@ class AdminController extends Controller
             'shippingCost' => 'required|decimal:0,2',
             'description' => 'required|string',
         ]);
-
-        // add category
         $category = $request->category;
         if (!ctype_digit($category)) {
             $categoryController = new CategoryController;
             $category = $categoryController->createCategory($category);
         }
-
-        // add subcategory
         $subCategory = $request->subcategory;
         if (!ctype_digit($subCategory)) {
             $subCategoryController = new SubCategoryController;
             $subCategory = $subCategoryController->createSubCategory($subCategory, $category);
         }
-
-        // add product
         $productController = new ProductController;
         $productID = $productController->createProduct($request, $subCategory);
-
-        // add colors and productcolors
         $colors = $request->checked_colors;
         if (isset($colors)) {
             $colorController = new ColorController;
             $colorController->createProductColors($colors, $productID);
         }
-
-        //add specification
         $specKeys = $request->key;
         $specValues = $request->value;
         if (isset($specKeys)) {
             $specificationController = new SpecificationController;
             $specificationController->createSpecification($specKeys, $specValues, $productID);
         }
-
-        // add images
         $images = $request->image;
         if (isset($images)) {
             $imageController = new ImageController;
-            $imageController->storeImages($images, $productID);
+            $imageController->storeImages($images, $request->name, $productID);
         }
-
         return redirect('/adminproducts');
     }
+    public function updateProduct(Request $request) {
+        $request->validate([
+            'product_code' => 'required|max:255',
+            'name' => 'required|unique:products,name|max:255',
+            'oldPrice' => 'required|decimal:0,2',
+            'newPrice' => 'required|decimal:0,2',
+            'discount' => 'required|integer',
+            'stockQuantity' => 'required|integer',
+            'shippingCost' => 'required|decimal:0,2',
+            'description' => 'required|string',
+        ]);
+        $category = $request->category;
+        if (!ctype_digit($category)) {
+            $categoryController = new CategoryController;
+            $category = $categoryController->createCategory($category);
 
-
-     // edit product
-        // probably delete color or category or subcategory
-        public function updateProduct(Request $request) {
-            // validate data
-            $request->validate([
-                'product_code' => 'required|max:255',
-                'name' => 'required|max:255',
-                'oldPrice' => 'required|decimal:0,2',
-                'newPrice' => 'required|decimal:0,2',
-                'discount' => 'required|integer',
-                'stockQuantity' => 'required|integer',
-                'shippingCost' => 'required|decimal:0,2',
-                'description' => 'required|string',
-            ]);
-
-            // add category
-            $category = $request->category;
-            if (!ctype_digit($category)) {
-                $categoryController = new CategoryController;
-                $category = $categoryController->createCategory($category);
-            }
-
-            // add subcategory
-            $subCategory = $request->subcategory;
-            if (!ctype_digit($subCategory)) {
-                $subCategoryController = new SubCategoryController;
-                $subCategory = $subCategoryController->createSubCategory($subCategory, $category);
-            }
-
-            // add product
-            $productController = new ProductController;
-            $productID = $productController->updateProduct($request, $subCategory);
-
-            // add colors and productcolors
-            $colors = $request->checked_colors;
-            if (isset($colors)) {
-                $colorController = new ColorController;
-                // sākumā izdzēš iepriekšējās
-                $colorController->deleteProductColors($productID);
-                // tad izveido jaunas
-                $colorController->createProductColors($colors, $productID);
-            }
-
-            //add specification
-            $specKeys = $request->key;
-            $specValues = $request->value;
-            if (isset($specKeys)) {
-                $specificationController = new SpecificationController;
-                // sākumā izdzēš iepriekšējās
-                $specificationController->deleteSpecification($productID);
-                // tad izveido jaunas
-                $specificationController->createSpecification($specKeys, $specValues, $productID);
-            }
-
-            // add images
-            $images = $request->image;
-            if (isset($images)) {
-                $imageController = new ImageController;
-                $imageController->storeImages($images, $productID);
-            }
-
-            return redirect('/adminproducts/'.$productID);
         }
+        $subCategory = $request->subcategory;
+        if (!ctype_digit($subCategory)) {
+            $subCategoryController = new SubCategoryController;
+            $subCategory = $subCategoryController->createSubCategory($subCategory, $category);
+        }
+        $productController = new ProductController;
+        $productID = $productController->updateProduct($request, $subCategory);
+        $colors = $request->checked_colors;
+        if (isset($colors)) {
+            $colorController = new ColorController;
+            $colorController->deleteProductColors($productID);
+            $colorController->createProductColors($colors, $productID);
+        }
+        $specKeys = $request->key;
+        $specValues = $request->value;
+        if (isset($specKeys)) {
+            $specificationController = new SpecificationController;
+            $specificationController->deleteSpecification($productID);
+            $specificationController->createSpecification($specKeys, $specValues, $productID);
+        }
+        $images = $request->image;
+        if (isset($images)) {
+            $imageController = new ImageController;
+            $imageController->storeImages($images, $request->name, $productID);
+        }
+        return redirect('/adminproducts/'.$productID);
+    }
 
-     // delete product
-        // probably delete color or category or subcategory
-
-     // see one product
-
-     // delete review
-
-     // edit color or category or subcategory
-
-
-
-     // get products
      public function getProducts() {
         $products = Product::all();
         return $products;
      }
 
-     // get specifications
      public function getSpecifications() {
         $products = Specification::all();
         return $products;
      }
 
-     // get productColors
      public function getProductColors() {
         $products = ProductColors::all();
         return $products;
      }
 
-     // get images
      public function getImages() {
         $images = Image::all();
         return $images;
@@ -233,11 +172,6 @@ class AdminController extends Controller
         $colors = Color::all();
         $categories = Category::all();
         $subCategories = DB::table('sub_categories')->where('category_id', '=', $product->subCategory->category_id)->get();
-
-        // session()->put('allCategories', $categories);
-        // session()->put('allSubCategories', $subCategories);
-        // session()->put('allColors', $colors);
-
         return view('web/pages/editproduct')->with([
             'product' => $product,
             'colors' => $colors,
@@ -245,7 +179,4 @@ class AdminController extends Controller
             'subCategories' => $subCategories,
         ]);
      }
-
-
-
 }

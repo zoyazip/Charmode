@@ -18,8 +18,7 @@
                 <div class="">
                     <form method="GET" action="/adminproducts/delete/{{ $product->id }}">
                         @csrf
-                        <input type="submit" value="">
-                            <img src="{{ URL::asset('assets/svg/trash.svg') }}" alt="trash" class="inline-block"/>
+                        <input type="submit" value="Delete">
                         </input>
                     </form>
                 </div>
@@ -94,7 +93,7 @@
             @if(sizeof($product->images) > 0)
                 @foreach($product->images as $image)
                     <div class="item-pic border border-main-green rounded-xl flex flex-col gap-1 col-span-1 p-4 mb-10">
-                        <img src="{{$image->url}}">
+                        <img src="/{{$image->url}}">
                     </div>  
                 @endforeach
             @endif
