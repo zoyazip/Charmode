@@ -58,7 +58,7 @@ class CheckoutController extends Controller
             if($addedItems !== NULL){
                 foreach($addedItems as $item) {
                     $product = DB::table('products')->where('id', '=', $item['product_id'])->get();
-                    $totalCost = $totalCost + $product->newPrice;
+                    $totalCost = $totalCost + $item->product->newPrice;
                     $deliveryCost = $deliveryCost + $product->shippingCost;
                 }
             }
