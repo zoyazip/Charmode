@@ -117,6 +117,7 @@ class AdminController extends Controller
         if (!ctype_digit($category)) {
             $categoryController = new CategoryController;
             $category = $categoryController->createCategory($category);
+
         }
         $subCategory = $request->subcategory;
         if (!ctype_digit($subCategory)) {

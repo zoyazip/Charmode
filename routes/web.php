@@ -73,6 +73,8 @@ Route::get('/orders/{id}', [AdminController::class, 'openOneOrderPage']);
 Route::get('/adminproducts/{id}', [AdminController::class, 'openOneProductPage']);
 Route::get('/orders', [AdminController::class, 'openOrdersPage']);
 
+// Users order history
+Route::get('/myorders', [OrderController::class, 'openMyOrdersPage']);
 
 // Delete Review
 Route::get('/reviews/delete/{id}', [ReviewController::class, 'delete']);
