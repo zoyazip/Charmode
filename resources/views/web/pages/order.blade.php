@@ -36,5 +36,7 @@
                 @endforeach --}}
             @endif
     </div>
-    <script src="js/admin/admin.js"></script>
+    @push('scripts')
+        <script src="js/admin/admin.js"></script>
+    @endpush
 @endsection
