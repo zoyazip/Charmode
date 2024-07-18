@@ -52,7 +52,7 @@ const maxWidthInput = document.getElementById("max-width");
 const widthSlider = document.getElementById("width-slider");
 console.log("min: ", minWidthInput.value);
 if (maxWidthInput.value == 0) {
-    maxWidthInput.value = 999;
+    maxWidthInput.value = 300;
     // submitBtn.click();
 }
 noUiSlider.create(widthSlider, {
@@ -60,7 +60,7 @@ noUiSlider.create(widthSlider, {
     connect: true,
     range: {
         min: 0,
-        max: 999,
+        max: 300,
     },
     tooltips: false,
     format: {
@@ -97,7 +97,7 @@ const maxHeightInput = document.getElementById("max-height");
 const heightSlider = document.getElementById("height-slider");
 console.log("min: ", minHeightInput.value);
 if (maxHeightInput.value == 0) {
-    maxHeightInput.value = 999;
+    maxHeightInput.value = 300;
     // submitBtn.click();
 }
 noUiSlider.create(heightSlider, {
@@ -105,7 +105,7 @@ noUiSlider.create(heightSlider, {
     connect: true,
     range: {
         min: 0,
-        max: 999,
+        max: 300,
     },
     tooltips: false,
     format: {
@@ -142,7 +142,7 @@ const maxDepthInput = document.getElementById("max-depth");
 const depthSlider = document.getElementById("depth-slider");
 console.log("min: ", minDepthInput.value);
 if (maxDepthInput.value == 0) {
-    maxDepthInput.value = 999;
+    maxDepthInput.value = 300;
     // submitBtn.click();
 }
 noUiSlider.create(depthSlider, {
@@ -150,7 +150,7 @@ noUiSlider.create(depthSlider, {
     connect: true,
     range: {
         min: 0,
-        max: 999,
+        max: 300,
     },
     tooltips: false,
     format: {
