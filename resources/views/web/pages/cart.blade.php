@@ -65,7 +65,7 @@
 {{--User is not logged in--}}
 @section('content')
 
-@if (count($cartItems) === 0)
+@if ($cartItems === NULL)
     <div class="flex h-[50vh] justify-center items-center">
         <h1>OOps.. Your cart is empty</h1>
     </div>
@@ -98,26 +98,30 @@
             </div>
         </div>
     </div>
-    @endsection
+
+@endif
+@endsection
+
 
 @endif
 
 
-@endif
-@push('scripts')
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
+@if(Auth::check())
 
-            const allFormFields = document.querySelectorAll(".item-wrapper__more-or-less")
-            for (const form of allFormFields) {
-                const inputField = form.children[1]
-                const maxValueForInput = parseInt(inputField.max)
-                const minusText = form.children[0].children[0]
-                const plusText = form.children[2].children[0]
-                const inputFieldValue = parseInt(inputField.value)
+    @push('scripts')
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+
+                const allFormFields = document.querySelectorAll(".item-wrapper__more-or-less")
+                for (const form of allFormFields) {
+                    const inputField = form.children[1]
+                    const maxValueForInput = parseInt(inputField.max)
+                    const minusText = form.children[0].children[0]
+                    const plusText = form.children[2].children[0]
+                    const inputFieldValue = parseInt(inputField.value)
 
 
-                if (inputFieldValue === maxValueForInput){
+                    if (inputFieldValue === maxValueForInput){
                         plusText.style.color = "#ADADAD"
                     } else if (inputFieldValue === 1){
                         minusText.style.color = "#ADADAD"
@@ -125,57 +129,88 @@
 
 
                     form.addEventListener("click", (e) => {
-                    if (e.target.classList.contains("minus")) {
-                        if (inputFieldValue > 1 ){
-                            inputField.stepUp(-1)
+                        if (e.target.classList.contains("minus")) {
+                            if (inputFieldValue > 1 ){
+                                inputField.stepUp(-1)
+                                submitUpdateForm()
+                            }
+
+                        }
+                        if (e.target.classList.contains("plus")) {
+                            if(inputFieldValue < maxValueForInput){
+                                inputField.stepUp(1)
+                                submitUpdateForm()
+                            }
+
+                        }
+                    })
+
+                    inputField.addEventListener("change", ()=> {
+
+                        if (inputField.value > maxValueForInput){
+                            inputField.value = maxValueForInput
+                            submitUpdateForm()
+
+                        } else if (inputField.value < 1) {
+                            inputField.value = 1
+                            submitUpdateForm()
+                        } else{
                             submitUpdateForm()
                         }
 
-                    }
-                    if (e.target.classList.contains("plus")) {
-                        if(inputFieldValue < maxValueForInput){
-                            inputField.stepUp(1)
-                            submitUpdateForm()
-                        }
 
-                    }
-                })
+                    })
+                }
 
-                inputField.addEventListener("change", ()=> {
-
-                    if (inputField.value > maxValueForInput){
-                        inputField.value = maxValueForInput
-                        submitUpdateForm()
-
-                    } else if (inputField.value < 1) {
-                        inputField.value = 1
-                        submitUpdateForm()
-                    } else{
-                        submitUpdateForm()
-                    }
-
-
-                })
-            }
-
-            function submitUpdateForm() {
-                const form = document.getElementById('update-form');
-                const formData = new FormData(form);
-                console.log(form)
-                console.log(formData)
-                fetch('/cart', {
+                function submitUpdateForm() {
+                    const form = document.getElementById('update-form');
+                    const formData = new FormData(form);
+                    console.log(form)
+                    console.log(formData)
+                    fetch('/cart', {
                         method: 'POST',
                         body: formData
-                })
-                    .then(response => {
-                        if (response.ok) {
-                            location.reload()
-                        } else {}
                     })
-                    .catch(error => {
-                        console.error('Error:', error);
-                    });
-            }
-        })
-    </script>
-@endpush
+                        .then(response => {
+                            if (response.ok) {
+                                location.reload()
+                            } else {}
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
+                }
+            })
+        </script>
+    @endpush
+
+
+@else
+    @push('scripts')
+
+        <script>
+
+            document.addEventListener('DOMContentLoaded', () => {
+
+
+                console.log(document.cookie)
+                const allTrashCans = document.querySelectorAll()
+
+
+
+
+
+
+            })
+
+
+
+
+
+        </script>
+
+    @endpush
+
+@endif
+
+

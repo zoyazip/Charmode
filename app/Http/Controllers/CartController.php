@@ -40,17 +40,19 @@ class CartController extends Controller
             $deliveryPriceSum = 0;
             $productTotalcount = 0;
 
-
-            for ($i = 0; $i < count($alldata); $i++) {
+            if ($alldata!==NULL){
+                for ($i = 0; $i < count($alldata); $i++) {
 //                dd(DB::table("colors")->where("id", $alldata[$i]['color_id'])->get());
-                $product_id = $alldata[$i]['product_id'];
-                $products = Product::where(["id" => $product_id])->get();
-                $alldata[$i]['products'] = $products[0];
-                $productPriceSum += $alldata[$i]['products']->newPrice * $alldata[$i]['quantity'] + $alldata[$i]['products']->shippingCost;
-                $deliveryPriceSum += $alldata[$i]['products']->shippingCost;
-                $productTotalcount += $alldata[$i]['quantity'];
-                $colortable= DB::table("colors")->where("id", $alldata[$i]['color_id'])->get();
-                $alldata[$i]['hexColor'] = $colortable[0]->hex;
+                    $product_id = $alldata[$i]['product_id'];
+                    $products = Product::where(["id" => $product_id])->get();
+                    $alldata[$i]['products'] = $products[0];
+                    $productPriceSum += $alldata[$i]['products']->newPrice * $alldata[$i]['quantity'] + $alldata[$i]['products']->shippingCost;
+                    $deliveryPriceSum += $alldata[$i]['products']->shippingCost;
+                    $productTotalcount += $alldata[$i]['quantity'];
+                    $colortable= DB::table("colors")->where("id", $alldata[$i]['color_id'])->get();
+                    $alldata[$i]['hexColor'] = $colortable[0]->hex;
+                }
+
             }
 
 //            dd($alldata);
@@ -114,6 +116,7 @@ class CartController extends Controller
                 'quantity' => $request->quantity,
             ];
         }
+//        dd(json_encode($addedItems));
         Cookie::queue('cartitems', json_encode($addedItems), 60 * 24);
         return redirect('/cart');
     }
