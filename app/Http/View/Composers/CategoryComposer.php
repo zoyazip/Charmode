@@ -17,9 +17,13 @@ class CategoryComposer
         if (Auth::check()) {
             $count = count(CartItem::where("user_id", Auth::id())->get());
         } else {
-            $count = count(json_decode(Cookie::get('cartitems'), true));
+            $cart_items = json_decode(Cookie::get('cartitems'), true);
+            if ($cart_items) {
+                $count = count($cart_items);
+            }
+            $count = 0;
         }
-        
+
         $view->with('categories', $categories)->with('count', $count);
     }
 }
