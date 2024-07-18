@@ -115,9 +115,14 @@ class CheckoutController extends Controller
         } else {
             Cookie::forget('cartitems');
         }
+
+        $user = DB::table('users')->where('id', '=', $user_id)->first();
+        $name = $user->full_name;
+
         return view('components.success')->with([
             'totalCost' => $totalCost,
-            'payMethod' => $order->paymentMethod
+            'payMethod' => $order->paymentMethod,
+            'name' => $name
         ]);
     }
 }
