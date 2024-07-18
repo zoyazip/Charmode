@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 @extends('layouts.main')
-
 @section('title', 'Cart page')
 
 @push('styles')
@@ -62,45 +61,45 @@
 
 
 @else
-{{--User is not logged in--}}
-@section('content')
+    {{--User is not logged in--}}
+    @section('content')
 
-@if (count($cartItems) === 0)
-    <div class="flex h-[50vh] justify-center items-center">
-        <h1>OOps.. Your cart is empty</h1>
-    </div>
-@else
-    <div class="inner-container">
-        <form id="update-form" target="_self" action="/cart" method="post">
-            @csrf
-            @method('PATCH')
-        </form>
-        @foreach ($cartItems as $product)
-            @include('components/cart-item-card-guests')
-            <hr>
-        @endforeach
-        @include('components/sum-up')
-
-        <div class="middle-wrapper checkout-section">
-            <div class="checkout-section__left">
-                <form target="_self" action="/">
-                    <button class="checkout-section__continue-btn">Continue shopping</button>
-                </form>
-                <form target="_self" action="/cart" method="post" id="reset-form">
+        @if (count($cartItems) === 0)
+            <div class="flex h-[50vh] justify-center items-center">
+                <h1>OOps.. Your cart is empty</h1>
+            </div>
+        @else
+            <div class="inner-container">
+                <form id="update-form" target="_self" action="/cart" method="post">
                     @csrf
-                    @method('delete')
-                    <button type="submit">Reset</button>
+                    @method('PATCH')
                 </form>
+                @foreach ($cartItems as $product)
+                    @include('components/cart-item-card-guests')
+                    <hr>
+                @endforeach
+                @include('components/sum-up')
+
+                <div class="middle-wrapper checkout-section">
+                    <div class="checkout-section__left">
+                        <form target="_self" action="/">
+                            <button class="checkout-section__continue-btn">Continue shopping</button>
+                        </form>
+                        <form target="_self" action="/cart" method="post" id="reset-form">
+                            @csrf
+                            @method('delete')
+                            <button type="submit">Reset</button>
+                        </form>
+                    </div>
+                    <div class="checkout-section__right">
+                        <x-checkout-button
+                            checkoutPrice="{{ number_format($productPriceSum + $deliveryPriceSum, 2, ',', '.') }}" goToSite="/checkout"></x-checkout-button>
+                    </div>
+                </div>
             </div>
-            <div class="checkout-section__right">
-                <x-checkout-button
-                    checkoutPrice="{{ number_format($productPriceSum + $deliveryPriceSum, 2, ',', '.') }}" goToSite="/checkout"></x-checkout-button>
-            </div>
-        </div>
-    </div>
+        @endif
     @endsection
 
-@endif
 
 
 @endif
