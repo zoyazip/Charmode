@@ -5,6 +5,9 @@ namespace App\Exceptions;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 
+use Illuminate\Support\Facades\Auth;
+
+
 class Handler extends ExceptionHandler
 {
     /**
@@ -26,5 +29,15 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+    }
+
+    public function render($request, Throwable $exception)
+    {
+        if ($exception instanceof \Illuminate\Database\Eloquent\ModelNotFoundException || $exception instanceof \Symfony\Component\HttpKernel\Exception\NotFoundHttpException) {
+            $user = Auth::user(); // Fetch authenticated user
+            return response()->view('errors.404', compact('user'), 404);
+        }
+
+        return parent::render($request, $exception);
     }
 }
