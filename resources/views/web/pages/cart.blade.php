@@ -94,7 +94,7 @@
             </div>
             <div class="checkout-section__right">
                 <x-checkout-button
-                    checkoutPrice="{{ number_format($productPriceSum + $deliveryPriceSum, 2, ',', '.') }}" goToSite="/checkout"></x-checkout-button>
+                    checkoutPrice="{{ number_format($productPriceSum + $deliveryPriceSum, 2, ',', '.') }}"></x-checkout-button>
             </div>
         </div>
     </div>
@@ -113,6 +113,8 @@
             document.addEventListener('DOMContentLoaded', () => {
 
                 const allFormFields = document.querySelectorAll(".item-wrapper__more-or-less")
+                const submitButton = document.querySelector(".checkout-btn")
+
                 for (const form of allFormFields) {
                     const inputField = form.children[1]
                     const maxValueForInput = parseInt(inputField.max)
@@ -162,6 +164,12 @@
                     })
                 }
 
+                submitButton.addEventListener("click", ()=>{
+
+                    window.location.href = "/checkout"
+
+                })
+
                 function submitUpdateForm() {
                     const form = document.getElementById('update-form');
                     const formData = new FormData(form);
@@ -192,16 +200,104 @@
 
             document.addEventListener('DOMContentLoaded', () => {
 
+                const allFormFields = document.querySelectorAll(".item-wrapper__more-or-less")
+                const submitButton = document.querySelector(".checkout-btn")
+                const itemWrappers = document.querySelectorAll(".item-wrapper")
 
-                console.log(document.cookie)
-                const allTrashCans = document.querySelectorAll()
+                for (const itemWrapper of itemWrappers){
+                    itemWrapper.addEventListener("click", (e)=>{
+
+                        if(e.target.classList.contains("item-wrapper__trash-icon")) {
+                            console.log("hello")
+                            itemWrapper.nextElementSibling.remove()
+                            itemWrapper.remove()
+                        }
 
 
 
 
+                        }
+
+                    )
+                }
 
 
+
+                for (const form of allFormFields) {
+                    const inputField = form.children[1]
+                    const maxValueForInput = parseInt(inputField.max)
+                    const minusText = form.children[0].children[0]
+                    const plusText = form.children[2].children[0]
+                    const inputFieldValue = parseInt(inputField.value)
+
+
+                    if (inputFieldValue === maxValueForInput) {
+                        plusText.style.color = "#ADADAD"
+                    } else if (inputFieldValue === 1) {
+                        minusText.style.color = "#ADADAD"
+                    }
+
+
+                    form.addEventListener("click", (e) => {
+                        if (e.target.classList.contains("minus")) {
+                            if (inputFieldValue > 1) {
+                                inputField.stepUp(-1)
+                            }
+
+                        }
+                        if (e.target.classList.contains("plus")) {
+                            if (inputFieldValue < maxValueForInput) {
+                                inputField.stepUp(1)
+                            }
+
+                        }
+                    })
+
+                    inputField.addEventListener("change", () => {
+
+                        if (inputField.value > maxValueForInput) {
+                            inputField.value = maxValueForInput
+
+                        } else if (inputField.value < 1) {
+                            inputField.value = 1
+                        }
+
+
+                    })
+                }
+
+                submitButton.addEventListener("click", () => {
+
+                    submitUpdateForm()
+
+                })
+
+
+                function submitUpdateForm() {
+                    const form = document.getElementById('update-form');
+                    const formData = new FormData(form);
+                    console.log(formData)
+                    fetch('/cart', {
+                        method: 'POST',
+                        body: formData
+                    })
+                        .then(response => {
+                            if (response.ok) {
+                                // window.location.href = "/cart"
+                            } else {
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
+
+                }
             })
+
+
+
+
+
 
 
 
