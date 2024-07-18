@@ -13,3 +13,6 @@
 
 {{-- images / icons --}}
 <link rel="icon" type="image/x-icon" href="{{ URL::asset('assets/ico/main.ico') }}">
+
+{{-- popups --}}
+<link rel="stylesheet" href="{{ URL::asset('css/cookies/cookie_popup.css') }}">

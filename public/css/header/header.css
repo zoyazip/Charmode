@@ -351,10 +351,9 @@ a.navbar__link-container {
         width: 20px;
     }
 
-    .navbar__cart-icon {
+    .hide {
         display: none;
     }
-
 
     .navbar__auth-option.cart {
         display: flex;
