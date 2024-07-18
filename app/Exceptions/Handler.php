@@ -30,14 +30,4 @@ class Handler extends ExceptionHandler
             //
         });
     }
-
-    public function render($request, Throwable $exception)
-    {
-        if ($exception instanceof \Illuminate\Database\Eloquent\ModelNotFoundException || $exception instanceof \Symfony\Component\HttpKernel\Exception\NotFoundHttpException) {
-            $user = Auth::user(); // Fetch authenticated user
-            return response()->view('errors.404', compact('user'), 404);
-        }
-
-        return parent::render($request, $exception);
-    }
 }
