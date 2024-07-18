@@ -14,6 +14,15 @@ function changeDataArrow(divId, arrowId) {
     }
 }
 
+function hideButton(btnId) {
+    const btn = document.getElementById(btnId);
+    if (btn.hasAttribute('disabled')) {
+        btn.removeAttribute('disabled');
+    } else {
+        btn.attributes.add('disabled');
+    }
+}
+
 function showDelivery(deliveryMethod) {
     const dpdDiv = document.getElementById("dpdSelect");
     const omnivaDiv = document.getElementById("omnivaSelect");
