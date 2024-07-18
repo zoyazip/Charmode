@@ -21,7 +21,7 @@ class UserSeeder extends Seeder
                 'full_name' => 'Jesus',
                 'email' => 'jesus@charmode.com',
                 'phone' => '123456789',
-                'password' => 'password'
+                'password' => '$2y$12$GMYGH5sxqi3.5eMT3k.jfu77uKUw4fsU76HtgAIvOWnGf1vEhedOu'
             ],
         ];
 
