@@ -11,6 +11,7 @@ use App\Models\CartItem;
 use App\Models\Product;
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Cookie;
 
 
 use Illuminate\Http\Request;
@@ -53,7 +54,6 @@ class CheckoutController extends Controller
                 }
             }
         } else {
-            // dd($request);
             $addedItems = json_decode(Cookie::get('cartitems'), true);
             if($addedItems !== NULL){
                 foreach($addedItems as $item) {
@@ -83,7 +83,6 @@ class CheckoutController extends Controller
         $order->status = 'confirmed';
         $order->save();
         $order_id = $order->id;
-
         if (Auth::check()) {
             $user_id = Auth::id();
             $addedItems = DB::table('cart_items')->where('user_id', '=', Auth::id())->get();
@@ -91,6 +90,7 @@ class CheckoutController extends Controller
                 foreach($addedItems as $item) {
                     $orderItem = new OrderItem;
                     $orderItem->order_id = $order_id;
+                    $orderItem->color_id = $item->color_id;
                     $orderItem->product_id = $item->product_id;
                     $orderItem->quantity = $item->quantity;
                     $orderItem->save();
@@ -103,21 +103,18 @@ class CheckoutController extends Controller
                     $orderItem = new OrderItem;
                     $orderItem->order_id = $order_id;
                     $orderItem->product_id = $item['product_id'];
+                    $orderItem->color_id = $item['color_id'];
                     $orderItem->quantity = $item['quantity'];
                     $orderItem->save();
                 }
             }
         }
-
-        // dd($order);
         if (Auth::check()) {
             $user_id = Auth::id();
             DB::table('cart_items')->where('user_id', '=', Auth::id())->delete();
         } else {
             Cookie::forget('cartitems');
         }
-
-        // dd($order);
         return redirect('/');
     }
 }

@@ -13,7 +13,7 @@
             <h1 class="text-main-green">Hi, Admin!</h1>
             <div class="">
                 <button onclick="window.location='/orders'" class="admin__btn">Orders</button>
-                <button onclick="window.location='/adminproducts/create'" class="px-4 py-2 rounded-lg bg-main-green text-white hover:shadow-lg transition-all">Add product</button>
+                <button onclick="window.location='/createproduct'" class="px-4 py-2 rounded-lg bg-main-green text-white hover:shadow-lg transition-all">Add product</button>
             </div>
         
         </div>

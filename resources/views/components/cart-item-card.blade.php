@@ -24,7 +24,7 @@
                 {{ number_format($product->quantity * $product->product->newPrice, 2, ',', '.') }} €</p>
             <p class="item-wrapper__more-or-less">
                 <a class="item-wrapper__inc-btn"><span class="item-wrapper__more-or-less-item minus">-</span></a>
-                <input name="{{ $product->product_id }}" form="update-form" id="{{ $product->product_id }}"
+                <input name="{{ $product->product_id }}-{{$product->color_id}}" form="update-form" id="{{ $product->product_id}}"
                     type="number" min="1" max="{{ $product->product->stockQuantity }}"
                     value="{{ $product->quantity }}" class="item-wrapper__more-or-less-item item-wrapper__price">
                 <a class="item-wrapper__inc-btn"><span class="item-wrapper__more-or-less-item plus">+</span></a>
