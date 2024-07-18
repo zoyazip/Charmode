@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 @extends('layouts.main')
-
 @section('title', 'Cart page')
 
 @push('styles')
@@ -59,6 +58,7 @@
         @if ($cartItems === null)
             <div class="flex h-[50vh] justify-center items-center">
                 <h1>Your cart is empty</h1>
+
             </div>
         @else
             <div class="inner-container">
@@ -67,6 +67,7 @@
                     @method('PATCH')
                 </form>
                 @foreach ($cartItems as $product)
+
                     <div class="flex flex-col items-center">
                         <div class="w-full">
                             @include('components/cart-item-card-guests')
@@ -90,6 +91,7 @@
                     </div>
                     <div class="checkout-section__right">
                         <x-checkout-button
+
                             checkoutPrice="{{ number_format($productPriceSum + $deliveryPriceSum, 2, ',', '.') }}"
                             goToSite="/checkout"></x-checkout-button>
                     </div>

@@ -34,7 +34,7 @@ class CartController extends Controller
                 "deliveryPriceSum" => $deliveryPriceSum,
             ]);
         } else {
-            $alldata = json_decode(Cookie::get('cartitems'), true);
+            $alldata = json_decode(Cookie::get('cartitems') ?? '[]', true);
 
             $productPriceSum = 0;
             $deliveryPriceSum = 0;
@@ -139,14 +139,19 @@ class CartController extends Controller
             // cookies
             $addedItems = json_decode($request->cookie('cartitems'), true);
             $found = false;
-            foreach ($addedItems as $index => $item) {
-                if ($item->product_id === $product_id && $item->color_id === $request->color_id) {
-                    // item with same color already has added, so we change quantity
-                    array_splice($addedItems, $index, 1);
-                    break;
+            if(!empty($addedItems)){
+
+                foreach ($addedItems as $index => $item) {
+                    if ($item->product_id === $product_id && $item->color_id === $request->color_id) {
+                        // item with same color already has added, so we change quantity
+                        array_splice($addedItems, $index, 1);
+                        break;
+                    }
                 }
+                Cookie::queue('cartitems', json_encode($addedItems));
+            } else {
+                // return view('web.pages.cart');
             }
-            Cookie::queue('cartitems', json_encode($addedItems));
         }
         return redirect()->back();
     }
@@ -156,7 +161,7 @@ class CartController extends Controller
         if (Auth::check()) {
             DB::table('cart_items')->where(['user_id' => Auth::id()])->delete();  // user is logged in
         } else {
-            Cookie::forget('cartitems');  // cookies
+            Cookie::queue(Cookie::forget('cartitems'));  // cookies
         }
         return redirect()->back();
     }

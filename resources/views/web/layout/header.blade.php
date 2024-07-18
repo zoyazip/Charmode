@@ -148,12 +148,14 @@
 
         <div class="navbar__links-mobile">
             <ul class="navbar__links-mobile__categories">
+
                 <div class="flex gap-2 navbar__all-container">
                     <li>
                         <div class="p-2">
                             <a href="/filter">
                                 <h4 class="navbar__all-container text-lg">All</h4>
                             </a>
+
                         </div>
                     </li>
                 </div>
