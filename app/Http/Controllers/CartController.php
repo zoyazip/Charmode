@@ -58,7 +58,7 @@ class CartController extends Controller
     }
 
 
-    // function helper for storeGuest mehtod 
+    // function helper for storeGuest mehtod
     private function findItemIndex($items, $productId, $colorId)
     {
         foreach ($items as $index => $item) {
@@ -142,13 +142,14 @@ class CartController extends Controller
         $userId = Auth::id();
 //        $userId = 1;
 
-
         foreach ($allrequest as $key => $value) {
-//            dd($key);
-//            dd(DB::table('cart_items')->where(['user_id' => $userId , 'product_id'=> $key])->
-//            get());
-            DB::table('cart_items')->where('user_id', $userId)->
-            where('product_id', $key)->update(['quantity' => $value]);
+            $ids = explode("-", $key);
+            $productId = $ids[0];
+            $colorId = $ids[1];
+
+
+            DB::table('cart_items')->where(['user_id' => $userId , 'product_id'=> $productId, 'color_id' => $colorId])->
+            update(['quantity' => $value]);
         }
 
         return Redirect::refresh();
