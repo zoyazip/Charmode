@@ -43,6 +43,7 @@
     background-color: #F64141;
     border-radius: 50%;
     display: inline-block;
+    border: solid black 1px;
 }
 .item-wrapper__color-row{
     line-height: 0;
@@ -135,6 +136,11 @@ input::-webkit-inner-spin-button {
 }
 .item-wrapper__inc-btn{
     cursor: pointer;
+}
+
+.item-wrapper__color-row{
+    display: flex;
+    gap: 5px;
 }
 
 @media only screen and (max-width: 768px){

@@ -18,7 +18,7 @@ class Order extends Model
         'user_id',
         'totalCost',
         'deliveryCost',
-        'fullName',
+        'email',
         'city',
         'address',
         'comment',

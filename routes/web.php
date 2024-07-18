@@ -128,7 +128,7 @@ Route::get('/', [HomeController::class, 'index']);
 Route::get('/product/{id}', [ProductDisplayPageController::class, 'index'])->name('product');
 
 // add reviews
-Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
+Route::post('/reviews', [ReviewController::class, 'store'])->middleware('auth')->name('reviews.store');
 
 
 // plp routes
