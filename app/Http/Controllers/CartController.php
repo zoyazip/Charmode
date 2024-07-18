@@ -14,6 +14,7 @@ class CartController extends Controller
 {
     public function index(Request $request)
     {
+        dd(json_decode(Cookie::get('cartitems'), true));
         if (Auth::check()) {
             $products = CartItem::where('user_id', Auth::id())->with(['product', 'user'])->get();
 
@@ -31,7 +32,7 @@ class CartController extends Controller
                 "deliveryPriceSum" => $deliveryPriceSum,
             ]);
         } else {
-            // here comes the logic for non-authorized users
+            dd(json_decode(Cookie::get('cartitems'), true));
         }
     }
 
@@ -52,34 +53,41 @@ class CartController extends Controller
             $cartItem->save();
         }
 
-        return redirect()->back();
+        return redirect('/cart');
+    }
+
+
+    // function helper for storeGuest mehtod 
+    private function findItemIndex($items, $productId, $colorId)
+    {
+        foreach ($items as $index => $item) {
+            if ($item['product_id'] === $productId && $item['color_id'] === $colorId) {
+                return $index;
+            }
+        }
+        return -1;
     }
 
     public function storeGuest(Request $request)
     {
-        // here comes the logic for non-auth users
-        // cookies
-        $addedItems = json_decode(Cookie::get('cartitems'), true);
-        $found = false;
-        foreach ($addedItems as $item) {
-            if ($item->product_id === $request->product_id && $item->color_id === $request->color_id) {
-                // item with same color already has added, so we change quantity
-                $item->quantity = $request->quantity;
-                $found = true;
-                break;
-            }
-        }
-        if (!$found) {
-            // item is not added, so we add new item
-            $newItem = [
+        // Get existing cart items from cookies
+        $addedItems = json_decode(Cookie::get('cartitems'), true) ?? [];
+        $index = $this->findItemIndex($addedItems, $request->product_id, $request->color_id);
+
+        if ($index !== -1) {
+            // Item found, update quantity
+            $addedItems[$index]['quantity']++;
+        } else {
+            // Item not found, add new item
+            $addedItems[] = [
                 'user_id' => null,
                 'product_id' => $request->product_id,
                 'color_id' => $request->color_id,
                 'quantity' => $request->quantity,
             ];
-            array_push($addedItems, $newItem);
         }
         Cookie::queue('cartitems', json_encode($addedItems), 60 * 24);
+        return redirect('/cart');
     }
 
 
@@ -119,5 +127,4 @@ class CartController extends Controller
         }
         return redirect()->back();
     }
-
 }
