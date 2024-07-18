@@ -1,9 +1,9 @@
 <div class="filter">
     <div class="filter__header">
-        <div class="filter__title">Filters</div>
+        <div class="filter__title text-main-green">Filters</div>
         <div class="filter__icon">
             <img onclick="toggleElements('filter__main','filter__submit', 'filterDataArrow');" id="filterDataArrow"
-                class="close__arrow" src="{{ URL::asset('assets/svg/arrow.svg') }}" alt="✖" />
+                class="close__arrow w-4" src="{{ URL::asset('assets/svg/arrow-dd.svg') }}" alt="✖" />
         </div>
         @if (isset($subcat))
             <a href="{{ route('filter', ['subcat' => $subcat]) }}" class="filter__reset">Reset</a>
@@ -156,39 +156,39 @@
         {{-- availability --}}
         <div class="filter__container-option">
             <div class="filter__option__checkbox">
-                <div class="filter__option__title">Is available</div>
                 <div class="checkbox-container">
                     <div class="checkbox-wrapper">
                         <input id="is-available" name="is_available" type="checkbox" class="styled-checkbox"
                             {{ isset($data['is_available']) && $data['is_available'] ? 'checked' : '' }} />
                     </div>
                 </div>
+                <div class="filter__option__title">Is available</div>
             </div>
         </div>
 
         {{-- discount --}}
         <div class="filter__container-option">
             <div class="filter__option__checkbox">
-                <div class="filter__option__title">Discounted</div>
                 <div class="checkbox-container">
                     <div class="checkbox-wrapper">
                         <input id="is-discount" name="is_discount" type="checkbox" class="styled-checkbox"
                             {{ isset($data['is_discount']) && $data['is_discount'] ? 'checked' : '' }} />
                     </div>
                 </div>
+                <div class="filter__option__title">Discounted</div>
             </div>
         </div>
 
         {{-- free delivery --}}
         <div class="filter__container-option">
             <div class="filter__option__checkbox">
-                <div class="filter__option__title">Free delivery</div>
                 <div class="checkbox-container">
                     <div class="checkbox-wrapper">
                         <input id="free-delivery" name="free_delivery" type="checkbox" class="styled-checkbox"
                             {{ isset($data['free_delivery']) && $data['free_delivery'] ? 'checked' : '' }} />
                     </div>
                 </div>
+                <div class="filter__option__title">Free delivery</div>
             </div>
         </div>
     </div>

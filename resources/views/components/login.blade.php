@@ -1,5 +1,5 @@
 @push('styles')
-    <link rel="stylesheet" href="{{URL::asset('css/header/greetings.css')}}">
+    <link rel="stylesheet" href="{{ URL::asset('css/header/greetings.css') }}">
 @endpush
 
 <div
@@ -9,7 +9,8 @@
             <div class="greet">
                 <h2 class="font-bold text-3xl inline-block">Hi <span class="wave">👋🏻</span></h2>
             </div>
-            <div class="close-login cursor-pointer"><img src="{{ URL::asset('assets/svg/cross.svg') }}" alt="✖"/></div>
+            <div class="close-login cursor-pointer"><img src="{{ URL::asset('assets/svg/cross.svg') }}" alt="✖" />
+            </div>
         </div>
 
         <form class="flex flex-col gap-4" action="{{ route('login') }}" method="POST">
@@ -42,12 +43,13 @@
                 @enderror
             </div>
             <div class="remember-checkbox flex items-center gap-2">
-                <input type="checkbox" class="checked:accent-green-500 " name="remember_me" value="true" id="remember_me"/>
+                <input type="checkbox" class="checked:accent-main-green " name="remember_me" value="true"
+                    id="remember_me" />
                 <label class="text-main-green select-none" for="remember_me">Remember me</label>
             </div>
             <div class="login-form-btn">
                 <input type="submit" value="Login"
-                    class="w-full border border-green-900 text-green-900 py-4 rounded-lg hover:bg-green-400 hover:border-opacity-0 transition-all cursor-pointer" />
+                    class="w-full border border-green-900 text-green-900 py-4 rounded-lg hover:bg-main-green hover:text-white hover:border-opacity-0 transition-all cursor-pointer" />
             </div>
         </form>
 
@@ -55,7 +57,7 @@
             <p class="or-text">Or</p>
             <div class="registration-btn w-full">
                 <a href="{{ route('registration') }}"
-                    class="bg-main-green flex items-center justify-center rounded-lg w-full py-4 text-white hover:bg-green-400 transition-all cursor-pointer">Registration</a>
+                    class="bg-main-green flex items-center justify-center rounded-lg w-full py-4 text-white hover:font-bold transition-all cursor-pointer">Registration</a>
             </div>
         </div>
     </div>
