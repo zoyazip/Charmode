@@ -105,7 +105,7 @@ class AdminController extends Controller
     public function updateProduct(Request $request) {
         $request->validate([
             'product_code' => 'required|max:255',
-            'name' => 'required|unique:products,name|max:255',
+            'name' => 'required|max:255',
             'oldPrice' => 'required|decimal:0,2',
             'newPrice' => 'required|decimal:0,2',
             'discount' => 'required|integer',
@@ -127,6 +127,7 @@ class AdminController extends Controller
         $productController = new ProductController;
         $productID = $productController->updateProduct($request, $subCategory);
         $colors = $request->checked_colors;
+        dd($request->checked_colors);
         if (isset($colors)) {
             $colorController = new ColorController;
             $colorController->deleteProductColors($productID);

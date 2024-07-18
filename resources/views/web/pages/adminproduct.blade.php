@@ -68,8 +68,8 @@
                 <div class="flex justify-between">
                     <h4 class="text-main-green">Colors:</h4>
                     <div class="product-color__div">
-                        @if(sizeof($product->productColors) > 0)
-                            @foreach($product->productColors as $productColor)
+                        @if (isset($colors))
+                            @foreach ($colors as $color)
                                 <div style="background-color: {{$productColor->color->hex}};" class="w-6 h-6 rounded-full"></div>
                             @endforeach
                         @endif
