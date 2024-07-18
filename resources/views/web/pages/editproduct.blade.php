@@ -42,6 +42,12 @@
                     <div>
                         <label>Subcategory: </label>
                         <select value="{{$product->subCategory->id}}" id="subCategorySelect" class="select__option" name="subcategory">
+                            @if (session()->has('allSubCategories'))
+                                @foreach (session()->get('allSubCategories') as $category)
+                                    <option value={{ $category->id }}>{{ $category->name }}</option>
+
+                                @endforeach
+                            @endif
                         </select>
                     </div>
                     <span class="add__btn" onclick="openPopUpWindow('subCategoryPopUp')">Add new subcategory</span>

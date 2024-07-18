@@ -94,8 +94,9 @@ Route::post('/orders/update/{id}', [OrderController::class, 'updateStatus']);
 Route::post('/cartitem/create/{product_id}/{quantity}', [CartController::class, 'store']);
 
 
-/*
+
 Route::get('/subcategories', [AdminController::class, 'getSubcategories']);
+/*
 Route::post('/add_product', [AdminController::class, 'addProduct']);
 Route::get('/edit_product/{id}', [AdminController::class, 'editProduct']);
 Route::get('/get_product', [AdminController::class, 'getProducts']);
