@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->nullable($value = true);
             $table->double('totalCost');
             $table->double('deliveryCost');
-            $table->string('fullName');
+            $table->string('email');
             $table->string('city');
             $table->string('address');
             $table->string('comment')->nullable();
