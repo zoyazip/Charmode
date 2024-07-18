@@ -162,7 +162,7 @@
                 @for ($i = 0; $i < 6; $i++)
                     @if(isset($product->images[$i]))
                         <div id="{{$product->images[$i]->id.'image'}}" class="border boredr-main-green w-full h-[300px] lg:h-full rounded-2xl">
-                            <img src="{{$product->images[$i]->url}}">
+                            <img src="/{{$product->images[$i]->url}}">
                             <img onclick="deleteImage({{$product->images[$i]->id}})" class="" src="{{ URL::asset('assets/svg/trash.svg') }}" />
                         </div>
                     @else                

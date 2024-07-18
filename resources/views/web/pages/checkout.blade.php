@@ -31,32 +31,15 @@
                                 </div>
                             </div>
                             <div id="checkout__form" class="checkout__form hidden__div">
-                                {{-- @if(!Auth::check()) --}}
-                                {{-- <div class="checkout__input__row"> --}}
-                                    {{-- <div class="checkout__name__input">
-                                        <input class="@error('name') is-invalid @enderror" placeholder="Full name" type="text"
-                                            id="name" name="name" value="{{ old('name')  ?? auth()->user()->full_name}}">
-                                        @error('name')
-                                            <p class="checkout__error">{{ $message }}</p>
-                                        @enderror
-                                    </div> --}}
-                                    {{-- <div class="checkout__phone__input">
-                                        <input class="@error('phone') is-invalid @enderror" placeholder="Tel."
-                                            type="text" id="tel" name="tel" value="{{old('tel') ?? auth()->user()->phone}}">
-                                        @error('phone')
-                                            <p class="checkout__error">{{ $message }}</p>
-                                        @enderror
-                                    </div> --}}
-                                {{-- </div> --}}
-                                <input class="@error('checkoutemail') is-invalid @enderror" placeholder="Email*" type="text" id="email" name="checkoutemail" value="{{old('checkoutemail') ?? auth()->user()->email}}">
+                                <input class="@error('checkoutemail') is-invalid @enderror" placeholder="Email*" type="text" id="email" name="checkoutemail" value="{{old('checkoutemail') ?? auth()->user()->email ?? ""}}">
                                 @error('checkoutemail')
                                     <p class="checkout__error">{{ $message }}</p>
                                 @enderror
-                                <input class="@error('city') is-invalid @enderror" placeholder="City*" type="text" id="city" name="city" value="{{old('city')  ?? auth()->user()->city}}">
+                                <input class="@error('city') is-invalid @enderror" placeholder="City*" type="text" id="city" name="city" value="{{old('city')  ?? auth()->user()->city ?? ""}}">
                                 @error('city')
                                     <p class="checkout__error">{{ $message }}</p>
                                 @enderror
-                                <input class="@error('address') is-invalid @enderror" placeholder="Address*" type="text" id="address" name="address" value="{{old('address') ?? auth()->user()->address}}">
+                                <input class="@error('address') is-invalid @enderror" placeholder="Address*" type="text" id="address" name="address" value="{{old('address') ?? auth()->user()->address ?? ""}}">
                                 @error('address')
                                     <p class="checkout__error">{{ $message }}</p>
                                 @enderror
