@@ -1,7 +1,7 @@
 .checkout-section{
     display: flex;
     justify-content: space-between;
-    padding-right: 25px;
+    /* padding-right: 25px; */
     margin-bottom: 100px;
     margin-top: 40px;
 }

@@ -106,7 +106,8 @@
 
                 <div class="register__terms-container">
                     <div class="register__checkbox">
-                        <input id="registerCheckbox" onchange="enableLoginBtn()" type="checkbox">
+                        <input id="registerCheckbox" onchange="enableLoginBtn()" type="checkbox"
+                            class="checked:accent-main-green">
                         <label for="registerCheckbox">Terms and conditions</label>
                     </div>
                     <a href="/terms">Read more</a>

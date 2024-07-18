@@ -18,10 +18,10 @@ class CategoryComposer
             $count = count(CartItem::where("user_id", Auth::id())->get());
         } else {
             $cart_items = json_decode(Cookie::get('cartitems'), true);
-            if ($cart_items) {
+            $count = 0;
+            if (count($cart_items) > 0) {
                 $count = count($cart_items);
             }
-            $count = 0;
         }
 
         $view->with('categories', $categories)->with('count', $count);

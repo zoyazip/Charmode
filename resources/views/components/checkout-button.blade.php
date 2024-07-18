@@ -1,1 +1,1 @@
-<input type="submit" onclick="location.href = '{{$goToSite}}';" class="checkout-btn" value="Checkout {{$checkoutPrice}} €">
+<input type="submit" class="checkout-btn" value="Checkout {{$checkoutPrice}} €">

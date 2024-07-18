@@ -1,10 +1,19 @@
-.sum-up-top, .sum-up-bot{
+.sum-up-top {
     display: flex;
     flex-direction: column;
     width: 100%;
-    padding: 15px 25px 5px 0;
+    padding: 15px 0px 5px 0;
+    gap: 6px;
+}
+
+.sum-up-bot{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 15px 0px 5px 0;
     gap: 5px;
 }
+
 .sum-up-top__text, .sum-up-bot__price-row{
     display: flex;
     justify-content: space-between;
@@ -16,9 +25,9 @@
     border-top-width: 2px;
 }
 
-.sum-up-top__text > span, .sum-up-bot > p > span, .promo > p{
+/* .sum-up-top__text > span, .sum-up-bot > p > span, .promo > p{
     font-size: var(--title-heading-smaller);
-}
+} */
 
 .sum-up-top__right, .sum-up-bot__bold{
     color: var(--text-primary);
@@ -62,10 +71,10 @@
 }
 .promo{
     width: 100%;
-    margin: 0 0 20px 0 ;
+    margin: 0 0 30px 0 ;
     color: var(--text-primary);
 }
 
 .promo > p{
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }

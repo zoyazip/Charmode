@@ -40,17 +40,19 @@ class CartController extends Controller
             $deliveryPriceSum = 0;
             $productTotalcount = 0;
 
-
-            for ($i = 0; $i < count($alldata); $i++) {
+            if ($alldata!==NULL){
+                for ($i = 0; $i < count($alldata); $i++) {
 //                dd(DB::table("colors")->where("id", $alldata[$i]['color_id'])->get());
-                $product_id = $alldata[$i]['product_id'];
-                $products = Product::where(["id" => $product_id])->get();
-                $alldata[$i]['products'] = $products[0];
-                $productPriceSum += $alldata[$i]['products']->newPrice * $alldata[$i]['quantity'] + $alldata[$i]['products']->shippingCost;
-                $deliveryPriceSum += $alldata[$i]['products']->shippingCost;
-                $productTotalcount += $alldata[$i]['quantity'];
-                $colortable= DB::table("colors")->where("id", $alldata[$i]['color_id'])->get();
-                $alldata[$i]['hexColor'] = $colortable[0]->hex;
+                    $product_id = $alldata[$i]['product_id'];
+                    $products = Product::where(["id" => $product_id])->get();
+                    $alldata[$i]['products'] = $products[0];
+                    $productPriceSum += $alldata[$i]['products']->newPrice * $alldata[$i]['quantity'] + $alldata[$i]['products']->shippingCost;
+                    $deliveryPriceSum += $alldata[$i]['products']->shippingCost;
+                    $productTotalcount += $alldata[$i]['quantity'];
+                    $colortable= DB::table("colors")->where("id", $alldata[$i]['color_id'])->get();
+                    $alldata[$i]['hexColor'] = $colortable[0]->hex;
+                }
+
             }
 
 //            dd($alldata);
@@ -114,6 +116,7 @@ class CartController extends Controller
                 'quantity' => $request->quantity,
             ];
         }
+//        dd(json_encode($addedItems));
         Cookie::queue('cartitems', json_encode($addedItems), 60 * 24);
         return redirect('/cart');
     }
@@ -171,20 +174,74 @@ class CartController extends Controller
         unset($allrequest['_token']);
         unset($allrequest['_method']);
 
-        $userId = Auth::id();
+        if (Auth::check()) {
+            $userId = Auth::id();
 //        $userId = 1;
 
-        foreach ($allrequest as $key => $value) {
-            $ids = explode("-", $key);
-            $productId = $ids[0];
-            $colorId = $ids[1];
+            foreach ($allrequest as $key => $value) {
+                $ids = explode("-", $key);
+                $productId = $ids[0];
+                $colorId = $ids[1];
 
 
-            DB::table('cart_items')->where(['user_id' => $userId , 'product_id'=> $productId, 'color_id' => $colorId])->
-            update(['quantity' => $value]);
+                DB::table('cart_items')->where(['user_id' => $userId , 'product_id'=> $productId, 'color_id' => $colorId])->
+                update(['quantity' => $value]);
+            }
+
+            return Redirect::refresh();
+        } else{
+            $cookieData = json_decode(Cookie::get('cartitems'), true);
+            $newCookie = [];
+
+
+//            dd($cookieData);
+            Cookie::forget('cartitems');
+//            dd($cookieData);
+            $loopMax = count($cookieData);
+
+            for ($i = 0, $j=0; $i < $loopMax; $i++) {
+
+                $quantity = 0;
+                $productId = "";
+                $colorId = "";
+                foreach ($allrequest as $key => $value) {
+
+                    $data = explode("-", $key);
+                    $productId = $data[0];
+                    $colorId = $data[1];
+                    $quantity = $value;
+
+
+                    if ($cookieData[$i]['product_id'] == $productId && $cookieData[$i]['color_id'] == $colorId) {
+                        $newCookie[$j]['user_id'] = $cookieData[$i]['user_id'];
+                        $newCookie[$j]['product_id'] = $cookieData[$i]['product_id'];
+                        $newCookie[$j]['color_id'] = $cookieData[$i]['color_id'];
+                        $newCookie[$j]['quantity'] = $quantity;
+                        $j++;
+
+                    }
+
+
+
+
+                }
+
+
+
+            }
+
+
+
+
+            Cookie::queue('cartitems', json_encode($newCookie), 60 * 24);
+
+
+
+            return Redirect::refresh();
+
         }
 
-        return Redirect::refresh();
+
 
     }
 }

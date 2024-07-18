@@ -30,14 +30,8 @@
                     value="{{ $product["quantity"] }}" class="item-wrapper__more-or-less-item item-wrapper__price">
                 <a class="item-wrapper__inc-btn"><span class="item-wrapper__more-or-less-item plus">+</span></a>
             </p>
-            <form id="trash-form" method="post" action="/cart">
-                @csrf
-                @method('put')
-                <input type="hidden" name="product_id" value="{{ $product["product_id"] }}">
-                <input type="hidden" name="color_id" value="{{ $product["color_id"] }}">
-                <button type="submit" class="item-wrapper__trash"><img src="{{ URL::asset('assets/svg/trash.svg') }}"
+                <button class="item-wrapper__trash"><img src="{{ URL::asset('assets/svg/trash.svg') }}"
                         alt="trash" class="item-wrapper__trash-icon"></button>
-            </form>
         </div>
     </div>
 </div>

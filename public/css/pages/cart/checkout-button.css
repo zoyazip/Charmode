@@ -2,8 +2,8 @@
     border-radius: 8px;
     width: 240px;
     height: 3.3rem;
-    background: var(--green-light);
-    color: var(--text-primary);
+    background-color: var(--text-primary);
+    color: white;
     cursor: pointer;
 }
 
