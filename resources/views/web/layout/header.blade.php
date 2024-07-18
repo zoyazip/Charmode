@@ -1,9 +1,3 @@
-@php
-    $items = 33;
-
-@endphp
-
-
 <div class="inner-container">
     <div class="navbar">
         <div class="navbar__top">
@@ -20,39 +14,50 @@
             <a href="/">
                 <img class="navbar__logo" src="{{ URL::asset('assets/svg/logo.svg') }}" alt="Logo" />
             </a>
-            @if(isset($subcat))
-                <form id="search-form" action="{{ route('filter', ['subcat' => $subcat]) }}" method="GET" class="navbar__search-container">
-            @else
-                <form id="search-form" action="{{ route('filter') }}" method="GET" class="navbar__search-container">
+            @if (isset($subcat))
+                <form id="search-form" action="{{ route('filter', ['subcat' => $subcat]) }}" method="GET"
+                    class="navbar__search-container">
+                @else
+                    <form id="search-form" action="{{ route('filter') }}" method="GET"
+                        class="navbar__search-container">
             @endif
-                {{-- all the hidden fields for filter --}}
-                <input type="hidden" id="sort_by_form" name="sort_by" value="{{ old('sort_by', $data['sort_by'] ?? '') }}">
-                <input type="hidden" id="sort_order_form" name="sort_order" value="{{ old('sort_order', $data['sort_order'] ?? '') }}">
-                <input type="hidden" id="min_price_form" name="min_price" value="{{ old('min_price', $data['min_price'] ?? '') }}">
-                <input type="hidden" id="max_price_form" name="max_price" value="{{ old('max_price', $data['max_price'] ?? '') }}">
-                <input type="hidden" id="min_width_form" name="min_width" value="{{ old('min_width', $data['min_width'] ?? '') }}">
-                <input type="hidden" id="max_width_form" name="max_width" value="{{ old('max_width', $data['max_width'] ?? '') }}">
-                <input type="hidden" id="min_height_form" name="min_height" value="{{ old('min_height', $data['min_height'] ?? '') }}">
-                <input type="hidden" id="max_height_form" name="max_height" value="{{ old('max_height', $data['max_height'] ?? '') }}">
-                <input type="hidden" id="min_depth_form" name="min_depth" value="{{ old('min_depth', $data['min_depth'] ?? '') }}">
-                <input type="hidden" id="max_depth_form" name="max_depth" value="{{ old('max_depth', $data['max_depth'] ?? '') }}">
-                <input type="hidden" id="colors_form" name="colors" value="{{ old('colors', implode(',', $data['colors'] ?? [])) }}">
-                <input type="hidden" id="is_available_form" name="is_available" value="{{ old('is_available', $data['is_available'] ?? '') }}">
-                <input type="hidden" id="is_discount_form" name="is_discount" value="{{ old('is_discount', $data['is_discount'] ?? '') }}">
-                <input type="hidden" id="free_delivery_form" name="free_delivery" value="{{ old('free_delivery', $data['free_delivery'] ?? '') }}">
-                <input
-                    name="search"
-                    class="navbar__search-text"
-                    type="text"
-                    placeholder="Find your cheapest luxury brand..."
-                    value="{{ old('search', $data['search'] ?? '') }}"/>
-                <button type="submit" class="navbar__search-icon-btn">
-                    <img class="navbar__search-icon" src="{{ URL::asset('assets/svg/search-icon.svg') }}" alt="Search" />
-                </button>
+            {{-- all the hidden fields for filter --}}
+            <input type="hidden" id="sort_by_form" name="sort_by" value="{{ old('sort_by', $data['sort_by'] ?? '') }}">
+            <input type="hidden" id="sort_order_form" name="sort_order"
+                value="{{ old('sort_order', $data['sort_order'] ?? '') }}">
+            <input type="hidden" id="min_price_form" name="min_price"
+                value="{{ old('min_price', $data['min_price'] ?? '') }}">
+            <input type="hidden" id="max_price_form" name="max_price"
+                value="{{ old('max_price', $data['max_price'] ?? '') }}">
+            <input type="hidden" id="min_width_form" name="min_width"
+                value="{{ old('min_width', $data['min_width'] ?? '') }}">
+            <input type="hidden" id="max_width_form" name="max_width"
+                value="{{ old('max_width', $data['max_width'] ?? '') }}">
+            <input type="hidden" id="min_height_form" name="min_height"
+                value="{{ old('min_height', $data['min_height'] ?? '') }}">
+            <input type="hidden" id="max_height_form" name="max_height"
+                value="{{ old('max_height', $data['max_height'] ?? '') }}">
+            <input type="hidden" id="min_depth_form" name="min_depth"
+                value="{{ old('min_depth', $data['min_depth'] ?? '') }}">
+            <input type="hidden" id="max_depth_form" name="max_depth"
+                value="{{ old('max_depth', $data['max_depth'] ?? '') }}">
+            <input type="hidden" id="colors_form" name="colors"
+                value="{{ old('colors', implode(',', $data['colors'] ?? [])) }}">
+            <input type="hidden" id="is_available_form" name="is_available"
+                value="{{ old('is_available', $data['is_available'] ?? '') }}">
+            <input type="hidden" id="is_discount_form" name="is_discount"
+                value="{{ old('is_discount', $data['is_discount'] ?? '') }}">
+            <input type="hidden" id="free_delivery_form" name="free_delivery"
+                value="{{ old('free_delivery', $data['free_delivery'] ?? '') }}">
+            <input name="search" class="navbar__search-text" type="text"
+                placeholder="Find your cheapest luxury brand..." value="{{ old('search', $data['search'] ?? '') }}" />
+            <button type="submit" class="navbar__search-icon-btn">
+                <img class="navbar__search-icon" src="{{ URL::asset('assets/svg/search-icon.svg') }}" alt="Search" />
+            </button>
             </form>
 
             <div class="navbar__icons">
-                <a href="{{ url('cart') }}" class="navbar__cart-icon relative">
+                <a href="{{ url('cart') }}" class="navbar__cart-icon relative @auth hide @endauth">
                     <img src="{{ URL::asset('assets/svg/shopping-basket.svg') }}" alt="Cart" />
                     @include('components/cart-counter-popup')
                 </a>
@@ -71,7 +76,7 @@
 
                         <a class="navbar__auth-option cart" href="cart">
                             <img src="{{ URL::asset('assets/svg/shopping-basket.svg') }}" alt="Cart" />
-                            Cart ({{ $items }})
+                            Cart ({{ $count }})
                         </a>
                         <a class="navbar__auth-option" href="wishlist">
                             <img src="{{ URL::asset('assets/svg/orders.svg') }}" alt="orders">
@@ -98,7 +103,8 @@
         </div>
         <ul class="navbar__links cursor-pointer">
             @foreach ($categories as $index => $category)
-                <li id="desktop-nav-{{ $index }}" class="desktop-nav-container navbar__link-container relative">
+                <li id="desktop-nav-{{ $index }}"
+                    class="desktop-nav-container navbar__link-container relative">
                     <div class="desktop-nav flex gap-2">
                         <div>
                             <h4 class="md:text-[16px]">{{ $category->name }}</h4>
@@ -116,9 +122,8 @@
                             class="desktop-subcat absolute left-2 z-[999] hidden flex-col bg-white rounded-xl p-2 {{ $category->subcategories && $category->subcategories->isNotEmpty() ? 'md:bg-white drop-shadow-lg' : ' ' }}">
                             @if ($category->subcategories && $category->subcategories->isNotEmpty())
                                 @foreach ($category->subcategories as $subcategory)
-
-                                    <a href="{{ route('filter', ['subcat'=> $subcategory->id]) }}" class="inline-block hover:bg-main-green hover:text-white px-4 py-2 rounded-xl md:bg-white transition-all">{{ $subcategory->name }}</a>
-
+                                    <a href="{{ route('filter', ['subcat' => $subcategory->id]) }}"
+                                        class="inline-block hover:bg-main-green hover:text-white px-4 py-2 rounded-xl md:bg-white transition-all">{{ $subcategory->name }}</a>
                                 @endforeach
                             @endif
                         </div>
@@ -143,9 +148,8 @@
                         class="navbar__links-mobile__subcategories hidden {{ $category->subcategories && $category->subcategories->isNotEmpty() ? 'py-2' : '' }}">
                         @if ($category->subcategories && $category->subcategories->isNotEmpty())
                             @foreach ($category->subcategories as $index => $subcategory)
-
-                                <a href="{{ route('filter', ['subcat'=> $subcategory->id]) }}" class="navbar__link-container text-lg"> -> {{ $subcategory->name }}</a>
-
+                                <a href="{{ route('filter', ['subcat' => $subcategory->id]) }}"
+                                    class="navbar__link-container text-lg"> -> {{ $subcategory->name }}</a>
                             @endforeach
                         @endif
                     </div>
