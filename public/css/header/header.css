@@ -22,7 +22,6 @@
     position: relative;
 }
 
-
 /* logo */
 .navbar__logo {
     cursor: pointer;
@@ -30,7 +29,6 @@
     width: 30vw;
     min-width: 150px;
 }
-
 
 /* burger */
 .navbar__burger-container {
@@ -86,22 +84,30 @@
     transition: transform 0.4s ease-in-out;
 }
 
-.navbar__burger-container input[type="checkbox"]:checked~.menu-items {
+.navbar__burger-container input[type="checkbox"]:checked ~ .menu-items {
     transform: translateX(0);
 }
 
-.navbar__burger-container input[type="checkbox"]:checked~.navbar__burger-lines .navbar__burger-line1 {
+.navbar__burger-container
+    input[type="checkbox"]:checked
+    ~ .navbar__burger-lines
+    .navbar__burger-line1 {
     transform: rotate(45deg);
 }
 
-.navbar__burger-container input[type="checkbox"]:checked~.navbar__burger-lines .navbar__burger-line2 {
+.navbar__burger-container
+    input[type="checkbox"]:checked
+    ~ .navbar__burger-lines
+    .navbar__burger-line2 {
     transform: scaleY(0);
 }
 
-.navbar__burger-container input[type="checkbox"]:checked~.navbar__burger-lines .navbar__burger-line3 {
+.navbar__burger-container
+    input[type="checkbox"]:checked
+    ~ .navbar__burger-lines
+    .navbar__burger-line3 {
     transform: rotate(-45deg);
 }
-
 
 .navbar__search-container {
     display: flex;
@@ -127,7 +133,6 @@
     cursor: pointer;
 }
 
-
 /* icons */
 .navbar__icons {
     display: flex;
@@ -141,7 +146,6 @@
     min-width: 24px !important;
     cursor: pointer;
 }
-
 
 .navbar__auth-container {
     width: 35px;
@@ -225,15 +229,18 @@
     width: 20px !important;
 }
 
-
 .navbar__auth-separator {
-    height:1px;
+    height: 1px;
     margin: 5px 0;
-    border-width:0;
-    color: var(--text-primary);;
+    border-width: 0;
+    color: var(--text-primary);
     background-color: var(--text-primary);
 }
 
+.navbar__all-container {
+    text-decoration: none;
+    font-weight: 500;
+}
 
 .navbar__links {
     display: flex;
@@ -281,7 +288,6 @@ a.navbar__link-container {
     /* background-color: var(--green-light); */
 }
 
-
 /* mobile links */
 .navbar__links-mobile {
     display: none;
@@ -320,8 +326,6 @@ a.navbar__link-container {
 .navbar__bottom-search {
     display: none;
 }
-
-
 
 @media screen and (max-width: 768px) {
     .navbar__top {

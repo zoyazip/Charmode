@@ -102,6 +102,17 @@
             </div>
         </div>
         <ul class="navbar__links cursor-pointer">
+            <div class="flex gap-2 navbar__all-container">
+                <li>
+                    <div class="">
+                        <a href="/filter"><h4 class="navbar__all-container">All</h4></a>
+                    </div>
+                </li>
+                <li class="navbar__all-container cursor-default">
+                    |
+                </li>
+            </div>
+
             @foreach ($categories as $index => $category)
                 <li id="desktop-nav-{{ $index }}"
                     class="desktop-nav-container navbar__link-container relative">
