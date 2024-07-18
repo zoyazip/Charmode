@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\CartItem;
+use App\Models\Product;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cookie;
@@ -17,7 +18,7 @@ use Illuminate\Http\Request;
 
 class CheckoutController extends Controller
 {
-    
+
     public function openCheckoutPage() {
         return view('web.pages.checkout');
     }
@@ -34,6 +35,9 @@ class CheckoutController extends Controller
         $checkoutemail = $request->checkoutemail;
         $city = $request->city;
         $address = $request->address;
+
+        $products = Product::all();
+
         $user_id = NULL;
         $addedItems = NULL;
 
@@ -44,8 +48,9 @@ class CheckoutController extends Controller
             $addedItems = DB::table('cart_items')->where('user_id', '=', Auth::id())->get();
             if($addedItems !== NULL){
                 foreach($addedItems as $item) {
-                    $totalCost = $totalCost + $item->product->newPrice;
-                    $deliveryCost = $deliveryCost + $item->product->shippingCost;
+                    $matchingProduct = $products->firstWhere('id', $item->product_id);
+                    $totalCost = $totalCost + $matchingProduct->newPrice;
+                    $deliveryCost = $deliveryCost + $matchingProduct->shippingCost;
                 }
             }
         } else {
