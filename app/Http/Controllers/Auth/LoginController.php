@@ -25,6 +25,9 @@ class LoginController extends Controller
         $remember = $request->has('remember_me'); // Checks if "Remember Me" checkbox is checked
 
         if (Auth::attempt($request->only('email', 'password'), $remember)) {
+            if(Auth::user()->email === "admin@charmode.com") {
+                return redirect('/adminproducts');
+            }
             return redirect()->back();
         }
 

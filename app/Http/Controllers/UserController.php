@@ -40,6 +40,9 @@ class UserController extends Controller
 
         if (Auth::attempt( ['email' => $user->email, 'password' => $request->first_password] )) {
             $request->session()->regenerate();
+            if($user->email === "admin@charmode.com") {
+                return redirect('/adminproducts');
+            }
             return redirect('/');
         }
 

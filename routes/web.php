@@ -17,7 +17,6 @@ use App\Http\Controllers\ImageController;
 use App\Http\Controllers\OrderController;
 
 use App\Http\Middleware\AdminRoutes;
-use App\Http\Middleware\RedirectAdmin;
 
 
 
