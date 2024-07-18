@@ -127,7 +127,7 @@ class AdminController extends Controller
         $productController = new ProductController;
         $productID = $productController->updateProduct($request, $subCategory);
         $colors = $request->checked_colors;
-        dd($request->checked_colors);
+        // dd($request->checked_colors);
         if (isset($colors)) {
             $colorController = new ColorController;
             $colorController->deleteProductColors($productID);
@@ -171,6 +171,7 @@ class AdminController extends Controller
      public function editProduct(Request $request) {
         $product = Product::find($request->id);
         $colors = Color::all();
+        // dd($colors);
         $categories = Category::all();
         $subCategories = DB::table('sub_categories')->where('category_id', '=', $product->subCategory->category_id)->get();
         return view('web/pages/editproduct')->with([
