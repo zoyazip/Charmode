@@ -10,7 +10,7 @@ class HomeController extends Controller
 {
     public function index(Request $request)
     {
-        $products = Product::with('images')->paginate(12);
+        $products = Product::with(['images', 'productColors.color'])->paginate(12);
 
         // Get the total count of products
         $currentPage = $products->currentPage();
