@@ -9,9 +9,9 @@
 
 @section('content')
     <div class="inner-container">
-        <h1>Hi, Admin!</h1>
-        <button onclick="window.location='/adminproducts/{{$product->id}}'">To show product</button>
-        <form enctype="multipart/form-data" class="add-product__div" method="POST" action="/update_product/{{$product->id}}">
+        {{-- <h1>Hi, Admin!</h1>
+        <button onclick="window.location='/adminproducts/{{$product->id}}'">To show product</button> --}}
+        <form enctype="multipart/form-data" class="add-product__div pb-16 flex flex-wrap lg:flex-nowrap" method="POST" action="/update_product/{{$product->id}}">
             @csrf
             <div class="add-product__left-div">
                 <p class="add-product__p">Fill required fields:</p>
@@ -24,58 +24,72 @@
                     <p class="admin__error">{{ $message }}</p>
                 @enderror
                 <div class="select__row">
-                    <div>
-                        <label>Category: </label>
+                    <div class="flex gap-4 items-center">
+                        <label class="text-main-green">Category: </label>
 
-                        <select value="{{$product->subCategory->category->id}}" id="categorySelect" class="select__option" name="category">
+                        <select value="{{$product->subCategory->category->id}}" id="categorySelect" class="select__option bg-white border-b-[1px] border-main-green" name="category">
                             @if (session()->has('allCategories'))
                                 @foreach (session()->get('allCategories') as $category)
                                     <option value={{ $category->id }}>{{ $category->name }}</option>
-
                                 @endforeach
                             @endif
                         </select>
                     </div>
-                    <span class="add__btn" onclick="openPopUpWindow('categoryPopUp')">Add new category</span>
+                    <span class="text-2xl text-main-green font-medium cursor-pointer rounded-full w-8 h-8 flex items-center justify-center transition-all hover:bg-secondary-green" onclick="openPopUpWindow('categoryPopUp')">+</span>
                 </div>
                 <div class="select__row">
-                    <div>
-                        <label>Subcategory: </label>
-                        <select value="{{$product->subCategory->id}}" id="subCategorySelect" class="select__option" name="subcategory">
+                    <div class="flex gap-4 items-center">
+                        <label class="text-main-green">Subcategory: </label>
+                        <select value="{{$product->subCategory->id}}" id="subCategorySelect" class="select__option bg-white border-b-[1px] border-main-green" name="subcategory">
                         </select>
                     </div>
-                    <span class="add__btn" onclick="openPopUpWindow('subCategoryPopUp')">Add new subcategory</span>
+                    <span class="text-2xl text-main-green font-medium cursor-pointer rounded-full w-8 h-8 flex items-center justify-center transition-all hover:bg-secondary-green" onclick="openPopUpWindow('subCategoryPopUp')">+</span>
                 </div>
-                <div class="row__input">
+                <div class="row__input mt-10 flex flex-wrap">
                     <div class="input__row__with__error">
-                    <input value="{{$product->oldPrice}}" placeholder="Old price*" class="@error('oldPrice') is-invalid @enderror add__input input__row" name="oldPrice">
-                    @error('oldPrice')
-                        <p class="admin__error">{{ $message }}</p>
-                    @enderror
+                        <div class="">
+                            <div class="flex flex-col text-main-green"><span>Old Price</span></div>
+                            <input value="{{$product->oldPrice}}" placeholder="Old price *" class="@error('oldPrice') is-invalid @enderror add__input input__row" name="oldPrice">
+                            @error('oldPrice')
+                                <p class="admin__error">{{ $message }}</p>
+                            @enderror
+                        </div>
                     </div>
                     <div class="input__row__with__error">
-                    <input value="{{$product->newPrice}}" placeholder="New price*" class="@error('newPrice') is-invalid @enderror add__input input__row" name="newPrice">
-                    @error('newPrice')
-                        <p class="admin__error">{{ $message }}</p>
-                    @enderror
+                        <div class="">
+                            <div class="flex flex-col text-main-green"><span>New Price</span></div>
+                            <input value="{{$product->newPrice}}" placeholder="New price *" class="@error('newPrice') is-invalid @enderror add__input input__row" name="newPrice">
+                            @error('newPrice')
+                                <p class="admin__error">{{ $message }}</p>
+                            @enderror
+                        </div>
                 </div>
                 <div class="input__row__with__error">
-                    <input  value="{{$product->discount}}" placeholder="Discount*" class="@error('discount') is-invalid @enderror add__input input__row" name="discount">
-                    @error('discount')
-                        <p class="admin__error">{{ $message }}</p>
-                    @enderror
+                    <div class="">
+                        <div class="flex flex-col text-main-green"><span>Discount</span></div>
+                        <input value="{{$product->discount}}" placeholder="Discount *" class="@error('discount') is-invalid @enderror add__input input__row" name="discount">
+                        @error('discount')
+                            <p class="admin__error">{{ $message }}</p>
+                        @enderror
+                    </div>
                 </div>
                 <div class="input__row__with__error">
-                    <input  value="{{$product->stockQuantity}}" placeholder="Stock quantity*" class="@error('stockQuantity') is-invalid @enderror add__input input__row" name="stockQuantity">
-                    @error('stockQuantity')
-                        <p class="admin__error">{{ $message }}</p>
-                    @enderror
+                    <div class="">
+                        <div class="flex flex-col text-main-green"><span>Quantity</span></div>
+                        <input  value="{{$product->stockQuantity}}" placeholder="Stock quantity *" class="@error('stockQuantity') is-invalid @enderror add__input input__row" name="stockQuantity">
+                        @error('stockQuantity')
+                            <p class="admin__error">{{ $message }}</p>
+                        @enderror
+                    </div>
                 </div>
                 <div class="input__row__with__error">
-                    <input value="{{$product->shippingCost}}" placeholder="Shipping cost*" class="@error('shippingCost') is-invalid @enderror add__input input__row" name="shippingCost">
-                    @error('shippingCost')
-                        <p class="admin__error">{{ $message }}</p>
-                    @enderror
+                    <div class="">
+                        <div class="flex flex-col text-main-green"><span>Shipping cost</span></div>
+                        <input value="{{$product->shippingCost}}" placeholder="Shipping cost *" class="@error('shippingCost') is-invalid @enderror add__input input__row" name="shippingCost">
+                        @error('shippingCost')
+                            <p class="admin__error">{{ $message }}</p>
+                        @enderror
+                    </div>
                 </div>
                 </div>
 
@@ -83,19 +97,19 @@
                 <div class="specification__div">
                     <div id="added__fields" class="added__spec__div">
                         @if(isset($product->specifications))
-                        @foreach ($product->specifications as $specification)
-                        <div class="spec__div__row" id="spec{{$specification->id}}">
-                        <input value="{{$specification->key}}" class="add__input spec__input__row" type="text" name="key[]">
-                        <input value="{{$specification->value}}" class="add__input spec__input__row" type="text" name="value[]">
-                        <span onclick="removeSpecification('spec'+{{$specification->id}})" class="add__btn">Remove</span>
-                        </div>
-                        @endforeach
+                            @foreach ($product->specifications as $specification)
+                                <div class="spec__div__row" id="spec{{$specification->id}}">
+                                    <input value="{{ucfirst($specification->key)}}" class="add__input spec__input__row" type="text" name="key[]">
+                                    <input value="{{$specification->value}}" class="add__input spec__input__row" type="text" name="value[]">
+                                    <div onclick="removeSpecification('spec'+{{$specification->id}})" class="cursor-pointer w-6"><img src="{{ URL::asset('assets/svg/trash.svg') }}" /></div>
+                                </div>
+                            @endforeach
                         @endif
                     </div>
                     <div class="spec__div__row" id="newField">
                         <input class="add__input spec__input__row" type="text" id="key">
                         <input class="add__input spec__input__row" type="text" id="value">
-                        <span onclick="addSpecification()" class="add__btn">Save</span>
+                        <span onclick="addSpecification()" class="text-main-green font-bold cursor-pointer">Save</span>
                     </div>
                 </div>
                 <p class="add-product__p">Add colors:</p>
@@ -109,42 +123,37 @@
                         @endif
                     </div>
 
-                    <span class="add__btn" onclick="openPopUpWindow('colorPopUp')">New</span>
+                    <span class="text-main-green font-bold cursor-pointer" onclick="openPopUpWindow('colorPopUp')">New +</span>
                     {{-- colors can add new --}}
                     <p class="add-product__p">Added colors:</p>
-                    <div id="new__colors" class="existing__colors">
+                    <div id="new__colors" class="flex gap-4">
                         @if(isset($product->productColors))
-                        @foreach ($product->productColors as $color)
-                        <div id="color{{$color->id}}" style="background-color: {{$color->color->hex}}" class="color__div edit__div"></div>
-                        <input id="input{{$color->id}}" onclick="removeColor('color'+{{$color->id}}, 'input'+{{$color->id}})" value="{{$color->id}}" name="checked_colors[]" type="checkbox" checked>
-                        
-                        @endforeach
+                            @foreach ($product->productColors as $color)
+                                <div id="color{{$color->id}}" style="background-color: {{$color->color->hex}}" class="w-10 h-10 rounded-full border edit__div"></div>
+                                <input id="input{{$color->id}}" class="w-5 accent-main-green" onclick="removeColor('color'+{{$color->id}}, 'input'+{{$color->id}})" value="{{$color->id}}" name="checked_colors[]" type="checkbox" checked>
+                            @endforeach
                         @endif
                     </div>
 
-
                 </div>
-                <p class="add-product__p">Write product description:</p>
-                <textarea class="@error('description') is-invalid @enderror add__textarea" name="description">{{$product->description}}</textarea>
+                <p class="add-product__p">Product description:</p>
+                <textarea class="@error('description') is-invalid @enderror add__textarea p-4" name="description">{{$product->description}}</textarea>
                 @error('description')
                     <p class="admin__error">{{ $message }}</p>
                 @enderror
-                
 
-
-                <input class="add__btn" type="submit" value="Save product">
+                <input class="font-medium text-main-green cursor-pointer" type="submit" value="Save">
             </div>
-            <div id="imageDiv" class="add-product__right-div">
-
+            <div id="imageDiv" class="add-product__right-div grid grid-cols-1 lg:grid-cols-2 gap-4">
                 @if(isset($product->images))
                 @for ($i = 0; $i < 6; $i++)
                     @if(isset($product->images[$i]))
-                    <div id="{{$product->images[$i]->id.'image'}}">
-                    <img src="{{$product->images[$i]->url}}">
-                    <span onclick="deleteImage({{$product->images[$i]->id}})" class="fa fa-trash-o"></span>
-                    </div>
+                        <div id="{{$product->images[$i]->id.'image'}}" class="border boredr-main-green w-full h-[300px] lg:h-full rounded-2xl">
+                            <img src="{{$product->images[$i]->url}}">
+                            <img onclick="deleteImage({{$product->images[$i]->id}})" class="" src="{{ URL::asset('assets/svg/trash.svg') }}" />
+                        </div>
                     @else                
-                    <input class="image__input" name="image[]" type="file" >
+                        <input class="border border-main-green rounded-2xl p-2 h-[50px]" name="image[]" type="file" >
                     @endif
                 @endfor
                 @endif
