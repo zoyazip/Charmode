@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Redirect;
 
 
 class CartController extends Controller
@@ -16,18 +17,19 @@ class CartController extends Controller
     {
         if (Auth::check()) {
             $products = CartItem::where('user_id', Auth::id())->with(['product', 'user'])->get();
-
             $productPriceSum = 0;
             $deliveryPriceSum = 0;
+            $productTotalcount = 0;
             foreach ($products as $entry) {
                 $productPriceSum += $entry->product->newPrice * $entry->quantity + $entry->product->shippingCost;
                 $deliveryPriceSum += $entry->product->shippingCost;
+                $productTotalcount += $entry->quantity;
             }
-
+//            dd($products);
             return view('web.pages.cart', [
                 "cartItems" => $products,
                 "productPriceSum" => $productPriceSum,
-                "productCountSum" => count($products),
+                "productCountSum" => $productTotalcount,
                 "deliveryPriceSum" => $deliveryPriceSum,
             ]);
         } else {
@@ -83,16 +85,19 @@ class CartController extends Controller
     }
 
 
-    public function removeItem(Request $request, $product_id)
+    public function removeItem(Request $request)
     {
+        $allRequest = $request->all();
+        $product_id = $allRequest['product_id'];
+        $color_id = $allRequest['color_id'];
         if (Auth::check()) { // user is logged in
+//            dd($allRequest['product_id']);
             DB::table('cart_items')
                 ->where([
                     'product_id' => $product_id,
                     'user_id' => Auth::id(),
-                    'color_id' => $request->color_id,
+                    'color_id' => $color_id,
                 ])
-                ->first()
                 ->delete();
         } else {
             // cookies
@@ -119,5 +124,30 @@ class CartController extends Controller
         }
         return redirect()->back();
     }
+
+    public function updateList(Request $request){
+
+        $allrequest = $request->input();
+        // TODO pievienot validāciju
+        unset($allrequest['_token']);
+        unset($allrequest['_method']);
+
+        $userId = Auth::id();
+//        $userId = 1;
+
+
+        foreach ($allrequest as $key => $value) {
+//            dd($key);
+//            dd(DB::table('cart_items')->where(['user_id' => $userId , 'product_id'=> $key])->
+//            get());
+            DB::table('cart_items')->where('user_id', $userId)->
+            where('product_id', $key)->update(['quantity' => $value]);
+        }
+
+        return Redirect::refresh();
+
+    }
+
+
 
 }
