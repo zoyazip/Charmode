@@ -57,7 +57,7 @@ class CheckoutController extends Controller
             $addedItems = json_decode(Cookie::get('cartitems'), true);
             if($addedItems !== NULL){
                 foreach($addedItems as $item) {
-                    $product = DB::table('products')->where('product_id', '=', $item['product_id'])->get();
+                    $product = DB::table('products')->where('id', '=', $item['product_id'])->get();
                     $totalCost = $totalCost + $product->newPrice;
                     $deliveryCost = $deliveryCost + $product->shippingCost;
                 }
