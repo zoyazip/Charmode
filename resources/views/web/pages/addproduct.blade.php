@@ -28,8 +28,8 @@
                         <label>Category: </label>
 
                         <select id="categorySelect" class="select__option" name="category">
-                            @if (session()->has('allCategories'))
-                                @foreach (session()->get('allCategories') as $category)
+                            @if (isset($categories))
+                                @foreach ($categories as $category)
                                     <option value={{ $category->id }}>{{ $category->name }}</option>
 
                                 @endforeach
@@ -92,8 +92,8 @@
                 <p class="add-product__p">Add colors:</p>
                 <div class="all__color__div">
                     <div id="existing__colors" class="existing__colors">
-                        @if (session()->has('allColors'))
-                            @foreach (session()->get('allColors') as $color)
+                        @if (isset($colors))
+                            @foreach ($colors as $color)
                                 <div onclick="checkColor({{ $color }})" name="color__div" value='{{ $color }}'
                                     class="color__div"></div>
                             @endforeach
