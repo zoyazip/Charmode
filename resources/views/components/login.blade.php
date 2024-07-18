@@ -2,7 +2,6 @@
     <link rel="stylesheet" href="{{URL::asset('css/header/greetings.css')}}">
 @endpush
 
-
 <div
     class="login-container max-w-[500px] w-[90%] h-screen fixed z-50 right-0 top-0 transition-all flex justify-center items-center translate-x-full bg-white">
     <div class="login-inner-container w-3/4 flex flex-col gap-4">
@@ -10,7 +9,7 @@
             <div class="greet">
                 <h2 class="font-bold text-3xl inline-block">Hi <span class="wave">👋🏻</span></h2>
             </div>
-            <div class="close-login cursor-pointer"><img src="{{ URL::asset('assets/svg/cross.svg') }}"/></div>
+            <div class="close-login cursor-pointer"><img src="{{ URL::asset('assets/svg/cross.svg') }}" alt="✖"/></div>
         </div>
 
         <form class="flex flex-col gap-4" action="{{ route('login') }}" method="POST">

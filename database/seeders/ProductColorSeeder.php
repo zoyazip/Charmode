@@ -169,7 +169,7 @@ class ProductColorSeeder extends Seeder
             ],
             // Snow
             [
-                "product_id" => "3",
+                "product_id" => "17",
                 "color_id" => "1",
             ],
             // Charcoal
@@ -203,6 +203,11 @@ class ProductColorSeeder extends Seeder
             // Driftwood
             [
                 "product_id" => "21",
+                "color_id" => "7",
+            ],
+            // Obsidian noir
+            [
+                "product_id" => "22",
                 "color_id" => "7",
             ],
         ];
