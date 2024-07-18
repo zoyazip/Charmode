@@ -9,8 +9,6 @@
 
 @section('content')
     <div class="inner-container">
-        {{-- <h1>Hi, Admin!</h1>
-        <button onclick="window.location='/adminproducts/{{$product->id}}'">To show product</button> --}}
         <form enctype="multipart/form-data" class="add-product__div pb-16 flex flex-wrap lg:flex-nowrap" method="POST" action="/update_product/{{$product->id}}">
             @csrf
             <div class="add-product__left-div">
@@ -27,10 +25,16 @@
                     <div class="flex gap-4 items-center">
                         <label class="text-main-green">Category: </label>
 
-                        <select value="{{$product->subCategory->category->id}}" id="categorySelect" class="select__option bg-white border-b-[1px] border-main-green" name="category">
-                            @if (session()->has('allCategories'))
-                                @foreach (session()->get('allCategories') as $category)
-                                    <option value={{ $category->id }}>{{ $category->name }}</option>
+                        <select id="categorySelect" class="select__option bg-white border-b-[1px] border-main-green" name="category">
+                            @if (isset($categories))
+                                @foreach ($categories as $category)
+                                @if($product->subCategory->category_id == $category->id)
+                                <option selected value={{ $category->id }}>{{ $category->name }}</option>
+
+                                @else
+                                <option value={{ $category->id }}>{{ $category->name }}</option>
+
+                                @endif
                                 @endforeach
                             @endif
                         </select>
@@ -41,6 +45,15 @@
                     <div class="flex gap-4 items-center">
                         <label class="text-main-green">Subcategory: </label>
                         <select value="{{$product->subCategory->id}}" id="subCategorySelect" class="select__option bg-white border-b-[1px] border-main-green" name="subcategory">
+                            @if (isset($subCategories))
+                                @foreach ($subCategories as $subCategory)
+                                @if($product->subcategory_id == $subCategory->id)
+                                <option selected value={{ $subCategory->id }}>{{ $subCategory->name }}</option>
+                                @else
+                                <option value={{ $subCategory->id }}>{{ $subCategory->name }}</option>
+                                @endif
+                                @endforeach
+                            @endif
                         </select>
                     </div>
                     <span class="text-2xl text-main-green font-medium cursor-pointer rounded-full w-8 h-8 flex items-center justify-center transition-all hover:bg-secondary-green" onclick="openPopUpWindow('subCategoryPopUp')">+</span>
@@ -157,14 +170,6 @@
                     @endif
                 @endfor
                 @endif
-
-
-                {{-- <input class="image__input" name="image[]" type="file" >
-                <input class="image__input" name="image[]" type="file">
-                <input class="image__input" name="image[]" type="file">
-                <input class="image__input" name="image[]" type="file">
-                <input class="image__input" name="image[]" type="file">
-                <input class="image__input" name="image[]" type="file"> --}}
             </div>
         </form>
         <div id="categoryPopUp" class="category__pop-up hide__pop__up__window">
@@ -185,9 +190,7 @@
             <button onclick="addNewColor()">Add</button>
         </div>
         @push('scripts')
-            <!-- @once -->
                 <script src="{{ URL::asset('js/admin/admin.js') }}"></script>
-            <!-- @endonce -->
         @endpush
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>

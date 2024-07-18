@@ -10,8 +10,23 @@
         </div>
         <button onclick="window.location='/orders'">To all orders</button>
         @if (isset($order))
-        <p>{{$order->id}}</p>
+        <p>Order ID: {{$order->id}}</p>
+        <p>User email: {{$order->email}}</p>
+        <p>Total cost: {{$order->totalCost}}</p>
+        <p>Delivery cost{{$order->deliveryCost}}</p>
+        <p>City: {{$order->city}}</p>
+        <p>Address: {{$order->address}}</p>
+        <p>Comment: {{$order->comment}}</p>
+        <p>Delivery method: {{$order->deliveryMethod}}</p>
+        <p>Delivery place: {{$order->deliveryPlace}}</p>
+        <p>Payment method: {{$order->paymentMethod}}</p>
         <p>Status: {{$order->status}}</p>
+        <h4>Ordered products:</h4>
+        @foreach ($order->orderItems as $item)
+            <p>Product ID: {{$item->product_id}}</p>
+            <p>Color: {{$item->color->hex}}</p>
+            <p>Quantity: {{$item->quantity}}</p>
+        @endforeach
         <form method="POST" action="/orders/update/{{$order->id}}">
             @csrf
             <input placeholder="New status*" class="@error('status') is-invalid @enderror add__input add-product__name__input" type="text" name="status" value="{{ old('status') }}">
@@ -20,20 +35,6 @@
                 @enderror
             <input type="submit" value="Update status">
         </form>
-                {{-- @foreach ($products as $product)
-                    <div class="table__row">
-                        <div class="table__head__left">
-                            <h6 class="table__checkbox"></h6>
-                            <h6 class="table__photo"></h6>
-                            <h6 class="table__name">{{ $product->name }}</h6>
-                        </div>
-                        <div class="table__head__right">
-                            <h6 class="table__date">{{ $product->created_at }}</h6>
-                            <h6 class="table__price">{{ $product->price }}</h6>
-                            <h6 class="table__edit"></h6>
-                        </div>
-                    </div>
-                @endforeach --}}
             @endif
     </div>
     @push('scripts')

@@ -22,37 +22,17 @@ class CheckoutController extends Controller
     }
 
     public function checkInput(Request $request): RedirectResponse {
-        
-        // dd($request);
         $checkoutemail = "";
         $city = "";
         $address = "";
-        // if(!Auth::check()) {
-            $request->validate([
-                'checkoutemail' => 'required|max:255|email:rfc',
-                'city' => 'required|max:255',
-                'address' => 'required|max:255',
-            ]);
-
-            $checkoutemail = $request->checkoutemail;
-            $city = $request->city;
-            $address = $request->address;
-        // } else {
-            // $user = DB::table('users')->where('id','=',Auth::id())->first();
-            // $checkoutemail = $user->email;
-            // $city = $user->city;
-            // $address = $user->address;
-            // if ($city == "") {
-            //     $city = "City";
-            // }
-            // if ($address == "") {
-            //     $address = "Address";
-            // }
-        // }
-        
-
-        // dd($request);
-
+        $request->validate([
+            'checkoutemail' => 'required|max:255|email:rfc',
+            'city' => 'required|max:255',
+            'address' => 'required|max:255',
+        ]);
+        $checkoutemail = $request->checkoutemail;
+        $city = $request->city;
+        $address = $request->address;
         $user_id = NULL;
         $addedItems = NULL;
 
@@ -68,7 +48,6 @@ class CheckoutController extends Controller
                 }
             }
         } else {
-            // dd($request);
             $addedItems = json_decode(Cookie::get('cartitems'), true);
             if($addedItems !== NULL){
                 foreach($addedItems as $item) {
@@ -98,7 +77,6 @@ class CheckoutController extends Controller
         $order->status = 'confirmed';
         $order->save();
         $order_id = $order->id;
-
         if (Auth::check()) {
             $user_id = Auth::id();
             $addedItems = DB::table('cart_items')->where('user_id', '=', Auth::id())->get();
@@ -106,6 +84,7 @@ class CheckoutController extends Controller
                 foreach($addedItems as $item) {
                     $orderItem = new OrderItem;
                     $orderItem->order_id = $order_id;
+                    $orderItem->color_id = $item->color_id;
                     $orderItem->product_id = $item->product_id;
                     $orderItem->quantity = $item->quantity;
                     $orderItem->save();
@@ -118,21 +97,18 @@ class CheckoutController extends Controller
                     $orderItem = new OrderItem;
                     $orderItem->order_id = $order_id;
                     $orderItem->product_id = $item['product_id'];
+                    $orderItem->color_id = $item['color_id'];
                     $orderItem->quantity = $item['quantity'];
                     $orderItem->save();
                 }
             }
         }
-
-        // dd($order);
         if (Auth::check()) {
             $user_id = Auth::id();
             DB::table('cart_items')->where('user_id', '=', Auth::id())->delete();
         } else {
             Cookie::forget('cartitems');
         }
-
-        // dd($order);
         return redirect('/');
     }
 }

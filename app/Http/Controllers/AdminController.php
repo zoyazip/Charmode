@@ -57,16 +57,16 @@ class AdminController extends Controller
         $categories = Category::all();
         $subCategories = SubCategory::all();
 
-        session()->put('allCategories', $categories);
-        session()->put('allSubCategories', $subCategories);
-        session()->put('allColors', $colors);
+        // session()->put('allCategories', $categories);
+        // session()->put('allSubCategories', $subCategories);
+        // session()->put('allColors', $colors);
 
-        return view('web/pages/addproduct');
-        // return view('web/pages/addproduct')->with([
-        //     "categories" => $categories,
-        //     "subcategories" => $subCategories,
-        //     "colors" => $colors,
-        // ]);
+        // return view('web/pages/addproduct');
+        return view('web/pages/addproduct')->with([
+            "categories" => $categories,
+            "subcategories" => $subCategories,
+            "colors" => $colors,
+        ]);
     }
 
     
@@ -235,11 +235,16 @@ class AdminController extends Controller
         $categories = Category::all();
         $subCategories = DB::table('sub_categories')->where('category_id', '=', $product->subCategory->category_id)->get();
 
-        session()->put('allCategories', $categories);
-        session()->put('allSubCategories', $subCategories);
-        session()->put('allColors', $colors);
+        // session()->put('allCategories', $categories);
+        // session()->put('allSubCategories', $subCategories);
+        // session()->put('allColors', $colors);
 
-        return view('web/pages/editproduct')->with('product', $product);
+        return view('web/pages/editproduct')->with([
+            'product' => $product,
+            'colors' => $colors,
+            'categories' => $categories,
+            'subCategories' => $subCategories,
+        ]);
      }
 
 
