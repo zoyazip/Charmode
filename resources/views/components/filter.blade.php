@@ -3,7 +3,7 @@
         <div class="filter__title">Filters</div>
         <div class="filter__icon">
             <img onclick="toggleElements('filter__main','filter__submit', 'filterDataArrow');" id="filterDataArrow"
-                class="close__arrow" src="{{ asset('assets/svg/arrow.svg') }}" alt="✖" />
+                class="close__arrow" src="{{ URL::asset('assets/svg/arrow.svg') }}" alt="✖" />
         </div>
         @if (isset($subcat))
             <a href="{{ route('filter', ['subcat' => $subcat]) }}" class="filter__reset">Reset</a>
