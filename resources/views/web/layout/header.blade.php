@@ -146,6 +146,13 @@
 
         <div class="navbar__links-mobile">
             <ul class="navbar__links-mobile__categories">
+                <div class="flex gap-2 navbar__all-container  p-2">
+                    <li class="navbar__link-all-container">
+                        <div>
+                            <a href="/filter"><span class="text-xl">All</span></a>
+                        </div>
+                    </li>
+                </div>
                 @foreach ($categories as $index => $category)
                     <div class="nav-category-link flex items-center p-2">
                         <li class="navbar__link-container"><span class="text-xl">{{ $category->name }}</span></li>

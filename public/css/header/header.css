@@ -258,6 +258,18 @@
 .navbar__links-mobile {
     display: none;
 }
+.navbar__link-all-container {
+    /* border-radius: 14px; */
+    padding: 0px 10px 0px 10px;
+    /* transition: background-color 0.3s;
+    display: inline-block;
+    width: max-content;
+    white-space: nowrap;
+    padding: 5px; */
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 500;
+}
 
 .navbar__links .navbar--active,
 .navbar__link-container:hover {
