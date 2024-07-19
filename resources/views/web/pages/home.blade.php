@@ -19,13 +19,13 @@
         <div class="swiper-wrapper">
             <!-- Slides -->
             <div class="swiper-slide">
-                <img src="/assets/webp/main-slider/Main_1.webp" alt="">
+                <img src="/assets/webp/main-slider/Main_1.webp" alt="slide">
             </div>
             <div class="swiper-slide">
-                <img src="/assets/webp/main-slider/Main_2.webp" alt="">
+                <img src="/assets/webp/main-slider/Main_2.webp" alt="slide">
             </div>
             <div class="swiper-slide">
-                <img src="/assets/webp/main-slider/Main_3.webp" alt="">
+                <img src="/assets/webp/main-slider/Main_3.webp" alt="slide">
             </div>
         </div>
         <!-- pagination -->

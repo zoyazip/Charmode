@@ -19,13 +19,9 @@ class CategoryComposer
         } else {
             $cart_items = json_decode(Cookie::get('cartitems'), true);
             $count = 0;
-            if(is_null($cart_items)){
-
+            if (is_array($cart_items) && count($cart_items) > 0) {
+                $count = count($cart_items);
             }
-
-//            if (count($cart_items) > 0) {
-//                $count = count($cart_items);
-//            }
         }
 
         $view->with('categories', $categories)->with('count', $count);

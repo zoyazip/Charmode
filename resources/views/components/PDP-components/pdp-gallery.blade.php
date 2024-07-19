@@ -12,9 +12,9 @@
             </div>
         @endforeach
     </div>
-    <div class="swiper-button-next select-none"> <img src="{{ URL::asset('assets/svg/arrow.svg') }}" alt="">
+    <div class="swiper-button-next select-none"> <img src="{{ URL::asset('assets/svg/arrow.svg') }}" alt="←">
     </div>
-    <div class="swiper-button-prev select-none"> <img src="{{ URL::asset('assets/svg/arrow.svg') }}" alt="">
+    <div class="swiper-button-prev select-none"> <img src="{{ URL::asset('assets/svg/arrow.svg') }}" alt="→">
     </div>
 </div>
 
