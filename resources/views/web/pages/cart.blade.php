@@ -91,16 +91,15 @@
                     </div>
                     <div class="checkout-section__right">
                         <x-checkout-button
-
                             checkoutPrice="{{ number_format($productPriceSum + $deliveryPriceSum, 2, ',', '.') }}"
                             goToSite="/checkout"></x-checkout-button>
                     </div>
                 </div>
             </div>
-            <div class="checkout-section__right">
+            {{-- <div class="checkout-section__right">
                 <x-checkout-button
                     checkoutPrice="{{ number_format($productPriceSum + $deliveryPriceSum, 2, ',', '.') }}"></x-checkout-button>
-            </div>
+            </div> --}}
         </div>
     </div>
 
