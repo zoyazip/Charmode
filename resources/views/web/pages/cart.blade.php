@@ -55,7 +55,7 @@
     {{-- User is not logged in --}}
     @section('content')
 
-        @if ($cartItems === null)
+        @if ($cartItems === null or count($cartItems) == 0)
             <div class="flex h-[50vh] justify-center items-center">
                 <h1>Your cart is empty</h1>
 
@@ -68,7 +68,7 @@
                 </form>
                 @foreach ($cartItems as $product)
 
-                    <div class="flex flex-col items-center">
+                    <div class="flex flex-col items-center big-item-wrapper" >
                         <div class="w-full">
                             @include('components/cart-item-card-guests')
                         </div>
@@ -92,16 +92,11 @@
                     <div class="checkout-section__right">
                         <x-checkout-button
                             checkoutPrice="{{ number_format($productPriceSum + $deliveryPriceSum, 2, ',', '.') }}"
-                            goToSite="/checkout"></x-checkout-button>
+                            ></x-checkout-button>
                     </div>
                 </div>
             </div>
-            {{-- <div class="checkout-section__right">
-                <x-checkout-button
-                    checkoutPrice="{{ number_format($productPriceSum + $deliveryPriceSum, 2, ',', '.') }}"></x-checkout-button>
-            </div> --}}
-        </div>
-    </div>
+
 
 @endif
 @endsection
@@ -118,14 +113,12 @@
 
                 const allFormFields = document.querySelectorAll(".item-wrapper__more-or-less")
                 const submitButton = document.querySelector(".checkout-btn")
-
                 for (const form of allFormFields) {
                     const inputField = form.children[1]
                     const maxValueForInput = parseInt(inputField.max)
                     const minusText = form.children[0].children[0]
                     const plusText = form.children[2].children[0]
                     const inputFieldValue = parseInt(inputField.value)
-
 
                     if (inputFieldValue === maxValueForInput) {
                         plusText.style.color = "#ADADAD"
@@ -202,15 +195,20 @@
 
                 const allFormFields = document.querySelectorAll(".item-wrapper__more-or-less")
                 const submitButton = document.querySelector(".checkout-btn")
-                const itemWrappers = document.querySelectorAll(".item-wrapper")
+                const itemWrappers = document.querySelectorAll(".big-item-wrapper")
+                let itemCount = 0;
 
                 for (const itemWrapper of itemWrappers){
+                    itemCount++;
+
                     itemWrapper.addEventListener("click", (e)=>{
 
                         if(e.target.classList.contains("item-wrapper__trash-icon")) {
-                            console.log("hello")
-                            itemWrapper.nextElementSibling.remove()
                             itemWrapper.remove()
+                            itemCount--;
+                            if(itemCount === 0){
+                                submitUpdateFormAndReturn()
+                            }
                         }
 
 
@@ -283,7 +281,7 @@
                     })
                         .then(response => {
                             if (response.ok) {
-                                // window.location.href = "/cart"
+                                window.location.href = "/checkout"
                             } else {
                             }
                         })
@@ -292,6 +290,27 @@
                         });
 
                 }
+
+                function submitUpdateFormAndReturn() {
+                    const form = document.getElementById('update-form');
+                    const formData = new FormData(form);
+                    console.log(formData)
+                    fetch('/cart', {
+                        method: 'POST',
+                        body: formData
+                    })
+                        .then(response => {
+                            if (response.ok) {
+                                window.location.reload()
+                            } else {
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
+
+                }
+
             })
 
         </script>
