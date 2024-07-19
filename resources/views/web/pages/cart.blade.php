@@ -4,10 +4,10 @@
 
 @push('styles')
     {{-- item card styling --}}
-    <link rel="stylesheet" href="{{ URL::asset('css/pages/cart/cart-item-card.css') }}" />
-    <link rel="stylesheet" href="{{ URL::asset('css/pages/cart/sum-up.css') }}" />
-    <link rel="stylesheet" href="{{ URL::asset('css/pages/cart/checkout-button.css') }}" />
-    <link rel="stylesheet" href="{{ URL::asset('css/pages/cart/checkout-section.css') }}" />
+    <link rel="stylesheet" href="{{ URL::asset('css/pages/cart/cart-item-card.css') }}"/>
+    <link rel="stylesheet" href="{{ URL::asset('css/pages/cart/sum-up.css') }}"/>
+    <link rel="stylesheet" href="{{ URL::asset('css/pages/cart/checkout-button.css') }}"/>
+    <link rel="stylesheet" href="{{ URL::asset('css/pages/cart/checkout-section.css') }}"/>
 @endpush
 
 @if (Auth::check())
@@ -26,7 +26,7 @@
                     @method('PATCH')
                 </form>
                 @foreach ($cartItems as $product)
-                    @include('components/cart-item-card')
+                    @include('components.Cart-components.cart-item-card')
                     <hr>
                 @endforeach
                 @include('components/sum-up')
@@ -58,7 +58,6 @@
         @if ($cartItems === null or count($cartItems) == 0)
             <div class="flex h-[50vh] justify-center items-center">
                 <h1>Your cart is empty</h1>
-
             </div>
         @else
             <div class="inner-container">
@@ -68,11 +67,10 @@
                 </form>
                 @foreach ($cartItems as $product)
 
-                    <div class="flex flex-col items-center big-item-wrapper" >
+                    <div class="flex flex-col items-center big-item-wrapper">
                         <div class="w-full">
-                            @include('components/cart-item-card-guests')
+                            @include('components.Cart-components.cart-item-card-guests')
                         </div>
-
                         <div class="hr w-full max-w-[800px] h-[1px] bg-secondary-grey my-6"></div>
                     </div>
                 @endforeach
@@ -92,19 +90,14 @@
                     <div class="checkout-section__right">
                         <x-checkout-button
                             checkoutPrice="{{ number_format($productPriceSum + $deliveryPriceSum, 2, ',', '.') }}"
-                            ></x-checkout-button>
+                        ></x-checkout-button>
                     </div>
                 </div>
             </div>
 
-
+        @endif
+    @endsection
 @endif
-@endsection
-
-
-
-@endif
-
 
 @if (Auth::check())
     @push('scripts')
@@ -126,21 +119,18 @@
                         minusText.style.color = "#ADADAD"
                     }
 
-
                     form.addEventListener("click", (e) => {
                         if (e.target.classList.contains("minus")) {
                             if (inputFieldValue > 1) {
                                 inputField.stepUp(-1)
                                 submitUpdateForm()
                             }
-
                         }
                         if (e.target.classList.contains("plus")) {
                             if (inputFieldValue < maxValueForInput) {
                                 inputField.stepUp(1)
                                 submitUpdateForm()
                             }
-
                         }
                     })
 
@@ -156,12 +146,10 @@
                         } else {
                             submitUpdateForm()
                         }
-
-
                     })
                 }
 
-                submitButton.addEventListener("click", ()=>{
+                submitButton.addEventListener("click", () => {
 
                     window.location.href = "/checkout"
 
@@ -179,7 +167,8 @@
                         .then(response => {
                             if (response.ok) {
                                 location.reload()
-                            } else {}
+                            } else {
+                            }
                         })
                         .catch(error => {
                             console.error('Error:', error);
@@ -191,11 +180,6 @@
 @else
     @push('scripts')
         <script>
-
-
-
-
-
             document.addEventListener('DOMContentLoaded', () => {
 
                 const allFormFields = document.querySelectorAll(".item-wrapper__more-or-less")
@@ -204,26 +188,20 @@
                 let itemCount = 0;
                 const resetButton = document.getElementById("reset-form")
 
-                for (const itemWrapper of itemWrappers){
+                for (const itemWrapper of itemWrappers) {
                     itemCount++;
 
-                    itemWrapper.addEventListener("click", (e)=>{
+                    itemWrapper.addEventListener("click", (e) => {
 
-                        if(e.target.classList.contains("item-wrapper__trash-icon")) {
-                            itemWrapper.remove()
-                            itemCount--;
-                            submitUpdateFormAndReturn()
-                        }
-
-
-
+                            if (e.target.classList.contains("item-wrapper__trash-icon")) {
+                                itemWrapper.remove()
+                                itemCount--;
+                                submitUpdateFormAndReturn()
+                            }
 
                         }
-
                     )
                 }
-
-
 
                 for (const form of allFormFields) {
                     const inputField = form.children[1]
@@ -232,13 +210,11 @@
                     const plusText = form.children[2].children[0]
                     let inputFieldValue = parseInt(inputField.value)
 
-
                     if (inputFieldValue === maxValueForInput) {
                         plusText.style.color = "#ADADAD"
                     } else if (inputFieldValue === 1) {
                         minusText.style.color = "#ADADAD"
                     }
-
 
                     form.addEventListener("click", (e) => {
                         if (e.target.classList.contains("minus")) {
@@ -247,31 +223,23 @@
                                 inputField.stepUp(-1)
                                 submitUpdateFormAndReturn()
                             }
-
                         }
                         if (e.target.classList.contains("plus")) {
                             if (inputFieldValue < maxValueForInput) {
                                 inputFieldValue++;
                                 inputField.stepUp(1)
-                                submitUpdateFormAndReturn()                            }
-
+                                submitUpdateFormAndReturn()
+                            }
                         }
-
-
                     })
 
                     inputField.addEventListener("change", () => {
-
                         if (inputField.value > maxValueForInput) {
                             inputField.value = maxValueForInput
-
                         } else if (inputField.value < 1) {
                             inputField.value = 1
                         }
-
                         submitUpdateFormAndReturn()
-
-
                     })
                 }
 
@@ -279,7 +247,6 @@
                     submitUpdateForm()
 
                 })
-
 
                 function submitUpdateForm() {
                     const form = document.getElementById('update-form');
@@ -298,7 +265,6 @@
                         .catch(error => {
                             console.error('Error:', error);
                         });
-
                 }
 
                 function submitUpdateFormAndReturn() {
@@ -318,11 +284,9 @@
                         .catch(error => {
                             console.error('Error:', error);
                         });
-
                 }
 
-
-                resetButton.addEventListener("click", (e)=>{
+                resetButton.addEventListener("click", (e) => {
                     const data = [];
                     const formData = new FormData(data);
                     e.preventDefault()
@@ -339,18 +303,7 @@
                         .catch(error => {
                             console.error('Error:', error);
                         });
-
-
                 })
-
-
-
-
-
-
-
-
-
             })
 
         </script>

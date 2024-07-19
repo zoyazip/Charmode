@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Components;
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Models\Color;
 use App\Models\ProductColor;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class ColorController extends Controller

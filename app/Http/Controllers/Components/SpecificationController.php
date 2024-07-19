@@ -1,16 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Components;
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Models\Specification;
-
 use Illuminate\Support\Facades\DB;
 
 class SpecificationController extends Controller
 {
-    //
-
     public function createSpecification($keys, $values, $productID) {
         for ($x = 0; $x < sizeof($keys); $x++) {
             $specification = new Specification;
@@ -25,9 +22,5 @@ class SpecificationController extends Controller
         $specifications = DB::table('specifications')
             ->where('product_id', '=', $product_id)
             ->delete();
-            // dd()
-        // foreach($specifications as $specification) {
-        //     $specification->delete();
-        // }
     }
 }

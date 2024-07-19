@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Components;
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Models\SubCategory;
 
 class SubCategoryController extends Controller
