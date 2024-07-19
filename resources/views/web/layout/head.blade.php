@@ -1,5 +1,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Pet project for magebit bootcamp">
 
 {{-- to change title of a page, use ---> @section('title', 'new title') --}}
 <title>@yield('title', 'Default Title')</title>

@@ -92,20 +92,20 @@ Route::get('/adminproducts/delete/{id}', [ProductController::class, 'delete'])
     ->middleware(AdminRoutes::class);
 // Delete Image
 Route::get('/adminproducts/images/delete/{id}', [ImageController::class, 'delete'])
-->middleware(AdminRoutes::class);
+    ->middleware(AdminRoutes::class);
 
 
 // Save Product
 Route::post('/add_product', [AdminController::class, 'addProduct'])
-->middleware(AdminRoutes::class);
+    ->middleware(AdminRoutes::class);
 
 // Update Product
 Route::post('/update_product/{id}', [AdminController::class, 'updateProduct'])
-->middleware(AdminRoutes::class);
+    ->middleware(AdminRoutes::class);
 
 // Update status
 Route::post('/orders/update/{id}', [OrderController::class, 'updateStatus'])
-->middleware(AdminRoutes::class);
+    ->middleware(AdminRoutes::class);
 
 Route::post('/cartitem/create/{product_id}/{quantity}', [CartController::class, 'store']);
 
@@ -132,14 +132,12 @@ Route::post('/reviews', [ReviewController::class, 'store'])->middleware('auth')-
 // Route::get('/filter', [ProductListPageController::class, 'index'])->name('filter');
 Route::get('/filter/{subcat?}', [ProductListPageController::class, 'categoryIndex'])->name('filter');
 
-//  please dont touch this routes
+
+// cart 
 Route::get('/cart', [CartController::class, 'index']);
 Route::post('/cart/store/guest', [CartController::class, 'storeGuest'])->name('cart.store.guest')->middleware('guest');
 Route::post('/cart/store', [CartController::class, 'storeAuth'])->name('cart.store')->middleware('auth');
 
-
-
 Route::delete('/cart', [CartController::class, 'removeAllItems']);
 Route::put('/cart', [CartController::class, 'removeItem']);
 Route::patch('/cart', [CartController::class, 'updateList']);
-
