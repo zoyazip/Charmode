@@ -55,7 +55,7 @@
     {{-- User is not logged in --}}
     @section('content')
 
-        @if ($cartItems === null)
+        @if ($cartItems === null or count($cartItems) == 0)
             <div class="flex h-[50vh] justify-center items-center">
                 <h1>Your cart is empty</h1>
 
@@ -68,7 +68,7 @@
                 </form>
                 @foreach ($cartItems as $product)
 
-                    <div class="flex flex-col items-center">
+                    <div class="flex flex-col items-center big-item-wrapper" >
                         <div class="w-full">
                             @include('components/cart-item-card-guests')
                         </div>
@@ -203,14 +203,12 @@
 
                 const allFormFields = document.querySelectorAll(".item-wrapper__more-or-less")
                 const submitButton = document.querySelector(".checkout-btn")
-                const itemWrappers = document.querySelectorAll(".item-wrapper")
+                const itemWrappers = document.querySelectorAll(".big-item-wrapper")
 
                 for (const itemWrapper of itemWrappers){
                     itemWrapper.addEventListener("click", (e)=>{
 
                         if(e.target.classList.contains("item-wrapper__trash-icon")) {
-                            console.log("hello")
-                            itemWrapper.nextElementSibling.remove()
                             itemWrapper.remove()
                         }
 
