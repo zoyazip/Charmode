@@ -246,8 +246,8 @@
 
 .color__div {
     aspect-ratio: 1/1;
-    width: 100%;
-    border-radius: 10%;
+    width: 30px;
+    border-radius: 100%;
     border: 1px solid var(--green);
 }
 

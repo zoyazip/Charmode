@@ -67,10 +67,10 @@
                 <h4 class="font-bold text-main-green">Specifications:</h4>
                 <div class="flex justify-between">
                     <h4 class="text-main-green">Colors:</h4>
-                    <div class="product-color__div">
+                    <div class="product-color__div flex gap-2">
                         @if (isset($product->productColors))
                             @foreach ($product->productColors as $color)
-                                <div style="background-color: {{$color->color->hex}};" class="w-6 h-6 rounded-full"></div>
+                                <div style="background-color: {{$color->color->hex}};" class="w-6 h-6 rounded-full {{ $color->color->hex === '#ffffff' ? 'border' : '' }}"></div>
                             @endforeach
                         @endif
                     </div>
