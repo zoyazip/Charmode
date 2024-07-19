@@ -38,7 +38,7 @@
         <div class="flex flex-col items-center w-full gap-2">
             <div class="flex justify-between w-full text-white">
                 <h4>Amount</h4>
-                <h4>{{number_format(floor($totalCost * 0.21), 2)}} €</h4>
+                <h4>{{$totalCost}} €</h4>
             </div>
             <div class="flex justify-between w-full text-white">
                 <h4>Fee</h4>
