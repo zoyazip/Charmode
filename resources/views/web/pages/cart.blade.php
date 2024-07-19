@@ -92,7 +92,7 @@
                     <div class="checkout-section__right">
                         <x-checkout-button
                             checkoutPrice="{{ number_format($productPriceSum + $deliveryPriceSum, 2, ',', '.') }}"
-                            goToSite="/checkout"></x-checkout-button>
+                            ></x-checkout-button>
                     </div>
                 </div>
             </div>
@@ -118,14 +118,12 @@
 
                 const allFormFields = document.querySelectorAll(".item-wrapper__more-or-less")
                 const submitButton = document.querySelector(".checkout-btn")
-
                 for (const form of allFormFields) {
                     const inputField = form.children[1]
                     const maxValueForInput = parseInt(inputField.max)
                     const minusText = form.children[0].children[0]
                     const plusText = form.children[2].children[0]
                     const inputFieldValue = parseInt(inputField.value)
-
 
                     if (inputFieldValue === maxValueForInput) {
                         plusText.style.color = "#ADADAD"
@@ -203,12 +201,19 @@
                 const allFormFields = document.querySelectorAll(".item-wrapper__more-or-less")
                 const submitButton = document.querySelector(".checkout-btn")
                 const itemWrappers = document.querySelectorAll(".big-item-wrapper")
+                let itemCount = 0;
 
                 for (const itemWrapper of itemWrappers){
+                    itemCount++;
+
                     itemWrapper.addEventListener("click", (e)=>{
 
                         if(e.target.classList.contains("item-wrapper__trash-icon")) {
                             itemWrapper.remove()
+                            itemCount--;
+                            if(itemCount === 0){
+                                submitUpdateFormAndReturn()
+                            }
                         }
 
 
@@ -281,7 +286,7 @@
                     })
                         .then(response => {
                             if (response.ok) {
-                                // window.location.href = "/cart"
+                                window.location.href = "/checkout"
                             } else {
                             }
                         })
@@ -290,6 +295,27 @@
                         });
 
                 }
+
+                function submitUpdateFormAndReturn() {
+                    const form = document.getElementById('update-form');
+                    const formData = new FormData(form);
+                    console.log(formData)
+                    fetch('/cart', {
+                        method: 'POST',
+                        body: formData
+                    })
+                        .then(response => {
+                            if (response.ok) {
+                                window.location.reload()
+                            } else {
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
+
+                }
+
             })
 
         </script>
