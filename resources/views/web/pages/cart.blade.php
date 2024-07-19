@@ -212,9 +212,7 @@
                         if(e.target.classList.contains("item-wrapper__trash-icon")) {
                             itemWrapper.remove()
                             itemCount--;
-                            if(itemCount === 0){
-                                submitUpdateFormAndReturn()
-                            }
+                            submitUpdateFormAndReturn()
                         }
 
 
@@ -247,6 +245,7 @@
                             if (inputFieldValue > 1) {
                                 inputFieldValue--;
                                 inputField.stepUp(-1)
+                                submitUpdateFormAndReturn()
                             }
 
                         }
@@ -254,20 +253,7 @@
                             if (inputFieldValue < maxValueForInput) {
                                 inputFieldValue++;
                                 inputField.stepUp(1)
-                            }
-
-                        }
-
-                        if (inputFieldValue === maxValueForInput) {
-                            plusText.style.color = "#ADADAD"
-                            minusText.style.color = "#2F591B"
-                        } else if (inputFieldValue === 1) {
-                            minusText.style.color = "#ADADAD"
-                            plusText.style.color = "#2F591B"
-
-                        } else {
-                            minusText.style.color = "#2F591B"
-                            plusText.style.color = "#2F591B"
+                                submitUpdateFormAndReturn()                            }
 
                         }
 
@@ -283,12 +269,13 @@
                             inputField.value = 1
                         }
 
+                        submitUpdateFormAndReturn()
+
 
                     })
                 }
 
                 submitButton.addEventListener("click", () => {
-
                     submitUpdateForm()
 
                 })
@@ -355,6 +342,13 @@
 
 
                 })
+
+
+
+
+
+
+
 
 
             })
