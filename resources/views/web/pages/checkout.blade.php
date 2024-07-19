@@ -23,7 +23,7 @@
                                 <div class="left">
                                     <h3 class="green-text">Client Data</h3>
                                     <img onclick="changeDataArrow('checkout__form', 'clientDataArrow')" id="clientDataArrow"
-                                        class="close__arrow" src="assets/svg/arrow-dd.svg" />
+                                        class="close__arrow w-4" src="assets/svg/arrow-dd.svg" />
                                 </div>
                                 @guest
                                     <div class="right">
@@ -56,7 +56,7 @@
                             <div class="checkout__title">
                                 <h3 class="green-text">Delivery Data</h3>
                                 <img onclick="changeDataArrow('delivery__container', 'deliveryDataArrow')"
-                                    id="deliveryDataArrow" class="close__arrow"
+                                    id="deliveryDataArrow" class="close__arrow w-4"
                                     src="{{ URL::asset('assets/svg/arrow-dd.svg') }}" />
                             </div>
                             <div id="delivery__container" class="delivery__container hidden__div">
@@ -88,7 +88,7 @@
                             <div class="checkout__title">
                                 <h3 class="green-text">Payment method</h3>
                                 <img onclick="changeDataArrow('paymentDiv', 'paymentDataArrow')" id="paymentDataArrow"
-                                    class="close__arrow" src="{{ URL::asset('assets/svg/arrow-dd.svg') }}" />
+                                    class="close__arrow w-4" src="{{ URL::asset('assets/svg/arrow-dd.svg') }}" />
                             </div>
                             <div id="paymentDiv" class="btn-grid hidden__div">
                                 <select value="{{ old('paymentMethod') }}" class="green-text delivery__select"
@@ -102,8 +102,8 @@
                                 </select>
                             </div>
                             <div class="checkout__form__checkbox">
-                                <div><input type="checkbox" id="confirm" name="confirm" value=""></div>
-                                <div><label class="green-text" for="">Confirm terms etc</label></div>
+                                <div><input class="accent-main-green" type="checkbox" id="confirm" name="confirm" value=""></div>
+                                <div><label class="green-text" for="confirm">Confirm terms etc</label></div>
                             </div>
                             <input type="submit" class="checkout__btn__last" value="Checkout" />
                         </div>
