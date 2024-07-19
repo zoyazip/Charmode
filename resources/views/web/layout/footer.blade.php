@@ -1,7 +1,7 @@
 <div class="inner-container">
     <div class="footerwrapper">
         <div class="footerwrapper__left-Footer">
-            <h1>Discover Timeless Elegance</h1>
+            <h1 class="font-bold text-5xl">Discover Timeless Elegance</h1>
             <p>Step into a world where luxury meets craftsmanship. At Charmode, we curate exquisite furniture pieces
                 that
                 transform spaces into sophisticated sanctuaries. Each creation reflects an unwavering commitment to
@@ -10,7 +10,7 @@
         </div>
 
         <div class="footerwrapper__right-Footer">
-            <h1> Subscribe to Our Luxury Living Newsletter</h1>
+            <h1 class="font-bold text-3xl"> Subscribe to Our Luxury Living Newsletter</h1>
             <form>
                 <input type="text" class="footerwrapper__text-input" name="userName" placeholder="Your name">
                 <input type="email" class="footerwrapper__text-input" placeholder="Your email">
