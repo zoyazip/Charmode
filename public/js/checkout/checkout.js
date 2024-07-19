@@ -16,10 +16,10 @@ function changeDataArrow(divId, arrowId) {
 
 function hideButton(btnId) {
     const btn = document.getElementById(btnId);
-    if (btn.hasAttribute('disabled')) {
-        btn.removeAttribute('disabled');
+    if (btn.hasAttribute("disabled")) {
+        btn.removeAttribute("disabled");
     } else {
-        btn.attributes.add('disabled');
+        btn.attributes.add("disabled");
     }
 }
 
@@ -55,3 +55,14 @@ function showDelivery(deliveryMethod) {
         }
     }
 }
+
+let loginLink = document.querySelector(".login-link-checkout");
+let loginBtnRef = document.querySelector(".login-btn");
+
+loginLink.addEventListener("click", () => {
+    console.log("here");
+    if (loginBtnRef) {
+        console.log("here1");
+        loginBtnRef.click();
+    }
+});

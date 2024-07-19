@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="{{ URL::asset('css/pages/cart/sum-up.css') }}" />
     <link rel="stylesheet" href="{{ URL::asset('css/pages/checkout/checkout.css') }}" />
 
-    <link rel="stylesheet" href="{{ URL::asset('css/checkout.css') }}">
 @endpush
 
 
@@ -28,7 +27,7 @@
                                 @guest
                                     <div class="right">
                                         <h6 class="thin-text">Have account?</h6>
-                                        <a href="#" class="underline green-text">Login</a>
+                                        <button class="login-link-checkout" class="underline green-text login-btn" type="button">Login</button>
                                     </div>
                                 @endguest
                             </div>
