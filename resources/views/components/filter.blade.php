@@ -6,9 +6,9 @@
                 class="close__arrow w-4" src="{{ URL::asset('assets/svg/arrow-dd.svg') }}" alt="✖" />
         </div>
         @if (isset($subcat))
-            <a href="{{ route('filter', ['subcat' => $subcat]) }}" class="filter__reset">Reset</a>
+            <a href="{{ route('filter', array_merge(['subcat' => $subcat], request()->only('search'))) }}" class="filter__reset">Reset</a>
         @else
-            <a href="{{ route('filter') }}" class="filter__reset">Reset</a>
+            <a href="{{ route('filter',request()->only('search')) }}" class="filter__reset">Reset</a>
         @endif
     </div>
 

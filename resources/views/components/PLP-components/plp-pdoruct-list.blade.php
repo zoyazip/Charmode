@@ -3,9 +3,18 @@
 @endphp
 
 <div class="plp flex flex-col gap-8">
-    <div class="plp-sort ml-auto mt-2">
-        @include('components/list-sort')
-    </div>
+    {{-- <div class="plp-sort ml-auto mt-2"> --}}
+        {{-- @php dd($products->count() ); @endphp --}}
+    @if($products->isNotEmpty())
+        <div class="self-center self-stretch flex items-center justify-between">
+            <div class="justify-self-center" style="font-color:var(--green);">
+
+                Products found: {{$count}}
+            </div>
+            @include('components/list-sort')
+        </div>
+    @endif
+    {{-- </div> --}}
 
     <div class="plp-list grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
         @foreach ($products as $product)
