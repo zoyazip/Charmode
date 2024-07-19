@@ -287,6 +287,66 @@
             const toggleActive = () => {
                 dropdown.classList.toggle("active")
             }
+
         </script>
     @endpush
 @endauth
+
+@push('scripts')
+        <script defer>
+
+            document.addEventListener('DOMContentLoaded', function() {
+                // Get the mobile search input, desktop search input, and search icon SVG
+                const mobileSearchInput = document.querySelector('.navbar__bottom-search .navbar__search-text');
+                const desktopSearchInput = document.querySelector('.navbar__search-container .navbar__search-text');
+                const searchIconMobile = document.querySelector('.navbar__bottom-search .navbar__search-icon');
+                const searchIconDesktop = document.querySelector('.navbar__search-icon-btn .navbar__search-icon');
+
+                if (mobileSearchInput) {
+                    console.log("Mobile search input found:", mobileSearchInput);
+                } else {
+                    console.error("Mobile search input not found");
+                }
+
+                if (desktopSearchInput) {
+                    console.log("Desktop search input found:", desktopSearchInput);
+                } else {
+                    console.error("Desktop search input not found");
+                }
+
+                // Listen for input events on the mobile search input
+                if (mobileSearchInput && desktopSearchInput) {
+                    mobileSearchInput.addEventListener('input', function() {
+                        console.log("Mobile input changed:", mobileSearchInput.value);
+                        // Update the desktop search input with the value from the mobile search input
+                        desktopSearchInput.value = mobileSearchInput.value;
+                    });
+
+                    // Submit the desktop search form when the user presses Enter on the mobile search input
+                    mobileSearchInput.addEventListener('keypress', function(event) {
+                        if (event.key === 'Enter') {
+                            event.preventDefault();
+                            console.log("Enter key pressed, submitting form");
+                            document.getElementById('search-form').submit();
+                        }
+                    });
+                }
+
+                // Listen for click events on the search icon SVG (mobile)
+                if (searchIconMobile) {
+                    searchIconMobile.addEventListener('click', function() {
+                        console.log("Mobile search icon clicked, submitting form");
+                        document.getElementById('search-form').submit();
+                    });
+                }
+
+                // Listen for click events on the search icon SVG (desktop)
+                if (searchIconDesktop) {
+                    searchIconDesktop.addEventListener('click', function() {
+                        console.log("Desktop search icon clicked, submitting form");
+                        document.getElementById('search-form').submit();
+                    });
+                }
+            });
+        </script>
+    @endpush
