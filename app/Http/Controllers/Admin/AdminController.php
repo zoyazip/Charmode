@@ -1,24 +1,21 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-use App\Models\Product;
-use App\Models\Color;
-use App\Models\ProductColors;
+use App\Http\Controllers\Components\ColorController;
+use App\Http\Controllers\Components\ImageController;
+use App\Http\Controllers\Components\SpecificationController;
+use App\Http\Controllers\Components\SubCategoryController;
+use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Color;
 use App\Models\Image;
 use App\Models\Order;
-use App\Models\SubCategory;
+use App\Models\Product;
+use App\Models\ProductColors;
 use App\Models\Specification;
-use Illuminate\Http\RedirectResponse;
-use App\Http\Controllers\ImageController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\SubCategoryController;
-use App\Http\Controllers\ColorController;
-
-use App\Http\Controllers\ProductController;
-
+use App\Models\SubCategory;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller

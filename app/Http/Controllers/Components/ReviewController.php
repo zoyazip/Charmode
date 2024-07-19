@@ -1,18 +1,18 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Components;
 
+use App\Http\Controllers\Controller;
+use App\Models\Product;
+use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
-use App\Models\Review;
-use App\Models\Product;
 
 
 class ReviewController extends Controller
 {
     public function store(Request $request)
-    {        
+    {
         $product = Product::findOrFail($request->product_id);
 
         $review = new Review();
@@ -24,7 +24,7 @@ class ReviewController extends Controller
 
         return redirect()->back();
     }
-  
+
     public function delete(Request $request) {
           $review = Review::find($request->id);
           $review->delete();

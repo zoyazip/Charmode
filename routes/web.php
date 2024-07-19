@@ -1,31 +1,25 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
-use App\Http\Controllers\ColorController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\CheckoutController;
-use App\Http\Controllers\FilterController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\CartController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Auth\LoginController;
-
-use App\Http\Controllers\ReviewController;
-use App\Http\Controllers\ImageController;
-use App\Http\Controllers\OrderController;
-
+use App\Http\Controllers\Auth\UserController;
+use App\Http\Controllers\Components\ColorController;
+use App\Http\Controllers\Components\ImageController;
+use App\Http\Controllers\Components\ReviewController;
+use App\Http\Controllers\FilterController;
+use App\Http\Controllers\Pages\CartController;
+use App\Http\Controllers\Pages\CheckoutController;
+use App\Http\Controllers\Pages\HomeController;
+use App\Http\Controllers\Pages\OrderController;
+use App\Http\Controllers\Pages\ProductDisplayPageController;
+use App\Http\Controllers\Pages\ProductListPageController;
 use App\Http\Middleware\AdminRoutes;
-
+use Illuminate\Support\Facades\Route;
 
 
 // pages controllers
-use App\Http\Controllers\Pages\HomeController;
-use App\Http\Controllers\Pages\ProductListPageController;
-
-use App\Http\Controllers\Pages\ProductDisplayPageController;
-
 
 
 /*
@@ -133,7 +127,7 @@ Route::post('/reviews', [ReviewController::class, 'store'])->middleware('auth')-
 Route::get('/filter/{subcat?}', [ProductListPageController::class, 'categoryIndex'])->name('filter');
 
 
-// cart 
+// cart
 Route::get('/cart', [CartController::class, 'index']);
 Route::post('/cart/store/guest', [CartController::class, 'storeGuest'])->name('cart.store.guest')->middleware('guest');
 Route::post('/cart/store', [CartController::class, 'storeAuth'])->name('cart.store')->middleware('auth');

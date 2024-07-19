@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Pages;
 
+use App\Http\Controllers\Controller;
 use App\Models\CartItem;
 use App\Models\Product;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 
 
@@ -55,7 +55,6 @@ class CartController extends Controller
 
             }
 
-//            dd($alldata);
 
             return view('web.pages.cart', [
                 "cartItems" => $alldata,
@@ -149,8 +148,6 @@ class CartController extends Controller
                     }
                 }
                 Cookie::queue('cartitems', json_encode($addedItems));
-            } else {
-                // return view('web.pages.cart');
             }
         }
         return redirect()->back();
