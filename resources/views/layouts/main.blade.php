@@ -4,7 +4,7 @@
 <head>
     @include('web.layout.head')
     @stack('styles')
-    @vite('public/css/app.css')
+    {{-- @vite('public/css/app.css') --}}
 </head>
 
 <body>

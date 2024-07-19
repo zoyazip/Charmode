@@ -15,7 +15,7 @@
         @include('../../components/PDP-components/pdp-description')
         @include('../../components/PDP-components/pdp-characteristics')
     </div>
-    <hr class="h-28" id="reviews" />
+    {{-- <hr class="h-28" id="reviews" /> --}}
     <div class="pdp-comments-container mt-10 w-full">
         @include('../../components/PDP-components/pdp-comments')
     </div>
