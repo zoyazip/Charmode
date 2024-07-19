@@ -173,9 +173,9 @@
                     console.log(form)
                     console.log(formData)
                     fetch('/cart', {
-                            method: 'POST',
-                            body: formData
-                        })
+                        method: 'POST',
+                        body: formData
+                    })
                         .then(response => {
                             if (response.ok) {
                                 location.reload()
@@ -191,12 +191,18 @@
 @else
     @push('scripts')
         <script>
+
+
+
+
+
             document.addEventListener('DOMContentLoaded', () => {
 
                 const allFormFields = document.querySelectorAll(".item-wrapper__more-or-less")
                 const submitButton = document.querySelector(".checkout-btn")
                 const itemWrappers = document.querySelectorAll(".big-item-wrapper")
                 let itemCount = 0;
+                const resetButton = document.getElementById("reset-form")
 
                 for (const itemWrapper of itemWrappers){
                     itemCount++;
@@ -226,7 +232,7 @@
                     const maxValueForInput = parseInt(inputField.max)
                     const minusText = form.children[0].children[0]
                     const plusText = form.children[2].children[0]
-                    const inputFieldValue = parseInt(inputField.value)
+                    let inputFieldValue = parseInt(inputField.value)
 
 
                     if (inputFieldValue === maxValueForInput) {
@@ -239,16 +245,33 @@
                     form.addEventListener("click", (e) => {
                         if (e.target.classList.contains("minus")) {
                             if (inputFieldValue > 1) {
+                                inputFieldValue--;
                                 inputField.stepUp(-1)
                             }
 
                         }
                         if (e.target.classList.contains("plus")) {
                             if (inputFieldValue < maxValueForInput) {
+                                inputFieldValue++;
                                 inputField.stepUp(1)
                             }
 
                         }
+
+                        if (inputFieldValue === maxValueForInput) {
+                            plusText.style.color = "#ADADAD"
+                            minusText.style.color = "#2F591B"
+                        } else if (inputFieldValue === 1) {
+                            minusText.style.color = "#ADADAD"
+                            plusText.style.color = "#2F591B"
+
+                        } else {
+                            minusText.style.color = "#2F591B"
+                            plusText.style.color = "#2F591B"
+
+                        }
+
+
                     })
 
                     inputField.addEventListener("change", () => {
@@ -310,6 +333,29 @@
                         });
 
                 }
+
+
+                resetButton.addEventListener("click", (e)=>{
+                    const data = [];
+                    const formData = new FormData(data);
+                    e.preventDefault()
+                    fetch('/cart', {
+                        method: 'POST',
+                        body: formData
+                    })
+                        .then(response => {
+                            if (response.ok) {
+                                window.location.href = "/checkout"
+                            } else {
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
+
+
+                })
+
 
             })
 
