@@ -131,7 +131,7 @@
                         @if (isset($colors))
                             @foreach ($colors as $color)
                                 <div onclick="checkColor({{ $color }})" name="color__div" value='{{ $color }}'
-                                    class="color__div"></div>
+                                    class="color__div rounded-full"></div>
                             @endforeach
                         @endif
                     </div>
