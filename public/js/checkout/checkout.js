@@ -55,12 +55,3 @@ function showDelivery(deliveryMethod) {
         }
     }
 }
-
-// function setFocusOnLoad() {
-//     document.getElementById("dpdBtn").focus();
-// }
-
-// const dpdBtnLoad = document.getElementById('dpdBtn');
-// window.onload = function() {
-//     dpdBtnLoad.focus();
-// }
