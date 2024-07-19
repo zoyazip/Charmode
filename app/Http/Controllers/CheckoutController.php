@@ -119,9 +119,12 @@ class CheckoutController extends Controller
 
             $user = DB::table('users')->where('id', '=', $user_id)->first();
             $name = $user->full_name;
+
         } else {
             $name = $order->email;
         }
+        $order->full_name = $name;
+
         $currentDateTime = date('Y-m-d H:i');
         $hash = substr(md5($name . $order->deliveryMethod . $currentDateTime), 0, 7);
         $refnumber = strtoupper($hash); // Convert to uppercase for consistency
