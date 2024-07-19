@@ -1,8 +1,6 @@
 .checkout__container {
     display: flex;
     flex-direction: row;
-    margin-left: 10%;
-    margin-right: 10%;
     gap: 3%;
     justify-content: space-between;
 }
@@ -195,6 +193,8 @@
 
 .green-text {
     color: var(--green);
+    cursor: pointer;
+    user-select: none;
 }
 
 .checkout__btn__last {
@@ -248,7 +248,6 @@
     font-size: 12px;
     color: red;
     margin-top: 5px;
-    /* text-wrap: nowrap; */
 }
 /* 768 */
 @media only screen and (max-width: 768px) {
@@ -277,7 +276,6 @@
     .checkout__container{
         display: flex;
         flex-direction: column-reverse;
-        margin: 0 5%;
     }
 
     .checkout__container__div {
