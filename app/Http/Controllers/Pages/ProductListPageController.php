@@ -128,20 +128,27 @@ class ProductListPageController extends Controller
                         }
                     }
                     if (!$isGoodProduct){
-                        if (strtolower($product->subCategory->category->name) == $searchKey) {
+                        $categoryWords = explode(' ', strtolower($product->subCategory->category->name));
+                        $searchKey = strtolower($searchKey);
+
+                        if (in_array($searchKey, $categoryWords)) {
                             $isGoodProduct = true;
                             break;
                         }
                     }
                     // check for description
                     if (!$isGoodProduct){
-                        $productContainingString = Product::where('id', $product->id)
-                            ->where('description', 'LIKE', '%' . $searchKey . '%')
-                            ->first();
-                        if ($productContainingString) {
+                        $product = Product::find($product->id);
+
+                    if ($product) {
+                        // Split the description into words
+                        $descriptionWords = preg_split('/\s+/', strtolower($product->description));
+
+                        // Check if any word in the description matches the search key
+                        if (in_array($searchKey, $descriptionWords)) {
                             $isGoodProduct = true;
-                            break;
                         }
+                    }
                     }
                     if ($isGoodProduct) {
                         break;
@@ -189,6 +196,8 @@ class ProductListPageController extends Controller
             }, SORT_REGULAR, $sortOrder === 'desc');
         }
 
+        $count = $filteredProducts->count();
+
         // Pagination
 
         $currentPage = LengthAwarePaginator::resolveCurrentPage();
@@ -213,7 +222,8 @@ class ProductListPageController extends Controller
             "data" => $allParams,
             "products" => $paginatedFilteredProducts,
             "colors" => $allColors,
-            "categories" => $categories
+            "categories" => $categories,
+            "count"=>$count
         ]);
     }
 }
