@@ -8,7 +8,6 @@ use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\Components\ColorController;
 use App\Http\Controllers\Components\ImageController;
 use App\Http\Controllers\Components\ReviewController;
-use App\Http\Controllers\FilterController;
 use App\Http\Controllers\Pages\CartController;
 use App\Http\Controllers\Pages\CheckoutController;
 use App\Http\Controllers\Pages\HomeController;
@@ -75,8 +74,6 @@ Route::get('/adminproducts/{id}', [AdminController::class, 'openOneProductPage']
 Route::get('/orders', [AdminController::class, 'openOrdersPage'])
     ->middleware(AdminRoutes::class);
 
-// Users order history
-Route::get('/myorders', [OrderController::class, 'openMyOrdersPage']);
 
 // Delete Review
 Route::get('/reviews/delete/{id}', [ReviewController::class, 'delete'])
@@ -105,6 +102,7 @@ Route::post('/cartitem/create/{product_id}/{quantity}', [CartController::class, 
 
 Route::get('/subcategories', [AdminController::class, 'getSubcategories']);
 
+
 // AUTH
 Route::get('/registration', [UserController::class, 'render'])->middleware('guest')->name('registration');
 
@@ -115,7 +113,7 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 
 // page routes
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/product/{id}', [ProductDisplayPageController::class, 'index'])->name('product');
 
 // add reviews
@@ -123,11 +121,10 @@ Route::post('/reviews', [ReviewController::class, 'store'])->middleware('auth')-
 
 
 // plp routes
-// Route::get('/filter', [ProductListPageController::class, 'index'])->name('filter');
 Route::get('/filter/{subcat?}', [ProductListPageController::class, 'categoryIndex'])->name('filter');
 
 
-// cart
+// Cart page routes
 Route::get('/cart', [CartController::class, 'index']);
 Route::post('/cart/store/guest', [CartController::class, 'storeGuest'])->name('cart.store.guest')->middleware('guest');
 Route::post('/cart/store', [CartController::class, 'storeAuth'])->name('cart.store')->middleware('auth');
@@ -135,3 +132,7 @@ Route::post('/cart/store', [CartController::class, 'storeAuth'])->name('cart.sto
 Route::delete('/cart', [CartController::class, 'removeAllItems']);
 Route::put('/cart', [CartController::class, 'removeItem']);
 Route::patch('/cart', [CartController::class, 'updateList']);
+
+
+// Orders page routes
+Route::get('/orders', [OrderController::class, 'index'])->middleware('auth')->name('orders');

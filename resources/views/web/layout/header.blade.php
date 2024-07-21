@@ -1,9 +1,8 @@
 <div class="inner-container">
     <div class="navbar">
         <div class="navbar__top">
-
             <div class="navbar__burger-container">
-                <input class="navbar__burger-checkbox" onclick="toggleDropdown()" type="checkbox"/>
+                <input class="navbar__burger-checkbox" onclick="toggleDropdown()" type="checkbox" />
                 <div class="navbar__burger-lines">
                     <span class="navbar__burger-line1 navbar__burger-line"></span>
                     <span class="navbar__burger-line2 navbar__burger-line"></span>
@@ -11,99 +10,96 @@
                 </div>
             </div>
 
-            <a href="/">
-                <img class="navbar__logo" src="{{ URL::asset('assets/svg/logo.svg') }}" alt="Logo"/>
+            <a href="{{ route('home') }}">
+                <img class="navbar__logo" src="{{ URL::asset('assets/svg/logo.svg') }}" alt="Logo" />
             </a>
             @if (isset($subcat))
                 <form id="search-form" action="{{ route('filter', ['subcat' => $subcat]) }}" method="GET"
-                      class="navbar__search-container">
-                    @else
-                        <form id="search-form" action="{{ route('filter') }}" method="GET"
-                              class="navbar__search-container">
-                            @endif
-                            {{-- all the hidden fields for filter --}}
-                            <input type="hidden" id="sort_by_form" name="sort_by"
-                                   value="{{ old('sort_by', $data['sort_by'] ?? '') }}">
-                            <input type="hidden" id="sort_order_form" name="sort_order"
-                                   value="{{ old('sort_order', $data['sort_order'] ?? '') }}">
-                            <input type="hidden" id="min_price_form" name="min_price"
-                                   value="{{ old('min_price', $data['min_price'] ?? '') }}">
-                            <input type="hidden" id="max_price_form" name="max_price"
-                                   value="{{ old('max_price', $data['max_price'] ?? '') }}">
-                            <input type="hidden" id="min_width_form" name="min_width"
-                                   value="{{ old('min_width', $data['min_width'] ?? '') }}">
-                            <input type="hidden" id="max_width_form" name="max_width"
-                                   value="{{ old('max_width', $data['max_width'] ?? '') }}">
-                            <input type="hidden" id="min_height_form" name="min_height"
-                                   value="{{ old('min_height', $data['min_height'] ?? '') }}">
-                            <input type="hidden" id="max_height_form" name="max_height"
-                                   value="{{ old('max_height', $data['max_height'] ?? '') }}">
-                            <input type="hidden" id="min_depth_form" name="min_depth"
-                                   value="{{ old('min_depth', $data['min_depth'] ?? '') }}">
-                            <input type="hidden" id="max_depth_form" name="max_depth"
-                                   value="{{ old('max_depth', $data['max_depth'] ?? '') }}">
-                            <input type="hidden" id="colors_form" name="colors"
-                                   value="{{ old('colors', implode(',', $data['colors'] ?? [])) }}">
-                            <input type="hidden" id="is_available_form" name="is_available"
-                                   value="{{ old('is_available', $data['is_available'] ?? '') }}">
-                            <input type="hidden" id="is_discount_form" name="is_discount"
-                                   value="{{ old('is_discount', $data['is_discount'] ?? '') }}">
-                            <input type="hidden" id="free_delivery_form" name="free_delivery"
-                                   value="{{ old('free_delivery', $data['free_delivery'] ?? '') }}">
-                            <input name="search" class="navbar__search-text" type="text"
-                                   placeholder="Find your cheapest luxury brand..."
-                                   value="{{ old('search', $data['search'] ?? '') }}"/>
-                            <button type="submit" class="navbar__search-icon-btn">
-                                <img class="navbar__search-icon" src="{{ URL::asset('assets/svg/search-icon.svg') }}"
-                                     alt="Search"/>
+                    class="navbar__search-container">
+                @else
+                    <form id="search-form" action="{{ route('filter') }}" method="GET"
+                        class="navbar__search-container">
+            @endif
+            {{-- all the hidden fields for filter --}}
+            <input type="hidden" id="sort_by_form" name="sort_by" value="{{ old('sort_by', $data['sort_by'] ?? '') }}">
+            <input type="hidden" id="sort_order_form" name="sort_order"
+                value="{{ old('sort_order', $data['sort_order'] ?? '') }}">
+            <input type="hidden" id="min_price_form" name="min_price"
+                value="{{ old('min_price', $data['min_price'] ?? '') }}">
+            <input type="hidden" id="max_price_form" name="max_price"
+                value="{{ old('max_price', $data['max_price'] ?? '') }}">
+            <input type="hidden" id="min_width_form" name="min_width"
+                value="{{ old('min_width', $data['min_width'] ?? '') }}">
+            <input type="hidden" id="max_width_form" name="max_width"
+                value="{{ old('max_width', $data['max_width'] ?? '') }}">
+            <input type="hidden" id="min_height_form" name="min_height"
+                value="{{ old('min_height', $data['min_height'] ?? '') }}">
+            <input type="hidden" id="max_height_form" name="max_height"
+                value="{{ old('max_height', $data['max_height'] ?? '') }}">
+            <input type="hidden" id="min_depth_form" name="min_depth"
+                value="{{ old('min_depth', $data['min_depth'] ?? '') }}">
+            <input type="hidden" id="max_depth_form" name="max_depth"
+                value="{{ old('max_depth', $data['max_depth'] ?? '') }}">
+            <input type="hidden" id="colors_form" name="colors"
+                value="{{ old('colors', implode(',', $data['colors'] ?? [])) }}">
+            <input type="hidden" id="is_available_form" name="is_available"
+                value="{{ old('is_available', $data['is_available'] ?? '') }}">
+            <input type="hidden" id="is_discount_form" name="is_discount"
+                value="{{ old('is_discount', $data['is_discount'] ?? '') }}">
+            <input type="hidden" id="free_delivery_form" name="free_delivery"
+                value="{{ old('free_delivery', $data['free_delivery'] ?? '') }}">
+            <input name="search" class="navbar__search-text" type="text"
+                placeholder="Find your cheapest luxury brand..." value="{{ old('search', $data['search'] ?? '') }}" />
+            <button type="submit" class="navbar__search-icon-btn">
+                <img class="navbar__search-icon" src="{{ URL::asset('assets/svg/search-icon.svg') }}" alt="Search" />
+            </button>
+            </form>
+
+            <div class="navbar__icons">
+                <a href="{{ url('cart') }}" class="navbar__cart-icon relative @auth hide @endauth">
+                    <img src="{{ URL::asset('assets/svg/shopping-basket.svg') }}" alt="Cart" />
+                    @include('components.Cart-components.cart-counter-popup')
+                </a>
+                @auth
+                    <button class="navbar__auth-container" onclick="toggleActive()">
+                        <span>{{ substr(Auth::user()->email, 0, 1) }}</span>
+                    </button>
+
+                    <div class="navbar__auth-drop-container">
+                        <div class="navbar__auth-option">
+                            <b>Signed in as: </b>
+                            <br>
+                            {{ Auth::user()->email }}
+                        </div>
+                        <hr class="navbar__auth-separator">
+
+                        <a class="navbar__auth-option cart" href="cart">
+                            <img src="{{ URL::asset('assets/svg/shopping-basket.svg') }}" alt="Cart" />
+                            Cart ({{ $count }})
+                        </a>
+                        <a class="navbar__auth-option" href="/orders">
+                            <img src="{{ URL::asset('assets/svg/orders.svg') }}" alt="orders">
+                            My Orders
+                        </a>
+                        <a class="navbar__auth-option" href="settings">
+                            <img src="{{ URL::asset('assets/svg/settings.svg') }}" alt="settings">
+                            Settings
+                        </a>
+
+                        {{-- <hr class="navbar__auth-separator"> --}}
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="navbar__auth-option">
+                                <img src="{{ URL::asset('assets/svg/log-out.svg') }}" alt="logout">
+                                Logout
                             </button>
                         </form>
-
-                        <div class="navbar__icons">
-                            <a href="{{ url('cart') }}" class="navbar__cart-icon relative @auth hide @endauth">
-                                <img src="{{ URL::asset('assets/svg/shopping-basket.svg') }}" alt="Cart"/>
-                                @include('components.Cart-components.cart-counter-popup')
-                            </a>
-                            @auth
-                                <button class="navbar__auth-container" onclick="toggleActive()">
-                                    <span>{{ substr(Auth::user()->email, 0, 1) }}</span>
-                                </button>
-
-                                <div class="navbar__auth-drop-container">
-                                    <div class="navbar__auth-option">
-                                        <b>Signed in as: </b>
-                                        <br>
-                                        {{ Auth::user()->email }}
-                                    </div>
-                                    <hr class="navbar__auth-separator">
-
-                                    <a class="navbar__auth-option cart" href="cart">
-                                        <img src="{{ URL::asset('assets/svg/shopping-basket.svg') }}" alt="Cart"/>
-                                        Cart ({{ $count }})
-                                    </a>
-                                    <a class="navbar__auth-option" href="/myorders">
-                                        <img src="{{ URL::asset('assets/svg/orders.svg') }}" alt="orders">
-                                        My Orders
-                                    </a>
-                                    <a class="navbar__auth-option" href="settings">
-                                        <img src="{{ URL::asset('assets/svg/settings.svg') }}" alt="settings">
-                                        Settings
-                                    </a>
-
-                                    {{-- <hr class="navbar__auth-separator"> --}}
-                                    <form action="{{ route('logout') }}" method="POST">
-                                        @csrf
-                                        <button type="submit" class="navbar__auth-option">
-                                            <img src="{{ URL::asset('assets/svg/log-out.svg') }}" alt="logout">
-                                            Logout
-                                        </button>
-                                    </form>
-                                </div>
-                            @else
-                                <img class="login-btn" src="{{ URL::asset('assets/svg/user.svg') }}" alt="User"/>
-                            @endauth
-                        </div>
-                </form>
+                    </div>
+                @else
+                    <img class="login-btn" src="{{ URL::asset('assets/svg/user.svg') }}" alt="User" />
+                @endauth
+            </div>
+            </form>
         </div>
         <ul class="navbar__links hidden cursor-pointer md:flex gap-4">
             <div class="flex gap-2 navbar__all-container">
@@ -140,7 +136,7 @@
                             @if ($category->subcategories && $category->subcategories->isNotEmpty())
                                 @foreach ($category->subcategories as $subcategory)
                                     <a href="{{ route('filter', ['subcat' => $subcategory->id]) }}"
-                                       class="inline-block hover:bg-main-green hover:text-white px-4 py-2 rounded-xl md:bg-white transition-all">{{ $subcategory->name }}</a>
+                                        class="inline-block hover:bg-main-green hover:text-white px-4 py-2 rounded-xl md:bg-white transition-all">{{ $subcategory->name }}</a>
                                 @endforeach
                             @endif
                         </div>
@@ -173,11 +169,11 @@
                         </h4>
                     </div>
                     <div id="sub-category-{{ $index }}"
-                         class="navbar__links-mobile__subcategories hidden {{ $category->subcategories && $category->subcategories->isNotEmpty() ? 'py-2' : '' }}">
+                        class="navbar__links-mobile__subcategories hidden {{ $category->subcategories && $category->subcategories->isNotEmpty() ? 'py-2' : '' }}">
                         @if ($category->subcategories && $category->subcategories->isNotEmpty())
                             @foreach ($category->subcategories as $index => $subcategory)
                                 <a href="{{ route('filter', ['subcat' => $subcategory->id]) }}"
-                                   class="navbar__link-container text-lg"> -> {{ $subcategory->name }}</a>
+                                    class="navbar__link-container text-lg"> -> {{ $subcategory->name }}</a>
                             @endforeach
                         @endif
                     </div>
@@ -187,8 +183,8 @@
 
     </div>
     <div class="navbar__bottom-search">
-        <input class="navbar__search-text" type="text" placeholder="Find your luxury brand..."/>
-        <img class="navbar__search-icon" src="{{ URL::asset('assets/svg/search-icon.svg') }}" alt="Search"/>
+        <input class="navbar__search-text" type="text" placeholder="Find your luxury brand..." />
+        <img class="navbar__search-icon" src="{{ URL::asset('assets/svg/search-icon.svg') }}" alt="Search" />
     </div>
 </div>
 
@@ -203,8 +199,7 @@
 @push('scripts')
     <script>
         // Mobile
-
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             const categories = document.querySelectorAll('.nav-category-link');
             let currentlyOpenSubcat = null;
             let currentlyOpenNavDD = null;
@@ -287,66 +282,64 @@
             const toggleActive = () => {
                 dropdown.classList.toggle("active")
             }
-
         </script>
     @endpush
 @endauth
 
 @push('scripts')
-        <script defer>
+    <script defer>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get the mobile search input, desktop search input, and search icon SVG
+            const mobileSearchInput = document.querySelector('.navbar__bottom-search .navbar__search-text');
+            const desktopSearchInput = document.querySelector('.navbar__search-container .navbar__search-text');
+            const searchIconMobile = document.querySelector('.navbar__bottom-search .navbar__search-icon');
+            const searchIconDesktop = document.querySelector('.navbar__search-icon-btn .navbar__search-icon');
 
-            document.addEventListener('DOMContentLoaded', function() {
-                // Get the mobile search input, desktop search input, and search icon SVG
-                const mobileSearchInput = document.querySelector('.navbar__bottom-search .navbar__search-text');
-                const desktopSearchInput = document.querySelector('.navbar__search-container .navbar__search-text');
-                const searchIconMobile = document.querySelector('.navbar__bottom-search .navbar__search-icon');
-                const searchIconDesktop = document.querySelector('.navbar__search-icon-btn .navbar__search-icon');
+            if (mobileSearchInput) {
+                console.log("Mobile search input found:", mobileSearchInput);
+            } else {
+                console.error("Mobile search input not found");
+            }
 
-                if (mobileSearchInput) {
-                    console.log("Mobile search input found:", mobileSearchInput);
-                } else {
-                    console.error("Mobile search input not found");
-                }
+            if (desktopSearchInput) {
+                console.log("Desktop search input found:", desktopSearchInput);
+            } else {
+                console.error("Desktop search input not found");
+            }
 
-                if (desktopSearchInput) {
-                    console.log("Desktop search input found:", desktopSearchInput);
-                } else {
-                    console.error("Desktop search input not found");
-                }
+            // Listen for input events on the mobile search input
+            if (mobileSearchInput && desktopSearchInput) {
+                mobileSearchInput.addEventListener('input', function() {
+                    console.log("Mobile input changed:", mobileSearchInput.value);
+                    // Update the desktop search input with the value from the mobile search input
+                    desktopSearchInput.value = mobileSearchInput.value;
+                });
 
-                // Listen for input events on the mobile search input
-                if (mobileSearchInput && desktopSearchInput) {
-                    mobileSearchInput.addEventListener('input', function() {
-                        console.log("Mobile input changed:", mobileSearchInput.value);
-                        // Update the desktop search input with the value from the mobile search input
-                        desktopSearchInput.value = mobileSearchInput.value;
-                    });
-
-                    // Submit the desktop search form when the user presses Enter on the mobile search input
-                    mobileSearchInput.addEventListener('keypress', function(event) {
-                        if (event.key === 'Enter') {
-                            event.preventDefault();
-                            console.log("Enter key pressed, submitting form");
-                            document.getElementById('search-form').submit();
-                        }
-                    });
-                }
-
-                // Listen for click events on the search icon SVG (mobile)
-                if (searchIconMobile) {
-                    searchIconMobile.addEventListener('click', function() {
-                        console.log("Mobile search icon clicked, submitting form");
+                // Submit the desktop search form when the user presses Enter on the mobile search input
+                mobileSearchInput.addEventListener('keypress', function(event) {
+                    if (event.key === 'Enter') {
+                        event.preventDefault();
+                        console.log("Enter key pressed, submitting form");
                         document.getElementById('search-form').submit();
-                    });
-                }
+                    }
+                });
+            }
 
-                // Listen for click events on the search icon SVG (desktop)
-                if (searchIconDesktop) {
-                    searchIconDesktop.addEventListener('click', function() {
-                        console.log("Desktop search icon clicked, submitting form");
-                        document.getElementById('search-form').submit();
-                    });
-                }
-            });
-        </script>
-    @endpush
+            // Listen for click events on the search icon SVG (mobile)
+            if (searchIconMobile) {
+                searchIconMobile.addEventListener('click', function() {
+                    console.log("Mobile search icon clicked, submitting form");
+                    document.getElementById('search-form').submit();
+                });
+            }
+
+            // Listen for click events on the search icon SVG (desktop)
+            if (searchIconDesktop) {
+                searchIconDesktop.addEventListener('click', function() {
+                    console.log("Desktop search icon clicked, submitting form");
+                    document.getElementById('search-form').submit();
+                });
+            }
+        });
+    </script>
+@endpush

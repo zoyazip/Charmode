@@ -40,28 +40,25 @@ class CartController extends Controller
             $deliveryPriceSum = 0;
             $productTotalcount = 0;
 
-            if ($alldata!==NULL){
+            if ($alldata !== NULL) {
                 for ($i = 0; $i < count($alldata); $i++) {
-//                dd(DB::table("colors")->where("id", $alldata[$i]['color_id'])->get());
                     $product_id = $alldata[$i]['product_id'];
                     $products = Product::where(["id" => $product_id])->get();
                     $alldata[$i]['products'] = $products[0];
                     $productPriceSum += $alldata[$i]['products']->newPrice * $alldata[$i]['quantity'] + $alldata[$i]['products']->shippingCost;
                     $deliveryPriceSum += $alldata[$i]['products']->shippingCost;
                     $productTotalcount += $alldata[$i]['quantity'];
-                    $colortable= DB::table("colors")->where("id", $alldata[$i]['color_id'])->get();
+                    $colortable = DB::table("colors")->where("id", $alldata[$i]['color_id'])->get();
                     $alldata[$i]['hexColor'] = $colortable[0]->hex;
                 }
-
             }
-
 
             return view('web.pages.cart', [
                 "cartItems" => $alldata,
                 "productPriceSum" => $productPriceSum,
                 "deliveryPriceSum" => $deliveryPriceSum,
                 "productCountSum" => $productTotalcount,
-                ]);
+            ]);
         }
     }
 
@@ -115,7 +112,6 @@ class CartController extends Controller
                 'quantity' => $request->quantity,
             ];
         }
-//        dd(json_encode($addedItems));
         Cookie::queue('cartitems', json_encode($addedItems), 60 * 24);
         return redirect('/cart');
     }
@@ -138,7 +134,7 @@ class CartController extends Controller
             // cookies
             $addedItems = json_decode($request->cookie('cartitems'), true);
             $found = false;
-            if(!empty($addedItems)){
+            if (!empty($addedItems)) {
 
                 foreach ($addedItems as $index => $item) {
                     if ($item->product_id === $product_id && $item->color_id === $request->color_id) {
@@ -164,39 +160,31 @@ class CartController extends Controller
     }
 
 
-    public function updateList(Request $request){
-
+    public function updateList(Request $request)
+    {
         $allrequest = $request->input();
-        // TODO pievienot validāciju
         unset($allrequest['_token']);
         unset($allrequest['_method']);
 
         if (Auth::check()) {
             $userId = Auth::id();
-//        $userId = 1;
-
             foreach ($allrequest as $key => $value) {
                 $ids = explode("-", $key);
                 $productId = $ids[0];
                 $colorId = $ids[1];
 
-
-                DB::table('cart_items')->where(['user_id' => $userId , 'product_id'=> $productId, 'color_id' => $colorId])->
-                update(['quantity' => $value]);
+                DB::table('cart_items')->where(['user_id' => $userId, 'product_id' => $productId, 'color_id' => $colorId])->
+                    update(['quantity' => $value]);
             }
-
             return Redirect::refresh();
-        } else{
+        } else {
             $cookieData = json_decode(Cookie::get('cartitems'), true);
             $newCookie = [];
 
-
-//            dd($cookieData);
             Cookie::forget('cartitems');
-//            dd($cookieData);
             $loopMax = count($cookieData);
 
-            for ($i = 0, $j=0; $i < $loopMax; $i++) {
+            for ($i = 0, $j = 0; $i < $loopMax; $i++) {
 
                 $quantity = 0;
                 $productId = "";
@@ -217,28 +205,10 @@ class CartController extends Controller
                         $j++;
 
                     }
-
-
-
-
                 }
-
-
-
             }
-
-
-
-
             Cookie::queue('cartitems', json_encode($newCookie), 60 * 24);
-
-
-
             return Redirect::refresh();
-
         }
-
-
-
     }
 }
