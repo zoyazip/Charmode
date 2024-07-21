@@ -26,6 +26,7 @@ class Order extends Model
         'deliveryPlace',
         'paymentMethod',
         'status',
+        'paymentSuccess',
     ];
 
     public function orderItems(): HasMany

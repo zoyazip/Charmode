@@ -24,13 +24,12 @@ return new class extends Migration
             $table->string('deliveryPlace');
             $table->string('paymentMethod');
             $table->string('status');
+            $table->boolean('paymentSuccess')->default(false);
+            $table->unsignedBigInteger('trackingNumber');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-
             $table->softDeletes('deleted_at', precision: 0);
-
-
         });
     }
 

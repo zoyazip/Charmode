@@ -19,6 +19,9 @@ return new class extends Migration
             $table->integer('quantity');
             $table->timestamps();
 
+            $table->integer('oldPrice'); // to store exact original price without discount
+            $table->integer('newPrice'); // to store exact original price with discount       
+
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->foreign('color_id')->references('id')->on('colors')->onDelete('cascade');
