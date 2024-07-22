@@ -8,8 +8,8 @@
 
 @section('content')
     <div class="order__page-layout">
-        <h1>Your Orders</h1>
         @if (isset($orders) && $orders->isNotEmpty())
+            <h1>Your Orders</h1>
             @foreach ($orders as $order)
                 {{-- {{ $order }} --}}
                 <div class="order-container">
@@ -89,11 +89,10 @@
                                 $discount += ($orderItems->oldPrice - $orderItems->newPrice) * $orderItems->quantity;
                                 $shipping +=
                                     $orderItems->product->shippingCost > 0
-                                        ? $orderItems->product->shippingCost * $orderItems->quantity
+                                        ? $orderItems->product->shippingCost
                                         : 0;
                             @endphp
                         @endforeach
-                        
                         <div class="order__container-summary">
                             <div class="order__summary-row">
                                 <p>Subtotal:</p>
@@ -115,6 +114,7 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
             @endforeach
         @else

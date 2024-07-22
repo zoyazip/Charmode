@@ -14,13 +14,11 @@
     </div>
     <div class="promo">
         <p>Promocode</p>
-        <form class="flex gap-2">
+        <form class="flex items-center gap-2">
             <div class="promo__box">
                 <input type="text" class="promo__box-text" placeholder="XXX-XXX">
             </div>
-            <div class="">
-                <input type="submit" class="p-3 font-bold text-main-green" value="Add +">
-            </div>
+            <input type="submit" class="font-bold text-main-green" value="Add +">
         </form>
     </div>
 

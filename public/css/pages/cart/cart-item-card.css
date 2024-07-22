@@ -4,40 +4,56 @@
     display: flex;
     /*background-color: #ac5252;*/
     align-items: center;
+    gap: 15px;
 }
 
-
-.item-wrapper__amount-price{
-    white-space: nowrap;
-}
-
-.cart-image{
-    border-radius: 27px;
-    width: 10vw;
-    height: 100%;
-    /* min-height: 95px;
-    min-width: 95px; */
-    min-height: 155px;
-    min-width: 155px;
-
-    max-width: 220px;
-    max-height: 180px;
-}
-
-.item-wrapper__right{
-    width: 100%;
+.item-wrapper {
     display: flex;
     justify-content: space-between;
-    padding: 15px 25px;
     gap: 10px;
 }
 
-.item-wrapper__right p{
+.item-wrapper__amount-price {
+    white-space: nowrap;
+}
+
+.cart-image {
+    border-radius: 27px;
+    height: 100%;
+    width: 30vw;
+    min-width: 100px;
+    max-width: 200px;
+}
+
+.item-wrapper__right {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 25px 0 25px 0;
+    gap: 10px;
+}
+
+.item-wrapper__right p {
     font-size: 1.2rem;
     color: var(--text-primary);
 }
 
-.item-wrapper__red-color{
+.item-wrapper__upper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-end;
+}
+
+.items-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.item-wrapper__red-color {
     height: 25px;
     width: 25px;
     background-color: #F64141;
@@ -45,16 +61,18 @@
     display: inline-block;
     border: solid black 1px;
 }
-.item-wrapper__color-row{
+
+.item-wrapper__color-row {
     line-height: 0;
 }
-.item-wrapper__right-right .item-wrapper__end-price{
+
+.item-wrapper__right-right .item-wrapper__end-price {
     font-size: 24px;
     font-weight: bold;
     text-wrap: nowrap;
 }
 
-.item-wrapper__more-or-less-item{
+.item-wrapper__more-or-less-item {
     font-weight: bold;
     font-size: 1.3rem;
     width: 40px;
@@ -62,14 +80,14 @@
     color: var(--green);
 }
 
-.item-wrapper__more-or-less{
+.item-wrapper__more-or-less {
     display: flex;
     align-items: center;
     gap: 8px;
 
 }
 
-.item-wrapper__right-right{
+.item-wrapper__right-right {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -77,17 +95,17 @@
     align-items: flex-end;
 }
 
-.item-wrapper__right-left .item-wrapper__free-delivery{
+.item-wrapper__right-left .item-wrapper__free-delivery {
     color: var(--text-inactive);
 }
 
-.item-wrapper__right-left{
+.item-wrapper__right-left {
     display: flex;
     flex-direction: column;
     gap: 3px;
 }
 
-.item-wrapper__trash-icon{
+.item-wrapper__trash-icon {
     cursor: pointer;
     /* width: 20vw;
     max-width: 30px;
@@ -95,33 +113,57 @@
     width: 26px;
 }
 
-.item-wrapper__price{
+.item-wrapper__price {
     outline: none;
 }
 
-.sum-up-top{
+.sum-up-top {
     white-space: nowrap;
 }
 
-#reset-form{
+#reset-form {
     display: flex;
 }
 
-@media only screen and (max-width: 480px) {
-    .item-wrapper__more-or-less-item{
+#trash-form {
+    height: 26px;
+}
+
+@media only screen and (max-width: 425px) {
+    .item-wrapper__upper {
+        gap: 0;
+    }
+    
+    .item-wrapper__more-or-less-item {
         font-size: 1.2rem;
         max-width: 30px;
     }
 
 
-    .item-wrapper__red-color{
+    .item-wrapper__red-color {
         height: 20px;
         width: 20px;
     }
 
-    .item-wrapper__right p{
+    .item-wrapper__right p {
         font-size: 1.1rem;
         color: var(--text-primary);
+    }
+
+    .item-wrapper__right {
+        padding: 0;
+    }
+
+    .item-wrapper__right-left {
+        gap: 0;
+    }
+
+    .item-wrapper__right-left p {
+        font-size: 14px;
+    }
+
+    .item-wrapper__right-right .item-wrapper__end-price {
+        font-size: 16px;
     }
 
 }
@@ -135,24 +177,12 @@ input::-webkit-inner-spin-button {
 .item-wrapper__more-or-less-item[type=number] {
     -moz-appearance: textfield;
 }
-.item-wrapper__inc-btn{
+
+.item-wrapper__inc-btn {
     cursor: pointer;
 }
 
-.item-wrapper__color-row{
+.item-wrapper__color-row {
     display: flex;
     gap: 5px;
 }
-
-@media only screen and (max-width: 768px){
-    .cart-image{
-        border-radius: 27px;
-        width: 16vw;
-        height: 100%;
-        min-height: 95px;
-        min-width: 95px;
-        max-width: 220px;
-        max-height: 220px;
-    }
-}
-

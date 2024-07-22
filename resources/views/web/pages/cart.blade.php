@@ -4,15 +4,14 @@
 
 @push('styles')
     {{-- item card styling --}}
-    <link rel="stylesheet" href="{{ URL::asset('css/pages/cart/cart-item-card.css') }}"/>
-    <link rel="stylesheet" href="{{ URL::asset('css/pages/cart/sum-up.css') }}"/>
-    <link rel="stylesheet" href="{{ URL::asset('css/pages/cart/checkout-button.css') }}"/>
-    <link rel="stylesheet" href="{{ URL::asset('css/pages/cart/checkout-section.css') }}"/>
+    <link rel="stylesheet" href="{{ URL::asset('css/pages/cart/cart-item-card.css') }}" />
+    <link rel="stylesheet" href="{{ URL::asset('css/pages/cart/sum-up.css') }}" />
+    <link rel="stylesheet" href="{{ URL::asset('css/pages/cart/checkout-button.css') }}" />
+    <link rel="stylesheet" href="{{ URL::asset('css/pages/cart/checkout-section.css') }}" />
 @endpush
 
-@if (Auth::check())
-    {{--    User is logged in --}}
-
+@auth
+    {{-- User is logged in --}}
     @section('content')
         {{-- removed main container class --}}
         @if (count($cartItems) === 0)
@@ -20,84 +19,80 @@
                 <h1>Your cart is empty</h1>
             </div>
         @else
-            <div class="inner-container">
-                <form id="update-form" target="_self" action="/cart" method="post">
-                    @csrf
-                    @method('PATCH')
-                </form>
+            <form id="update-form" target="_self" action="/cart" method="post">
+                @csrf
+                @method('PATCH')
+            </form>
+            <div class="items-container">
                 @foreach ($cartItems as $product)
                     @include('components.Cart-components.cart-item-card')
-                    <hr>
+                    <div class="hr w-full h-[1px] bg-secondary-grey"></div>
                 @endforeach
-                @include('components/sum-up')
+            </div>
+            @include('components/sum-up')
 
-                <div class="middle-wrapper checkout-section">
-                    <div class="checkout-section__left">
-                        <form target="_self" action="/">
-                            <button class="checkout-section__continue-btn">Continue shopping</button>
-                        </form>
-                        <form target="_self" action="/cart" method="post" id="reset-form">
-                            @csrf
-                            @method('delete')
-                            <button type="submit">Reset</button>
-                        </form>
-                    </div>
-                    <div class="checkout-section__right">
-                        <x-checkout-button
-                            checkoutPrice="{{ number_format($productPriceSum + $deliveryPriceSum, 2, ',', '.') }}"
-                            goToSite="/checkout"></x-checkout-button>
-                    </div>
+            <div class="middle-wrapper checkout-section">
+                <div class="checkout-section__left">
+                    <form target="_self" action="/">
+                        <button class="checkout-section__continue-btn">Continue shopping</button>
+                    </form>
+                    <form target="_self" action="/cart" method="post" id="reset-form">
+                        @csrf
+                        @method('delete')
+                        <button type="submit">Reset</button>
+                    </form>
+                </div>
+                <div class="checkout-section__right">
+                    <x-checkout-button checkoutPrice="{{ number_format($productPriceSum + $deliveryPriceSum, 2, ',', '.') }}"
+                        goToSite="/checkout"></x-checkout-button>
                 </div>
             </div>
         @endif
     @endsection
-@else
+@endauth
+
+
+@guest
     {{-- User is not logged in --}}
     @section('content')
-
         @if ($cartItems === null or count($cartItems) == 0)
             <div class="flex h-[50vh] justify-center items-center">
                 <h1>Your cart is empty</h1>
             </div>
         @else
-            <div class="inner-container">
-                <form id="update-form" target="_self" action="/cart" method="post">
-                    @csrf
-                    @method('PATCH')
-                </form>
-                @foreach ($cartItems as $product)
+            <form id="update-form" target="_self" action="/cart" method="post">
+                @csrf
+                @method('PATCH')
+            </form>
+            @foreach ($cartItems as $product)
+                <div class="flex flex-col items-center big-item-wrapper">
+                    <div class="w-full">
+                        @include('components.Cart-components.cart-item-card-guests')
+                    </div>
+                    <div class="hr w-full max-w-[800px] h-[1px] bg-secondary-grey my-6"></div>
+                </div>
+            @endforeach
+            @include('components/sum-up')
 
-                    <div class="flex flex-col items-center big-item-wrapper">
-                        <div class="w-full">
-                            @include('components.Cart-components.cart-item-card-guests')
-                        </div>
-                        <div class="hr w-full max-w-[800px] h-[1px] bg-secondary-grey my-6"></div>
-                    </div>
-                @endforeach
-                @include('components/sum-up')
-
-                <div class="middle-wrapper checkout-section">
-                    <div class="checkout-section__left">
-                        <form target="_self" action="/">
-                            <button class="checkout-section__continue-btn">Continue shopping</button>
-                        </form>
-                        <form target="_self" action="/cart" method="post" id="reset-form">
-                            @csrf
-                            @method('delete')
-                            <button type="submit">Reset</button>
-                        </form>
-                    </div>
-                    <div class="checkout-section__right">
-                        <x-checkout-button
-                            checkoutPrice="{{ number_format($productPriceSum + $deliveryPriceSum, 2, ',', '.') }}"
-                        ></x-checkout-button>
-                    </div>
+            <div class="middle-wrapper checkout-section">
+                <div class="checkout-section__left">
+                    <form target="_self" action="/">
+                        <button class="checkout-section__continue-btn">Continue shopping</button>
+                    </form>
+                    <form target="_self" action="/cart" method="post" id="reset-form">
+                        @csrf
+                        @method('delete')
+                        <button type="submit">Reset</button>
+                    </form>
+                </div>
+                <div class="checkout-section__right">
+                    <x-checkout-button
+                        checkoutPrice="{{ number_format($productPriceSum + $deliveryPriceSum, 2, ',', '.') }}"></x-checkout-button>
                 </div>
             </div>
-
         @endif
     @endsection
-@endif
+@endguest
 
 @if (Auth::check())
     @push('scripts')
@@ -161,14 +156,13 @@
                     console.log(form)
                     console.log(formData)
                     fetch('/cart', {
-                        method: 'POST',
-                        body: formData
-                    })
+                            method: 'POST',
+                            body: formData
+                        })
                         .then(response => {
                             if (response.ok) {
                                 location.reload()
-                            } else {
-                            }
+                            } else {}
                         })
                         .catch(error => {
                             console.error('Error:', error);
@@ -193,14 +187,13 @@
 
                     itemWrapper.addEventListener("click", (e) => {
 
-                            if (e.target.classList.contains("item-wrapper__trash-icon")) {
-                                itemWrapper.remove()
-                                itemCount--;
-                                submitUpdateFormAndReturn()
-                            }
-
+                        if (e.target.classList.contains("item-wrapper__trash-icon")) {
+                            itemWrapper.remove()
+                            itemCount--;
+                            submitUpdateFormAndReturn()
                         }
-                    )
+
+                    })
                 }
 
                 for (const form of allFormFields) {
@@ -253,14 +246,13 @@
                     const formData = new FormData(form);
                     console.log(formData)
                     fetch('/cart', {
-                        method: 'POST',
-                        body: formData
-                    })
+                            method: 'POST',
+                            body: formData
+                        })
                         .then(response => {
                             if (response.ok) {
                                 window.location.href = "/checkout"
-                            } else {
-                            }
+                            } else {}
                         })
                         .catch(error => {
                             console.error('Error:', error);
@@ -272,14 +264,13 @@
                     const formData = new FormData(form);
                     console.log(formData)
                     fetch('/cart', {
-                        method: 'POST',
-                        body: formData
-                    })
+                            method: 'POST',
+                            body: formData
+                        })
                         .then(response => {
                             if (response.ok) {
                                 window.location.reload()
-                            } else {
-                            }
+                            } else {}
                         })
                         .catch(error => {
                             console.error('Error:', error);
@@ -291,21 +282,19 @@
                     const formData = new FormData(data);
                     e.preventDefault()
                     fetch('/cart', {
-                        method: 'POST',
-                        body: formData
-                    })
+                            method: 'POST',
+                            body: formData
+                        })
                         .then(response => {
                             if (response.ok) {
                                 window.location.href = "/checkout"
-                            } else {
-                            }
+                            } else {}
                         })
                         .catch(error => {
                             console.error('Error:', error);
                         });
                 })
             })
-
         </script>
     @endpush
 @endif
