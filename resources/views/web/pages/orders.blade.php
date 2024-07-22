@@ -88,9 +88,7 @@
                                 $totalCostWithoutDiscount += $orderItems->oldPrice * $orderItems->quantity;
                                 $discount += ($orderItems->oldPrice - $orderItems->newPrice) * $orderItems->quantity;
                                 $shipping +=
-                                    $orderItems->product->shippingCost > 0
-                                        ? $orderItems->product->shippingCost
-                                        : 0;
+                                    $orderItems->product->shippingCost > 0 ? $orderItems->product->shippingCost : 0;
                             @endphp
                         @endforeach
                         <div class="order__container-summary">
@@ -118,9 +116,10 @@
                 </div>
             @endforeach
         @else
-            <p>You have no orders yet. Feel free to find some products on our store</p>
+            <div class="no-orders">
+                <b>You have no orders yet😔 <br> Feel free to find some products on our store</b>
+            </div>
         @endif
-
     </div>
 @endsection
 

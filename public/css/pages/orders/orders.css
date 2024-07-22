@@ -1,9 +1,17 @@
+.no-orders {
+    height: 50vh;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    text-align: center;
+}
+
+
 .order__page-layout {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    align-items: center;
-    justify-content: center;
     min-height: 50vh;
 }
 
