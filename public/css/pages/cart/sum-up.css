@@ -6,7 +6,7 @@
     gap: 6px;
 }
 
-.sum-up-bot{
+.sum-up-bot {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -14,45 +14,38 @@
     gap: 5px;
 }
 
-.sum-up-top__text, .sum-up-bot__price-row{
+.sum-up-top__text,
+.sum-up-bot__price-row {
     display: flex;
     justify-content: space-between;
 }
-.inner-container hr{
-    margin: 20px 0;
-    width: 100%;
-    color: var(--text-inactive);
-    border-top-width: 2px;
-}
 
-/* .sum-up-top__text > span, .sum-up-bot > p > span, .promo > p{
-    font-size: var(--title-heading-smaller);
-} */
 
-.sum-up-top__right, .sum-up-bot__bold{
+.sum-up-top__right,
+.sum-up-bot__bold {
     color: var(--text-primary);
     font-weight: bold;
 }
 
-.sum-up-bot__tax{
+.sum-up-bot__tax {
     color: var(--text-inactive);
 }
 
-.sum-up-top__left{
+.sum-up-top__left {
     color: var(--text-primary);
 }
 
-.sum-up-wrapper{
+.sum-up-wrapper {
     flex-direction: column;
 }
 
-.promo__box{
+.promo__box {
     border: solid var(--green) 1px;
     border-radius: 8px;
     display: flex;
 }
 
-.promo__box_submit{
+.promo__box_submit {
     background: var(--green);
     color: white;
     border: solid var(--green) 1px;
@@ -60,21 +53,22 @@
     padding: 7px 25px;
 }
 
-.promo__box-text{
+.promo__box-text {
     border-radius: 8px;
     outline: none;
-    padding: 0 0 0 10px;
+    padding: 10px 0 10px 5px;
 }
 
-.promo > form{
+.promo>form {
     display: flex;
 }
-.promo{
+
+.promo {
     width: 100%;
-    margin: 0 0 30px 0 ;
+    margin: 0 0 30px 0;
     color: var(--text-primary);
 }
 
-.promo > p{
+.promo>p {
     margin-bottom: 10px;
 }

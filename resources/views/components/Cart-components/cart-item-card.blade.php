@@ -1,7 +1,8 @@
-<div class="item-wrapper middle-wrapper id-{{ $product->id }}" xmlns="http://www.w3.org/1999/html">
-
+<div class="item-wrapper" xmlns="http://www.w3.org/1999/html">
     <div class="item-wrapper__left">
-        <img class="cart-image" src="{{ URL::asset($product->product->images[0]->url) }}" alt="chair">
+        <a href="{{ url('product/' . $product->product->id) }}">
+            <img class="cart-image" src="{{ URL::asset($product->product->images[0]->url) }}" alt="chair">
+        </a>
     </div>
     <div class="item-wrapper__right">
         <div class="item-wrapper__right-left">
@@ -19,16 +20,19 @@
             @endif
         </div>
         <div class="item-wrapper__right-right">
-            <p class="item-wrapper__end-price">
-                {{ number_format($product->quantity * $product->product->newPrice, 2, ',', '.') }} €</p>
-            <p class="item-wrapper__more-or-less">
-                <a class="item-wrapper__inc-btn"><span class="item-wrapper__more-or-less-item minus">-</span></a>
-                <input name="{{ $product->product_id }}-{{ $product->color_id }}" form="update-form"
-                    id="{{ $product->product_id }}" type="number" min="1"
-                    max="{{ $product->product->stockQuantity }}" value="{{ $product->quantity }}"
-                    class="item-wrapper__more-or-less-item item-wrapper__price">
-                <a class="item-wrapper__inc-btn"><span class="item-wrapper__more-or-less-item plus">+</span></a>
-            </p>
+            <div class="item-wrapper__upper">
+                <p class="item-wrapper__end-price">
+                    {{ number_format($product->quantity * $product->product->newPrice, 2, ',', '.') }} €</p>
+                <p class="item-wrapper__more-or-less">
+                    <a class="item-wrapper__inc-btn"><span class="item-wrapper__more-or-less-item minus">-</span></a>
+                    <input name="{{ $product->product_id }}-{{ $product->color_id }}" form="update-form"
+                        id="{{ $product->product_id }}" type="number" min="1"
+                        max="{{ $product->product->stockQuantity }}" value="{{ $product->quantity }}"
+                        class="item-wrapper__more-or-less-item item-wrapper__price">
+                    <a class="item-wrapper__inc-btn"><span class="item-wrapper__more-or-less-item plus">+</span></a>
+                </p>
+            </div>
+
             <form id="trash-form" method="post" action="/cart">
                 @csrf
                 @method('put')
