@@ -15,15 +15,16 @@
         @include('../../components/PDP-components/pdp-description')
         @include('../../components/PDP-components/pdp-characteristics')
     </div>
-    {{-- <hr class="h-28" id="reviews" /> --}}
     <div class="pdp-comments-container mt-10 w-full">
         @include('../../components/PDP-components/pdp-comments')
     </div>
+
     @auth
         <div class="pdp-comment-form-container flex justify-center mt-10 mb-20 w-full">
             @include('../../components/PDP-components/pdp-comment-form')
         </div>
     @endauth
+
     <div class="pdp-suggestion-container h-auto mt-20 mb-20 md:mt-14">
         @include('../../components/PDP-components/pdp-suggestion')
     </div>

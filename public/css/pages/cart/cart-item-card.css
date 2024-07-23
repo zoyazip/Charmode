@@ -2,7 +2,6 @@
     margin: auto;
     max-width: 800px;
     display: flex;
-    /*background-color: #ac5252;*/
     align-items: center;
     gap: 15px;
 }
@@ -78,6 +77,7 @@
     width: 40px;
     text-align: center;
     color: var(--green);
+    user-select: none;
 }
 
 .item-wrapper__more-or-less {
@@ -107,9 +107,6 @@
 
 .item-wrapper__trash-icon {
     cursor: pointer;
-    /* width: 20vw;
-    max-width: 30px;
-    min-width: 26px; */
     width: 26px;
 }
 
@@ -133,7 +130,7 @@
     .item-wrapper__upper {
         gap: 0;
     }
-    
+
     .item-wrapper__more-or-less-item {
         font-size: 1.2rem;
         max-width: 30px;
