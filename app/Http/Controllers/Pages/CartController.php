@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Pages;
 
 use App\Http\Controllers\Controller;
+
 use App\Models\CartItem;
 use App\Models\Product;
+use App\Models\Color;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
@@ -16,51 +19,66 @@ class CartController extends Controller
 {
     public function index(Request $request)
     {
-        if (Auth::check()) {
-            $products = CartItem::where('user_id', Auth::id())->with(['product', 'user', 'color'])->get();
-            $productPriceSum = 0;
-            $deliveryPriceSum = 0;
-            $productTotalcount = 0;
+        $products = Auth::check()
+            ? CartItem::where('user_id', Auth::id())->with(['product', 'user', 'color'])->get()
+            : $this->getGuestCartItems();
 
-            foreach ($products as $entry) {
-                $productPriceSum += $entry->product->newPrice * $entry->quantity + $entry->product->shippingCost;
-                $deliveryPriceSum += $entry->product->shippingCost;
-                $productTotalcount += $entry->quantity;
-            }
-            return view('web.pages.cart', [
-                "cartItems" => $products,
-                "productPriceSum" => $productPriceSum,
-                "productCountSum" => $productTotalcount,
-                "deliveryPriceSum" => $deliveryPriceSum,
-            ]);
-        } else {
-            $alldata = json_decode(Cookie::get('cartitems') ?? '[]', true);
+            [$productPriceSum, $deliveryPriceSum, $productTotalCount] = $this->calculateCartTotals($products);
 
-            $productPriceSum = 0;
-            $deliveryPriceSum = 0;
-            $productTotalcount = 0;
-
-            if ($alldata !== NULL) {
-                for ($i = 0; $i < count($alldata); $i++) {
-                    $product_id = $alldata[$i]['product_id'];
-                    $products = Product::where(["id" => $product_id])->get();
-                    $alldata[$i]['products'] = $products[0];
-                    $productPriceSum += $alldata[$i]['products']->newPrice * $alldata[$i]['quantity'] + $alldata[$i]['products']->shippingCost;
-                    $deliveryPriceSum += $alldata[$i]['products']->shippingCost;
-                    $productTotalcount += $alldata[$i]['quantity'];
-                    $colortable = DB::table("colors")->where("id", $alldata[$i]['color_id'])->get();
-                    $alldata[$i]['hexColor'] = $colortable[0]->hex;
-                }
-            }
-
-            return view('web.pages.cart', [
-                "cartItems" => $alldata,
-                "productPriceSum" => $productPriceSum,
-                "deliveryPriceSum" => $deliveryPriceSum,
-                "productCountSum" => $productTotalcount,
-            ]);
-        }
+        return view('web.pages.cart', [
+            "cartItems" => $products,
+            "productPriceSum" => $productPriceSum,
+            "deliveryPriceSum" => $deliveryPriceSum,
+            "productCountSum" => $productTotalCount,
+        ]);
     }
+
+    // index helper
+    private function getGuestCartItems()
+    {
+        $alldata = json_decode(Cookie::get('cartitems') ?? '[]', true);
+        $cartItems = collect();
+
+        if ($alldata !== NULL) {
+            foreach ($alldata as $itemData) {
+                $product = Product::find($itemData['product_id']);
+                $color = Color::find($itemData['color_id']);
+
+                // Create a new CartItem instance and populate it
+                $cartItem = new CartItem();
+                $cartItem->product_id = $product->id;
+                $cartItem->color_id = $color->id;
+                $cartItem->user_id = null; // Or some identifier for guest users
+                $cartItem->quantity = $itemData['quantity'];
+                $cartItem->exists = true; // Indicate that this is a retrieved model instance
+
+                // Assign the relationships
+                $cartItem->setRelation('product', $product);
+                $cartItem->setRelation('color', $color);
+
+                $cartItems->push($cartItem);
+            }
+        }
+
+        return $cartItems;
+    }
+
+    // index helper
+    private function calculateCartTotals($items)
+    {
+        $productPriceSum = 0;
+        $deliveryPriceSum = 0;
+        $productTotalCount = 0;
+
+        foreach ($items as $item) {
+            $productPriceSum += $item['product']->newPrice * $item['quantity'];
+            $deliveryPriceSum += $item['product']->shippingCost;
+            $productTotalCount += $item['quantity'];
+        }
+
+        return [$productPriceSum, $deliveryPriceSum, $productTotalCount];
+    }
+
 
     public function storeAuth(Request $request)
     {
@@ -80,18 +98,6 @@ class CartController extends Controller
         }
 
         return redirect('/cart');
-    }
-
-
-    // function helper for storeGuest method
-    private function findItemIndex($items, $productId, $colorId)
-    {
-        foreach ($items as $index => $item) {
-            if ($item['product_id'] === $productId && $item['color_id'] === $colorId) {
-                return $index;
-            }
-        }
-        return -1;
     }
 
     public function storeGuest(Request $request)
@@ -116,13 +122,24 @@ class CartController extends Controller
         return redirect('/cart');
     }
 
+    // function helper for storeGuest method
+    private function findItemIndex($items, $productId, $colorId)
+    {
+        foreach ($items as $index => $item) {
+            if ($item['product_id'] === $productId && $item['color_id'] === $colorId) {
+                return $index;
+            }
+        }
+        return -1;
+    }
 
     public function removeItem(Request $request)
     {
-        $allRequest = $request->all();
-        $product_id = $allRequest['product_id'];
-        $color_id = $allRequest['color_id'];
-        if (Auth::check()) { // user is logged in
+        $product_id = $request->input('product_id');
+        $color_id = $request->input('color_id');
+
+        if (Auth::check()) {
+            // User is logged in
             DB::table('cart_items')
                 ->where([
                     'product_id' => $product_id,
@@ -131,22 +148,18 @@ class CartController extends Controller
                 ])
                 ->delete();
         } else {
-            // cookies
-            $addedItems = json_decode($request->cookie('cartitems'), true);
-            $found = false;
-            if (!empty($addedItems)) {
+            // Handle guest users with cookies
+            $addedItems = json_decode($request->cookie('cartitems'), true) ?? [];
 
-                foreach ($addedItems as $index => $item) {
-                    if ($item->product_id === $product_id && $item->color_id === $request->color_id) {
-                        // item with same color already has added, so we change quantity
-                        array_splice($addedItems, $index, 1);
-                        break;
-                    }
-                }
-                Cookie::queue('cartitems', json_encode($addedItems));
-            }
+            // Find and remove the matching item
+            $addedItems = array_filter($addedItems, function ($item) use ($product_id, $color_id) {
+                return !($item['product_id'] === $product_id && $item['color_id'] === $color_id);
+            });
+            $addedItems = array_values($addedItems);
+            Cookie::queue('cartitems', json_encode($addedItems));
         }
-        return redirect()->back();
+
+        return Redirect::refresh();
     }
 
     public function removeAllItems(Request $request)
@@ -156,59 +169,36 @@ class CartController extends Controller
         } else {
             Cookie::queue(Cookie::forget('cartitems'));  // cookies
         }
-        return redirect()->back();
+        return Redirect::refresh();
     }
-
 
     public function updateList(Request $request)
     {
-        $allrequest = $request->input();
-        unset($allrequest['_token']);
-        unset($allrequest['_method']);
+        $updates = $request->except(['_token', '_method']);
 
         if (Auth::check()) {
             $userId = Auth::id();
-            foreach ($allrequest as $key => $value) {
-                $ids = explode("-", $key);
-                $productId = $ids[0];
-                $colorId = $ids[1];
-
-                DB::table('cart_items')->where(['user_id' => $userId, 'product_id' => $productId, 'color_id' => $colorId])->
-                    update(['quantity' => $value]);
+            foreach ($updates as $key => $quantity) {
+                [$productId, $colorId] = explode("-", $key);
+                DB::table('cart_items')
+                    ->where(['user_id' => $userId, 'product_id' => $productId, 'color_id' => $colorId])
+                    ->update(['quantity' => $quantity]);
             }
-            return Redirect::refresh();
         } else {
-            $cookieData = json_decode(Cookie::get('cartitems'), true);
-            $newCookie = [];
+            $cookieData = json_decode($request->cookie('cartitems'), true) ?? [];
+            $updatedItems = [];
 
-            Cookie::forget('cartitems');
-            $loopMax = count($cookieData);
-
-            for ($i = 0, $j = 0; $i < $loopMax; $i++) {
-
-                $quantity = 0;
-                $productId = "";
-                $colorId = "";
-                foreach ($allrequest as $key => $value) {
-
-                    $data = explode("-", $key);
-                    $productId = $data[0];
-                    $colorId = $data[1];
-                    $quantity = $value;
-
-
-                    if ($cookieData[$i]['product_id'] == $productId && $cookieData[$i]['color_id'] == $colorId) {
-                        $newCookie[$j]['user_id'] = $cookieData[$i]['user_id'];
-                        $newCookie[$j]['product_id'] = $cookieData[$i]['product_id'];
-                        $newCookie[$j]['color_id'] = $cookieData[$i]['color_id'];
-                        $newCookie[$j]['quantity'] = $quantity;
-                        $j++;
-
-                    }
+            foreach ($cookieData as $item) {
+                $key = "{$item['product_id']}-{$item['color_id']}";
+                if (isset($updates[$key])) {
+                    $item['quantity'] = $updates[$key];
                 }
+                $updatedItems[] = $item;
             }
-            Cookie::queue('cartitems', json_encode($newCookie), 60 * 24);
-            return Redirect::refresh();
+
+            Cookie::queue('cartitems', json_encode($updatedItems), 60 * 24);
         }
+
+        return Redirect::refresh();
     }
 }

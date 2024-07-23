@@ -1,3 +1,7 @@
+@php
+    $buttonDisabled = $product->stockQuantity < 1;
+@endphp
+
 <form class="main-info-container md:py-10 md:w-1/2 lg:w-1/3 h-full flex flex-col justify-between"
     action="@auth {{ route('cart.store') }} @endauth @guest {{ route('cart.store.guest') }} @endguest" method="POST">
     @csrf
@@ -47,9 +51,15 @@
     <div>
         <div class="add-to-cart flex gap-4 mt-10 md:mt-0 items-center">
             <button type="submit"
-                class="bg-main-green text-white flex items-center justify-between px-4 py-3 rounded-lg w-3/4 md:w-full xl:w-2/3 hover:drop-shadow-lg transition-all">
+                class="{{ $buttonDisabled ? 'bg-gray-300 px-4 py-2 rounded-md cursor-not-allowed opacity-50' : 'bg-main-green text-white flex items-center justify-between px-4 py-3 rounded-lg w-3/4 md:w-full xl:w-2/3 hover:drop-shadow-lg transition-all' }} "
+                {{ $buttonDisabled ? 'disabled' : null }}>
                 <div class="add-to-cart-btn-text">
-                    <p>Add to Cart</p>
+                    @if (!$buttonDisabled)
+                        <p>Add to Cart</p>
+                    @else
+                        <p>Out of Stock</p>
+                    @endif
+
                 </div>
                 <div class="add-to-cart-btn-price">
                     <p class="font-bold text-2xl">{{ number_format($product->newPrice, 2) }} €</p>
@@ -59,7 +69,7 @@
     </div>
 </form>
 
-@push('scripts')
+{{-- @push('scripts')
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const likeCheckbox = document.querySelector('.like-checkbox')
@@ -74,7 +84,6 @@
                     likeCheckboxHeart.src = 'assets/svg/heart.svg'
                 }
             })
-
         })
     </script>
-@endpush
+@endpush --}}

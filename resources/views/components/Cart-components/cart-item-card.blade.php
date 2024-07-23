@@ -4,6 +4,7 @@
             <img class="cart-image" src="{{ URL::asset($product->product->images[0]->url) }}" alt="chair">
         </a>
     </div>
+
     <div class="item-wrapper__right">
         <div class="item-wrapper__right-left">
             <p class="item-wrapper__product-name">{{ $product->product->name }}</p>
@@ -38,8 +39,11 @@
                 @method('put')
                 <input type="hidden" name="product_id" value="{{ $product->product_id }}">
                 <input type="hidden" name="color_id" value="{{ $product->color_id }}">
-                <button type="submit" class="item-wrapper__trash"><img src="{{ URL::asset('assets/svg/trash.svg') }}"
-                        alt="trash" class="item-wrapper__trash-icon"></button>
+
+                <button type="submit" class="item-wrapper__trash">
+                    <img src="{{ URL::asset('assets/svg/trash.svg') }}" alt="trash"
+                        class="item-wrapper__trash-icon">
+                </button>
             </form>
         </div>
     </div>
