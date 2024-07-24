@@ -126,6 +126,12 @@
     height: 26px;
 }
 
+@media only screen and (max-width: 768px) {
+    .item-wrapper__right {
+        padding: 0;
+    }
+}
+
 @media only screen and (max-width: 425px) {
     .item-wrapper__upper {
         gap: 0;
@@ -145,10 +151,6 @@
     .item-wrapper__right p {
         font-size: 1.1rem;
         color: var(--text-primary);
-    }
-
-    .item-wrapper__right {
-        padding: 0;
     }
 
     .item-wrapper__right-left {

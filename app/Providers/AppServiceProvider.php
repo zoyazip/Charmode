@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\View;
 use App\Http\View\Composers\CategoryComposer;
 
+use App\Services\CartService;
+
 
 class AppServiceProvider extends ServiceProvider
 
@@ -17,7 +19,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        // URL::forceScheme(scheme:'https'); 
+        // URL::forceScheme(scheme:'https');
+        $this->app->singleton(CartService::class, function ($app) {
+            return new CartService();
+        });
     }
 
     /**

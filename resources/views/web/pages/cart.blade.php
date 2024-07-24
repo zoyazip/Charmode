@@ -3,7 +3,7 @@
 @section('title', 'Cart page')
 
 @push('styles')
-    {{-- item card styling --}}
+    {{-- product entry styling --}}
     <link rel="stylesheet" href="{{ URL::asset('css/pages/cart/cart-item-card.css') }}" />
     <link rel="stylesheet" href="{{ URL::asset('css/pages/cart/sum-up.css') }}" />
     <link rel="stylesheet" href="{{ URL::asset('css/pages/cart/checkout-button.css') }}" />
@@ -24,7 +24,7 @@
         </form>
         <div class="items-container">
             @foreach ($cartItems as $product)
-                @include('components.Cart-components.cart-item-card')
+                @include('components.Cart-components.cart-item-card', ['controls' => true])
                 <div class="hr w-full h-[1px] bg-secondary-grey"></div>
             @endforeach
         </div>

@@ -1,0 +1,18 @@
+
+.checkout__input-wrapper div.iti {
+    width: 100%;
+}
+
+.iti__selected-dial-code {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--green);
+}
+
+.iti--inline-dropdown .iti__dropdown-content {
+    border-radius: 10px;
+}
+
+.iti__country-list::-webkit-scrollbar {
+    display: none;
+} 

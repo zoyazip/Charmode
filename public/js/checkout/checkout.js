@@ -1,16 +1,13 @@
-function changeDataArrow(divId, arrowId) {
-    const div = document.getElementById(divId);
+function openBlock(containerId, arrowId) {
+    const container = document.getElementById(containerId);
     const arrow = document.getElementById(arrowId);
-    if (arrow.classList.contains("close__arrow")) {
-        arrow.classList.remove("close__arrow");
-        arrow.classList.add("open__arrow");
-        div.classList.remove("hidden__div");
-        div.classList.add("visible__div");
+
+    if (container.style.display === 'none' || container.style.display === '') {
+        container.style.display = 'flex';
+        arrow.classList.add('rotate-arrow');
     } else {
-        arrow.classList.remove("open__arrow");
-        arrow.classList.add("close__arrow");
-        div.classList.add("hidden__div");
-        div.classList.remove("visible__div");
+        container.style.display = 'none';
+        arrow.classList.remove('rotate-arrow');
     }
 }
 
