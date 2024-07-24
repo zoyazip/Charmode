@@ -125,7 +125,7 @@ Route::get('/filter/{subcat?}', [ProductListPageController::class, 'categoryInde
 
 
 // Cart page routes
-Route::get('/cart', [CartController::class, 'index']);
+Route::get('/cart', [CartController::class, 'index'])->name('cart');
 Route::post('/cart/store/guest', [CartController::class, 'storeGuest'])->name('cart.store.guest')->middleware('guest');
 Route::post('/cart/store', [CartController::class, 'storeAuth'])->name('cart.store')->middleware('auth');
 

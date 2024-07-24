@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Pages;
 use App\Http\Controllers\Controller;
 
 use App\Models\CartItem;
-use App\Models\Product;
-use App\Models\Color;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,15 +13,25 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 
 
+use App\Services\CartService;
+
+
 class CartController extends Controller
 {
+    protected $cartService;
+
+    public function __construct(CartService $cartService)
+    {
+        $this->cartService = $cartService;
+    }
+
     public function index(Request $request)
     {
         $products = Auth::check()
             ? CartItem::where('user_id', Auth::id())->with(['product', 'user', 'color'])->get()
-            : $this->getGuestCartItems();
+            : $this->cartService->getGuestCartItems();
 
-            [$productPriceSum, $deliveryPriceSum, $productTotalCount] = $this->calculateCartTotals($products);
+            [$productPriceSum, $deliveryPriceSum, $productTotalCount] = $this->cartService->calculateCartTotals($products);
 
         return view('web.pages.cart', [
             "cartItems" => $products,
@@ -32,53 +40,6 @@ class CartController extends Controller
             "productCountSum" => $productTotalCount,
         ]);
     }
-
-    // index helper
-    private function getGuestCartItems()
-    {
-        $alldata = json_decode(Cookie::get('cartitems') ?? '[]', true);
-        $cartItems = collect();
-
-        if ($alldata !== NULL) {
-            foreach ($alldata as $itemData) {
-                $product = Product::find($itemData['product_id']);
-                $color = Color::find($itemData['color_id']);
-
-                // Create a new CartItem instance and populate it
-                $cartItem = new CartItem();
-                $cartItem->product_id = $product->id;
-                $cartItem->color_id = $color->id;
-                $cartItem->user_id = null; // Or some identifier for guest users
-                $cartItem->quantity = $itemData['quantity'];
-                $cartItem->exists = true; // Indicate that this is a retrieved model instance
-
-                // Assign the relationships
-                $cartItem->setRelation('product', $product);
-                $cartItem->setRelation('color', $color);
-
-                $cartItems->push($cartItem);
-            }
-        }
-
-        return $cartItems;
-    }
-
-    // index helper
-    private function calculateCartTotals($items)
-    {
-        $productPriceSum = 0;
-        $deliveryPriceSum = 0;
-        $productTotalCount = 0;
-
-        foreach ($items as $item) {
-            $productPriceSum += $item['product']->newPrice * $item['quantity'];
-            $deliveryPriceSum += $item['product']->shippingCost;
-            $productTotalCount += $item['quantity'];
-        }
-
-        return [$productPriceSum, $deliveryPriceSum, $productTotalCount];
-    }
-
 
     public function storeAuth(Request $request)
     {
