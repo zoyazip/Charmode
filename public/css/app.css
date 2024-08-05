@@ -74,6 +74,10 @@ hr {
     border-top-width: 0;
 }
 
+img {
+    user-select: none;
+}
+
 
 
 /* base classes */

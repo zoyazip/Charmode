@@ -16,7 +16,7 @@
 @section('content')
     <div class="checkout__container">
         <div class="checkout__whole-form">
-            <form method="POST" action="/to_checkout">
+            <form method="POST" action="{{ route('proceed') }}">
                 @csrf
 
                 <div class="checkout__container__div">
@@ -36,10 +36,10 @@
                     </div>
                     <div id="checkout__form" class="checkout__form" style="display: flex;">
                         <div class="checkout__input-wrapper">
-                            <label for="checkoutemail">Email Address*</label>
-                            <input class="@error('checkoutemail') is-invalid @enderror" placeholder="Your email address"
-                                type="text" id="checkoutemail" name="checkoutemail"
-                                value="{{ old('checkoutemail') ?? (auth()->user()->email ?? '') }}">
+                            <label for="checkout_email">Email Address*</label>
+                            <input class="@error('checkout_email') is-invalid @enderror" placeholder="Your email address"
+                                type="text" id="checkout_email" name="checkout_email"
+                                value="{{ old('checkout_email') ?? (auth()->user()->email ?? '') }}">
 
                             @error('checkoutemail')
                                 <p class="checkout__error">{{ $message }}</p>
@@ -47,21 +47,21 @@
                         </div>
                         <div class="checkout__container-rowupper">
                             <div class="checkout__input-wrapper">
-                                <label for="checkoutfullname">Full Name*</label>
-                                <input type="text" name="checkoutfullname" id="checkoutfullname"
-                                    value="{{ old('checkoutfullname') ?? (auth()->user()->full_name ?? '') }}"
-                                    placeholder="Your name">
+                                <label for="checkout_fullname">Full Name*</label>
+                                <input type="text" name="checkout_fullname" id="checkout_fullname"
+                                    value="{{ old('checkout_fullname') ?? (auth()->user()->full_name ?? '') }}"
+                                    placeholder="Your name" class="@error('checkout_fullname') is-invalid @enderror">
                             </div>
                             <div class="checkout__input-wrapper">
-                                <label for="checkoutphone">Phone Number*</label>
-                                <input name="checkoutphonecode" id="checkoutphonecode" type="tel">
+                                <label for="checkout_phone">Phone Number*</label>
+                                <input id="checkout_phone" required type="tel" value="{{ old('checkout_fullname') ?? (auth()->user()->phone ?? '') }}">
                             </div>
                         </div>
 
                         <div class="checkout__input-wrapper">
-                            <label for="checkoutcomment">Message</label>
-                            <textarea placeholder="Enter text here..." type="text" id="checkoutcomment" name="checkoutcomment"
-                                value="{{ old('comment') }}"></textarea>
+                            <label for="checkout_comment">Message</label>
+                            <textarea placeholder="Enter text here..." type="text" id="checkout_comment" name="checkout_comment"
+                                value="{{ old('checkout_comment') }}"></textarea>
                         </div>
                     </div>
 
@@ -75,27 +75,27 @@
 
                     <div id="delivery__container" class="checkout__form" style="display: none;">
                         <div class="checkout__input-wrapper">
-                            <label for="checkoutcountry">Country/Region</label>
-                            <input name="checkoutcountry" id="checkoutcountry" type="country" placeholder="Your country">
+                            <label for="checkout_country">Country/Region</label>
+                            <input name="checkout_country" id="checkout_country" type="country" placeholder="Your country">
                         </div>
 
                         <div class="checkout__container-rowupper">
                             <div class="checkout__input-wrapper">
-                                <label for="checkoutcity">City*</label>
-                                <input class="@error('city') is-invalid @enderror" placeholder="Your city" type="text"
-                                    id="checkoutcity" name="checkoutcity"
-                                    value="{{ old('city') ?? (auth()->user()->city ?? '') }}">
+                                <label for="checkout_city">City*</label>
+                                <input class="@error('checkout_city') is-invalid @enderror" placeholder="Your city"
+                                    type="text" id="checkout_city" name="checkout_city"
+                                    value="{{ old('checkout_city') ?? (auth()->user()->city ?? '') }}">
 
-                                @error('city')
+                                @error('checkout_city')
                                     <p class="checkout__error">{{ $message }}</p>
                                 @enderror
                             </div>
                             <div class="checkout__input-wrapper">
-                                <label for="checkoutzip">Zip code*</label>
-                                <input class="@error('zip') is-invalid @enderror" placeholder="Your zip code" type="text"
-                                    id="checkoutzip" name="checkoutzip"
-                                    value="{{ old('zip') ?? (auth()->user()->address ?? '') }}">
-                                @error('zip')
+                                <label for="checkout_zip">Zip code*</label>
+                                <input class="@error('checkout_zip') is-invalid @enderror" placeholder="Your zip code"
+                                    type="text" id="checkout_zip" name="checkout_zip"
+                                    value="{{ old('checkout_zip') ?? (auth()->user()->address ?? '') }}">
+                                @error('checkout_zip')
                                     <p class="checkout__error">{{ $message }}</p>
                                 @enderror
                             </div>
@@ -103,20 +103,20 @@
 
                         <div class="checkout__container-rowupper">
                             <div class="checkout__input-wrapper">
-                                <label for="checkoutaddress">Address*</label>
-                                <input class="@error('address') is-invalid @enderror" placeholder="Your address"
-                                    type="text" id="checkoutaddress" name="checkoutaddress"
-                                    value="{{ old('address') ?? (auth()->user()->address ?? '') }}">
-                                @error('address')
+                                <label for="checkout_address">Address*</label>
+                                <input class="@error('checkout_address') is-invalid @enderror" placeholder="Your address"
+                                    type="text" id="checkout_address" name="checkout_address"
+                                    value="{{ old('checkout_address') ?? (auth()->user()->address ?? '') }}">
+                                @error('checkout_address')
                                     <p class="checkout__error">{{ $message }}</p>
                                 @enderror
                             </div>
                             <div class="checkout__input-wrapper">
-                                <label for="checkoutoptional">Apt, suite (optional)</label>
-                                <input class="@error('optional') is-invalid @enderror" type="text"
-                                    placeholder="Additional info" id="checkoutoptional" name="checkoutoptional"
-                                    value="{{ old('address') ?? (auth()->user()->address ?? '') }}">
-                                @error('optional')
+                                <label for="checkout_optional">Apt, suite (optional)</label>
+                                <input class="@error('checkout_optional') is-invalid @enderror" type="text"
+                                    placeholder="Additional info" id="checkout_optional" name="checkout_optional"
+                                    value="{{ old('checkout_optional') ?? (auth()->user()->address ?? '') }}">
+                                @error('checkout_optional')
                                     <p class="checkout__error">{{ $message }}</p>
                                 @enderror
                             </div>
@@ -144,8 +144,9 @@
                     </div>
 
                     <div class="checkout__form__checkbox">
-                        <input class="accent-main-green" type="checkbox" id="confirm" name="confirm">
-                        <label class="green-text" for="confirm">Confirm terms etc</label>
+                        <input class="accent-main-green" type="checkbox" id="chekout_confirm" name="chekout_confirm">
+                        <label class="green-text  @error('chekout_confirm') error @enderror" for="chekout_confirm">Confirm
+                            terms and etc.</label>
                     </div>
                     <input type="submit" class="checkout__btn__last" value="Checkout" />
                 </div>
@@ -171,11 +172,20 @@
 
     <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@23.6.1/build/js/intlTelInput.min.js"></script>
     <script>
-        const input = document.querySelector("#checkoutphonecode");
+        const input = document.querySelector("#checkout_phone");
+
+        const initialCountry = @json($countryCode) || "lv"; // Default to "lv" if no country code is provided
+
         window.intlTelInput(input, {
             utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@23.6.1/build/js/utils.js",
             separateDialCode: true,
-            initialCountry: "lv",
+            initialCountry: initialCountry,
+            hiddenInput: function(telInputName) {
+                return {
+                    phone: "checkout_phonefull",
+                    country: "checkout_countrycode"
+                };
+            }
         });
     </script>
 @endpush

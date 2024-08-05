@@ -57,8 +57,8 @@ Route::post('/categories/edit/{id}', [CategoryController::class, 'updateProduct'
 Route::get('/categories/delete/{id}', [CategoryController::class, 'deleteProduct']);
 
 
-Route::get('/checkout', [CheckoutController::class, 'openCheckoutPage']);
-Route::post('/to_checkout', [CheckoutController::class, 'checkInput']);
+Route::get('/checkout', [CheckoutController::class, 'index']);
+Route::post('/checkout/proceed', [CheckoutController::class, 'store'])->name('proceed');
 
 // Admin routes
 Route::get('/adminproducts', [AdminController::class, 'openAllProductPage'])

@@ -27,11 +27,19 @@ class CheckoutController extends Controller
         $this->cartService = $cartService;
     }
 
-    public function openCheckoutPage()
+    public function index()
     {
+        $countryCode = null;
+        if (Auth::check()) {
+            $user = Auth::user();
+            $countryCode = $user->countryCode;
+        }
+
         $products = Auth::check()
             ? CartItem::where('user_id', Auth::id())->with(['product', 'user', 'color'])->get()
             : $this->cartService->getGuestCartItems();
+
+        if (count($products) < 1) return redirect('/cart');
 
         [$productPriceSum, $deliveryPriceSum, $productTotalCount] = $this->cartService->calculateCartTotals($products);
         return view('web.pages.checkout', [
@@ -39,122 +47,96 @@ class CheckoutController extends Controller
             "productPriceSum" => $productPriceSum,
             "deliveryPriceSum" => $deliveryPriceSum,
             "productCountSum" => $productTotalCount,
+            "countryCode" => $countryCode,
         ]);
     }
 
-    public function checkInput(Request $request)
+    public function store(Request $request)
     {
-        $checkoutemail = "";
-        $city = "";
-        $address = "";
-        $request->validate([
-            'checkoutemail' => 'required|max:255|email:rfc',
-            'city' => 'required|max:255',
-            'address' => 'required|max:255',
-        ]);
-        $checkoutemail = $request->checkoutemail;
-        $city = $request->city;
-        $address = $request->address;
+        $rules = [
+            'checkout_email' => 'required|email',
+            'checkout_fullname' => 'required|string|max:255',
+            'checkout_phonefull' => 'required|string|max:20|regex:/^\+[1-9]\d{1,14}$/',
+            'checkout_countrycode' => 'required|string|max:3',
+            'checkout_comment' => 'nullable|string|max:1000',
+            'checkout_country' => 'required|string|max:100',
+            'checkout_city' => 'required|string|max:100',
+            'checkout_zip' => 'required|string|max:10',
+            'checkout_address' => 'required|string|max:255',
+            'checkout_optional' => 'nullable|string|max:255',
+            'checkout_payment' => 'required|string|max:50',
+            'chekout_confirm' => 'required|in:on',
+        ];
 
-        $products = Product::all();
+        // Validate the request
+        $request->validate($rules);
 
-        $user_id = NULL;
-        $addedItems = NULL;
+        $products = Auth::check()
+            ? CartItem::where('user_id', Auth::id())->with(['product'])->get()
+            : $this->cartService->getGuestCartItems();
+        [$productPriceSum, $deliveryPriceSum, $productTotalCount] = $this->cartService->calculateCartTotals($products);
 
-        $totalCost = 0;
-        $deliveryCost = 0;
-        if (Auth::check()) {
-            $user_id = Auth::id();
-            $addedItems = DB::table('cart_items')->where('user_id', '=', Auth::id())->get();
-            if ($addedItems !== NULL) {
-                foreach ($addedItems as $item) {
-                    $matchingProduct = $products->firstWhere('id', $item->product_id);
-                    $totalCost = $totalCost + $matchingProduct->newPrice;
-                    $deliveryCost = $deliveryCost + $matchingProduct->shippingCost;
-                }
-            }
-        } else {
-            $addedItems = json_decode(Cookie::get('cartitems'), true);
-            if ($addedItems !== NULL) {
-                foreach ($addedItems as $item) {
-                    $product = DB::table('products')->where('id', '=', $item['product_id'])->first();
-                    $totalCost = $totalCost + $product->newPrice;
-                    $deliveryCost = $deliveryCost + $product->shippingCost;
-                }
-            }
-        }
 
-        $deliveryPlace = "";
-        if ($request->deliveryMethod === "dpd") {
-            $deliveryPlace = $request->deliveryPlace_dpd;
-        } elseif ($request->deliveryMethod === "omniva") {
-            $deliveryPlace = $request->deliveryPlace_omniva;
-        }
-        $order = new Order;
-        $order->user_id = $user_id;
-        $order->totalCost = $totalCost;
-        $order->deliveryCost = $deliveryCost;
-        $order->email = $checkoutemail;
-        $order->city = $city;
-        $order->address = $address;
-        $order->deliveryMethod = $request->deliveryMethod;
-        $order->deliveryPlace = $deliveryPlace;
-        $order->paymentMethod = $request->paymentMethod;
+        $order = new Order();
+        $order->totalCost = $productPriceSum;
+        $order->deliveryCost = $deliveryPriceSum;
+
+        $order->countryCode = $request->checkout_countrycode;
+        $order->phoneFull = $request->checkout_phonefull;
+
+        $order->user_id = Auth::id();
+        $order->email = $request->checkout_email;
+        $order->fullname = $request->checkout_fullname;
+
+        $order->city = $request->checkout_city;
+        $order->address = $request->checkout_address;
+        $order->addressOptional = $request->checkout_optional;
+        $order->zip = $request->checkout_zip;
+        $order->country = $request->checkout_country;
+
+        $order->payment = $request->checkout_payment;
         $order->status = 'confirmed';
         $order->save();
+
+
         $order_id = $order->id;
-        if (Auth::check()) {
-            $user_id = Auth::id();
-            $addedItems = DB::table('cart_items')->where('user_id', '=', Auth::id())->get();
-            if ($addedItems !== NULL) {
-                foreach ($addedItems as $item) {
-                    $orderItem = new OrderItem;
-                    $orderItem->order_id = $order_id;
-                    $orderItem->color_id = $item->color_id;
-                    $orderItem->product_id = $item->product_id;
-                    $orderItem->quantity = $item->quantity;
-                    $orderItem->save();
-                }
-            }
-        } else {
-            $addedItems = json_decode(Cookie::get('cartitems'), true);
-            if ($addedItems !== NULL) {
-                foreach ($addedItems as $item) {
-                    $orderItem = new OrderItem;
-                    $orderItem->order_id = $order_id;
-                    $orderItem->product_id = $item['product_id'];
-                    $orderItem->color_id = $item['color_id'];
-                    $orderItem->quantity = $item['quantity'];
-                    $orderItem->save();
-                }
+        if ($products !== NULL) {
+            foreach ($products as $item) {
+                $orderItem = new OrderItem;
+                $orderItem->order_id = $order_id;
+                $orderItem->product_id = $item->product->id;
+                $orderItem->color_id = $item->color_id;
+                $orderItem->quantity = $item->quantity;
+                $orderItem->oldPrice = $item->product->oldPrice;
+                $orderItem->newPrice = $item->product->newPrice;
+                $orderItem->save();
             }
         }
+
         if (Auth::check()) {
             $user_id = Auth::id();
             DB::table('cart_items')->where('user_id', '=', Auth::id())->delete();
         } else {
             Cookie::queue(Cookie::forget('cartitems'));
         }
-        if (isset($order->user_id)) {
 
+        if (isset($order->user_id)) {
             $user = DB::table('users')->where('id', '=', $user_id)->first();
             $name = $user->full_name;
-
         } else {
             $name = $order->email;
         }
         $order->full_name = $name;
 
         $currentDateTime = date('Y-m-d H:i');
-        $hash = substr(md5($name . $order->deliveryMethod . $currentDateTime), 0, 7);
-        $refnumber = strtoupper($hash); // Convert to uppercase for consistency
+
 
         return view('components.success')->with([
-            'totalCost' => $totalCost,
-            'payMethod' => $order->paymentMethod,
+            'totalCost' => $productPriceSum + $deliveryPriceSum,
+            'paymentMethod' => ucfirst($order->payment),
             'name' => $name,
             'date' => $currentDateTime,
-            'refnumber' => $refnumber
+            'refnumber' => $order->trackingNumber,
         ]);
     }
 }
