@@ -24,10 +24,10 @@ class DatabaseSeeder extends Seeder
             ProductColorSeeder::class,
             UserSeeder::class,
             ReviewSeeder::class,
-            OrderSeeder::class,
+            // OrderSeeder::class,
             SpecificationSeeder::class,
             ImageSeeder::class,
-            OrderItemsSeeder::class,
+            // OrderItemsSeeder::class,
         ]);
     }
 }

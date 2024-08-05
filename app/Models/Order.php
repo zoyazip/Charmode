@@ -10,6 +10,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Models\User;
 
+use App\Helpers\TrackingNumberHelper;
+
+
 class Order extends Model
 {
     use HasFactory;
@@ -37,4 +40,15 @@ class Order extends Model
     public function user(): BelongsTo{
         return $this->belongsTo(User::class, 'user_id');
     }
+
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($order) {
+            $order->trackingNumber = TrackingNumberHelper::generateUniqueTrackingNumber();
+        });
+    }
+
 }

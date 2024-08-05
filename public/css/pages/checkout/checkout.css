@@ -231,6 +231,10 @@
     color: black;
 }
 
+.error {
+    color: red !important;
+}
+
 .checkout__btn {
     border-radius: 8px;
     padding: 10px 20px;

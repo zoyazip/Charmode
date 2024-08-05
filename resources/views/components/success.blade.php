@@ -27,7 +27,7 @@
             </div>
             <div class="flex justify-between w-full text-white">
                 <h4>Method</h4>
-                <h4>{{$payMethod}}</h4>
+                <h4>{{$paymentMethod}}</h4>
             </div>
             <div class="flex justify-between w-full text-white">
                 <h4>Customer</h4>
